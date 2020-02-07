@@ -1,9 +1,9 @@
 import React from 'react';
-
-import MainPage from '../pages/MainPage';
-import AnotherPage from '../pages/AnotherPage';
-import Gnb from '../components/Gnb';
 import { Route } from 'react-router-dom';
+
+import Gnb from 'src/components/Gnb';
+import MainPage from 'src/pages/MainPage';
+import AnotherPage from 'src/pages/AnotherPage';
 
 
 export default () => {
