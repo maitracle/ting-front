@@ -1,6 +1,10 @@
 import React from 'react';
 import Counter from '../components/StoreComponent';
 
-export default () => <div>
-  <Counter />
-</div>
+export default () => {
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
+}
