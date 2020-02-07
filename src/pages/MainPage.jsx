@@ -1,3 +1,6 @@
 import React from 'react';
+import Counter from '../components/StoreComponent';
 
-export default () => <div>main page</div>
+export default () => <div>
+  <Counter />
+</div>
