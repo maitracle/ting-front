@@ -1,35 +1,15 @@
 import axios from 'axios';
 
-import { HOST, REFRESH_TOKENS_PATH } from 'src/constants/requests';
+import { HOST } from 'src/constants/requests';
+import { fetchAccessTokenWithRefreshToken, getAccessTokenOrRedirect } from 'src/utils/handleJwtToken';
 
-
-const redirectLoginPage = () => {
-  window.location.pathname = '/login';
-};
-
-const getAccessToken = () => localStorage.getItem('access') || redirectLoginPage();
-const setAccessToken = (accessToken) => localStorage.setItem('access', accessToken);
-
-const getRefreshToken = () => localStorage.getItem('refresh') || redirectLoginPage();
-const setRefreshToken = (refreshToken) => localStorage.setItem('refresh', refreshToken);
 
 const getRequestConfig = (isNeededAuth) => {
   return {
     headers: {
-      Authorization: isNeededAuth ? `Bearer ${getAccessToken()}` : '',
+      Authorization: isNeededAuth ? `Bearer ${getAccessTokenOrRedirect()}` : '',
     }
   };
-};
-
-const fetchAccessTokenWithRefreshToken = () => {
-  const refreshToken = getRefreshToken();
-
-  return axios.post(HOST + REFRESH_TOKENS_PATH, {
-    refresh: refreshToken,
-  })
-    .then((res) => {
-      setAccessToken(res.data.access);
-    })
 };
 
 const handleUnAuthorizedError = (err, path, isNeededAuth) => {
@@ -47,7 +27,7 @@ const handleUnAuthorizedError = (err, path, isNeededAuth) => {
         }
       })
   } else {
-    return err;
+    throw err;
   }
 };
 

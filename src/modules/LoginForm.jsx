@@ -10,6 +10,8 @@ export default () => {
     password: '',
   });
 
+  const [message, setMessage] = useState('');
+
   const setEmail = (e) => {
     setForm({
       email: e.target.value,
@@ -25,27 +27,18 @@ export default () => {
   };
 
   const logIn = () => {
-    user.logIn(form.email, form.password).then((output) => {
-      console.log(output);
-    });
+    user.logIn(form.email, form.password)
+      .then(res => {
+        setMessage(res.message);
+      })
   };
 
   const logOut = () => {
-    // console.dir(window.location);
-    // console.dir(window.location.origin);
-    // console.dir(window.location.pathname);
-    //
-    localStorage.setItem('access', 'asdfasdf');
-    // user.logOut();
+    user.logOut();
   };
 
-  const getTokenFromLocalStorage = () => {
-    console.log('refresh', localStorage.getItem('refresh'));
-    console.log('access', localStorage.getItem('access'));
-  };
-
-  const fetchLikes = () => {
-    user.fetchLikes();
+  const fetchLikes = async () => {
+    await user.fetchLikes();
   };
 
   return (
@@ -53,9 +46,9 @@ export default () => {
       email: <input type='text' value={form.email} onChange={setEmail} /> <br />
       password: <input type='password' value={form.password} onChange={setPassword} />
       <button onClick={logIn}>login</button>
-      <button onClick={getTokenFromLocalStorage}>check</button>
       <button onClick={logOut}>logout</button>
       <button onClick={fetchLikes}>fetchLikes</button>
+      <div>{ message }</div>
     </div>
   );
 };

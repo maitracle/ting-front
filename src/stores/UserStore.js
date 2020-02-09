@@ -2,6 +2,7 @@ import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
 import { FETCH_LIKE_PATH, LOGIN_PATH } from 'src/constants/requests';
+import { removeAccessToken, removeRefreshToken, setAccessToken, setRefreshToken } from 'src/utils/handleJwtToken';
 
 
 export default class UserStore {
@@ -19,8 +20,8 @@ export default class UserStore {
 
     return requests.post(LOGIN_PATH, data)
       .then((res) => {
-        localStorage.setItem('refresh', res.data.refresh);
-        localStorage.setItem('access', res.data.access);
+        setRefreshToken(res.data.refresh);
+        setAccessToken(res.data.access);
 
         return {
           status: res.status,
@@ -35,20 +36,18 @@ export default class UserStore {
   };
 
   @action logOut = () => {
-    localStorage.removeItem('refresh');
-    localStorage.removeItem('access');
+    removeAccessToken();
+    removeRefreshToken();
   };
 
   @action fetchLikes = () => {
-    return requests.get(FETCH_LIKE_PATH, true)
+    requests.get(FETCH_LIKE_PATH, true)
       .then((res) => {
-        console.log('then');
         console.log(res);
         return res;
       })
       .catch((err) => {
-        console.log('catch');
-        console.dir(err);
+        return err
       })
   }
 }
