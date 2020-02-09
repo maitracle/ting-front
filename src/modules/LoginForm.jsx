@@ -38,6 +38,7 @@ export default () => {
   };
 
   const fetchLikes = async () => {
+    // Todo(maitracle): 확인용으로 작성한 함수이므로, likes view page 작성 후 위치 변경
     await user.fetchLikes();
   };
 

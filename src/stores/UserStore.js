@@ -41,6 +41,7 @@ export default class UserStore {
   };
 
   @action fetchLikes = () => {
+    // Todo(maitracle): 확인용으로 작성한 함수이므로, likes store 추가 후 위치 변경
     requests.get(FETCH_LIKE_PATH, true)
       .then((res) => {
         return res;
