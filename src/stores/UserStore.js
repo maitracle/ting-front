@@ -43,7 +43,6 @@ export default class UserStore {
   @action fetchLikes = () => {
     requests.get(FETCH_LIKE_PATH, true)
       .then((res) => {
-        console.log(res);
         return res;
       })
       .catch((err) => {
