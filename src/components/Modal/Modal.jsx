@@ -1,20 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-export const Modal = () => {
+import './Modal.scss';
+
+export const Modal = ({ isOpen, close }) => {
+
+  useEffect(() => {
+    // Modal 이 처음 close 인 상태로 Mount 될 때 history 에 빈 페이지를 push 한다.
+    // isOpen 을 보고있는 effect 에서 history.back()을 무마시키려는 목적이다.
+    history.pushState({}, 'modalOpen');
+  }, []);
+
+  useEffect(() => {
+    if (isOpen) {
+      history.pushState({}, 'modalOpen');
+    } else {
+      history.back();
+    }
+  }, [isOpen]);
+
+  window.onpopstate = () => {
+    if (isOpen) {
+      history.pushState({}, 'modalOpen');
+      close();
+    }
+  };
+
   return (
     <>
-      <div className="Modal-overlay" />
-      <div className="Modal">
-        <p className="title">Modal Title</p>
-        <div className="content">
-          <p>
-            contents
-          </p>
-        </div>
-        <div className="button-wrap">
-          <button> Confirm </button>
-        </div>
-      </div>
+      {
+        isOpen ?
+          <>
+            <div className="modal-overlay" onClick={close} />
+            <div className="modal">
+              <p className="title">Modal Title</p>
+              <div>
+                <p>
+                  contents
+                </p>
+              </div>
+              <div>
+                <button onClick={close}> close </button>
+              </div>
+            </div>
+          </>
+          : null
+      }
     </>
   );
 };
