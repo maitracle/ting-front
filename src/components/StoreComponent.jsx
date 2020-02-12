@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { observer, inject } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
+
 
 @inject(stores => ({
   number: stores.counter.number,

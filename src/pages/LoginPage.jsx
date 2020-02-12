@@ -1,11 +1,11 @@
 import React from 'react';
-import Counter from '../components/StoreComponent';
+import LoginForm from 'src/modules/LoginForm';
 
 
 export default () => {
   return (
     <div>
-      <Counter />
+      <LoginForm />
     </div>
   );
 }
