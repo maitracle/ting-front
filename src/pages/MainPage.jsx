@@ -24,7 +24,11 @@ export default () => {
       <Modal
         isOpen={isOpenTestModal} close={closeTestModal}
         buttonList={[<button onClick={alertMethod} key={'testButton'}>alert button</button>]}
-      />
+      >
+        <div>children1</div>
+        <div>children2</div>
+        <div>children3</div>
+      </Modal>
     </div>
   );
 }
