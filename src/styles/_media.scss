@@ -1,3 +1,5 @@
+// 참고: https://css-tricks.com/snippets/sass/mixin-manage-breakpoints/
+
 $breakpoints: (
         'xs': ( max-width: 360px ),
         'sm': ( max-width: 799px ),
