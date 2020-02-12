@@ -11,7 +11,8 @@ export const Gnb = () => {
         <div className="title-sub">sub title</div>
       </div>
       <Link to="/">/</Link>&nbsp;&nbsp;&nbsp;
-      <Link to="/another">/another</Link>
+      <Link to="/another">/another</Link>&nbsp;&nbsp;&nbsp;
+      <Link to="/login">/login</Link>&nbsp;&nbsp;&nbsp;
     </>
   );
 };
