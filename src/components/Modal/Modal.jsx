@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import './Modal.scss';
 
-export const Modal = ({ isOpen, close }) => {
+export const Modal = ({ isOpen, close, buttonList }) => {
 
   useEffect(() => {
     // Modal 이 처음 close 인 상태로 Mount 될 때 history 에 빈 페이지를 push 한다.
@@ -39,7 +39,7 @@ export const Modal = ({ isOpen, close }) => {
                 </p>
               </div>
               <div>
-                <button onClick={close}> close </button>
+                { buttonList || [<button onClick={close} key={'default'}> default close button </button>] }
               </div>
             </div>
           </>

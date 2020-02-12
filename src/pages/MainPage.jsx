@@ -13,11 +13,18 @@ export default () => {
     setIsOpenTestModal(false);
   };
 
+  const alertMethod = () => {
+    alert('눌렀다!!!')
+  };
+
   return (
     <div>
       <Counter />
       <button onClick={openTestModal}>open modal</button>
-      <Modal isOpen={isOpenTestModal} close={closeTestModal} />
+      <Modal
+        isOpen={isOpenTestModal} close={closeTestModal}
+        buttonList={[<button onClick={alertMethod} key={'testButton'}>alert button</button>]}
+      />
     </div>
   );
 }
