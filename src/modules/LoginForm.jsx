@@ -3,7 +3,7 @@ import { useStores } from 'src/utils/useStores';
 
 
 export default () => {
-  const { user } = useStores();
+  const { userStore } = useStores();
 
   const [form, setForm] = useState({
     email: '',
@@ -27,19 +27,19 @@ export default () => {
   };
 
   const logIn = () => {
-    user.logIn(form.email, form.password)
+    userStore.logIn(form.email, form.password)
       .then(res => {
         setMessage(res.message);
       })
   };
 
   const logOut = () => {
-    user.logOut();
+    userStore.logOut();
   };
 
   const fetchLikes = async () => {
     // Todo(maitracle): 확인용으로 작성한 함수이므로, likes view page 작성 후 위치 변경
-    await user.fetchLikes();
+    await userStore.fetchLikes();
   };
 
   return (

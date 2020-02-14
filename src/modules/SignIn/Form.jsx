@@ -1,54 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { inject, observer } from 'mobx-react';
 
 
-export default () => {
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-    nickname: '',
-    gender: '',
-  });
+const Form = inject('signInStore')(observer(({ signInStore }) => {
 
   const setEmail = (e) => {
-    setForm({
-      email: e.target.value,
-      password: form.password,
-      nickname: form.nickname,
-      gender: form.gender,
-    });
+    signInStore.setEmail(e.target.value);
   };
 
   const setPassword = (e) => {
-    setForm({
-      email: form.email,
-      password: e.target.value,
-      nickname: form.nickname,
-      gender: form.gender,
-    });
+    signInStore.setPassword(e.target.value);
   };
 
   const setNickname = (e) => {
-    setForm({
-      email: form.email,
-      password: form.password,
-      nickname: e.target.value,
-      gender: form.gender,
-    });
+    signInStore.setNickname(e.target.value);
   };
 
   const setGender = (gender) => (_event) => {
-    setForm({
-      email: form.email,
-      password: form.password,
-      nickname: form.nickname,
-      gender: gender,
-    });
+    signInStore.setGender(gender);
   };
 
-  const checkData = () => {
-    console.log(form);
+  const signIn = () => {
+    signInStore.signIn()
+      .then((output) => {
+        console.log(output);
+      });
   };
-
 
   return (
     <div>
@@ -56,29 +33,29 @@ export default () => {
         <p>
           이메일
         </p>
-        <input type='text' value={form.email} onChange={setEmail} />
+        <input type='text' value={signInStore.formData.email} onChange={setEmail} />
       </div>
 
       <div>
         <p>
           비밀번호
         </p>
-        <input type='password' value={form.password} onChange={setPassword} />
+        <input type='password' value={signInStore.formData.password} onChange={setPassword} />
       </div>
 
       <div>
         <p>
           닉네임
         </p>
-        <input type='text' value={form.nickname} onChange={setNickname} />
+        <input type='text' value={signInStore.formData.nickname} onChange={setNickname} />
       </div>
 
       <div>
         <p>
           성별
         </p>
-        <button onClick={setGender('male')}>남학생</button>
-        <button onClick={setGender('female')}>여학생</button>
+        <button onClick={setGender('MALE')}>남학생</button>
+        <button onClick={setGender('FEMALE')}>여학생</button>
       </div>
 
       <p>
@@ -86,7 +63,10 @@ export default () => {
       </p>
 
       <button onClick={checkData}>check</button>
-      <button>sign up</button>
+      <button onClick={signIn}>sign up</button>
     </div>
   );
-};
+}));
+
+export default Form;
+
