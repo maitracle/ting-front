@@ -62,7 +62,6 @@ const Form = inject('signInStore')(observer(({ signInStore }) => {
         캠쿠의 이용약관 및 개인정보 처리방침에 동의합니다.
       </p>
 
-      <button onClick={checkData}>check</button>
       <button onClick={signIn}>sign up</button>
     </div>
   );
