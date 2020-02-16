@@ -1,18 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import RootStore from './stores';
-import { Provider } from 'mobx-react';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import RootStore from "./stores";
+import { Provider } from "mobx-react";
+import SelsoListStore from "./stores/SelsoListStore";
 
+const selsoListStore = new SelsoListStore();
 const root = new RootStore();
 
 ReactDOM.render(
-  <Provider {...root}>
+  <Provider {...root} selsoListStore={selsoListStore}>
     <App />
-  </Provider>
-  ,
-  document.getElementById('root')
+  </Provider>,
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
