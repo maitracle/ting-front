@@ -1,9 +1,13 @@
-import { action, observable } from 'mobx';
+import { action, observable } from "mobx";
 
-import requests from 'src/utils/requests';
-import { FETCH_LIKE_PATH, LOGIN_PATH } from 'src/constants/requests';
-import { removeAccessToken, removeRefreshToken, setAccessToken, setRefreshToken } from 'src/utils/handleJwtToken';
-
+import requests from "src/utils/requests";
+import { FETCH_LIKE_PATH, LOGIN_PATH } from "src/constants/requests";
+import {
+  removeAccessToken,
+  removeRefreshToken,
+  setAccessToken,
+  setRefreshToken
+} from "src/utils/handleJwtToken";
 
 export default class UserStore {
   @observable profile = {};
@@ -15,22 +19,26 @@ export default class UserStore {
   @action logIn = (email, password) => {
     const data = {
       email: email,
-      password: password,
+      password: password
     };
 
-    return requests.post(LOGIN_PATH, data)
-      .then((res) => {
+    return requests
+      .post(LOGIN_PATH, data)
+      .then(res => {
         setRefreshToken(res.data.refresh);
         setAccessToken(res.data.access);
 
         return {
           status: res.status,
-          message: res.statusText,
+          message: res.statusText
         };
-      }).catch((err) => {
+      })
+      .catch(err => {
+        console.log(err);
+        console.log(err.response);
         return {
           status: err.response.status,
-          message: err.response.statusText,
+          message: err.response.statusText
         };
       });
   };
@@ -42,12 +50,13 @@ export default class UserStore {
 
   @action fetchLikes = () => {
     // Todo(maitracle): 확인용으로 작성한 함수이므로, likes store 추가 후 위치 변경
-    requests.get(FETCH_LIKE_PATH, true)
-      .then((res) => {
+    requests
+      .get(FETCH_LIKE_PATH, true)
+      .then(res => {
         return res;
       })
-      .catch((err) => {
-        return err
-      })
-  }
+      .catch(err => {
+        return err;
+      });
+  };
 }

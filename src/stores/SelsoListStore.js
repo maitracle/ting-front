@@ -9,10 +9,13 @@ export default class SelsoListStore {
   constructor(root) {
     this.root = root;
   }
-  @observable test = 11;
   @action setSelsoList = () => {
+    console.log(localStorage.access);
+    const a = localStorage.getItem("access");
+    console.log(a);
+
     requests
-      .get(GET_PROFILE_LISTS_PATH, true)
+      .get(GET_PROFILE_LISTS_PATH, true) //jwt token어떻게 태워서 보낼것인가?
       .then(res => {
         console.log(res);
         this.selsoList = [];
@@ -22,22 +25,4 @@ export default class SelsoListStore {
         return err;
       });
   };
-
-  // @action getList =() => {
-  //   requests.get(GET_PROFILE_LISTS_PATH, true)
-  //   .then((res) => {
-  //     return {
-  //       nickname: res.nickname,
-  //       gender: res.gender,
-  //       age: res.gender,
-  //       height: res.height,
-  //       body_type: res.body_type,
-  //       tag: res.tag,
-  //       image: res.image,
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     return err
-  //   })
-  // }
 }
