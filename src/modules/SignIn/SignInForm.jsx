@@ -4,28 +4,10 @@ import { inject, observer } from 'mobx-react';
 
 const SignInForm = inject('signInStore')(observer(({ signInStore }) => {
 
-  const setEmail = (e) => {
-    signInStore.setEmail(e.target.value);
-  };
-
-  const setPassword = (e) => {
-    signInStore.setPassword(e.target.value);
-  };
-
-  const setNickname = (e) => {
-    signInStore.setNickname(e.target.value);
-  };
-
-  const setGender = (gender) => (_event) => {
-    signInStore.setGender(gender);
-  };
-
-  const signIn = () => {
-    signInStore.signIn()
-      .then((output) => {
-        console.log(output);
-      });
-  };
+  const setEmail = (e) => signInStore.setEmail(e.target.value);
+  const setPassword = (e) => signInStore.setPassword(e.target.value);
+  const setNickname = (e) => signInStore.setNickname(e.target.value);
+  const setGender = (gender) => (_event) => signInStore.setGender(gender);
 
   return (
     <div>
@@ -62,7 +44,7 @@ const SignInForm = inject('signInStore')(observer(({ signInStore }) => {
         캠쿠의 이용약관 및 개인정보 처리방침에 동의합니다.
       </p>
 
-      <button onClick={signIn}>sign up</button>
+      <button onClick={signInStore.signIn}>sign up</button>
       <button onClick={signInStore.nextTo}>nextTo</button>
     </div>
   );
