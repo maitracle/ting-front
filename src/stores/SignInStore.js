@@ -5,6 +5,9 @@ import { SIGN_IN_PATH } from 'src/constants/requests';
 
 
 export default class SignInStore {
+  @observable step = 'SignIn';
+  @observable stepList = ['SignIn', 'CheckEmail', 'MailSent'];
+
   @observable formData = {
     email: '',
     password: '',
@@ -14,7 +17,15 @@ export default class SignInStore {
 
   constructor(root) {
     this.root = root;
-  }
+  };
+
+  @action nextTo = () => {
+    const stepIndex = this.stepList.indexOf(this.step);
+
+    if (stepIndex !== -1 && (stepIndex + 1) !== this.stepList.length) {
+      this.step = this.stepList[stepIndex + 1];
+    }
+  };
 
   @action setEmail = (email) => {
     this.formData.email = email;
@@ -35,13 +46,12 @@ export default class SignInStore {
   @action getFormData = () => JSON.parse(JSON.stringify(this.formData));
 
   @action signIn = () => {
-    const data = {
-      email: this.formData.email,
-      password: this.formData.password,
-    };
+    const payload = this.getFormData();
 
-    return requests.post(SIGN_IN_PATH, data)
+    return requests.post(SIGN_IN_PATH, payload)
       .then((res) => {
+
+        this.nextTo();
 
         return {
           status: res.status,

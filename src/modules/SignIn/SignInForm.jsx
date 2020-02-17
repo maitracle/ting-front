@@ -2,7 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 
 
-const Form = inject('signInStore')(observer(({ signInStore }) => {
+const SignInForm = inject('signInStore')(observer(({ signInStore }) => {
 
   const setEmail = (e) => {
     signInStore.setEmail(e.target.value);
@@ -63,9 +63,9 @@ const Form = inject('signInStore')(observer(({ signInStore }) => {
       </p>
 
       <button onClick={signIn}>sign up</button>
+      <button onClick={signInStore.nextTo}>nextTo</button>
     </div>
   );
 }));
 
-export default Form;
-
+export default SignInForm;
