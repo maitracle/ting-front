@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Counter from '../components/StoreComponent';
-import { Modal } from 'src/components/Modal';
+import Modal from 'src/components/Modal';
 
 
 export default () => {
