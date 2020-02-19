@@ -6,10 +6,12 @@ import MainPage from 'src/pages/MainPage';
 import AnotherPage from 'src/pages/AnotherPage';
 import LoginPage from 'src/pages/LoginPage';
 
+import './DefaultLayoutRouter.scss';
+
 
 export default () => {
   return (
-    <>
+    <div className={'layoutWrapper'}>
       <header>
         <Gnb />
       </header>
@@ -23,6 +25,6 @@ export default () => {
           default router footer
         </div>
       </footer>
-    </>
+    </div>
   );
 }
