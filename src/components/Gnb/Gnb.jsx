@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import './Gnb.scss';
+import "./Gnb.scss";
 
 export const Gnb = () => {
   return (
@@ -13,6 +13,7 @@ export const Gnb = () => {
       <Link to="/">/</Link>&nbsp;&nbsp;&nbsp;
       <Link to="/another">/another</Link>&nbsp;&nbsp;&nbsp;
       <Link to="/login">/login</Link>&nbsp;&nbsp;&nbsp;
+      <Link to="/profile-form">/profileform</Link>&nbsp;&nbsp;&nbsp;
     </>
   );
 };
