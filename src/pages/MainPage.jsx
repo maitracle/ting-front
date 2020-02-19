@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Counter from '../components/StoreComponent';
 import Modal from 'src/components/Modal';
 
 
@@ -19,7 +18,6 @@ export default () => {
 
   return (
     <div>
-      <Counter />
       <button onClick={openTestModal}>open modal</button>
       <Modal
         isOpen={isOpenTestModal} close={closeTestModal}
