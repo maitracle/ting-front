@@ -3,9 +3,9 @@ import { inject, observer } from 'mobx-react';
 
 
 @inject(stores => ({
-  number: stores.counter.number,
-  increase: stores.counter.increase,
-  decrease: stores.counter.decrease,
+  number: stores.counterStore.number,
+  increase: stores.counterStore.increase,
+  decrease: stores.counterStore.decrease,
 }))
 @observer
 class Counter extends Component {
