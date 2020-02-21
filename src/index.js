@@ -4,10 +4,7 @@ import { Provider } from 'mobx-react';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import RootStore from './stores';
-import SelsoListStore from './stores/SelsoListStore';
 
-
-const selsoListStore = new SelsoListStore();
 const root = new RootStore();
 
 ReactDOM.render(
