@@ -1,14 +1,12 @@
-import React from "react";
-import styled, { css } from "styled-components";
-import "./SimpleCard.scss";
+import React from 'react';
+import styled, { css } from 'styled-components';
+import './SimpleCard.scss';
 
 export default function SimpleCard({ user }) {
-  console.log(user);
-
   const Circle = styled.div`
     width: 1rem;
     height: 1rem;
-    background: ${props => props.color || "black"};
+    background: ${(props) => props.color || 'black'};
     border-radius: 50%;
     float: right;
     margin: 0 auto;
@@ -24,11 +22,18 @@ export default function SimpleCard({ user }) {
         <div className="First-Top">
           <div className="First-Top-Nickname">{user.nickname}</div>
           <div className="First-Top-Age">
-            '{user.age}살' <Circle color="orange">N</Circle>
+            '
+            {user.age}
+살'
+            {' '}
+            <Circle color="orange">N</Circle>
           </div>
 
           <div className="Second-Tag">{user.tag}</div>
-          <div className="Third-lastword">#{user.lastTemptingWord}</div>
+          <div className="Third-lastword">
+#
+            {user.lastTemptingWord}
+          </div>
         </div>
       </div>
       <div className="Right">
