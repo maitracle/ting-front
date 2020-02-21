@@ -6,6 +6,7 @@ import { SIGN_IN_PATH } from 'src/constants/requests';
 
 export default class SignInStore {
   @observable step = 'SignIn';
+
   @observable stepList = ['SignIn', 'CheckEmail', 'MailSent'];
 
   @observable formData = {
@@ -17,7 +18,7 @@ export default class SignInStore {
 
   constructor(root) {
     this.root = root;
-  };
+  }
 
   @action nextTo = () => {
     const stepIndex = this.stepList.indexOf(this.step);
@@ -50,7 +51,6 @@ export default class SignInStore {
 
     return requests.post(SIGN_IN_PATH, payload)
       .then((res) => {
-
         this.nextTo();
 
         return {
@@ -59,7 +59,6 @@ export default class SignInStore {
         };
       }).catch((err) => {
         if (err.response) {
-
           return {
             status: err.response.status,
             message: err.response.statusText,
@@ -69,7 +68,7 @@ export default class SignInStore {
         return {
           status: null,
           message: 'unknown error',
-        }
+        };
       });
   }
 }

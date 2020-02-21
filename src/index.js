@@ -1,18 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'mobx-react';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import RootStore from './stores';
-import { Provider } from 'mobx-react';
 
 const root = new RootStore();
 
 ReactDOM.render(
+  // eslint-disable-next-line react/jsx-props-no-spreading
   <Provider {...root}>
     <App />
-  </Provider>
-  ,
-  document.getElementById('root')
+  </Provider>,
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
