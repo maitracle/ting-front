@@ -20,7 +20,8 @@ export default class UserStore {
       password,
     };
 
-    return requests.post(LOGIN_PATH, data)
+    return requests
+      .post(LOGIN_PATH, data)
       .then((res) => {
         setRefreshToken(res.data.refresh);
         setAccessToken(res.data.access);

@@ -13,15 +13,20 @@ export default () => {
   };
 
   const alertMethod = () => {
-    alert('눌렀다!!!')
+    alert('눌렀다!!!');
   };
 
   return (
     <div>
       <button onClick={openTestModal}>open modal</button>
       <Modal
-        isOpen={isOpenTestModal} close={closeTestModal}
-        buttonList={[<button onClick={alertMethod} key={'testButton'}>alert button</button>]}
+        isOpen={isOpenTestModal}
+        close={closeTestModal}
+        buttonList={[
+          <button onClick={alertMethod} key="testButton">
+            alert button
+          </button>,
+        ]}
       >
         <div>children1</div>
         <div>children2</div>
@@ -29,4 +34,4 @@ export default () => {
       </Modal>
     </div>
   );
-}
+};
