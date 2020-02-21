@@ -1,3 +1,3 @@
 import DefaultLayoutRouter from './DefaultLayoutRouter';
 
-export default DefaultLayoutRouter
+export default DefaultLayoutRouter;
