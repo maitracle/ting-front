@@ -2,11 +2,13 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 import Gnb from 'src/components/Gnb';
+import GlobalTab from 'src/components/GlobalTab';
 import MainPage from 'src/pages/MainPage';
 import LoginPage from 'src/pages/LoginPage';
+import SelsoListPage from 'src/pages/SelsoListPage';
 
 import './DefaultLayoutRouter.scss';
-import GlobalTab from 'src/components/GlobalTab';
+
 
 
 export default () => {
@@ -18,8 +20,9 @@ export default () => {
 
       <Route path="/" exact component={MainPage} />
       <Route path="/login" exact component={LoginPage} />
+      <Route path="/selsolist" exact component={SelsoListPage} />
 
       <GlobalTab />
     </div>
   );
-}
+};

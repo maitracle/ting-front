@@ -8,8 +8,8 @@ import MailSent from 'src/modules/SignIn/MailSent';
 
 const mapStepToComponent = {
   SignIn: SignInForm,
-  CheckEmail: CheckEmail,
-  MailSent: MailSent,
+  CheckEmail,
+  MailSent,
 };
 
 const SignInPage = inject('signInStore')(observer(({ signInStore }) => {

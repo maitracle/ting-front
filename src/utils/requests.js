@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 import { HOST } from 'src/constants/requests';
-import { fetchAccessTokenWithRefreshToken, getAccessTokenOrRedirect } from 'src/utils/handleJwtToken';
+import {
+  fetchAccessTokenWithRefreshToken,
+  getAccessTokenOrRedirect,
+  removeAccessToken, removeRefreshToken
+} from 'src/utils/handleJwtToken';
 
 
 const getRequestConfig = (isNeededAuth) => ({
@@ -23,7 +27,12 @@ const handleUnAuthorizedError = (err, path, isNeededAuth) => {
         // Todo(maitracle): 임시로 disable 한 lint rule을 해결한다.
         // eslint-disable-next-line no-throw-literal
         throw 'prevent too many request';
-      });
+      })
+      .catch(() => {
+        removeAccessToken();
+        removeRefreshToken();
+        getAccessTokenOrRedirect();
+      })
   }
   throw err;
 };
