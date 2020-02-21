@@ -28,9 +28,9 @@ export default () => {
 
   const logIn = () => {
     userStore.logIn(form.email, form.password)
-      .then(res => {
+      .then((res) => {
         setMessage(res.message);
-      })
+      });
   };
 
   const logOut = () => {
@@ -44,8 +44,14 @@ export default () => {
 
   return (
     <div>
-      email: <input type='text' value={form.email} onChange={setEmail} /> <br />
-      password: <input type='password' value={form.password} onChange={setPassword} />
+      email:
+      {' '}
+      <input type="text" value={form.email} onChange={setEmail} />
+      {' '}
+      <br />
+      password:
+      {' '}
+      <input type="password" value={form.password} onChange={setPassword} />
       <button onClick={logIn}>login</button>
       <button onClick={logOut}>logout</button>
       <button onClick={fetchLikes}>fetchLikes</button>

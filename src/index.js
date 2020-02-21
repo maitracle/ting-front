@@ -11,7 +11,8 @@ const selsoListStore = new SelsoListStore();
 const root = new RootStore();
 
 ReactDOM.render(
-  <Provider {...root} selsoListStore={selsoListStore}>
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Provider {...root}>
     <App />
   </Provider>,
   document.getElementById('root'),

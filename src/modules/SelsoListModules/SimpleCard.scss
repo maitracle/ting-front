@@ -1,43 +1,54 @@
-.Card {
+.card {
   width: 375px;
   height: 135px;
   font-size: 16px;
   border: 2px solid;
   margin-bottom: 5px;
 }
-.Left {
+.left {
   float: left;
   width: 260px;
   height: 130px;
   padding-top: 15px;
 }
-.First-Top-Nickname {
+.firstTopNickname {
   width: 135px;
   float: left;
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.First-Top-Age {
+.firstTopAge {
   border-left: 1px solid;
   float: right;
   padding-right: 5px;
   padding-left: 15px;
 }
 
-.Second-Tag {
+.newbox{
+  float: right;
+  font-weight: bold;
+  width: 13px;
+  height: 13px;
+  border-radius:50%;
+  background:orange;
+  font-size: 10px;
+  text-align: center;
+  line-height: 13px;
+}
+.secondTag {
   color: blue;
   font-size: 10px;
   clear: both;
   padding-left: 15px;
 }
-.Third-Lastword {
+.thirdLastword {
   font-size: 14px;
   clear: both;
   padding-left: 15px;
 }
 
-.Right {
+.right {
   border: 2px solid;
   float: left;
   margin: 10px;

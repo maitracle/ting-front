@@ -1,42 +1,24 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
 import './SimpleCard.scss';
 
 export default function SimpleCard({ user }) {
-  const Circle = styled.div`
-    width: 1rem;
-    height: 1rem;
-    background: ${(props) => props.color || 'black'};
-    border-radius: 50%;
-    float: right;
-    margin: 0 auto;
-    font-size: 0.7rem;
-    margin-top: 5px;
-    margin-left: 15px;
-    text-align: center;
-  `;
-
   return (
-    <div className="Card">
-      <div className="Left">
-        <div className="First-Top">
-          <div className="First-Top-Nickname">{user.nickname}</div>
-          <div className="First-Top-Age">
-            '
-            {user.age}
-살'
-            {' '}
-            <Circle color="orange">N</Circle>
+    <div className="card">
+      <div className="left">
+        <div className="firstTop">
+          <div className="firstTopNickname">{user.nickname}</div>
+          <div className="firstTopAge">
+            {`'${user.age}살'`}
+            <div className="newbox">N</div>
           </div>
-
-          <div className="Second-Tag">{user.tag}</div>
-          <div className="Third-lastword">
-#
+          <div className="secondTag">{user.tag}</div>
+          <div className="thirdLastword">
+            #
             {user.lastTemptingWord}
           </div>
         </div>
       </div>
-      <div className="Right">
+      <div className="right">
         <p>이미지박스</p>
       </div>
     </div>

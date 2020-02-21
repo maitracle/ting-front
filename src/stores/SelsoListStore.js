@@ -13,7 +13,6 @@ export default class SelsoListStore {
     requests
       .get(GET_PROFILE_LISTS_PATH, true)
       .then((res) => {
-        this.selsoList = [];
         this.selsoList = res.data;
       })
       .catch((err) => err);
