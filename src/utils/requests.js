@@ -24,12 +24,15 @@ const handleUnAuthorizedError = (err, path, isNeededAuth) => {
             .then((res) => res);
         }
 
-        removeAccessToken();
-        removeRefreshToken();
         // Todo(maitracle): 임시로 disable 한 lint rule을 해결한다.
         // eslint-disable-next-line no-throw-literal
         throw 'prevent too many request';
-      });
+      })
+      .catch(() => {
+        removeAccessToken();
+        removeRefreshToken();
+        getAccessTokenOrRedirect();
+      })
   }
   throw err;
 };
