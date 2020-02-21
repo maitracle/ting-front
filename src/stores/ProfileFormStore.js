@@ -1,10 +1,17 @@
-import { action, observable } from "mobx";
+import { action, observable } from 'mobx';
 
-import requests from "src/utils/requests";
 
 export default class ProfileFormStore {
-  @observable step = "Oneline";
-  @observable stepList = ["Oneline", "Tag", "Image"];
+  @observable step = 'Oneline';
+
+  @observable stepList = ['Oneline', 'Tag', 'Image'];
+
+  @observable profileFormData = {
+    oneline: '',
+    tag: '',
+    image: '',
+
+  }
 
   constructor(root) {
     this.root = root;
@@ -16,5 +23,17 @@ export default class ProfileFormStore {
     if (stepIndex !== -1 && stepIndex + 1 !== this.stepList.length) {
       this.step = this.stepList[stepIndex + 1];
     }
+  };
+
+  @action setOneline = (oneline) => {
+    this.profileFormData.oneline = oneline;
+  };
+
+  @action setTag = (tag) => {
+    this.profileFormData.tag = tag;
+  };
+
+  @action setImage = (image) => {
+    this.profileFormData.image = image;
   };
 }
