@@ -1,0 +1,16 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "plugins": ["react", "jsx-a11y", "import"],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "indent": ["error", 2],
+    // Todo(maitracle): src를 절대경로로 세팅해놓은 것이 lint에서 인식되지 않는 문제를 수정한다. 그 전까지는 임시로 아래의 룰을 off한다.
+    "import/no-unresolved": "off",
+    "max-len": ["error", { "code": 120 }]
+  }
+}

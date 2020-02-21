@@ -1,0 +1,14 @@
+.IndicatorWrapper {
+  display: flex;
+}
+
+.IndicatorItem {
+  border: solid 1px black;
+  width: 5px;
+  height: 5px;
+  margin-right: 10px;
+}
+
+.selected {
+  background-color: black;
+}

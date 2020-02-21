@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import Counter from "../components/StoreComponent";
-import { Modal } from "src/components/Modal";
+import React, { useState } from 'react';
+import { Modal } from 'src/components/Modal';
+
 
 export default () => {
   const [isOpenTestModal, setIsOpenTestModal] = useState(false);
@@ -13,20 +13,19 @@ export default () => {
   };
 
   const alertMethod = () => {
-    alert("눌렀다!!!");
+    alert('눌렀다!!!');
   };
 
   return (
     <div>
-      <Counter />
       <button onClick={openTestModal}>open modal</button>
       <Modal
         isOpen={isOpenTestModal}
         close={closeTestModal}
         buttonList={[
-          <button onClick={alertMethod} key={"testButton"}>
+          <button onClick={alertMethod} key="testButton">
             alert button
-          </button>
+          </button>,
         ]}
       >
         <div>children1</div>
