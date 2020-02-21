@@ -1,7 +1,6 @@
-import { action, observable, toJS } from "mobx";
-import { axios } from "axios";
-import requests from "src/utils/requests";
-import { GET_PROFILE_LISTS_PATH } from "src/constants/requests";
+import { action, observable } from 'mobx';
+import requests from 'src/utils/requests';
+import { GET_PROFILE_LISTS_PATH } from 'src/constants/requests';
 
 export default class SelsoListStore {
   @observable selsoList = [];
@@ -13,12 +12,10 @@ export default class SelsoListStore {
   @action setSelsoList = () => {
     requests
       .get(GET_PROFILE_LISTS_PATH, true)
-      .then(res => {
+      .then((res) => {
         this.selsoList = [];
         this.selsoList = res.data;
       })
-      .catch(err => {
-        return err;
-      });
+      .catch((err) => err);
   };
 }
