@@ -13,13 +13,15 @@ const Image = inject('profileFormStore')(
       </div>
       <button>예시더보기</button>
       <div>
-        <div>한줄표현</div>
-        <div>태그작성</div>
-        <div>사진추가</div>
+        <span>한줄표현</span>
+        &nbsp;&nbsp;&nbsp;
+        <span>태그작성</span>
+        &nbsp;&nbsp;&nbsp;
+        <span>"사진추가"</span>
       </div>
       {/* <input>사진추가하기</input> */}
       <p> 이미지넣으세요</p>
-      <button onClick={profileFormStore.nextTo}>뒤로</button>
+      <button onClick={profileFormStore.backTo}>뒤로</button>
       <button onClick={profileFormStore.nextTo}>다음</button>
     </div>
   )),

@@ -13,11 +13,11 @@ const mapStepToComponent = {
 
 const ProfileFormPage = inject('profileFormStore')(
   observer(({ profileFormStore }) => {
-    const StepComponent = mapStepToComponent[profileFormStore.step];
+    let StepComponent = mapStepToComponent[profileFormStore.step];
 
-    // useEffect(() => {
-    //   StepComponent = mapStepToComponent[signInStore.step];
-    // }, [signInStore.step]);
+    useEffect(() => {
+      StepComponent = mapStepToComponent[profileFormStore.step];
+    }, [profileFormStore.step]);
 
     return (
       <div>

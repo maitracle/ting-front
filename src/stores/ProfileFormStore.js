@@ -25,6 +25,13 @@ export default class ProfileFormStore {
     }
   };
 
+  @action backTo = () => {
+    const stepIndex = this.stepList.indexOf(this.step); // 0
+    if (stepIndex !== 0 && stepIndex + 3 !== this.stepList.length) {
+      this.step = this.stepList[stepIndex - 1];
+    }
+  };
+
   @action setOneline = (oneline) => {
     this.profileFormData.oneline = oneline;
   };
