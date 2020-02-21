@@ -23,5 +23,5 @@ export const fetchAccessTokenWithRefreshToken = () => {
   })
     .then((res) => {
       setAccessToken(res.data.access);
-    })
+    });
 };
