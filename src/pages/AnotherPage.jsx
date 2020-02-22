@@ -1,4 +1,4 @@
 import React from 'react';
 
 
-export default () => <div>another page</div>
+export default () => <div>another page</div>;

@@ -16,6 +16,7 @@ export const Gnb = () => (
     <Link to="/login">/login</Link>
 &nbsp;&nbsp;&nbsp;
     <Link to="/profile-form">/profileform</Link>
+    <Link to="/selsolist">Selsolist</Link>
 &nbsp;&nbsp;&nbsp;
   </>
 );
