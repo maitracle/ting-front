@@ -1,0 +1,17 @@
+.tabLink {
+  flex: 1;
+}
+
+.tabItem {
+  padding: 5px;
+  border: solid 1px black;
+}
+
+.selected {
+  background-color: blue;
+}
+
+.tabWrapper {
+  border: solid 1px black;
+  display: flex;
+}

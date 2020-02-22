@@ -1,9 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import DefaultLayoutRouter from "./DefaultLayoutRouter";
-import SignInRouter from "src/routers/SignInRouter";
-import ProfileFormRouter from "src/routers/ProfileFormRouter";
+import SignInRouter from 'src/routers/SignInRouter';
+import ProfileFormRouter from 'src/routers/ProfileFormRouter';
+import DefaultLayoutRouter from './DefaultLayoutRouter';
 
 export default () => (
   <Router>
