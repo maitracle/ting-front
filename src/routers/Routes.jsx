@@ -7,11 +7,9 @@ import SignInRouter from 'src/routers/SignInRouter';
 
 export default () => (
   <Router>
-    <main>
-      <Switch>
-        <Route path="/sign-in" exact component={SignInRouter} />
-        <Route path="/" component={DefaultLayoutRouter} />
-      </Switch>
-    </main>
+    <Switch>
+      <Route path="/sign-in" exact component={SignInRouter} />
+      <Route path="/" component={DefaultLayoutRouter} />
+    </Switch>
   </Router>
 );
