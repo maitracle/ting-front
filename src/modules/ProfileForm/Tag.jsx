@@ -28,7 +28,7 @@ const Tag = inject('profileFormStore')(
           </div>
         </div>
         <div className="progressBar">
-          <div className="progressRate2" />
+          <div className="progressRate66" />
         </div>
         <div className="anwserWrap">
           <p> #태그를 추가하세요</p>

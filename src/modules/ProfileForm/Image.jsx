@@ -29,7 +29,7 @@ const Image = inject('profileFormStore')(
           </div>
         </div>
         <div className="progressBar">
-          <div className="progressRate3" />
+          <div className="progressRate100" />
         </div>
         <div className="anwserWrap">
           <p> 이미지를 넣으세요</p>
