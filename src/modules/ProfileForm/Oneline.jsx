@@ -23,14 +23,12 @@ const OneLine = inject('profileFormStore')(
           <button>예시더보기</button>
           <div className="contentWrap">
             <div className="child">"한줄표현"</div>
-          &nbsp;&nbsp;&nbsp;
             <div className="child">태그작성</div>
-          &nbsp;&nbsp;&nbsp;
             <div className="child">사진추가</div>
           </div>
         </div>
         <div className="progressBar">
-          <div className="progressRate">33% </div>
+          <div className="progressRate" />
         </div>
         <div className="anwserWrap">
           <p> 한줄표현입력하세요</p>

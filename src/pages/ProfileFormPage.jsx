@@ -21,7 +21,7 @@ const ProfileFormPage = inject('profileFormStore')(
 
     return (
       <div>
-        <div>프로필폼페이지 </div>
+        <div>프로필폼 페이지 </div>
         <StepComponent />
       </div>
     );

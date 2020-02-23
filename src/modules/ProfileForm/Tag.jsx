@@ -23,17 +23,15 @@ const Tag = inject('profileFormStore')(
           <button>예시더보기</button>
           <div className="contentWrap">
             <div className="child">한줄표현</div>
-        &nbsp;&nbsp;&nbsp;
             <div className="child">"태그작성"</div>
-        &nbsp;&nbsp;&nbsp;
             <div className="child">사진추가</div>
           </div>
         </div>
         <div className="progressBar">
-          <div className="progressRate2">66% </div>
+          <div className="progressRate2" />
         </div>
         <div className="anwserWrap">
-          <p> 한줄표현입력하세요</p>
+          <p> #태그를 추가하세요</p>
           <input className="tagInput" type="text" value={profileFormStore.profileFormData.tag} onChange={setTag} />
         </div>
         <div className="buttonWrap">

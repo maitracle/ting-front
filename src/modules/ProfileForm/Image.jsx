@@ -24,17 +24,15 @@ const Image = inject('profileFormStore')(
           <button>예시더보기</button>
           <div className="contentWrap">
             <div className="child">한줄표현</div>
-    &nbsp;&nbsp;&nbsp;
             <div className="child">태그작성</div>
-    &nbsp;&nbsp;&nbsp;
             <div className="child">"사진추가"</div>
           </div>
         </div>
         <div className="progressBar">
-          <div className="progressRate3">100% </div>
+          <div className="progressRate3" />
         </div>
         <div className="anwserWrap">
-          <p> 한줄표현입력하세요</p>
+          <p> 이미지를 넣으세요</p>
           <input type="text" value={profileFormStore.profileFormData.image} onChange={setImage} />
         </div>
         <div className="buttonWrap">
