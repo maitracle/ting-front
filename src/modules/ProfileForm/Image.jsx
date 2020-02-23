@@ -1,30 +1,49 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import './ProfileOneStep.scss';
+
 
 const Image = inject('profileFormStore')(
-  observer(({ profileFormStore }) => (
-    <div>
-      <div>Image 프로필 썸네일에 들어갈 사진을 올려주세요</div>
-      <div>
-        예시)
-        <br />
-        {' '}
- Image Here
+  observer(({ profileFormStore }) => {
+    const setImage = (e) => profileFormStore.setImage(e.target.value);
+    return (
+      <div className="survey">
+        <div className="surveyHeader">
+          <p className="qTitle">
+      프로필 썸네일에 들어갈
+            <br />
+      사진을 올려주세요
+          </p>
+          <div className="exampleWrap">
+      예시)
+            <br />
+      -이미지예시1
+            <br />
+      이미지예시2
+          </div>
+          <button>예시더보기</button>
+          <div className="contentWrap">
+            <div className="child">한줄표현</div>
+    &nbsp;&nbsp;&nbsp;
+            <div className="child">태그작성</div>
+    &nbsp;&nbsp;&nbsp;
+            <div className="child">"사진추가"</div>
+          </div>
+        </div>
+        <div className="progressBar">
+          <div className="progressRate3">100% </div>
+        </div>
+        <div className="anwserWrap">
+          <p> 한줄표현입력하세요</p>
+          <input type="text" value={profileFormStore.profileFormData.image} onChange={setImage} />
+        </div>
+        <div className="buttonWrap">
+          <button onClick={profileFormStore.backTo}>뒤로</button>
+          <button onClick={profileFormStore.nextTo}>다음</button>
+        </div>
       </div>
-      <button>예시더보기</button>
-      <div>
-        <span>한줄표현</span>
-        &nbsp;&nbsp;&nbsp;
-        <span>태그작성</span>
-        &nbsp;&nbsp;&nbsp;
-        <span>"사진추가"</span>
-      </div>
-      {/* <input>사진추가하기</input> */}
-      <p> 이미지넣으세요</p>
-      <button onClick={profileFormStore.backTo}>뒤로</button>
-      <button onClick={profileFormStore.nextTo}>다음</button>
-    </div>
-  )),
+    );
+  }),
 );
 
 export default Image;
