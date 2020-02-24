@@ -1,0 +1,20 @@
+.linkWrapper {
+  width: 90%;
+  margin: 0 auto;
+
+  .linkItem {
+    height: 60px;
+    border-bottom: 1px solid #E3E3E3;
+    padding-left: 10px;
+
+    text-decoration: none;
+
+    .linkText {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 18px;
+      line-height: 18px;
+      color: black;
+    }
+  }
+}

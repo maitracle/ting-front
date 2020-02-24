@@ -6,20 +6,19 @@ import './GlobalTab.scss';
 const TabItem = withRouter(({ name, linkTo }) => {
   return (
     <Link to={linkTo} className={'tabLink'}>
-      <div className={'tabItem ' + (linkTo === location.pathname ? ' selected': '')}>
+      <div className={'tabItem ' + (location.pathname.startsWith(linkTo) ? ' selected': '')}>
         {name}
       </div>
     </Link>
   )
-
 });
 
 export const GlobalTab = () => {
   return (
     <div className={'tabWrapper'}>
-      <TabItem name={'Home'} linkTo={'/'} />
+      <TabItem name={'List'} linkTo={'/selsolist'} />
       <TabItem name={'ZZim'} linkTo={'/zzim'} />
-      <TabItem name={'MyPage'} linkTo={'/mypage'} />
+      <TabItem name={'MyPage'} linkTo={'/my'} />
     </div>
   );
 };

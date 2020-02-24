@@ -1,0 +1,45 @@
+.sectionWrapper {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.label {
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.inputWrapper {
+  margin-top: 20px;
+
+  .inputBox {
+    width: 100%;
+    height: 28px;
+    background-color: #FBFBFB;
+    border: 0.5px solid #616161;
+    border-radius: 6px;
+    margin-top: 17px;
+    box-sizing: border-box;
+  }
+}
+
+.separator {
+  width: 90%;
+  height: 1px;
+  margin: 20px auto 0 auto;
+  background-color: #E3E3E3;
+}
+
+.textBoxWrapper {
+  margin-top: 20px;
+
+  .textArea {
+    width: 100%;
+    height: 363px;
+    background: #FBFBFB;
+    border: 0.5px solid #616161;
+    border-radius: 6px;
+    margin-top: 17px;
+    box-sizing: border-box;
+
+  }
+}

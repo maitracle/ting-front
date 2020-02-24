@@ -4,6 +4,7 @@
 
 .tabItem {
   padding: 5px;
+  height: 100%;
 }
 
 .selected {
@@ -11,10 +12,11 @@
 }
 
 .tabWrapper {
-  border-top: solid 1px black;
   display: flex;
   position: fixed;
   bottom: 0;
   width: 100vw;
+  height: 65px;
+  border-top: solid 1px black;
   margin-left: -1px;
 }
