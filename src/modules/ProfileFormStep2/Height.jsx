@@ -1,6 +1,10 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import './ProfileTwoStep.scss';
+import TextInput from 'src/components/Input/TextInput';
+import BtnNext from 'src/components/Button/BtnNext';
+import BtnPrev from 'src/components/Button/BtnPrev';
+
 
 const Height = inject('profileFormStore')(
   observer(({ profileFormStore }) => {
@@ -25,12 +29,12 @@ const Height = inject('profileFormStore')(
           <div className="progressRate40" />
         </div>
         <div className="anwserWrap">
-          <p> 키를 알려주세요</p>
-          <input type="text" value={profileFormStore.profileFormData.height} onChange={setHeight} />
+          <p className="question"> 키를 알려주세요</p>
+          <TextInput placeholder="-" value={profileFormStore.profileFormData.height} onChange={setHeight} text="cm" />
         </div>
         <div className="buttonWrap">
-          <button onClick={profileFormStore.backTo}>뒤로</button>
-          <button onClick={profileFormStore.nextTo}>다음</button>
+          <BtnPrev onClick={profileFormStore.backTo} />
+          <BtnNext onClick={profileFormStore.nextTo} />
         </div>
       </div>
     );

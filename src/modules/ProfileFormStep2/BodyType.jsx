@@ -1,10 +1,41 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { inject, observer } from 'mobx-react';
 import './ProfileTwoStep.scss';
+import BtnPrev from 'src/components/Button/BtnPrev';
+import BtnNext from 'src/components/Button/BtnNext';
+import RadioInput from 'src/components/Input/RadioInput';
 
 const BodyType = inject('profileFormStore')(
   observer(({ profileFormStore }) => {
-    const setBodyType = (e) => profileFormStore.setBodyType(e.target.value);
+    const [radios, setRadios] = useState([
+      {
+        id: 1,
+        text: '마른',
+        checked: true,
+      },
+      {
+        id: 2,
+        text: '슬림',
+        checked: false,
+      },
+      {
+        id: 3,
+        text: '보통',
+        checked: false,
+      },
+    ]);
+    const setBodyType = (text) => profileFormStore.setBodyType(text);
+    const onClick = useCallback(
+      (id, text) => {
+        setRadios(
+          radios.map((radio) => (radio.id === id ? { ...radio, checked: true } : { ...radio, checked: false })),
+        );
+        setBodyType(text);
+      },
+      [radios],
+    );
+    // store에 저장되는 data 확인
+    console.log(`store에 저장되는 data: ${profileFormStore.profileFormData.bodytype}`);
     return (
       <div className="survey">
         <div className="surveyHeader2">
@@ -26,11 +57,15 @@ const BodyType = inject('profileFormStore')(
         </div>
         <div className="anwserWrap">
           <p> 체형을 선택해주세요</p>
-          <input type="text" value={profileFormStore.profileFormData.bodytype} onChange={setBodyType} />
+          <div className="RadioGroup">
+            {radios.map((radio) => (
+              <RadioInput key={radio.id} id={radio.id} text={radio.text} checked={radio.checked} onClick={onClick} />
+            ))}
+          </div>
         </div>
         <div className="buttonWrap">
-          <button onClick={profileFormStore.backTo}>뒤로</button>
-          <button onClick={profileFormStore.nextTo}>다음</button>
+          <BtnPrev onClick={profileFormStore.backTo} />
+          <BtnNext onClick={profileFormStore.nextTo} />
         </div>
       </div>
     );

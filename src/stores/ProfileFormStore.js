@@ -2,13 +2,9 @@ import { action, observable } from 'mobx';
 
 
 export default class ProfileFormStore {
-  @observable step = 'Oneline';
+  @observable step = 'Age';
 
-  @observable stepList = ['Oneline', 'Tag', 'Image', 'Age', 'Height', 'BodyType', 'Religion', 'IsSmoke'];
-
-  // @observable step2 = '';
-
-  // @observable step2List = ['나이', '키', '체형', '종교', '흡연여부'];
+  @observable stepList = ['Age', 'Height', 'BodyType', 'Religion', 'IsSmoke', 'Oneline', 'Tag', 'Image'];
 
   @observable profileFormData = {
     oneline: '',
@@ -50,5 +46,17 @@ export default class ProfileFormStore {
 
   @action setImage = (image) => {
     this.profileFormData.image = image;
+  };
+
+  @action setAge = (age) => {
+    this.profileFormData.age = age;
+  };
+
+  @action setHeight = (height) => {
+    this.profileFormData.height = height;
+  };
+
+  @action setBodyType = (bodytype) => {
+    this.profileFormData.bodytype = bodytype;
   };
 }

@@ -1,10 +1,14 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import './ProfileTwoStep.scss';
+import TextInput from 'src/components/Input/TextInput';
+import BtnNext from 'src/components/Button/BtnNext';
+import BtnPrev from 'src/components/Button/BtnPrev';
 
-const OneLine = inject('profileFormStore')(
+
+const Age = inject('profileFormStore')(
   observer(({ profileFormStore }) => {
-    const setOneline = (e) => profileFormStore.setOneline(e.target.value);
+    const setAge = (e) => profileFormStore.setAge(e.target.value);
     return (
       <div className="survey">
         <div className="surveyHeader2">
@@ -25,16 +29,16 @@ const OneLine = inject('profileFormStore')(
           <div className="progressRate20" />
         </div>
         <div className="anwserWrap">
-          <p> 나이를 알려주세요</p>
-          <input type="text" value={profileFormStore.profileFormData.oneline} onChange={setOneline} />
+          <p className="question"> 나이를 알려주세요</p>
+          <TextInput placeholder="-" value={profileFormStore.profileFormData.age} onChange={setAge} text="세" />
         </div>
         <div className="buttonWrap">
-          <button onClick={profileFormStore.backTo}>뒤로</button>
-          <button onClick={profileFormStore.nextTo}>다음</button>
+          <BtnPrev onClick={profileFormStore.backTo} />
+          <BtnNext onClick={profileFormStore.nextTo} />
         </div>
       </div>
     );
   }),
 );
 
-export default OneLine;
+export default Age;
