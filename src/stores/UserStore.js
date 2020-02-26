@@ -1,17 +1,29 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { FETCH_LIKE_PATH, LOGIN_PATH } from 'src/constants/requests';
+import { FETCH_LIKE_PATH, GET_MY_PROFILE_PATH, LOGIN_PATH } from 'src/constants/requests';
 import {
+  getAccessToken,
   removeAccessToken, removeRefreshToken, setAccessToken, setRefreshToken,
 } from 'src/utils/handleJwtToken';
 
 
+const fetchMyProfileApi = () => requests.get(GET_MY_PROFILE_PATH, true);
+
+
 export default class UserStore {
+  @observable isLoggedIn = false;
   @observable profile = {};
 
   constructor(root) {
     this.root = root;
+
+    if (getAccessToken()) {
+      fetchMyProfileApi()
+        .then((res) => {
+          this.profile = res.data;
+        })
+    }
   }
 
   @action logIn = (email, password) => {
