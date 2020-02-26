@@ -1,25 +1,25 @@
 import React from 'react';
-import './SelsoItemCard.scss';
+
+import styles from './SelsoItemCard.module.scss';
 
 export default function SelsoItemCard({ selsoItem }) {
   return (
-    <div className="card">
-      <div className="left">
-        <div className="firstTop">
-          <div className="firstTopNickname">{selsoItem.nickname}</div>
-          <div className="firstTopAge">
-            {`'${selsoItem.age}살'`}
-            <div className="newbox">N</div>
-          </div>
-          <div className="secondTag">{selsoItem.tags}</div>
-          <div className="thirdLastword">
-            #
-            {selsoItem.lastTemptingWord}
+    <div className={styles.card}>
+      <div className={styles.leftBox}>
+        <div className={styles.titleBox}>
+          <div className={styles.nickname}>{selsoItem.nickname} </div>
+          <div className={styles.age}>
+            {`${selsoItem.age}살`}
+            <div className={styles.newBox}>N</div>
           </div>
         </div>
+        <div className={styles.tags}>{selsoItem.tags}</div>
+        <div className={styles.oneSentenceBox}>
+          { selsoItem.oneSentence }
+        </div>
       </div>
-      <div className="right">
-        <p>이미지박스</p>
+      <div className={styles.rightBox}>
+        <img src={selsoItem.image || require('src/assets/images/defaultProfileImage.jpg')} className={styles.image} alt={'프로필 이미지'} />
       </div>
     </div>
   );
