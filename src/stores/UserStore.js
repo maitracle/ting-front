@@ -4,7 +4,10 @@ import requests from 'src/utils/requests';
 import { FETCH_LIKE_PATH, GET_MY_PROFILE_PATH, LOGIN_PATH } from 'src/constants/requests';
 import {
   getAccessToken,
-  removeAccessToken, removeRefreshToken, setAccessToken, setRefreshToken,
+  removeAccessToken,
+  removeRefreshToken,
+  setAccessToken,
+  setRefreshToken,
 } from 'src/utils/handleJwtToken';
 
 
