@@ -15,6 +15,8 @@ export const MyProfile = inject('userStore')(observer(({ userStore }) => {
 
   const setForm = (key) => (event) => setProfileData({ ...profileData, [key]: event.target.value });
 
+  const updateProfile = () => userStore.updateProfile(profileData);
+
   return (
     profileData ?
       <div>
@@ -65,6 +67,7 @@ export const MyProfile = inject('userStore')(observer(({ userStore }) => {
             <textarea value={profileData.idealType || ''} onChange={setForm('idealType')} className={'textArea'} />
           </div>
         </section>
+        <button style={{border: 'solid 1px black'}} onClick={updateProfile}>update</button>
       </div>
       :
       null
