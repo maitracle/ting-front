@@ -22,6 +22,7 @@ export default class UserStore {
       fetchMyProfileApi()
         .then((res) => {
           this.profile = res.data;
+          this.isLoggedIn = true;
         })
     }
   }
@@ -51,6 +52,7 @@ export default class UserStore {
   @action logOut = () => {
     removeAccessToken();
     removeRefreshToken();
+    this.isLoggedIn = false;
   };
 
   @action fetchLikes = () => {
