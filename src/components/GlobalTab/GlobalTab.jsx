@@ -16,7 +16,7 @@ const TabItem = withRouter(({ name, linkTo }) => {
 export const GlobalTab = () => {
   return (
     <div className={'tabWrapper'}>
-      <TabItem name={'List'} linkTo={'/selsolist'} />
+      <TabItem name={'List'} linkTo={'/selso'} />
       <TabItem name={'ZZim'} linkTo={'/zzim'} />
       <TabItem name={'MyPage'} linkTo={'/my'} />
     </div>

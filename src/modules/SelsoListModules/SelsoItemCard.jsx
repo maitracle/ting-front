@@ -1,20 +1,20 @@
 import React from 'react';
-import './SimpleCard.scss';
+import './SelsoItemCard.scss';
 
-export default function SimpleCard({ user }) {
+export default function SelsoItemCard({ selsoItem }) {
   return (
     <div className="card">
       <div className="left">
         <div className="firstTop">
-          <div className="firstTopNickname">{user.nickname}</div>
+          <div className="firstTopNickname">{selsoItem.nickname}</div>
           <div className="firstTopAge">
-            {`'${user.age}살'`}
+            {`'${selsoItem.age}살'`}
             <div className="newbox">N</div>
           </div>
-          <div className="secondTag">{user.tag}</div>
+          <div className="secondTag">{selsoItem.tags}</div>
           <div className="thirdLastword">
             #
-            {user.lastTemptingWord}
+            {selsoItem.lastTemptingWord}
           </div>
         </div>
       </div>

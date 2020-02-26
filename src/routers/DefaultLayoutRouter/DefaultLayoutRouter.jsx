@@ -24,7 +24,7 @@ export default () => {
 
       <Route path="/" exact component={MainPage} />
       <Route path="/login" exact component={LoginPage} />
-      <Route path="/selsolist" exact component={SelsoListPage} />
+      <Route path="/selso" exact component={SelsoListPage} />
 
       <Route path="/my" exact component={MyList} />
       <Route path="/my/profile" exact component={MyProfile} />
