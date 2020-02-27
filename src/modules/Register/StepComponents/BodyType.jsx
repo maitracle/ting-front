@@ -5,7 +5,7 @@ import RegisterHeader from 'src/modules/Register/RegisterHeader';
 import './ProfileOneStep.scss';
 
 
-const Age = inject('registerStore')(
+const BodyType = inject('registerStore')(
   observer(({ registerStore }) => {
     const setOneSentence = (e) => registerStore.setOneSentence(e.target.value);
     return (
@@ -26,4 +26,4 @@ const Age = inject('registerStore')(
   }),
 );
 
-export default Age;
+export default BodyType;

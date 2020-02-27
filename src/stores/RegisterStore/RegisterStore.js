@@ -41,10 +41,9 @@ export class RegisterStore {
   };
 
   @action nextTo = () => {
-    const stepIndex = this.stepList.indexOf(this.step);
-
+    const stepIndex = this.stepList.indexOf(this.currentStep);
     if (stepIndex !== -1 && stepIndex + 1 !== this.stepList.length) {
-      this.step = this.stepList[stepIndex + 1];
+      this.currentStep = this.stepList[stepIndex + 1];
     }
   };
 

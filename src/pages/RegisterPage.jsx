@@ -1,16 +1,18 @@
 import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
-import Oneline from 'src/modules/Register/StepComponents/Oneline';
-import Tag from 'src/modules/Register/StepComponents/Tag';
-import Image from 'src/modules/Register/StepComponents/Image';
 import Age from 'src/modules/Register/StepComponents/Age';
+import Height from 'src/modules/Register/StepComponents/Height';
+import IsSmoke from 'src/modules/Register/StepComponents/IsSmoke';
+import Religion from 'src/modules/Register/StepComponents/Religion';
+import BodyType from 'src/modules/Register/StepComponents/BodyType';
 
 const mapStepToComponent = {
   Age,
-  Oneline,
-  Tag,
-  Image,
+  Height,
+  BodyType,
+  Religion,
+  IsSmoke,
 };
 
 const RegisterPage = inject('registerStore')(
