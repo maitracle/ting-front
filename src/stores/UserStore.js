@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { FETCH_LIKE_PATH, LOGIN_PATH } from 'src/constants/requests';
+import { FETCH_LIKE_PATH, LOGIN_PATH, SIGN_IN_PATH } from 'src/constants/requests';
 import {
   removeAccessToken, removeRefreshToken, setAccessToken, setRefreshToken,
 } from 'src/utils/handleJwtToken';
@@ -12,7 +12,7 @@ export default class UserStore {
 
   constructor(root) {
     this.root = root;
-  }
+  };
 
   @action logIn = (email, password) => {
     const data = {
@@ -46,5 +46,24 @@ export default class UserStore {
     requests.get(FETCH_LIKE_PATH, true)
       .then((res) => res)
       .catch((err) => err);
-  }
+  };
+
+  @action authUniv = (user_code) => {
+    const data = {
+      user_code,
+    };
+    
+    return requests
+      .post(`${SIGN_IN_PATH}confirm-user/`, data)
+      .then((res) => {
+
+        return {
+          status: res.status,
+          message: res.statusText,
+        };
+      }).catch((err) => ({
+        status: err.response.status,
+        message: err.response.statusText,
+      }));
+  };
 }
