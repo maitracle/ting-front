@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import SignInRouter from 'src/routers/SignInRouter';
-import ProfileFormRouter from 'src/routers/ProfileFormRouter';
+import RegisterRouter from 'src/routers/RegisterRouter';
 import DefaultLayoutRouter from './DefaultLayoutRouter';
 
 export default () => (
@@ -10,7 +10,7 @@ export default () => (
     <main>
       <Switch>
         <Route path="/sign-in" exact component={SignInRouter} />
-        <Route path="/profile-form" exact component={ProfileFormRouter} />
+        <Route path="/register" exact component={RegisterRouter} />
         <Route path="/" component={DefaultLayoutRouter} />
       </Switch>
     </main>

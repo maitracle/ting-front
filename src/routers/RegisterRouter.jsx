@@ -1,12 +1,12 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import ProfileFormPage from "src/pages/ProfileFormPage";
+import RegisterPage from "src/pages/RegisterPage";
 
 export default () => {
   return (
     <>
-      <Route path="/profile-form" exact component={ProfileFormPage} />
+      <Route path="/register" exact component={RegisterPage} />
     </>
   );
 };

@@ -2,9 +2,9 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import './ProfileOneStep.scss';
 
-const Tag = inject('profileFormStore')(
-  observer(({ profileFormStore }) => {
-    const setTag = (e) => profileFormStore.setTag(e.target.value);
+const Tag = inject('registerStore')(
+  observer(({ registerStore }) => {
+    const setTag = (e) => registerStore.setTag(e.target.value);
     return (
       <div className="survey">
         <div className="surveyHeader">
@@ -32,11 +32,11 @@ const Tag = inject('profileFormStore')(
         </div>
         <div className="anwserWrap">
           <p> #태그를 추가하세요</p>
-          <input className="tagInput" type="text" value={profileFormStore.profileFormData.tag} onChange={setTag} />
+          <input className="tagInput" type="text" value={registerStore.profileFormData.tag} onChange={setTag} />
         </div>
         <div className="buttonWrap">
-          <button onClick={profileFormStore.backTo}>뒤로</button>
-          <button onClick={profileFormStore.nextTo}>다음</button>
+          <button onClick={registerStore.backTo}>뒤로</button>
+          <button onClick={registerStore.nextTo}>다음</button>
         </div>
       </div>
     );

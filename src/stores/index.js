@@ -1,5 +1,5 @@
 import SignInStore from 'src/stores/SignInStore';
-import ProfileFormStore from 'src/stores/ProfileFormStore';
+import RegisterStore from 'src/stores/RegisterStore';
 import UserStore from './UserStore';
 import SelsoListStore from './SelsoListStore';
 
@@ -8,7 +8,7 @@ class RootStore {
     this.selsoListStore = new SelsoListStore(this);
     this.userStore = new UserStore(this);
     this.signInStore = new SignInStore(this);
-    this.profileFormStore = new ProfileFormStore(this);
+    this.registerStore = new RegisterStore(this);
   }
 }
 

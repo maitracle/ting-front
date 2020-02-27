@@ -2,9 +2,9 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import './ProfileOneStep.scss';
 
-const OneLine = inject('profileFormStore')(
-  observer(({ profileFormStore }) => {
-    const setOneline = (e) => profileFormStore.setOneline(e.target.value);
+const OneLine = inject('registerStore')(
+  observer(({ registerStore }) => {
+    const setOneSentence = (e) => registerStore.setOneline(e.target.value);
     return (
       <div className="survey">
         <div className="surveyHeader">
@@ -32,11 +32,11 @@ const OneLine = inject('profileFormStore')(
         </div>
         <div className="anwserWrap">
           <p> 한줄표현입력하세요</p>
-          <input type="text" value={profileFormStore.profileFormData.oneline} onChange={setOneline} />
+          <input type="text" value={registerStore.profileFormData.oneline} onChange={setOneSentence} />
         </div>
         <div className="buttonWrap">
-          <button onClick={profileFormStore.backTo}>뒤로</button>
-          <button onClick={profileFormStore.nextTo}>다음</button>
+          <button onClick={registerStore.backTo}>뒤로</button>
+          <button onClick={registerStore.nextTo}>다음</button>
         </div>
       </div>
     );

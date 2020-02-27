@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx';
 
 
-export default class ProfileFormStore {
+export class RegisterStore {
   @observable currentStep = '';
 
   @observable stepList = [];
@@ -16,11 +16,10 @@ export default class ProfileFormStore {
 
   @observable group4 = ['ChatLink', ];
 
-  @observable profileFormData = {
-    oneline: '',
-    tag: '',
+  @observable registerData = {
+    oneSentence: '',
+    tags: '',
     image: '',
-
   };
 
   constructor(root) {
@@ -45,15 +44,15 @@ export default class ProfileFormStore {
     }
   };
 
-  @action setOneline = (oneline) => {
-    this.profileFormData.oneline = oneline;
+  @action setOneline = (oneSentence) => {
+    this.registerData.oneSentence = oneSentence;
   };
 
-  @action setTag = (tag) => {
-    this.profileFormData.tag = tag;
+  @action setTag = (tags) => {
+    this.registerData.tags = tags;
   };
 
   @action setImage = (image) => {
-    this.profileFormData.image = image;
+    this.registerData.image = image;
   };
 }
