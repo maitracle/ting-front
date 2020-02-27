@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { inject, observer } from 'mobx-react';
 
+const mapGroupToTitle = {
+  group1: 'group 1 title',
+  group2: 'group 2 title',
+  group3: 'group 3 title',
+  group4: 'group 4 title',
 
-const Header = () => {
+};
+
+export default inject('registerStore')(observer(({ registerStore }) => {
+
+  useEffect(() => {
+    console.log(registerStore.currentGroup);
+  }, []);
+
   return (
     <div>
       <div className="surveyHeader">
         <p className="qTitle">
-          프로필 썸네일에 들어갈
-          <br />
-          한줄을 적어주세요
+          { mapGroupToTitle[registerStore.currentGroup] }
         </p>
         <div className="exampleWrap">
           예시)
@@ -27,10 +38,6 @@ const Header = () => {
       <div className="progressBar">
         <div className="progressRate" />
       </div>
-      <div className="anwserWrap">
-        <p> 한줄표현입력하세요</p>
-        <input type="text" value={registerStore.registerData.oneSentence} />
-      </div>
     </div>
   );
-};
+}));

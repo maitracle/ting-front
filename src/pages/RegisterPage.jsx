@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
-import Oneline from 'src/modules/Register/Oneline';
-import Tag from 'src/modules/Register/Tag';
-import Image from 'src/modules/Register/Image';
+import Oneline from 'src/modules/Register/StepComponents/Oneline';
+import Tag from 'src/modules/Register/StepComponents/Tag';
+import Image from 'src/modules/Register/StepComponents/Image';
+import Age from 'src/modules/Register/StepComponents/Age';
 
 const mapStepToComponent = {
-  Age: Oneline,
+  Age,
   Oneline,
   Tag,
   Image,
@@ -17,7 +18,6 @@ const RegisterPage = inject('registerStore')(
     let StepComponent = mapStepToComponent[registerStore.currentStep];
 
     useEffect(() => {
-      console.log(registerStore.currentStep);
       StepComponent = mapStepToComponent[registerStore.currentStep];
     }, [registerStore.currentStep]);
 
