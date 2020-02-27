@@ -6,6 +6,7 @@ import Tag from 'src/modules/ProfileForm/Tag';
 import Image from 'src/modules/ProfileForm/Image';
 
 const mapStepToComponent = {
+  Age: Oneline,
   Oneline,
   Tag,
   Image,
@@ -13,11 +14,11 @@ const mapStepToComponent = {
 
 const ProfileFormPage = inject('profileFormStore')(
   observer(({ profileFormStore }) => {
-    let StepComponent = mapStepToComponent[profileFormStore.step];
+    let StepComponent = mapStepToComponent[profileFormStore.currentStep];
 
     useEffect(() => {
-      StepComponent = mapStepToComponent[profileFormStore.step];
-    }, [profileFormStore.step]);
+      StepComponent = mapStepToComponent[profileFormStore.currentStep];
+    }, [profileFormStore.currentStep]);
 
     return (
       <div>
