@@ -29,7 +29,7 @@ const Header = () => {
       </div>
       <div className="anwserWrap">
         <p> 한줄표현입력하세요</p>
-        <input type="text" value={registerStore.profileFormData.oneline} onChange={setOneline} />
+        <input type="text" value={registerStore.registerData.oneSentence} />
       </div>
     </div>
   );

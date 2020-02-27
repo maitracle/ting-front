@@ -4,7 +4,7 @@ import './ProfileOneStep.scss';
 
 const Tag = inject('registerStore')(
   observer(({ registerStore }) => {
-    const setTag = (e) => registerStore.setTag(e.target.value);
+    const setTag = (e) => registerStore.setTags(e.target.value);
     return (
       <div className="survey">
         <div className="surveyHeader">
@@ -32,7 +32,7 @@ const Tag = inject('registerStore')(
         </div>
         <div className="anwserWrap">
           <p> #태그를 추가하세요</p>
-          <input className="tagInput" type="text" value={registerStore.profileFormData.tag} onChange={setTag} />
+          <input className="tagInput" type="text" value={registerStore.registerData.tags} onChange={setTag} />
         </div>
         <div className="buttonWrap">
           <button onClick={registerStore.backTo}>뒤로</button>

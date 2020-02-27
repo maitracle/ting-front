@@ -44,7 +44,7 @@ export class RegisterStore {
     }
   };
 
-  @action setOneline = (oneSentence) => {
+  @action setOneSentence = (oneSentence) => {
     this.registerData.oneSentence = oneSentence;
   };
 

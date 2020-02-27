@@ -33,7 +33,7 @@ const Image = inject('registerStore')(
         </div>
         <div className="anwserWrap">
           <p> 이미지를 넣으세요</p>
-          <input type="text" value={registerStore.profileFormData.image} onChange={setImage} />
+          <input type="text" value={registerStore.registerData.image} onChange={setImage} />
         </div>
         <div className="buttonWrap">
           <button onClick={registerStore.backTo}>뒤로</button>
