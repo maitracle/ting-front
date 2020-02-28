@@ -18,7 +18,7 @@ export const MyList = () => {
             <span className={'linkText'}>마이 프로필 수정하기</span>
           </div>
         </Link>
-        <Link to={'/my/diamond'}>
+        <Link to={'/my/dia'}>
           <div className={'linkItem'}>
             <span className={'linkText'}>다이아 변동사항</span>
           </div>
