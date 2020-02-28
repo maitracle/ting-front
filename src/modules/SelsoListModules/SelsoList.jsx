@@ -1,21 +1,14 @@
 import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
-import SimpleCard from 'src/modules/SelsoListModules/SimpleCard';
+import SelsoItemCard from 'src/modules/SelsoListModules/SelsoItemCard';
+
 
 const SelsoList = ({ setSelsoList, selsoList }) => {
   useEffect(() => {
     setSelsoList();
   }, []);
 
-  return (
-    <div>
-      <div>
-        {selsoList.map((user) => (
-          <SimpleCard key={user.id} user={user} />
-        ))}
-      </div>
-    </div>
-  );
+  return selsoList.map((selsoItem) => <SelsoItemCard key={selsoItem.id} selsoItem={selsoItem} />);
 };
 
 export default inject(({ selsoListStore }) => ({

@@ -1,0 +1,15 @@
+.titleWrapper {
+  height: 48px;
+  background: #FFFFFF;
+  box-shadow: 0 2px 4px #CFCFCF;
+
+  .title {
+    display: inline-block;
+    margin: 12px 0 0 25px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 22px;
+  }
+}
