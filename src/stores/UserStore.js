@@ -50,7 +50,7 @@ export default class UserStore {
 
   @action authUniv = (user_code) => {
     const data = {
-      user_code,
+      "user_code": user_code,
     };
     
     return requests
