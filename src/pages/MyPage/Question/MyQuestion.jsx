@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './MyQuestion.scss';
+import style from './MyQuestion.module.scss';
 
 
 export const MyQuestion = () => {
