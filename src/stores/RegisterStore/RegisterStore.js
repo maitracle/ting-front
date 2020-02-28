@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { action, computed, observable } from 'mobx';
 
 
@@ -6,11 +7,15 @@ export class RegisterStore {
 
   @observable currentStep = '';
 
-  @observable groupList = ['group1', 'group2', 'group3', 'group4', ];
-  @observable group1 = ['Age', 'Height', 'BodyType', 'Religion', 'IsSmoke', ];
-  @observable group2 = ['Appearance', 'Personality', 'Hobby', 'DateStyle', 'IdealType', ];
+  @observable groupList = ['group1', 'group2', 'group3', 'group4'];
+
+  @observable group1 = ['Age', 'Height', 'BodyType', 'Religion', 'IsSmoke'];
+
+  @observable group2 = ['Appearance', 'Personality', 'Hobby', 'DateStyle', 'IdealType'];
+
   @observable group3 = ['OneSentence', 'Tags', 'Image'];
-  @observable group4 = ['ChatLink', ];
+
+  @observable group4 = ['ChatLink'];
 
   @observable registerData = {
     age: '',
@@ -27,18 +32,18 @@ export class RegisterStore {
     this.currentStep = this.stepList[0] || '';
   }
 
-  @computed get currentGroup()  {
+  @computed get currentGroup() {
     let foundGroup = '';
     this.groupList.forEach((groupKey) => {
       this[groupKey].forEach((step) => {
         if (this.currentStep === step) {
           foundGroup = groupKey;
         }
-      })
+      });
     });
 
     return foundGroup;
-  };
+  }
 
   @action nextTo = () => {
     const stepIndex = this.stepList.indexOf(this.currentStep);

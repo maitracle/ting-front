@@ -2,17 +2,12 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import RegisterHeader from 'src/modules/Register/RegisterHeader';
 
-import './ProfileOneStep.scss';
 
-
-const Religion = inject('registerStore')(
+const BodyType = inject('registerStore')(
   observer(({ registerStore }) => {
     const setOneSentence = (e) => registerStore.setOneSentence(e.target.value);
     return (
       <div className="survey">
-        <div>
-          <RegisterHeader />
-        </div>
         <div className="anwserWrap">
           <p> 한줄표현입력하세요</p>
           <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
@@ -26,4 +21,4 @@ const Religion = inject('registerStore')(
   }),
 );
 
-export default Religion;
+export default BodyType;
