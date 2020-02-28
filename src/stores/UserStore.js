@@ -63,12 +63,8 @@ export default class UserStore {
   };
 
   @action authUniv = (userCode) => {
-    const data = {
-      "user_code": userCode,
-    };
-    
     return requests
-      .post(`${SIGN_IN_PATH}confirm-user/`, data)
+      .post(`${SIGN_IN_PATH}confirm-user/`, { userCode, })
       .then((res) => {
 
         return {
