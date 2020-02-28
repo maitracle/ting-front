@@ -11,7 +11,7 @@ export default () => (
     <main>
       <Switch>
         <Route path="/sign-in" component={SignInRouter} />
-        <Route path="/user-confirm/:userCode" component={UserConfirmPage} />
+        <Route path="/user-confirm/:userCode" exact component={UserConfirmPage} />
         <Route path="/" component={DefaultLayoutRouter} />
       </Switch>
     </main>
