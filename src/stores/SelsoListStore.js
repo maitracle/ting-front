@@ -5,7 +5,7 @@ import { GET_PROFILE_LISTS_PATH } from 'src/constants/requests';
 export default class SelsoListStore {
   @observable selsoList = [];
 
-  @observable selectedSelsoId = null;
+  @observable selectedSelsoId = 0;
 
   @observable selectedSelsoDetail = {};
 
@@ -20,5 +20,13 @@ export default class SelsoListStore {
         this.selsoList = res.data;
       })
       .catch((err) => err);
+  };
+
+  @action setSelectedSelsoId = (id) => {
+    this.selectedSelsoId = id;
+  };
+
+  @action fetchSelectedSelsoDetail = () => {
+    console.log('fetched');
   };
 }

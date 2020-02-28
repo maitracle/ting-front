@@ -10,12 +10,14 @@ const SelsoList = inject('selsoListStore')(observer(({ selsoListStore }) => {
     selsoListStore.setSelsoList();
   }, []);
 
-  const moveToDetailPage = () => {
+  const moveToDetailPage = (id) => (_e) => {
+    selsoListStore.setSelectedSelsoId(id);
+
     return 'selso/detail';
   };
 
   return selsoListStore.selsoList.map((selsoItem) => (
-    <Link to={moveToDetailPage} key={selsoItem.id} className={styles.link}>
+    <Link to={moveToDetailPage(selsoItem.id)} key={selsoItem.id} className={styles.link}>
       <SelsoItemCard selsoItem={selsoItem} />
     </Link>)
   );
