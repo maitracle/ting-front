@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import DefaultLayoutRouter from './DefaultLayoutRouter';
 import SignInRouter from 'src/routers/SignInRouter';
-import UserConfirmPage from '../pages/UserConfirmPage';
+import UserConfirmPage from 'src/pages/UserConfirmPage';
 
 
 export default () => (
