@@ -1,10 +1,10 @@
 import React from 'react';
-
+import { inject, observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
+
 import { ProfileCard } from 'src/modules/MyPage/ProfileCard/ProfileCard';
 
-import './MyList.scss';
-import { inject, observer } from 'mobx-react';
+import styles from './MyList.module.scss';
 
 
 export const MyList = inject('userStore')(observer(({ userStore }) => {
@@ -13,25 +13,25 @@ export const MyList = inject('userStore')(observer(({ userStore }) => {
     <div>
       <ProfileCard imageSrc={userStore.profile.image} nickname={userStore.profile.nickname} />
 
-      <div className="linkWrapper">
+      <div className={styles.linkWrapper}>
         <Link to="/my/profile">
-          <div className="linkItem">
-            <span className="linkText">마이 프로필 수정하기</span>
+          <div className={styles.linkItem}>
+            <span className={styles.linkText}>마이 프로필 수정하기</span>
           </div>
         </Link>
         <Link to="/my/diamond">
-          <div className="linkItem">
-            <span className="linkText">다이아 변동사항</span>
+          <div className={styles.linkItem}>
+            <span className={styles.linkText}>다이아 변동사항</span>
           </div>
         </Link>
         <Link to="/my/questions">
-          <div className="linkItem">
-            <span className="linkText">자주 묻는 질문</span>
+          <div className={styles.linkItem}>
+            <span className={styles.linkText}>자주 묻는 질문</span>
           </div>
         </Link>
         <Link to="/my/review">
-          <div className="linkItem">
-            <span className="linkText">리뷰 남기기</span>
+          <div className={styles.linkItem}>
+            <span className={styles.linkText}>리뷰 남기기</span>
           </div>
         </Link>
 
