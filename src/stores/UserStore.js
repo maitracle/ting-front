@@ -48,9 +48,9 @@ export default class UserStore {
       .catch((err) => err);
   };
 
-  @action authUniv = (user_code) => {
+  @action authUniv = (userCode) => {
     const data = {
-      "user_code": user_code,
+      "user_code": userCode,
     };
     
     return requests

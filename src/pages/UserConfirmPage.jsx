@@ -4,10 +4,10 @@ import { useParams } from 'react-router-dom'
 
 const UserConfirmPage = inject('userStore')(observer(({ userStore }) => {
 
-  const { user_code } = useParams();
+  const { userCode } = useParams();
 
   useEffect(() => {
-    userStore.authUniv(user_code);
+    userStore.authUniv(userCode);
   }, []);
   
   // Todo(10000001a): a 태그와 button에 링크 아직 부여 안함.

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import DefaultLayoutRouter from './DefaultLayoutRouter';
 import SignInRouter from 'src/routers/SignInRouter';
-import UserConfirmRouter from './UserConfirmRouter';
+import UserConfirmPage from '../pages/UserConfirmPage';
 
 
 export default () => (
@@ -11,7 +11,7 @@ export default () => (
     <main>
       <Switch>
         <Route path="/sign-in" component={SignInRouter} />
-        <Route path="/user-confirm" component={UserConfirmRouter} />
+        <Route path="/user-confirm/:userCode" component={UserConfirmPage} />
         <Route path="/" component={DefaultLayoutRouter} />
       </Switch>
     </main>
