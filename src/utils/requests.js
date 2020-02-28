@@ -15,7 +15,7 @@ const getRequestConfig = (isNeededAuth) => ({
 });
 
 const handleUnAuthorizedError = (err, path, isNeededAuth) => {
-  if (isNeededAuth && err.response.status === 401) {
+  if (isNeededAuth && err.response && err.response.status === 401) {
     return fetchAccessTokenWithRefreshToken()
       .then(() => {
         if (path.slice(-1) !== '#') {
