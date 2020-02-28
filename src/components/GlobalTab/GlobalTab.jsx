@@ -3,15 +3,14 @@ import { Link, withRouter } from 'react-router-dom';
 
 import './GlobalTab.scss';
 
-const TabItem = withRouter(({ name, linkTo }) => {
-  return (
-    <Link to={linkTo} className={'tabLink'}>
-      <div className={'tabItem ' + (location.pathname.startsWith(linkTo) ? ' selected': '')}>
-        {name}
-      </div>
-    </Link>
-  )
-});
+
+const TabItem = withRouter(({ name, linkTo }) => (
+  <Link to={linkTo} className={'tabLink'}>
+    <div className={'tabItem ' + (location.pathname.startsWith(linkTo) ? ' selected' : '')}>
+      {name}
+    </div>
+  </Link>
+));
 
 export const GlobalTab = () => {
   return (

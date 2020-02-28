@@ -8,12 +8,11 @@ export const StepIndicator = ({ stepList, currentStep }) => {
 
   return (
     <>
-      <div className={'IndicatorWrapper'}>
+      <div className="IndicatorWrapper">
         {
           stepList.map((item, index) => <div key={item} className={`IndicatorItem ${index <= selectedStep ? 'selected' : ''}`} />)
         }
       </div>
     </>
-  )
+  );
 };
-
