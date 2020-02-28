@@ -1,8 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 
-import 'src/modules/Register/StepComponents/ProfileOneStep.scss';
-
 
 const ChatLink = inject('registerStore')(
   observer(({ registerStore }) => {

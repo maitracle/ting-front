@@ -1,8 +1,5 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import RegisterHeader from 'src/modules/Register/RegisterHeader';
-
-import 'src/modules/Register/StepComponents/ProfileOneStep.scss';
 
 
 const Age = inject('registerStore')(
@@ -11,7 +8,7 @@ const Age = inject('registerStore')(
     return (
       <div className="survey">
         <div className="anwserWrap">
-          <p> 한줄표현입력하세요</p>
+          <p> AgeAgeAgeAge나이를 입력하세요</p>
           <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
         </div>
         <div className="buttonWrap">
