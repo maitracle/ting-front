@@ -1,9 +1,7 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import {
-  FETCH_LIKE_PATH, GET_MY_PROFILE_PATH, LOGIN_PATH, UPDATE_PROFILE_PATH,
-} from 'src/constants/requests';
+import { FETCH_LIKE_PATH, GET_MY_PROFILE_PATH, LOGIN_PATH, UPDATE_PROFILE_PATH, } from 'src/constants/requests';
 import {
   getAccessToken,
   removeAccessToken,
@@ -69,6 +67,11 @@ export default class UserStore {
       .catch((err) => err);
   };
 
-  @action updateProfile = (profileData) => updateProfileApi(profileData)
-    .then((res) => this.profile = res.data);
+  @action updateProfile = (profileData) => {
+    return updateProfileApi(profileData)
+      .then((res) => this.profile = {
+        ...this.profile,
+        ...res.data,
+      });
+  };
 }
