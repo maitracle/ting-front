@@ -20,7 +20,7 @@ export class RegisterStore {
   @observable registerData = {
     age: '',
     height: '',
-    bodyType: '',
+    bodyType: '11',
     religion: '',
     isSmoke: '',
   };
@@ -53,21 +53,13 @@ export class RegisterStore {
   };
 
   @action backTo = () => {
-    const stepIndex = this.stepList.indexOf(this.step); // 0
-    if (stepIndex !== 0 && stepIndex + 3 !== this.stepList.length) {
-      this.step = this.stepList[stepIndex - 1];
+    const stepIndex = this.stepList.indexOf(this.currentStep); // 0
+    if (stepIndex !== 0) {
+      this.currentStep = this.stepList[stepIndex - 1];
     }
   };
 
-  @action setOneSentence = (oneSentence) => {
-    this.registerData.oneSentence = oneSentence;
-  };
-
-  @action setTag = (tags) => {
-    this.registerData.tags = tags;
-  };
-
-  @action setImage = (image) => {
-    this.registerData.image = image;
+  @action setRegisterData = (type, bodyType) => {
+    this.registerData[type] = bodyType;
   };
 }

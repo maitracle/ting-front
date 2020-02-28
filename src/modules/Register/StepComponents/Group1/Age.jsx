@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import RegisterHeader from 'src/modules/Register/RegisterHeader';
 
 import 'src/modules/Register/StepComponents/ProfileOneStep.scss';
-import textInput from 'src/src/components/Input/TextInput';
+import textInput from 'src/components/Input/TextInput';
 
 
 const Age = inject('registerStore')(
