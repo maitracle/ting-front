@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import SignInPage from 'src/pages/SignInPage';
+import SignUpPage from 'src/pages/SignUpPage';
 
 
 export default () => {
   return (
     <>
-      <Route path="/sign-in" exact component={SignInPage} />
+      <Route path="/sign-in" exact component={SignUpPage} />
     </>
   );
 }

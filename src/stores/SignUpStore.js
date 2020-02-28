@@ -1,13 +1,13 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { SIGN_IN_PATH } from 'src/constants/requests';
+import { SIGN_UP_PATH } from 'src/constants/requests';
 
 
-export default class SignInStore {
-  @observable step = 'SignIn';
+export default class SignUpStore {
+  @observable step = 'SignUp';
 
-  @observable stepList = ['SignIn', 'CheckEmail', 'MailSent'];
+  @observable stepList = ['SignUp', 'CheckEmail', 'MailSent'];
 
   @observable formData = {
     email: '',
@@ -46,10 +46,10 @@ export default class SignInStore {
 
   @action getFormData = () => JSON.parse(JSON.stringify(this.formData));
 
-  @action signIn = () => {
+  @action signUp = () => {
     const payload = this.getFormData();
 
-    return requests.post(SIGN_IN_PATH, payload)
+    return requests.post(SIGN_UP_PATH, payload)
       .then((res) => {
         this.nextTo();
 

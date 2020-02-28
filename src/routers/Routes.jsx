@@ -2,13 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import DefaultLayoutRouter from './DefaultLayoutRouter';
-import SignInRouter from 'src/routers/SignInRouter';
+import SignUpRouter from 'src/routers/SignUpRouter';
 
 
 export default () => (
   <Router>
     <Switch>
-      <Route path="/sign-in" exact component={SignInRouter} />
+      <Route path="/sign-in" exact component={SignUpRouter} />
       <Route path="/" component={DefaultLayoutRouter} />
     </Switch>
   </Router>
