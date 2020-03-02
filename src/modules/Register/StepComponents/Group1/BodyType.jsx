@@ -1,6 +1,5 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 const BodyType = inject('registerStore')(
   observer(({ registerStore }) => {

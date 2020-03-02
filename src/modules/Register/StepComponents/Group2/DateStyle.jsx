@@ -1,7 +1,5 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
-
 
 const DateStyle = inject('registerStore')(
   observer(({ registerStore }) => {
