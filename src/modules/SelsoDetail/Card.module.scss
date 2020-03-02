@@ -1,0 +1,93 @@
+.image {
+  width: 100%;
+  height: 244px;
+  background-size: cover;
+  background-position: center;
+}
+
+.listInfoBox {
+  padding: 15px 25px;
+
+  box-shadow: 0 2px 4px #CFCFCF;
+
+  .nicknameWrapper {
+    display: flex;
+    flex-direction: row;
+
+    .nickname {
+      margin-right: 15px;
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+    .age {
+      padding-left: 15px;
+      border-left: 1px solid #C8C8C8;
+
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+
+  .tags {
+    margin-top: 9px;
+
+    font-size: 14px;
+    line-height: 14px;
+    color: #002C9E;
+  }
+
+  .oneSentence {
+    margin-top: 4px;
+
+    font-size: 18px;
+    line-height: 30px;
+    color: #282828;
+  }
+}
+
+.basicInfoBox {
+  margin-top: 5px;
+  padding: 15px 25px;
+
+  .basicInfoTitle {
+    margin-bottom: 15px;
+
+    font-size: 18px;
+    line-height: 18px;
+    color: #000000;
+  }
+
+  .infoLine {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: row;
+
+    .label {
+      width: 110px;
+
+      font-size: 18px;
+      line-height: 18px;
+      color: #282828;
+    }
+  }
+}
+
+.separator {
+  height: 6px;
+  background-color: #f8f8f8;
+}
+
+.questionWrapper {
+  padding: 15px 25px;
+
+  .questionLabel {
+    font-size: 18px;
+    line-height: 18px;
+  }
+
+  .answer {
+    margin-top: 15px;
+    word-break: break-all;
+  }
+}

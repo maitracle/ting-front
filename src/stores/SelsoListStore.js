@@ -1,11 +1,15 @@
 import { action, observable } from 'mobx';
 import requests from 'src/utils/requests';
-import { GET_PROFILE_LISTS_PATH } from 'src/constants/requests';
+import { GET_PROFILE_LISTS_PATH, GET_PROFILE_RETRIEVE_PATH } from 'src/constants/requests';
+
+
+const fetchSelsoListApi = () => requests.get(GET_PROFILE_LISTS_PATH, true);
+const fetchSelsoDetailApi = (id) => requests.get(`${GET_PROFILE_RETRIEVE_PATH}${id}/`, true);
 
 export default class SelsoListStore {
   @observable selsoList = [];
 
-  @observable selectedSelsoId = 0;
+  @observable selectedSelsoId = 1;
 
   @observable selectedSelsoDetail = {};
 
@@ -14,8 +18,7 @@ export default class SelsoListStore {
   }
 
   @action setSelsoList = () => {
-    requests
-      .get(GET_PROFILE_LISTS_PATH, true)
+    fetchSelsoListApi()
       .then((res) => {
         this.selsoList = res.data;
       })
@@ -26,7 +29,12 @@ export default class SelsoListStore {
     this.selectedSelsoId = id;
   };
 
-  @action fetchSelectedSelsoDetail = () => {
-    console.log('fetched');
+  @action setSelectedSelsoDetail = () => {
+    if (this.selectedSelsoId !== null) {
+      return fetchSelsoDetailApi(this.selectedSelsoId)
+        .then((res) => {
+          this.selectedSelsoDetail = res.data;
+        });
+    }
   };
 }

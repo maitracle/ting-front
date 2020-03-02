@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import styles from './SelsoDetailPage.module.scss';
+import Card from 'src/modules/SelsoDetail/Card';
 
 
 export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListStore }) => {
   useEffect(() => {
-    selsoListStore.fetchSelectedSelsoDetail();
+    selsoListStore.setSelectedSelsoDetail();
   }, []);
 
   return (
-    <div>
-      <div>this is selso detail page</div>
-      <div>{ selsoListStore.selectedSelsoId }</div>
+    <div className={styles.detailWrapper}>
+      <Card selsoDetail={selsoListStore.selectedSelsoDetail} />
     </div>
   )
 }));
