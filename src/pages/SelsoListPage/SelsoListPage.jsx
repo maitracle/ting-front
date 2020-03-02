@@ -1,5 +1,5 @@
 import React from 'react';
-import SelsoList from 'src/modules/SelsoListModules/SelsoList';
+import SelsoList from 'src/modules/SelsoList';
 
 import styles from './SelsoListPage.module.scss';
 

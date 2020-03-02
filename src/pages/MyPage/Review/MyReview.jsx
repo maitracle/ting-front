@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './MyReview.scss';
+import styles from './MyReview.module.scss';
 
 
 export const MyReview = () => {

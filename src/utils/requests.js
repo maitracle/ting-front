@@ -4,7 +4,7 @@ import { HOST } from 'src/constants/requests';
 import {
   fetchAccessTokenWithRefreshToken,
   getAccessTokenOrRedirect,
-  removeAccessToken, removeRefreshToken
+  removeAccessToken, removeRefreshToken,
 } from 'src/utils/handleJwtToken';
 
 
@@ -32,7 +32,7 @@ const handleUnAuthorizedError = (err, path, isNeededAuth) => {
         removeAccessToken();
         removeRefreshToken();
         getAccessTokenOrRedirect();
-      })
+      });
   }
   throw err;
 };
