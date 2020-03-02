@@ -1,0 +1,27 @@
+.label {
+  font-size: 18px;
+  line-height: 18px;
+  color: #022275;
+  margin-bottom: 5px;
+}
+
+.radioWrapper {
+  display: flex;
+  flex-direction: row;
+
+  .circle {
+    border: 1px solid #0941FB;
+    border-radius: 70px;
+    width: 13px;
+    height: 13px;
+  }
+
+  .circleSelected {
+    background-color: #0941FB;
+  }
+
+  .displayName {
+    margin-left: 9px;
+  }
+}
+

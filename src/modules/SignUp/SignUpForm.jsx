@@ -3,7 +3,19 @@ import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 
 import styles from './SignUpForm.module.scss';
+import RadioSmall from 'src/components/Form/RadioSmall';
 
+
+const genderItemList = [
+  {
+    displayName: '남학생',
+    value: 'MALE',
+  },
+  {
+    displayName: '여학생',
+    value: 'FEMALE',
+  },
+];
 
 
 const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
@@ -37,6 +49,10 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
           value={signUpStore.formData.nickname}
           onChange={setNickname}
         />
+      </div>
+
+      <div className={styles.inputWrapper}>
+        <RadioSmall label={'성별'} itemList={genderItemList} selectedItemValue={signUpStore.formData.gender} selectItemValue={(value) => setGender(value)} />
       </div>
 
       <div>
