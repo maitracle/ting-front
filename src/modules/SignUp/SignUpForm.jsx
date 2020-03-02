@@ -3,7 +3,6 @@ import { inject, observer } from 'mobx-react';
 
 
 const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
-
   const setEmail = (e) => signUpStore.setEmail(e.target.value);
   const setPassword = (e) => signUpStore.setPassword(e.target.value);
   const setNickname = (e) => signUpStore.setNickname(e.target.value);
@@ -15,21 +14,21 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         <p>
           이메일
         </p>
-        <input type='text' value={signUpStore.formData.email} onChange={setEmail} />
+        <input type="text" value={signUpStore.formData.email} onChange={setEmail} />
       </div>
 
       <div>
         <p>
           비밀번호
         </p>
-        <input type='password' value={signUpStore.formData.password} onChange={setPassword} />
+        <input type="password" value={signUpStore.formData.password} onChange={setPassword} />
       </div>
 
       <div>
         <p>
           닉네임
         </p>
-        <input type='text' value={signUpStore.formData.nickname} onChange={setNickname} />
+        <input type="text" value={signUpStore.formData.nickname} onChange={setNickname} />
       </div>
 
       <div>

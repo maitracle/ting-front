@@ -1,18 +1,23 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { FETCH_LIKE_PATH, GET_MY_PROFILE_PATH, LOGIN_PATH, SIGN_IN_PATH } from 'src/constants/requests';
+import { FETCH_LIKE_PATH, GET_MY_PROFILE_PATH, LOGIN_PATH, SIGN_IN_PATH, UPDATE_PROFILE_PATH, } from 'src/constants/requests';
 import {
   getAccessToken,
-  removeAccessToken, removeRefreshToken, setAccessToken, setRefreshToken,
+  removeAccessToken,
+  removeRefreshToken,
+  setAccessToken,
+  setRefreshToken,
 } from 'src/utils/handleJwtToken';
 
 
 const fetchMyProfileApi = () => requests.get(GET_MY_PROFILE_PATH, true);
+const updateProfileApi = (profile) => requests.patch(`${UPDATE_PROFILE_PATH}${profile.id}/`, profile, true);
 
 
 export default class UserStore {
   @observable isLoggedIn = false;
+
   @observable profile = {};
 
   constructor(root) {
@@ -23,7 +28,7 @@ export default class UserStore {
         .then((res) => {
           this.profile = res.data;
           this.isLoggedIn = true;
-        })
+        });
     }
   }
 
@@ -75,5 +80,13 @@ export default class UserStore {
         status: err.response.status,
         message: err.response.statusText,
       }));
+  }
+  
+  @action updateProfile = (profileData) => {
+    return updateProfileApi(profileData)
+      .then((res) => this.profile = {
+        ...this.profile,
+        ...res.data,
+      });
   };
 }

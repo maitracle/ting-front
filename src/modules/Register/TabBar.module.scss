@@ -1,0 +1,22 @@
+.tabBarWrapper {
+  .tabItemWrapper {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .tabItem {
+    flex: 1;
+    text-align: center;
+  }
+
+  .tabProgressBar {
+    background-color: rgba(2, 34, 117, 0.3);
+    height: 4px;
+
+    .tabProgressBarRate {
+      background-color: #ED5F4F;
+      height: 4px;
+    }
+  }
+}
+
