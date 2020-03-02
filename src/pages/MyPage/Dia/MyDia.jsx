@@ -14,7 +14,7 @@ export const MyDia = inject('myDiaStore')(observer(({ myDiaStore }) => {
           Total
         </div>
         <div className={styles.restDiaWrapper}>
-          {myDiaStore.restDia}Pts
+          {myDiaStore.restDia} Pts
         </div>
       </div>
       {myDiaStore.myDiaHistory.map((item) => <MyDiaHistory item={item}/>)}
