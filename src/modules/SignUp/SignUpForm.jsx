@@ -1,5 +1,9 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import Input from 'src/components/Form/Input';
+
+import styles from './SignUpForm.module.scss';
+
 
 
 const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
@@ -10,25 +14,29 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
 
   return (
     <div>
-      <div>
-        <p>
-          이메일
-        </p>
-        <input type="text" value={signUpStore.formData.email} onChange={setEmail} />
+      <div className={styles.inputWrapper}>
+        <Input
+          label={'이메일'}
+          value={signUpStore.formData.email}
+          onChange={setEmail}
+        />
       </div>
 
-      <div>
-        <p>
-          비밀번호
-        </p>
-        <input type="password" value={signUpStore.formData.password} onChange={setPassword} />
+      <div className={styles.inputWrapper}>
+        <Input
+          label={'비밀번호'}
+          type={'password'}
+          value={signUpStore.formData.password}
+          onChange={setPassword}
+        />
       </div>
 
-      <div>
-        <p>
-          닉네임
-        </p>
-        <input type="text" value={signUpStore.formData.nickname} onChange={setNickname} />
+      <div className={styles.inputWrapper}>
+        <Input
+          label={'닉네임'}
+          value={signUpStore.formData.nickname}
+          onChange={setNickname}
+        />
       </div>
 
       <div>

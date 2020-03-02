@@ -7,7 +7,7 @@ import SignUpPage from 'src/pages/SignUpPage';
 export default () => {
   return (
     <>
-      <Route path="/sign-in" exact component={SignUpPage} />
+      <Route path="/sign-up" exact component={SignUpPage} />
     </>
   );
 }

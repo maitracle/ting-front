@@ -49,26 +49,28 @@ export default class SignUpStore {
   @action signUp = () => {
     const payload = this.getFormData();
 
-    return requests.post(SIGN_UP_PATH, payload)
-      .then((res) => {
-        this.nextTo();
+    console.log(payload);
 
-        return {
-          status: res.status,
-          message: res.statusText,
-        };
-      }).catch((err) => {
-        if (err.response) {
-          return {
-            status: err.response.status,
-            message: err.response.statusText,
-          };
-        }
-
-        return {
-          status: null,
-          message: 'unknown error',
-        };
-      });
+    // return requests.post(SIGN_UP_PATH, payload)
+    //   .then((res) => {
+    //     this.nextTo();
+    //
+    //     return {
+    //       status: res.status,
+    //       message: res.statusText,
+    //     };
+    //   }).catch((err) => {
+    //     if (err.response) {
+    //       return {
+    //         status: err.response.status,
+    //         message: err.response.statusText,
+    //       };
+    //     }
+    //
+    //     return {
+    //       status: null,
+    //       message: 'unknown error',
+    //     };
+    //   });
   }
 }
