@@ -37,10 +37,6 @@ const BodyType = inject('registerStore')(
     return (
       <div className="survey">
         <RadioInputSet radios={radios} onClick={onClick} />
-        <div className="anwserWrap">
-          <p> BodyTypeBodyTypeBodyType 체형을골라주세요</p>
-          <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
-        </div>
         <div className="buttonWrap">
           <button onClick={registerStore.backTo}>뒤로</button>
           <button onClick={registerStore.nextTo}>다음</button>

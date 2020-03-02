@@ -59,10 +59,10 @@ export class RegisterStore {
     }
   };
 
-<<<<<<< HEAD
   @action setRegisterData = (type, bodyType) => {
     this.registerData[type] = bodyType;
-=======
+  };
+
   @action setOneSentence = (oneSentence) => {
     this.registerData.oneSentence = oneSentence;
   };
@@ -73,6 +73,5 @@ export class RegisterStore {
 
   @action setImage = (image) => {
     this.registerData.image = image;
->>>>>>> 94ba6f1eb6a2abb397ebf9619286138e5b92ebdb
   };
 }
