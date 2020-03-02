@@ -17,7 +17,7 @@ export const MyDia = inject('myDiaStore')(observer(({ myDiaStore }) => {
           {myDiaStore.restDia} Pts
         </div>
       </div>
-      {myDiaStore.myDiaHistory.map((item) => <MyDiaHistory item={item}/>)}
+      {myDiaStore.myDiaHistory.map((item) => <MyDiaHistory key={item.id} item={item}/>)}
     </div>
   );
   
