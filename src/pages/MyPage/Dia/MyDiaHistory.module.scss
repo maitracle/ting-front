@@ -1,0 +1,41 @@
+.diaHistory{
+  height : 60px;
+  margin : 0 15px;
+  border-bottom: 1px solid #F8F8F8;
+  display: flex;
+
+  .createdAt{
+    padding-left: 10px;
+    padding-top: 17px;
+    
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .reason{
+    padding-left: 23px;
+    padding-top: 17px; 
+
+    font-size: 14px;
+    line-height: 14px;
+  }
+
+  .restCoinWrapper{
+    padding-right: 35px;
+    padding-top: 15px;  
+    margin-left: auto;
+    text-align: right;
+
+    .consumedCoin{
+      padding-bottom: 6px;
+      font-size: 14px;
+      line-height: 14px;
+    }
+    
+    .restCoin{
+      font-size: 12px;
+      line-height: 12px;
+      color: #909090;
+    }
+  }
+}

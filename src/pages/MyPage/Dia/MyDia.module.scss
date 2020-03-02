@@ -1,0 +1,26 @@
+.totalDiaWrapper{
+  height: 200px;
+  margin-bottom: 6px;
+  .diaHistory{
+    height: 14px;
+    font-size: 14px;
+    line-height: 14px;
+    text-align: center;
+    color: #000000;
+    padding-top : 15px;
+  }
+  .restDiaHeader{
+    text-align: center;
+    height: 14px;
+    padding-top : 32px;
+  }
+  .restDiaWrapper{
+    height: 28px;
+    font-size: 28px;
+    line-height: 28px;
+    text-align: center;
+    color: #0941FB;
+    padding-top : 16px;
+    padding-bottom: 81px;
+  }
+}
