@@ -9,7 +9,7 @@ const fetchSelsoDetailApi = (id) => requests.get(`${GET_PROFILE_RETRIEVE_PATH}${
 export default class SelsoListStore {
   @observable selsoList = [];
 
-  @observable selectedSelsoId = 1;
+  @observable selectedSelsoId = null;
 
   @observable selectedSelsoDetail = {};
 
