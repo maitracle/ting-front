@@ -1,6 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import RegisterBtnSet from 'src/components/Button/RegisterBtnSet';
+import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 const BodyType = inject('registerStore')(
   observer(({ registerStore }) => {
@@ -11,7 +11,7 @@ const BodyType = inject('registerStore')(
           <p> BodyTypeBodyTypeBodyType 체형을골라주세요</p>
           <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
         </div>
-        <RegisterBtnSet onClick={registerStore.nextTo} value="다음" />
+        <RegisterBtnSet />
       </div>
     );
   }),
