@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './MyDia.scss';
+import styles from './MyDia.module.scss';
 
 
 export const MyDia = () => {

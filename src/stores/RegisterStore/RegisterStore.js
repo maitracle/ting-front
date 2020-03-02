@@ -20,7 +20,7 @@ export class RegisterStore {
   @observable registerData = {
     age: '',
     height: '',
-    bodyType: '11',
+    bodyType: '',
     religion: '',
     isSmoke: '',
   };
@@ -59,7 +59,20 @@ export class RegisterStore {
     }
   };
 
+<<<<<<< HEAD
   @action setRegisterData = (type, bodyType) => {
     this.registerData[type] = bodyType;
+=======
+  @action setOneSentence = (oneSentence) => {
+    this.registerData.oneSentence = oneSentence;
+  };
+
+  @action setTag = (tags) => {
+    this.registerData.tags = tags;
+  };
+
+  @action setImage = (image) => {
+    this.registerData.image = image;
+>>>>>>> 94ba6f1eb6a2abb397ebf9619286138e5b92ebdb
   };
 }
