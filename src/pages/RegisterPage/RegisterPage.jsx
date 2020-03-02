@@ -48,8 +48,8 @@ export const RegisterPage = inject('registerStore')(
         <div>프로필폼 페이지 </div>
         <RegisterHeader />
         <StepComponent />
-        <RegisterBtnSet />
         <div className="blankBox" />
+        <RegisterBtnSet />
       </div>
     );
   }),

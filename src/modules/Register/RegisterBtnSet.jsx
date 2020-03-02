@@ -8,10 +8,10 @@ const RegisterBtnSet = inject('registerStore')(
   observer(({ registerStore }) => (
     <div className="btnWrapper">
       <div className="btnPrevWrapper">
-        <Btn onClick={registerStore.backTo} value="<" type="Prev" />
+        <Btn onClick={registerStore.backTo} value="<" type="Gray" />
       </div>
       <div className="btnNextWrapper">
-        <Btn onClick={registerStore.nextTo} value="다음" type="Next" />
+        <Btn onClick={registerStore.nextTo} value="다음" />
       </div>
     </div>
   )),

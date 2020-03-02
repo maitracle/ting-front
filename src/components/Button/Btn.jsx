@@ -1,9 +1,9 @@
 import React from 'react';
-import './Btn.scss';
+import styles from './Btn.module.scss';
 
 
 const Btn = ({ onClick, value, type }) => (
-  <button className={'btn' + `${type || ''}`} type="button" onClick={onClick}>
+  <button className={`${styles.btnDefault} ${type ? styles[`btn${type}`] : ''}`} type="button" onClick={onClick}>
     {value}
   </button>
 );
