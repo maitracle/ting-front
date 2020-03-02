@@ -1,9 +1,11 @@
 import React from 'react';
-import { inject, observer } from 'mobx-react';
+import './BtnNext.scss';
 
-const btnPrev = inject('profileFormStore')(
-  observer(({ profileFormStore }) => (
-    <button className="btnPrev" type="button" onClick={profileFormStore.nextTo}>{'<'}</button>
-  )),
+
+const BtnNext = ({ onClick, value, type }) => (
+  <button className={'btnNext' + `${type || ''}`} type="button" onClick={onClick}>
+    {value}
+  </button>
 );
-export default btnPrev;
+
+export default BtnNext;
