@@ -12,7 +12,6 @@ const IsSmoke = inject('registerStore')(
           <p> IsSmokeIsSmokeIsSmoke흡연여부골라주세요</p>
           <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
         </div>
-        <RegisterBtnSet />
       </div>
     );
   }),

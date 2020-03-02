@@ -11,7 +11,6 @@ const Age = inject('registerStore')(
           <p> AgeAgeAgeAge나이를 입력하세요</p>
           <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
         </div>
-        <RegisterBtnSet />
       </div>
     );
   }),

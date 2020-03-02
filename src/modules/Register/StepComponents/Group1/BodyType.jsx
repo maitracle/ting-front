@@ -11,7 +11,6 @@ const BodyType = inject('registerStore')(
           <p> BodyTypeBodyTypeBodyType 체형을골라주세요</p>
           <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
         </div>
-        <RegisterBtnSet />
       </div>
     );
   }),

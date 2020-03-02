@@ -1,12 +1,10 @@
-import React from "react";
-import { Route } from "react-router-dom";
+import React from 'react';
+import { Route } from 'react-router-dom';
 
-import RegisterPage from "src/pages/RegisterPage";
+import RegisterPage from 'src/pages/RegisterPage';
 
-export default () => {
-  return (
-    <>
-      <Route path="/register" exact component={RegisterPage} />
-    </>
-  );
-};
+export default () => (
+  <>
+    <Route path="/register" exact component={RegisterPage} />
+  </>
+);

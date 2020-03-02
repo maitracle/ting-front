@@ -12,7 +12,6 @@ const ChatLink = inject('registerStore')(
           <p> ChatLinkChatLinkChatLink한줄표현입력하세요</p>
           <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
         </div>
-        <RegisterBtnSet />
       </div>
     );
   }),
