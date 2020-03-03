@@ -1,10 +1,10 @@
 import React from 'react';
-import './RadioInputSet.scss';
+import styles from './RadioInputSet.module.scss';
 
 const RadioInput = ({
   id, text, checked, onClick,
 }) => (
-  <div className={`radioInput${checked ? 'selected' : ''}`} checked={checked} onClick={() => onClick(id, text)}>
+  <div className={`${styles.radioInput} ${checked ? styles.selected : ''}`} checked={checked} onClick={() => onClick(id, text)}>
     {text}
     {id}
     {checked ? 'true' : 'false'}
@@ -12,7 +12,11 @@ const RadioInput = ({
 );
 const RadioInputSet = ({
   radios, onClick,
-}) => (radios.map((radio) => <RadioInput id={radio.id} text={radio.text} checked={radio.checked} radio={radio} onClick={onClick} />));
+}) => (
+  <div className={styles.radioWrapper}>
+    {(radios.map((radio) => <RadioInput id={radio.id} text={radio.text} checked={radio.checked} onClick={onClick} />))}
+  </div>
+);
 
 
 export default RadioInputSet;

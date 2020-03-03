@@ -1,0 +1,22 @@
+.radioInput{
+  display: flex;
+  color: #022275;
+  align-items: center;
+  justify-content: center;
+  width:100%;
+  height: 35px;
+  margin: 20px 0 ;
+  border: 1px solid #022275;
+  border-radius:21px;
+
+}
+
+.selected{
+  color:white;
+  background-color: #022275;
+}
+
+.radioWrapper{
+  width:60%;
+  margin: auto;
+}

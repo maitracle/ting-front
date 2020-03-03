@@ -1,10 +1,13 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-
+import RadioInputSet from 'src/components/Input/RadioInputSet';
 
 const IsSmoke = inject('registerStore')(
   observer(({ registerStore }) => {
-    const setOneSentence = (e) => registerStore.setOneSentence(e.target.value);
+    const setIsSmoke = (e) => registerStore.setRegisterData('isSmoke', text);
+    const [radios, setRadio] = useState([
+      { id: 1, text: '' },
+    ]);
     return (
       <div className="survey">
         <div className="anwserWrap">

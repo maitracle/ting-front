@@ -5,24 +5,14 @@ import RadioInputSet from 'src/components/Input/RadioInputSet';
 
 const BodyType = inject('registerStore')(
   observer(({ registerStore }) => {
-    const type = 'bodyType';
-    const setBodyType = (text) => registerStore.setRegisterData(type, text);
+    const setBodyType = (text) => registerStore.setRegisterData('bodyType', text);
     const [radios, setRadio] = useState([
-      {
-        id: 1,
-        text: '마른',
-        checked: true,
-      },
-      {
-        id: 2,
-        text: '슬림',
-        checked: false,
-      },
-      {
-        id: 3,
-        text: '보통',
-        checked: false,
-      },
+      { id: 1, text: '마른', checked: false },
+      { id: 2, text: '슬림', checked: false },
+      { id: 3, text: '슬림탄탄', checked: false },
+      { id: 4, text: '보통', checked: false },
+      { id: 5, text: '근육질', checked: false },
+      { id: 6, text: '통통', checked: false },
     ]);
 
     const onClick = useCallback(
@@ -36,6 +26,7 @@ const BodyType = inject('registerStore')(
     );
     return (
       <div className="survey">
+        <p> 체형을 선택해주세요.</p>
         <RadioInputSet radios={radios} onClick={onClick} />
         <div className="buttonWrap">
           <button onClick={registerStore.backTo}>뒤로</button>
