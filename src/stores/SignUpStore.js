@@ -7,7 +7,7 @@ import { SIGN_UP_PATH } from 'src/constants/requests';
 const checkUnivEmailApi = (univEmail) => requests.post();
 
 export default class SignUpStore {
-  @observable step = 'CheckEmail';
+  @observable step = 'SignUp';
 
   @observable stepList = ['SignUp', 'CheckEmail', 'MailSent'];
 

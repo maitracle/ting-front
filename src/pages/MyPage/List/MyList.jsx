@@ -35,6 +35,10 @@ export const MyList = inject('userStore')(observer(({ userStore }) => {
           </div>
         </Link>
 
+        <div onClick={() => userStore.logOut()} className={styles.linkItem}>
+          <span className={styles.linkText}>로그아웃</span>
+        </div>
+
       </div>
     </div>
   );

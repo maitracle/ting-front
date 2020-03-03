@@ -3,7 +3,7 @@ import { action, observable } from 'mobx';
 import requests from 'src/utils/requests';
 import { FETCH_LIKE_PATH, GET_MY_PROFILE_PATH, LOGIN_PATH, UPDATE_PROFILE_PATH, } from 'src/constants/requests';
 import {
-  getAccessToken,
+  getAccessToken, redirectLoginPage,
   removeAccessToken,
   removeRefreshToken,
   setAccessToken,
@@ -58,6 +58,7 @@ export default class UserStore {
     removeAccessToken();
     removeRefreshToken();
     this.isLoggedIn = false;
+    redirectLoginPage();
   };
 
   @action fetchLikes = () => {
