@@ -1,3 +1,7 @@
+.inputWrapper {
+  width: 100%;
+}
+
 .label {
   font-size: 18px;
   line-height: 18px;
@@ -9,6 +13,10 @@
   border: 0;
   border-bottom: 1px solid #0941FB;
   background-color: inherit;
-
   padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+
+  font-size: 16px;
+  line-height: 16px;
 }

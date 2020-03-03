@@ -2,12 +2,17 @@
   font-size: 18px;
   line-height: 18px;
   color: #022275;
-  margin-bottom: 5px;
+  margin-bottom: 13px;
+}
+
+.listWrapper {
+  margin-left: 12px;
 }
 
 .radioWrapper {
   display: flex;
   flex-direction: row;
+  margin-bottom: 14px;
 
   .circle {
     border: 1px solid #0941FB;
@@ -24,4 +29,3 @@
     margin-left: 9px;
   }
 }
-

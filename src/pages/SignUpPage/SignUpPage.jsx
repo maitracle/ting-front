@@ -32,7 +32,9 @@ const SignUpPage = inject('signUpStore')(observer(({ signUpStore }) => {
       <div className={styles.title}>
         { mapStepToTitle[signUpStore.step] }
       </div>
-      <StepComponent />
+      <div className={styles.componentWrapper}>
+        <StepComponent />
+      </div>
     </div>
   );
 }));

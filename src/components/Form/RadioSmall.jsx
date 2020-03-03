@@ -12,18 +12,19 @@ const RadioSmall = ({ label, itemList, selectedItemValue, selectItemValue }) => 
         :
         null
     }
-    {
-      itemList.map((item) =>
-        <div
-          key={item.value}
-          onClick={selectItemValue(item.value)}
-          className={styles.radioWrapper}
-        >
-          <div className={`${styles.circle} ${ selectedItemValue === item.value ? styles.circleSelected : ''}`} />
-          <span className={styles.displayName}>{ item.displayName }</span>
-        </div>)
-    }
-
+    <div className={styles.listWrapper}>
+      {
+        itemList.map((item) =>
+          <div
+            key={item.value}
+            onClick={selectItemValue(item.value)}
+            className={styles.radioWrapper}
+          >
+            <div className={`${styles.circle} ${ selectedItemValue === item.value ? styles.circleSelected : ''}`} />
+            <span className={styles.displayName}>{ item.displayName }</span>
+          </div>)
+      }
+    </div>
   </div>
 );
 

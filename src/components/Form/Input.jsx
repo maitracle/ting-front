@@ -3,7 +3,7 @@ import React from 'react';
 import styles from  './Input.module.scss';
 
 const Input = ({ label, value, type, onChange }) => (
-  <div>
+  <div className={styles.inputWrapper}>
     {
       label ?
         <div className={styles.label}>

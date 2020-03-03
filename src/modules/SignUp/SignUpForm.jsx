@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 
@@ -24,13 +24,29 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
   const setNickname = (e) => signUpStore.setNickname(e.target.value);
   const setGender = (gender) => (_event) => signUpStore.setGender(gender);
 
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    nickname: '',
+    gender: '',
+    campus: '',
+    scholarlyStatus: '',
+  });
+
+  const setFormDataHandler = (key) => (event) => {
+    setFormData({
+      ...formData,
+      [key]: event.target.value,
+    })
+  };
+
   return (
-    <div>
+    <div className={styles.formWrapper}>
       <div className={styles.inputWrapper}>
         <Input
           label={'이메일'}
-          value={signUpStore.formData.email}
-          onChange={setEmail}
+          value={formData.email}
+          onChange={setFormDataHandler('email')}
         />
       </div>
 
@@ -55,12 +71,12 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         <RadioSmall label={'성별'} itemList={genderItemList} selectedItemValue={signUpStore.formData.gender} selectItemValue={(value) => setGender(value)} />
       </div>
 
-      <div>
-        <p>
-          성별
-        </p>
-        <button onClick={setGender('MALE')}>남학생</button>
-        <button onClick={setGender('FEMALE')}>여학생</button>
+      <div className={styles.inputWrapper}>
+        <RadioSmall label={'소속 캠퍼스'} itemList={genderItemList} selectedItemValue={signUpStore.formData.gender} selectItemValue={(value) => setGender(value)} />
+      </div>
+
+      <div className={styles.inputWrapper}>
+        <RadioSmall label={'재학 여부'} itemList={genderItemList} selectedItemValue={signUpStore.formData.gender} selectItemValue={(value) => setGender(value)} />
       </div>
 
       <p>
