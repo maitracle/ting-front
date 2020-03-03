@@ -5,25 +5,25 @@ import RadioInputSet from 'src/components/Input/RadioInputSet';
 const IsSmoke = inject('registerStore')(
   observer(({ registerStore }) => {
     const setIsSmoke = (text) => registerStore.setRegisterData('isSmoke', text);
-    const [radios, setRadio] = useState([
+    const [radioItemList, setRadioItem] = useState([
       { id: 1, text: '비흡연자', checked: false },
       { id: 2, text: '흡연자', checked: false },
     ]);
 
     const onClick = useCallback(
       (id, text) => {
-        setRadio(
-          radios.map((radio) => (radio.id === id ? { ...radio, checked: true } : { ...radio, checked: false })),
+        setRadioItem(
+          radioItemList.map((radioItem) => (radioItem.id === id ? { ...radioItem, checked: true } : { ...radioItem, checked: false })),
         );
         setIsSmoke(text);
       },
-      [radios],
+      [radioItemList],
     );
 
     return (
       <div>
         <p>IsSmokeIsSmokeIsSmoke흡연여부골라주세요</p>
-        <RadioInputSet radios={radios} onClick={onClick} />
+        <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
       </div>
     );
   }),

@@ -59,7 +59,7 @@ export class RegisterStore {
     }
   };
 
-  @action setRegisterData = (type, bodyType) => {
-    this.registerData[type] = bodyType;
+  @action setRegisterData = (type, value) => {
+    this.registerData[type] = value;
   };
 }

@@ -6,7 +6,7 @@ import RadioInputSet from 'src/components/Input/RadioInputSet';
 const Religion = inject('registerStore')(
   observer(({ registerStore }) => {
     const setReligion = (text) => registerStore.setRegisterData('religion', text);
-    const [radios, setRadio] = useState([
+    const [radioItemList, setRadioItem] = useState([
       { id: 1, text: '무교', checked: false },
       { id: 2, text: '기독교', checked: false },
       { id: 3, text: '천주교', checked: false },
@@ -16,17 +16,17 @@ const Religion = inject('registerStore')(
 
     const onClick = useCallback(
       (id, text) => {
-        setRadio(
-          radios.map((radio) => (radio.id === id ? { ...radio, checked: true } : { ...radio, checked: false })),
+        setRadioItem(
+          radioItemList.map((radioItem) => (radioItem.id === id ? { ...radioItem, checked: true } : { ...radioItem, checked: false })),
         );
         setReligion(text);
       },
-      [radios],
+      [radioItemList],
     );
     return (
       <div>
         <p> ReligionReligionReligion종교선택하세요</p>
-        <RadioInputSet radios={radios} onClick={onClick} />
+        <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
       </div>
     );
   }),

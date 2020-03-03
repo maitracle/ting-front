@@ -5,7 +5,7 @@ import RadioInputSet from 'src/components/Input/RadioInputSet';
 const BodyType = inject('registerStore')(
   observer(({ registerStore }) => {
     const setBodyType = (text) => registerStore.setRegisterData('bodyType', text);
-    const [radios, setRadio] = useState([
+    const [radioItemList, setRadioItem] = useState([
       { id: 1, text: '마른', checked: false },
       { id: 2, text: '슬림', checked: false },
       { id: 3, text: '슬림탄탄', checked: false },
@@ -16,17 +16,17 @@ const BodyType = inject('registerStore')(
 
     const onClick = useCallback(
       (id, text) => {
-        setRadio(
-          radios.map((radio) => (radio.id === id ? { ...radio, checked: true } : { ...radio, checked: false })),
+        setRadioItem(
+          radioItemList.map((radioItem) => (radioItem.id === id ? { ...radioItem, checked: true } : { ...radioItem, checked: false })),
         );
         setBodyType(text);
       },
-      [radios],
+      [radioItemList],
     );
     return (
       <div>
         <p> 체형을 선택해주세요.</p>
-        <RadioInputSet radios={radios} onClick={onClick} />
+        <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
       </div>
     );
   }),
