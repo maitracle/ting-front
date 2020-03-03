@@ -62,16 +62,4 @@ export class RegisterStore {
   @action setRegisterData = (type, bodyType) => {
     this.registerData[type] = bodyType;
   };
-
-  @action setOneSentence = (oneSentence) => {
-    this.registerData.oneSentence = oneSentence;
-  };
-
-  @action setTag = (tags) => {
-    this.registerData.tags = tags;
-  };
-
-  @action setImage = (image) => {
-    this.registerData.image = image;
-  };
 }

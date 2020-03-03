@@ -25,13 +25,9 @@ const BodyType = inject('registerStore')(
       [radios],
     );
     return (
-      <div className="survey">
+      <div>
         <p> 체형을 선택해주세요.</p>
         <RadioInputSet radios={radios} onClick={onClick} />
-        <div className="buttonWrap">
-          <button onClick={registerStore.backTo}>뒤로</button>
-          <button onClick={registerStore.nextTo}>다음</button>
-        </div>
       </div>
     );
   }),
