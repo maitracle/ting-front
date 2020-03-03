@@ -1,11 +1,12 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { SIGN_UP_PATH } from 'src/constants/requests';
+import { CHECK_UNIV_EMAIL_PATH, SIGN_UP_PATH } from 'src/constants/requests';
+import { setAccessToken, setRefreshToken } from 'src/utils/handleJwtToken';
 
 
 const signUpApi = (payload) => requests.post(SIGN_UP_PATH, payload);
-const checkUnivEmailApi = (univEmail) => requests.post();
+const checkUnivEmailApi = (user_id, payload) => requests.patch(`${CHECK_UNIV_EMAIL_PATH(user_id)}`, payload, true);
 
 export default class SignUpStore {
   @observable step = 'SignUp';
@@ -30,6 +31,8 @@ export default class SignUpStore {
     return signUpApi(payload)
       .then((res) => {
         // Todo(maitracle): response의 coin history를 store에 저장하기
+        setRefreshToken(res.data.refresh);
+        setAccessToken(res.data.access);
         this.root.userStore.user = res.data.user;
         this.root.userStore.profile = res.data.profile;
 
@@ -54,7 +57,31 @@ export default class SignUpStore {
       });
   };
 
-  @action checkUnivEmailSend = (univEmail) => {
-    checkUnivEmailApi(univEmail);
+  @action checkUnivEmail = (universityEmail) => {
+    const payload = {
+      universityEmail,
+    };
+
+    return checkUnivEmailApi(this.root.userStore.user.id, payload)
+      .then((res) => {
+        return {
+          status: res.status,
+          message: res.statusText,
+        };
+      }).catch((err) => {
+        if (err.response) {
+          return {
+            status: err.response.status,
+            message: err.response.statusText,
+            data: err.response.data,
+          };
+        }
+
+        return {
+          status: null,
+          message: 'unknown error',
+          data: {},
+        };
+      });
   }
 }

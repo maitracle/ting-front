@@ -14,6 +14,10 @@ const CheckEmail = inject('signUpStore')(observer(({ signUpStore }) => {
     setUnivEmail(e.target.value);
   };
 
+  const checkUnivEmailHandler = () => {
+    signUpStore.checkUnivEmail(univEmail);
+  };
+
   return (
     <div className={styles.formWrapper}>
       <div className={styles.inputWrapper}>
@@ -29,7 +33,7 @@ const CheckEmail = inject('signUpStore')(observer(({ signUpStore }) => {
       <div className={styles.emailMakeLink}>
         1분 만에 학교 이메일 만들러가기
       </div>
-      <button onClick={() => console.log('clicked')}>send email</button>
+      <button onClick={checkUnivEmailHandler}>send email</button>
     </div>
   );
 }));
