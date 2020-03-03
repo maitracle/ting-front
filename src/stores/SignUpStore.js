@@ -4,6 +4,7 @@ import requests from 'src/utils/requests';
 import { SIGN_UP_PATH } from 'src/constants/requests';
 
 
+const signUpApi = (payload) => requests.post(SIGN_UP_PATH, payload);
 const checkUnivEmailApi = (univEmail) => requests.post();
 
 export default class SignUpStore {
@@ -26,8 +27,12 @@ export default class SignUpStore {
   @action getFormData = () => JSON.parse(JSON.stringify(this.formData));
 
   @action signUp = (payload) => {
-    return requests.post(SIGN_UP_PATH, payload)
+    return signUpApi(payload)
       .then((res) => {
+        // Todo(maitracle): response의 coin history를 store에 저장하기
+        this.root.userStore.user = res.data.user;
+        this.root.userStore.profile = res.data.profile;
+
         return {
           status: res.status,
           message: res.statusText,
