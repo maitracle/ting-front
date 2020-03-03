@@ -6,8 +6,6 @@ const RadioInput = ({
 }) => (
   <div className={`${styles.radioInput} ${checked ? styles.selected : ''}`} checked={checked} onClick={() => onClick(id, text)}>
     {text}
-    {id}
-    {checked ? 'true' : 'false'}
   </div>
 );
 const RadioInputSet = ({
