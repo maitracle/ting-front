@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './MyDiaHistory.module.scss';
+import styles from './MyPointHistory.module.scss';
 
 
-const MyDiaHistory = ({item}) => {
+const MyPointHistory = ({item}) => {
   const dateToMonthDay = (date) => date.split('-')[1] + '.' + date.split('-')[2].substring(0,2);
   
   const reasonConverter = {
@@ -18,7 +18,7 @@ const MyDiaHistory = ({item}) => {
   }
 
   return(
-    <div className={styles.diaHistory}>
+    <div className={styles.pointHistory}>
       <div className={styles.createdAt}>
         {dateToMonthDay(item.createdAt)}
       </div>
@@ -37,4 +37,4 @@ const MyDiaHistory = ({item}) => {
   )
 }
 
-export default MyDiaHistory;
+export default MyPointHistory;
