@@ -10,8 +10,10 @@ export const REFRESH_TOKENS_PATH = '/api/users/tokens/refresh/';
 export const SIGN_UP_PATH = '/api/users/';
 
 export const GET_PROFILE_LISTS_PATH = '/api/profiles/';
+export const GET_PROFILE_RETRIEVE_PATH = '/api/profiles/';
 export const GET_MY_PROFILE_PATH = '/api/profiles/my/';
 
 export const FETCH_POINT_PATH = '/api/coin-histories/';
+export const UPDATE_PROFILE_PATH = '/api/profiles/';
 
 export const FETCH_LIKE_PATH = '/api/likes/';
