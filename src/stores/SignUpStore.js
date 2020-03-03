@@ -9,13 +9,6 @@ export default class SignUpStore {
 
   @observable stepList = ['SignUp', 'CheckEmail', 'MailSent'];
 
-  @observable formData = {
-    email: '',
-    password: '',
-    nickname: '',
-    gender: '',
-  };
-
   constructor(root) {
     this.root = root;
   }
@@ -28,49 +21,29 @@ export default class SignUpStore {
     }
   };
 
-  @action setEmail = (email) => {
-    this.formData.email = email;
-  };
-
-  @action setPassword = (password) => {
-    this.formData.password = password;
-  };
-
-  @action setNickname = (nickname) => {
-    this.formData.nickname = nickname;
-  };
-
-  @action setGender = (gender) => {
-    this.formData.gender = gender;
-  };
-
   @action getFormData = () => JSON.parse(JSON.stringify(this.formData));
 
-  @action signUp = () => {
-    const payload = this.getFormData();
+  @action signUp = (payload) => {
+    return requests.post(SIGN_UP_PATH, payload)
+      .then((res) => {
+        return {
+          status: res.status,
+          message: res.statusText,
+        };
+      }).catch((err) => {
+        if (err.response) {
+          return {
+            status: err.response.status,
+            message: err.response.statusText,
+            data: err.response.data,
+          };
+        }
 
-    console.log(payload);
-
-    // return requests.post(SIGN_UP_PATH, payload)
-    //   .then((res) => {
-    //     this.nextTo();
-    //
-    //     return {
-    //       status: res.status,
-    //       message: res.statusText,
-    //     };
-    //   }).catch((err) => {
-    //     if (err.response) {
-    //       return {
-    //         status: err.response.status,
-    //         message: err.response.statusText,
-    //       };
-    //     }
-    //
-    //     return {
-    //       status: null,
-    //       message: 'unknown error',
-    //     };
-    //   });
+        return {
+          status: null,
+          message: 'unknown error',
+          data: {},
+        };
+      });
   }
 }
