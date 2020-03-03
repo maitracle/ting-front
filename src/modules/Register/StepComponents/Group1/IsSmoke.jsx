@@ -1,6 +1,5 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import RegisterHeader from 'src/modules/Register/RegisterHeader';
 
 
 const IsSmoke = inject('registerStore')(
@@ -11,10 +10,6 @@ const IsSmoke = inject('registerStore')(
         <div className="anwserWrap">
           <p> IsSmokeIsSmokeIsSmoke흡연여부골라주세요</p>
           <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
-        </div>
-        <div className="buttonWrap">
-          <button onClick={registerStore.backTo}>뒤로</button>
-          <button onClick={registerStore.nextTo}>다음</button>
         </div>
       </div>
     );
