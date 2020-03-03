@@ -25,12 +25,12 @@ const MyPointHistory = ({item}) => {
       <div className={styles.reason}>
         {reasonConverter[item.reason]}
       </div>
-      <div className={styles.restCoinWrapper}>
-        <div className={styles.consumedCoin}>
+      <div className={styles.restPointWrapper}>
+        <div className={styles.consumedPoint}>
           {consumptionCalculator[item.reason]} 
         </div>
-        <div className={styles.restCoin}>
-          {item.restCoin}
+        <div className={styles.restPoint}>
+          {item.restPoint}
         </div>
       </div>
     </div>
