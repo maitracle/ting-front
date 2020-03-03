@@ -4,8 +4,10 @@ import requests from 'src/utils/requests';
 import { SIGN_UP_PATH } from 'src/constants/requests';
 
 
+const checkUnivEmailApi = (univEmail) => requests.post();
+
 export default class SignUpStore {
-  @observable step = 'SignUp';
+  @observable step = 'CheckEmail';
 
   @observable stepList = ['SignUp', 'CheckEmail', 'MailSent'];
 
@@ -45,5 +47,9 @@ export default class SignUpStore {
           data: {},
         };
       });
+  };
+
+  @action checkUnivEmailSend = (univEmail) => {
+    checkUnivEmailApi(univEmail);
   }
 }
