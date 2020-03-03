@@ -1,0 +1,38 @@
+.gnbWrapper {
+  position: fixed;
+  width: 100vw;
+  height: 44px;
+  background-color: white;
+
+
+  .gnbContents {
+    margin: 0 25px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.logoImage {
+  width: 114px;
+}
+
+.pointWrapper {
+  width: 100%;
+
+  .point {
+    margin-right: 0;
+    float: right;
+
+    font-size: 14px;
+    line-height: 16px;
+
+    color: #616161;
+
+    .count {
+      margin-left: 43px;
+      color: #ED5F4F;
+    }
+  }
+}
