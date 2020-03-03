@@ -11,10 +11,6 @@ const Height = inject('registerStore')(
           <p> HeightHeightHeight키를입력하세요</p>
           <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
         </div>
-        <div className="buttonWrap">
-          <button onClick={registerStore.backTo}>뒤로</button>
-          <button onClick={registerStore.nextTo}>다음</button>
-        </div>
       </div>
     );
   }),
