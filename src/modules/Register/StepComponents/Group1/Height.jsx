@@ -1,7 +1,6 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 
-
 const Height = inject('registerStore')(
   observer(({ registerStore }) => {
     const setOneSentence = (e) => registerStore.setOneSentence(e.target.value);

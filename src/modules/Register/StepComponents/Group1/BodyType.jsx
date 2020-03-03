@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import React, { useState, useCallback } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
