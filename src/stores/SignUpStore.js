@@ -64,6 +64,7 @@ export default class SignUpStore {
 
     return checkUnivEmailApi(this.root.userStore.user.id, payload)
       .then((res) => {
+        this.step = 'MailSent';
         return {
           status: res.status,
           message: res.statusText,
