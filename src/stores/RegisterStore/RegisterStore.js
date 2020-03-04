@@ -23,6 +23,12 @@ export class RegisterStore {
     bodyType: '',
     religion: '',
     isSmoke: '',
+    apperance: '',
+    personality: '',
+    hobby: '',
+    dateStyle: '',
+    idealType: '',
+    oneSentence: '',
   };
 
   constructor(root) {
