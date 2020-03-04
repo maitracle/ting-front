@@ -10,7 +10,7 @@ import SelsoListPage from 'src/pages/SelsoListPage';
 import styles from  './DefaultLayoutRouter.module.scss';
 import MyList from 'src/pages/MyPage/List';
 import MyProfile from 'src/pages/MyPage/Profile';
-import MyDia from 'src/pages/MyPage/Dia';
+import MyPoint from 'src/pages/MyPage/Point';
 import MyQuestion from 'src/pages/MyPage/Question';
 import MyReview from 'src/pages/MyPage/Review';
 import SelsoDetailPage from 'src/pages/SelsoDetailPage';
@@ -31,7 +31,7 @@ export default () => {
 
       <Route path="/my" exact component={MyList} />
       <Route path="/my/profile" exact component={MyProfile} />
-      <Route path="/my/dia" exact component={MyDia} />
+      <Route path="/my/point" exact component={MyPoint} />
       <Route path="/my/question" exact component={MyQuestion} />
       <Route path="/my/review" exact component={MyReview} />
 
