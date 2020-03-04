@@ -15,7 +15,6 @@ import OneSentence from 'src/modules/Register/StepComponents/Group3/OneSentence'
 import Tags from 'src/modules/Register/StepComponents/Group3/Tags';
 import Image from 'src/modules/Register/StepComponents/Group3/Image';
 import ChatLink from 'src/modules/Register/StepComponents/Group4/ChatLink';
-import styles from './RegisterPage.module.scss';
 import RegisterBtnSet from '../../modules/Register/RegisterBtnSet';
 
 const mapStepToComponent = {
@@ -48,7 +47,6 @@ export const RegisterPage = inject('registerStore')(
         <div>프로필폼 페이지 </div>
         <RegisterHeader />
         <StepComponent />
-        <div className={styles.blankBox} />
         <RegisterBtnSet />
       </div>
     );
