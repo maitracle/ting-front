@@ -9,9 +9,9 @@ const fetchSelsoDetailApi = (id) => requests.get(`${GET_PROFILE_RETRIEVE_PATH}${
 export default class SelsoListStore {
   @observable selsoList = [];
 
-  @observable selectedSelsoId = null;
+  @observable choosedSelso = null;
 
-  @observable selectedSelsoDetail = {};
+  @observable fetchedSelsoDetail = {};
 
   constructor(root) {
     this.root = root;
@@ -25,15 +25,15 @@ export default class SelsoListStore {
       .catch((err) => err);
   };
 
-  @action setSelectedSelsoId = (id) => {
-    this.selectedSelsoId = id;
+  @action setChoosedSelso = (selsoItem) => {
+    this.choosedSelso = selsoItem;
   };
 
   @action setSelectedSelsoDetail = () => {
-    if (this.selectedSelsoId !== null) {
-      return fetchSelsoDetailApi(this.selectedSelsoId)
+    if (this.choosedSelso?.id) {
+      return fetchSelsoDetailApi(this.choosedSelso.id)
         .then((res) => {
-          this.selectedSelsoDetail = res.data;
+          this.fetchedSelsoDetail = res.data;
         });
     }
   };

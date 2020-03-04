@@ -1,0 +1,43 @@
+.modalOverlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.16);
+}
+
+.modalWrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+
+  width: 320px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background-color: white;
+}
+
+.modalContentsWrapper {
+  padding: 25px;
+}
+
+.buttonWrapper {
+  height: 50px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top: solid 1px #CECECE;
+
+  display: flex;
+}
+
+.defaultButton {
+  flex: 1;
+
+  font-size: 18px;
+  line-height: 18px;
+  text-align: center;
+  color: #CECECE;
+}
