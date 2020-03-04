@@ -30,7 +30,7 @@ export default class SelsoListStore {
   };
 
   @action setSelectedSelsoDetail = () => {
-    if (this.choosedSelso.id) {
+    if (this.choosedSelso?.id) {
       return fetchSelsoDetailApi(this.choosedSelso.id)
         .then((res) => {
           this.fetchedSelsoDetail = res.data;
