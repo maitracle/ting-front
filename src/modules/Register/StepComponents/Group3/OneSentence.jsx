@@ -1,15 +1,15 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import Textarea from 'src/components/Input/Textarea';
 
 const OneSentence = inject('registerStore')(
   observer(({ registerStore }) => {
-    const setOneSentence = (e) => registerStore.setOneSentence(e.target.value);
+    console.log(registerStore.registerData);
+    const setOneSentence = (e) => registerStore.setRegisterData('oneSentence', e.target.value);
+    const placeholder = '35자 이내로 자신에 대해 표현해주세요 :)';
     return (
-      <div className="survey">
-        <div className="anwserWrap">
-          <p> OneSentenceOneSentenceOneSentence한줄표현입력하세요</p>
-          <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
-        </div>
+      <div>
+        <Textarea placeholder={placeholder} value={registerStore.registerData.oneSentence} onChange={setOneSentence} />
       </div>
     );
   }),
