@@ -1,50 +1,144 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
+import Input from 'src/components/Form/Input';
+
+import styles from './SignUpForm.module.scss';
+import RadioSmall from 'src/components/Form/RadioSmall';
+
+
+const genderItemList = [
+  {
+    displayName: '남학생',
+    value: 'MALE',
+  },
+  {
+    displayName: '여학생',
+    value: 'FEMALE',
+  },
+];
+
+const campusLocationItemList = [
+  {
+    displayName: '홍익대 서울캠퍼스',
+    value: 'SEOUL',
+  },
+  {
+    displayName: '연세대 국제캠퍼스',
+    value: 'INTERNATIONAL',
+  },
+  {
+    displayName: '연세대 신촌캠퍼스',
+    value: 'SINCHON',
+  },
+];
+
+
+const scholarlyStatusItemList = [
+  {
+    displayName: '재학생',
+    value: 'ATTENDING',
+  },
+  {
+    displayName: '휴학생',
+    value: 'TAKINGOFF',
+  },
+];
 
 
 const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
-  const setEmail = (e) => signUpStore.setEmail(e.target.value);
-  const setPassword = (e) => signUpStore.setPassword(e.target.value);
-  const setNickname = (e) => signUpStore.setNickname(e.target.value);
-  const setGender = (gender) => (_event) => signUpStore.setGender(gender);
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    nickname: '',
+    gender: '',
+    campusLocation: '',
+    scholarlyStatus: '',
+  });
+
+  const setFormDataHandler = (key) => (event) => {
+    setFormData({
+      ...formData,
+      [key]: event.target.value,
+    });
+  };
+
+  const setRadioDataHandler = (key) => (value) => (_event) => {
+    setFormData({
+      ...formData,
+      [key]: value,
+    });
+  };
+
+  const submit = () => {
+    signUpStore.signUp(formData)
+      .then((res) => {
+        if (res.status === 201) {
+          signUpStore.nextTo();
+        }
+      })
+  };
 
   return (
-    <div>
-      <div>
-        <p>
-          이메일
-        </p>
-        <input type="text" value={signUpStore.formData.email} onChange={setEmail} />
+    <div className={styles.formWrapper}>
+      <div className={styles.inputWrapper}>
+        <Input
+          label={'이메일'}
+          value={formData.email}
+          onChange={setFormDataHandler('email')}
+        />
       </div>
 
-      <div>
-        <p>
-          비밀번호
-        </p>
-        <input type="password" value={signUpStore.formData.password} onChange={setPassword} />
+      <div className={styles.inputWrapper}>
+        <Input
+          label={'비밀번호'}
+          type={'password'}
+          value={formData.password}
+          onChange={setFormDataHandler('password')}
+        />
       </div>
 
-      <div>
-        <p>
-          닉네임
-        </p>
-        <input type="text" value={signUpStore.formData.nickname} onChange={setNickname} />
+      <div className={styles.inputWrapper}>
+        <Input
+          label={'닉네임'}
+          value={formData.nickname}
+          onChange={setFormDataHandler('nickname')}
+        />
       </div>
 
-      <div>
-        <p>
-          성별
-        </p>
-        <button onClick={setGender('MALE')}>남학생</button>
-        <button onClick={setGender('FEMALE')}>여학생</button>
+      <div className={styles.inputWrapper}>
+        <RadioSmall
+          label={'성별'}
+          itemList={genderItemList}
+          selectedItemValue={formData.gender}
+          selectItemValue={setRadioDataHandler('gender')}
+        />
       </div>
 
-      <p>
+      <div className={styles.inputWrapper}>
+        <RadioSmall
+          label={'소속 캠퍼스'}
+          itemList={campusLocationItemList}
+          selectedItemValue={formData.campusLocation}
+          selectItemValue={setRadioDataHandler('campusLocation')}
+        />
+      </div>
+
+      <div className={styles.inputWrapper}>
+        <RadioSmall
+          label={'재학 여부'}
+          itemList={scholarlyStatusItemList}
+          selectedItemValue={formData.scholarlyStatus}
+          selectItemValue={setRadioDataHandler('scholarlyStatus')}
+        />
+      </div>
+
+      <p className={styles.agreementLink}>
         캠쿠의 이용약관 및 개인정보 처리방침에 동의합니다.
       </p>
 
-      <button onClick={signUpStore.signUp}>sign up</button>
-      <button onClick={signUpStore.nextTo}>nextTo</button>
+      {/*<button onClick={}>{'<'}</button>*/}
+      <button onClick={submit}>다음</button>
     </div>
   );
 }));

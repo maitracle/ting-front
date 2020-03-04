@@ -1,20 +1,17 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { SIGN_UP_PATH } from 'src/constants/requests';
+import { CHECK_UNIV_EMAIL_PATH, SIGN_UP_PATH } from 'src/constants/requests';
+import { setAccessToken, setRefreshToken } from 'src/utils/handleJwtToken';
 
+
+const signUpApi = (payload) => requests.post(SIGN_UP_PATH, payload);
+const checkUnivEmailApi = (user_id, payload) => requests.patch(`${CHECK_UNIV_EMAIL_PATH(user_id)}`, payload, true);
 
 export default class SignUpStore {
   @observable step = 'SignUp';
 
   @observable stepList = ['SignUp', 'CheckEmail', 'MailSent'];
-
-  @observable formData = {
-    email: '',
-    password: '',
-    nickname: '',
-    gender: '',
-  };
 
   constructor(root) {
     this.root = root;
@@ -28,30 +25,16 @@ export default class SignUpStore {
     }
   };
 
-  @action setEmail = (email) => {
-    this.formData.email = email;
-  };
-
-  @action setPassword = (password) => {
-    this.formData.password = password;
-  };
-
-  @action setNickname = (nickname) => {
-    this.formData.nickname = nickname;
-  };
-
-  @action setGender = (gender) => {
-    this.formData.gender = gender;
-  };
-
   @action getFormData = () => JSON.parse(JSON.stringify(this.formData));
 
-  @action signUp = () => {
-    const payload = this.getFormData();
-
-    return requests.post(SIGN_UP_PATH, payload)
+  @action signUp = (payload) => {
+    return signUpApi(payload)
       .then((res) => {
-        this.nextTo();
+        // Todo(maitracle): response의 coin history를 store에 저장하기
+        setRefreshToken(res.data.refresh);
+        setAccessToken(res.data.access);
+        this.root.userStore.user = res.data.user;
+        this.root.userStore.profile = res.data.profile;
 
         return {
           status: res.status,
@@ -62,12 +45,43 @@ export default class SignUpStore {
           return {
             status: err.response.status,
             message: err.response.statusText,
+            data: err.response.data,
           };
         }
 
         return {
           status: null,
           message: 'unknown error',
+          data: {},
+        };
+      });
+  };
+
+  @action checkUnivEmail = (universityEmail) => {
+    const payload = {
+      universityEmail,
+    };
+
+    return checkUnivEmailApi(this.root.userStore.user.id, payload)
+      .then((res) => {
+        this.step = 'MailSent';
+        return {
+          status: res.status,
+          message: res.statusText,
+        };
+      }).catch((err) => {
+        if (err.response) {
+          return {
+            status: err.response.status,
+            message: err.response.statusText,
+            data: err.response.data,
+          };
+        }
+
+        return {
+          status: null,
+          message: 'unknown error',
+          data: {},
         };
       });
   }

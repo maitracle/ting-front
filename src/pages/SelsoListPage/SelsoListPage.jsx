@@ -8,6 +8,8 @@ export const SelsoListPage =  () => (
     <div className={styles.titleWrapper}>
       <h1 className={styles.title}>셀프 프로필</h1>
     </div>
-    <SelsoList />
+    <div className={styles.listWrapper}>
+      <SelsoList />
+    </div>
   </div>
 );

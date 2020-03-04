@@ -1,9 +1,10 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { FETCH_LIKE_PATH, GET_MY_PROFILE_PATH, LOGIN_PATH, UPDATE_PROFILE_PATH, } from 'src/constants/requests';
+import { GET_MY_USER_PATH, LOGIN_PATH, UPDATE_PROFILE_PATH, } from 'src/constants/requests';
 import {
   getAccessToken,
+  redirectLoginPage,
   removeAccessToken,
   removeRefreshToken,
   setAccessToken,
@@ -11,13 +12,15 @@ import {
 } from 'src/utils/handleJwtToken';
 
 
-const fetchMyProfileApi = () => requests.get(GET_MY_PROFILE_PATH, true);
+const logInApi = (payload) => requests.post(LOGIN_PATH, payload);
+const fetchMyProfileApi = () => requests.get(GET_MY_USER_PATH, true);
 const updateProfileApi = (profile) => requests.patch(`${UPDATE_PROFILE_PATH}${profile.id}/`, profile, true);
 
 
 export default class UserStore {
   @observable isLoggedIn = false;
 
+  @observable user = {};
   @observable profile = {};
 
   constructor(root) {
@@ -26,23 +29,27 @@ export default class UserStore {
     if (getAccessToken()) {
       fetchMyProfileApi()
         .then((res) => {
-          this.profile = res.data;
+          // Todo(maitracle): response의 coin history를 store에 저장하기
+          this.profile = res.data.user;
+          this.profile = res.data.profile;
           this.isLoggedIn = true;
         });
     }
   }
 
   @action logIn = (email, password) => {
-    const data = {
+    const payload = {
       email,
       password,
     };
 
-    return requests
-      .post(LOGIN_PATH, data)
+    return logInApi(payload)
       .then((res) => {
+        // Todo(maitracle): response의 coin history를 store에 저장하기
         setRefreshToken(res.data.refresh);
         setAccessToken(res.data.access);
+        this.profile = res.data.user;
+        this.profile = res.data.profile;
 
         return {
           status: res.status,
@@ -58,13 +65,7 @@ export default class UserStore {
     removeAccessToken();
     removeRefreshToken();
     this.isLoggedIn = false;
-  };
-
-  @action fetchLikes = () => {
-    // Todo(maitracle): 확인용으로 작성한 함수이므로, likes store 추가 후 위치 변경
-    requests.get(FETCH_LIKE_PATH, true)
-      .then((res) => res)
-      .catch((err) => err);
+    redirectLoginPage();
   };
 
   @action updateProfile = (profileData) => {
