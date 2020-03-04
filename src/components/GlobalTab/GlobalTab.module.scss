@@ -1,0 +1,34 @@
+.tabLink {
+  flex: 1;
+
+  text-decoration: none;
+  font-size: 12px;
+  line-height: 14px;
+  color: #C4C4C4;
+}
+
+.tabItem {
+  padding: 11px;
+  height: 100%;
+  text-align: center;
+
+  .image {
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+  }
+
+  .labelSelected {
+    color: #0941FB;
+  }
+}
+
+.tabWrapper {
+  display: flex;
+  position: fixed;
+  background-color: white;
+  bottom: 0;
+  width: 100vw;
+  height: 65px;
+  border-top: solid 1px black;
+}
