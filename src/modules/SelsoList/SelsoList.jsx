@@ -60,7 +60,7 @@ const SelsoList = inject('selsoListStore')(observer(({ selsoListStore }) => {
         ]}
       >
         <div className={styles.modalContents}>
-          <span className={styles.highlight}>2포인트</span>를 사용하시고 호주웃는땅쥐님의 셀프 프로필을 보시겠어요?
+          <span className={styles.highlight}>2포인트</span>를 사용하여 { selsoListStore.choosedSelso?.nickname }님의 셀프 프로필을 보시겠어요?
         </div>
       </Modal>
       {
