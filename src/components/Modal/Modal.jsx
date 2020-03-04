@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
-import './Modal.scss';
+import styles from './Modal.module.scss';
 
-export const Modal = ({ children, isOpen, close, buttonList }) => {
+export const Modal = ({ children, title, isOpen, close, buttonList }) => {
 
   useEffect(() => {
     // Modal 이 처음 close 인 상태로 Mount 될 때 history 에 빈 페이지를 push 한다.
@@ -30,14 +30,16 @@ export const Modal = ({ children, isOpen, close, buttonList }) => {
       {
         isOpen ?
           <>
-            <div className="modal-overlay" onClick={close} />
-            <div className="modal">
-              <p className="title">Modal Title</p>
-              <div>
-                { children }
+            <div className={styles.modalOverlay} onClick={close} />
+            <div className={styles.modalWrapper}>
+              <div className={styles.modalContentsWrapper}>
+                { title ? <p className={styles.title}>{ title }</p> : null }
+                <div>
+                  { children }
+                </div>
               </div>
-              <div>
-                { buttonList || [<button onClick={close} key={'default'}> default close button </button>] }
+              <div className={styles.buttonWrapper}>
+                { buttonList || [<button className={styles.defaultButton} onClick={close} key={'default'}> 닫기 </button>] }
               </div>
             </div>
           </>
