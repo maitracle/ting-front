@@ -1,18 +1,22 @@
 .btnWrapper {
   display: flex;
-  width: 100%;
   position: fixed;
-  bottom: 35px;
-  margin: 0 6%;
-  
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  padding: 35px 28px;
+  box-sizing: border-box;
 };
 
-
 .btnPrevWrapper {
-  width: 20%;
+  flex: 1;
 }
 
 .btnNextWrapper {
-  margin-left: 6%;
-  width: 60%;
+  margin-left: 21.5px;
+  flex: 3;
+}
+
+.blankBox {
+  height: 123px;
 }

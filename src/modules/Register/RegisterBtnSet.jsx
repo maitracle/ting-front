@@ -6,14 +6,18 @@ import styles from './RegisterBtnSet.module.scss';
 
 const RegisterBtnSet = inject('registerStore')(
   observer(({ registerStore }) => (
-    <div className={styles.btnWrapper}>
-      <div className={styles.btnPrevWrapper}>
-        <Btn onClick={registerStore.backTo} value="<" type="Gray" />
+    <>
+      <div className={styles.btnWrapper}>
+        <div className={styles.btnPrevWrapper}>
+          <Btn onClick={registerStore.backTo} value="<" type="Gray" />
+        </div>
+        <div className={styles.btnNextWrapper}>
+          <Btn onClick={registerStore.nextTo} value="다음" />
+        </div>
       </div>
-      <div className={styles.btnNextWrapper}>
-        <Btn onClick={registerStore.nextTo} value="다음" />
-      </div>
-    </div>
+
+      <div className={styles.blankBox} />
+    </>
   )),
 );
 export default RegisterBtnSet;
