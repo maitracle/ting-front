@@ -59,15 +59,7 @@ export class RegisterStore {
     }
   };
 
-  @action setOneSentence = (oneSentence) => {
-    this.registerData.oneSentence = oneSentence;
-  };
-
-  @action setTag = (tags) => {
-    this.registerData.tags = tags;
-  };
-
-  @action setImage = (image) => {
-    this.registerData.image = image;
+  @action setRegisterData = (type, value) => {
+    this.registerData[type] = value;
   };
 }

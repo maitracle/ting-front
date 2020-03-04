@@ -5,8 +5,8 @@ const Age = inject('registerStore')(
   observer(({ registerStore }) => {
     const setOneSentence = (e) => registerStore.setOneSentence(e.target.value);
     return (
-      <div className="survey">
-        <div className="anwserWrap">
+      <div>
+        <div>
           <p> AgeAgeAgeAge나이를 입력하세요</p>
           <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
         </div>
