@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { inject, observer } from 'mobx-react';
 import { useParams } from 'react-router-dom'
 
-const UserConfirmPage = inject('userStore')(observer(({ userStore }) => {
+const UserConfirmPage = inject('signUpStore')(observer(({ signUpStore }) => {
 
   const { userCode } = useParams();
 
   useEffect(() => {
-    userStore.authUniv(userCode);
+    signUpStore.authUniv(userCode);
   }, []);
   
   // Todo(10000001a): a 태그와 button에 링크 아직 부여 안함.

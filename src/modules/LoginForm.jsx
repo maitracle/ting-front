@@ -37,11 +37,6 @@ export default () => {
     userStore.logOut();
   };
 
-  const fetchLikes = async () => {
-    // Todo(maitracle): 확인용으로 작성한 함수이므로, likes view page 작성 후 위치 변경
-    await userStore.fetchLikes();
-  };
-
   return (
     <div>
       email:
@@ -54,7 +49,6 @@ export default () => {
       <input type="password" value={form.password} onChange={setPassword} />
       <button onClick={logIn}>login</button>
       <button onClick={logOut}>logout</button>
-      <button onClick={fetchLikes}>fetchLikes</button>
       <div>{ message }</div>
     </div>
   );
