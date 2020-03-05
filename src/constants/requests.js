@@ -15,6 +15,7 @@ export const CONFIRM_USER_PATH = '/api/users/confirm-user/';
 export const GET_PROFILE_LISTS_PATH = '/api/profiles/';
 export const GET_PROFILE_RETRIEVE_PATH = '/api/profiles/';
 export const GET_MY_USER_PATH = '/api/users/my/';
+export const GET_OPEN_KAKAO_PATH = (profileId) => `/api/profiles/${profileId}/chat-link/`;
 
 export const FETCH_POINT_PATH = '/api/coin-histories/';
 

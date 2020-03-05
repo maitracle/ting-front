@@ -12,7 +12,6 @@ import MyProfile from 'src/pages/MyPage/Profile';
 import MyPoint from 'src/pages/MyPage/Point';
 import MyQuestion from 'src/pages/MyPage/Question';
 import MyReview from 'src/pages/MyPage/Review';
-import SelsoDetailPage from 'src/pages/SelsoDetailPage';
 
 
 export default () => {
@@ -26,7 +25,6 @@ export default () => {
       <Route path="/" exact component={MainPage} />
 
       <Route path="/selso" exact component={SelsoListPage} />
-      <Route path="/selso/detail" exact component={SelsoDetailPage} />
 
       <Route path="/my" exact component={MyList} />
       <Route path="/my/profile" exact component={MyProfile} />
