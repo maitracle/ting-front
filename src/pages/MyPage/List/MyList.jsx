@@ -21,7 +21,7 @@ export const MyList = inject('userStore')(observer(({ userStore }) => {
         </Link>
         <Link to="/my/point">
           <div className={styles.linkItem}>
-            <span className={styles.linkText}>다이아 변동사항</span>
+            <span className={styles.linkText}>포인트 변동사항</span>
           </div>
         </Link>
         <Link to="/my/questions">

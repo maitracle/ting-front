@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Redirect } from 'react-router-dom';
 
 import SelsoItemCard from 'src/modules/SelsoList/SelsoItemCard';
 
@@ -8,10 +7,8 @@ import styles from 'src/modules/SelsoList/SelsoList.module.scss';
 import Modal from 'src/components/Modal';
 
 
-const SelsoList = inject('selsoListStore')(observer(({ selsoListStore }) => {
+const SelsoList = inject('selsoListStore')(observer(({ selsoListStore, history }) => {
   const [isOpenSpendPointModal, setIsOpenSpendPointModal] = useState(false);
-
-  const [willMoveDetailPage, setWillMoveDetailPage] = useState(false);
 
   useEffect(() => {
     selsoListStore.setSelsoList();
@@ -21,14 +18,14 @@ const SelsoList = inject('selsoListStore')(observer(({ selsoListStore }) => {
     selsoListStore.setChoosedSelso(selsoItem);
 
     if (selsoItem.isViewed) {
-      setWillMoveDetailPage(true);
+      history.push('selso/detail');
     } else {
       setIsOpenSpendPointModal(true);
     }
   };
 
   const spendPointAndMoveToDetailPage = () => {
-    setWillMoveDetailPage(true);
+    history.push('selso/detail');
   };
 
   return (
@@ -63,9 +60,6 @@ const SelsoList = inject('selsoListStore')(observer(({ selsoListStore }) => {
           <span className={styles.highlight}>2포인트</span>를 사용하여 { selsoListStore.choosedSelso?.nickname }님의 셀프 프로필을 보시겠어요?
         </div>
       </Modal>
-      {
-        willMoveDetailPage ? <Redirect to={'selso/detail/'} /> : null
-      }
     </div>
   );
 }));
