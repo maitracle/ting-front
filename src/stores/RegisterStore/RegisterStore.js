@@ -29,6 +29,7 @@ export class RegisterStore {
     dateStyle: '',
     idealType: '',
     oneSentence: '',
+    chatLink: '',
   };
 
   constructor(root) {
