@@ -23,7 +23,7 @@ export default class MyPointStore {
     }
   }
 
-  @computed get restPoint(){
-    return this.myPointHistory[0]?.restPoint;
+  @computed get restPoint() {
+    return this.myPointHistory[0]?.restCoin;
   }
 };
