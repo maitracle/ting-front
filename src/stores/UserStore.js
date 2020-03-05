@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { GET_MY_USER_PATH, LOGIN_PATH, UPDATE_PROFILE_PATH, } from 'src/constants/requests';
+import { FETCH_LIKE_PATH, GET_MY_PROFILE_PATH, LOGIN_PATH, SIGN_IN_PATH, UPDATE_PROFILE_PATH, } from 'src/constants/requests';
 import {
   getAccessToken,
   redirectLoginPage,
@@ -68,6 +68,21 @@ export default class UserStore {
     redirectLoginPage();
   };
 
+  @action authUniv = (userCode) => {
+    return requests
+      .post(`${SIGN_IN_PATH}confirm-user/`, { userCode, })
+      .then((res) => {
+
+        return {
+          status: res.status,
+          message: res.statusText,
+        };
+      }).catch((err) => ({
+        status: err.response.status,
+        message: err.response.statusText,
+      }));
+  }
+  
   @action updateProfile = (profileData) => {
     return updateProfileApi(profileData)
       .then((res) => this.profile = {
