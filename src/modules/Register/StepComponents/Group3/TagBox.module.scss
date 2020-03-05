@@ -19,12 +19,18 @@
     margin-left: 10px;
     border-radius: 3px;
     background-color: #B5C6FE;
+
+    .title {
+      color: white;
+      font-size: 20px;
+    }
   }
 }
 
 .tag{
-  margin-right:0.5rem;
-  font-size:16px;
+  margin-right: 10px;
+
+  font-size: 16px;
   line-height: 16px;
   color: #002C9E;
 
@@ -38,5 +44,6 @@
   flex-direction: row;
   margin-top: 30px;
   max-width: 100%;
-  overflow: scroll;
+  overflow-x: auto;
+  overflow-y: hidden;
 }

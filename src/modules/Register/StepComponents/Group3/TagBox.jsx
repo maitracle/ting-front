@@ -58,7 +58,9 @@ const TagBox = ({ setTags }) => {
     <div className={styles.tagBoxWrapper}>
       <div className={styles.tagForm}>
         <Input placeholder="나를 나타내는 태그!" value={input} onChange={onChange} />
-        <button className={styles.button} onClick={onSubmit}><span>+</span></button>
+        <button className={styles.button} onClick={onSubmit}>
+          <span className={styles.title}>+</span>
+        </button>
       </div>
 
       <TagList tags={tagList} onRemove={onRemove} />
