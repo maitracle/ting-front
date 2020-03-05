@@ -20,6 +20,12 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
   }, [selsoListStore.choosedSelso]);
 
   const getOpenKakaoLink = () => {
+    selsoListStore.fetchOpenKakaoLink(selsoListStore.fetchedSelsoDetail.id)
+      .then((res) => {
+        if (res.status === 200) {
+          window.open(res.chatLink);
+        }
+      })
   };
 
   return (

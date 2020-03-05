@@ -1,10 +1,11 @@
 import { action, observable } from 'mobx';
 import requests from 'src/utils/requests';
-import { GET_PROFILE_LISTS_PATH, GET_PROFILE_RETRIEVE_PATH } from 'src/constants/requests';
+import { GET_OPEN_KAKAO_PATH, GET_PROFILE_LISTS_PATH, GET_PROFILE_RETRIEVE_PATH } from 'src/constants/requests';
 
 
 const fetchSelsoListApi = () => requests.get(GET_PROFILE_LISTS_PATH, true);
 const fetchSelsoDetailApi = (id) => requests.get(`${GET_PROFILE_RETRIEVE_PATH}${id}/`, true);
+const fetchOpenKakaoLinkApi = (selsoId) => requests.get(`${GET_OPEN_KAKAO_PATH(selsoId)}`, true);
 
 export default class SelsoListStore {
   @observable selsoList = [];
@@ -42,4 +43,29 @@ export default class SelsoListStore {
         });
     }
   };
+
+  @action fetchOpenKakaoLink = (selsoId) => {
+    return fetchOpenKakaoLinkApi(selsoId)
+      .then((res) => {
+        return {
+          status: res.status,
+          message: res.statusText,
+          chatLink: res.data.chatLink,
+        };
+      }).catch((err) => {
+        if (err.response) {
+          return {
+            status: err.response.status,
+            message: err.response.statusText,
+            data: err.response.data,
+          };
+        }
+
+        return {
+          status: null,
+          message: 'unknown error',
+          data: {},
+        };
+      });
+  }
 }
