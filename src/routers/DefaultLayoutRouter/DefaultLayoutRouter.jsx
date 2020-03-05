@@ -7,10 +7,10 @@ import MainPage from 'src/pages/MainPage';
 import LoginPage from 'src/pages/LoginPage';
 import SelsoListPage from 'src/pages/SelsoListPage';
 
-import './DefaultLayoutRouter.scss';
+import styles from  './DefaultLayoutRouter.module.scss';
 import MyList from 'src/pages/MyPage/List';
 import MyProfile from 'src/pages/MyPage/Profile';
-import MyDia from 'src/pages/MyPage/Dia';
+import MyPoint from 'src/pages/MyPage/Point';
 import MyQuestion from 'src/pages/MyPage/Question';
 import MyReview from 'src/pages/MyPage/Review';
 import SelsoDetailPage from 'src/pages/SelsoDetailPage';
@@ -18,10 +18,11 @@ import SelsoDetailPage from 'src/pages/SelsoDetailPage';
 
 export default () => {
   return (
-    <div className={'layoutWrapper'}>
+    <div className={styles.layoutWrapper}>
       <header>
         <Gnb />
       </header>
+      <div className={styles.gnbBlankBox} />
 
       <Route path="/" exact component={MainPage} />
       <Route path="/login" exact component={LoginPage} />
@@ -30,11 +31,11 @@ export default () => {
 
       <Route path="/my" exact component={MyList} />
       <Route path="/my/profile" exact component={MyProfile} />
-      <Route path="/my/dia" exact component={MyDia} />
+      <Route path="/my/point" exact component={MyPoint} />
       <Route path="/my/question" exact component={MyQuestion} />
       <Route path="/my/review" exact component={MyReview} />
 
-      <div className={'blankBox'} />
+      <div className={styles.blankBox} />
 
       <GlobalTab />
     </div>

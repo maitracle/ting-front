@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
-
 import RegisterHeader from 'src/modules/Register/RegisterHeader';
 import Age from 'src/modules/Register/StepComponents/Group1/Age';
 import Height from 'src/modules/Register/StepComponents/Group1/Height';
@@ -16,6 +15,7 @@ import OneSentence from 'src/modules/Register/StepComponents/Group3/OneSentence'
 import Tags from 'src/modules/Register/StepComponents/Group3/Tags';
 import Image from 'src/modules/Register/StepComponents/Group3/Image';
 import ChatLink from 'src/modules/Register/StepComponents/Group4/ChatLink';
+import RegisterBtnSet from '../../modules/Register/RegisterBtnSet';
 
 const mapStepToComponent = {
   Age,
@@ -34,7 +34,7 @@ const mapStepToComponent = {
   ChatLink,
 };
 
-const RegisterPage = inject('registerStore')(
+export const RegisterPage = inject('registerStore')(
   observer(({ registerStore }) => {
     let StepComponent = mapStepToComponent[registerStore.currentStep];
 
@@ -47,9 +47,8 @@ const RegisterPage = inject('registerStore')(
         <div>프로필폼 페이지 </div>
         <RegisterHeader />
         <StepComponent />
+        <RegisterBtnSet />
       </div>
     );
   }),
 );
-
-export default RegisterPage;

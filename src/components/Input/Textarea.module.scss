@@ -1,0 +1,13 @@
+.textAreaWrapper{
+  height: 400px;
+  width: 100%;
+  .textArea{
+    border: unset;
+    height: 100%;
+    width: 100%;
+    padding: 16px 25px;
+    box-sizing: border-box;
+    line-height: 20px;
+  }
+}
+

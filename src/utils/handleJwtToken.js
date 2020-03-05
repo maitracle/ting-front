@@ -3,7 +3,7 @@ import axios from 'axios';
 import { HOST, REFRESH_TOKENS_PATH } from 'src/constants/requests';
 
 
-const redirectLoginPage = () => {
+export const redirectLoginPage = () => {
   window.location.pathname = '/login';
 };
 

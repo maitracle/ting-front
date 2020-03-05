@@ -1,0 +1,17 @@
+.pageWrapper {
+  min-height: 100vh;
+  padding: 11px 25px;
+
+  background: #E3EFFF;
+
+  .title {
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 38px;
+    color: #022275;
+  }
+}
+
+.componentWrapper {
+  max-width: 100%;
+}

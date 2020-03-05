@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { inject, observer } from 'mobx-react';
-import RegisterHeader from 'src/modules/Register/RegisterHeader';
-
+import RadioInputSet from 'src/components/Input/RadioInputSet';
 
 const IsSmoke = inject('registerStore')(
   observer(({ registerStore }) => {
-    const setOneSentence = (e) => registerStore.setOneSentence(e.target.value);
+    const setIsSmoke = (text) => registerStore.setRegisterData('isSmoke', text);
+    const [radioItemList, setRadioItem] = useState([
+      { id: 1, text: '비흡연자', checked: false },
+      { id: 2, text: '흡연자', checked: false },
+    ]);
+
+    const onClick = useCallback(
+      (id, text) => {
+        setRadioItem(
+          radioItemList.map((radioItem) => (radioItem.id === id ? { ...radioItem, checked: true } : { ...radioItem, checked: false })),
+        );
+        setIsSmoke(text);
+      },
+      [radioItemList],
+    );
+
     return (
-      <div className="survey">
-        <div className="anwserWrap">
-          <p> IsSmokeIsSmokeIsSmoke흡연여부골라주세요</p>
-          <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
-        </div>
-        <div className="buttonWrap">
-          <button onClick={registerStore.backTo}>뒤로</button>
-          <button onClick={registerStore.nextTo}>다음</button>
-        </div>
+      <div>
+        <p>IsSmokeIsSmokeIsSmoke흡연여부골라주세요</p>
+        <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
       </div>
     );
   }),

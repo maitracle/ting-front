@@ -19,7 +19,7 @@ export const MyList = inject('userStore')(observer(({ userStore }) => {
             <span className={styles.linkText}>마이 프로필 수정하기</span>
           </div>
         </Link>
-        <Link to="/my/diamond">
+        <Link to="/my/point">
           <div className={styles.linkItem}>
             <span className={styles.linkText}>다이아 변동사항</span>
           </div>
@@ -34,6 +34,10 @@ export const MyList = inject('userStore')(observer(({ userStore }) => {
             <span className={styles.linkText}>리뷰 남기기</span>
           </div>
         </Link>
+
+        <div onClick={() => userStore.logOut()} className={styles.linkItem}>
+          <span className={styles.linkText}>로그아웃</span>
+        </div>
 
       </div>
     </div>

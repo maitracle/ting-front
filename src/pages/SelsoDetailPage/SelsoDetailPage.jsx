@@ -12,7 +12,7 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
 
   return (
     <div className={styles.detailWrapper}>
-      <Card selsoDetail={selsoListStore.selectedSelsoDetail} />
+      <Card selsoDetail={selsoListStore.fetchedSelsoDetail} />
     </div>
   )
 }));

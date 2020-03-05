@@ -1,13 +1,11 @@
 import React from 'react';
 
-import './ProfileCard.scss';
+import styles from './ProfileCard.module.scss';
 
 export const ProfileCard = ({ imageSrc, nickname }) => (
   <div>
-    <div className={'image'}>
-      <img src={imageSrc} className={'image'} alt={'프로필 이미지'} />
-    </div>
-    <div className={'nicknameWrapper'}><span className={'nickName'}>{ nickname }</span></div>
-    <div className={'aperture'} />
+    <img src={imageSrc || require('src/assets/images/defaultProfileImage.jpg')} className={styles.image} alt={'프로필 이미지'} />
+    <div className={styles.nicknameWrapper}><span className={styles.nickName}>{ nickname }</span></div>
+    <div className={styles.aperture} />
   </div>
 );
