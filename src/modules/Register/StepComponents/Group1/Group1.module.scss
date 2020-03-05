@@ -1,0 +1,33 @@
+.componentWrapper {
+  padding: 30px 25px;
+}
+
+.question {
+  font-size: 20px;
+  line-height: 20px;
+  color: #3A3A3A;
+}
+
+.inputLine {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 37px;
+
+  .inputWrapper {
+    margin-left: 25%;
+    width: 50%;
+  }
+
+  .scaleLabel {
+    margin-left: 11px;
+
+    font-size: 20px;
+    line-height: 20px;
+    color: #3A3A3A;
+  }
+}
+
+.radioInputWrapper {
+  margin-top: 37px;
+}

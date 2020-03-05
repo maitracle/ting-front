@@ -1,6 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
+
+import styles from './Group1.module.scss';
 
 
 const Religion = inject('registerStore')(
@@ -24,9 +26,13 @@ const Religion = inject('registerStore')(
       [radioItemList],
     );
     return (
-      <div>
-        <p> ReligionReligionReligion종교선택하세요</p>
-        <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
+      <div className={styles.componentWrapper}>
+        <div className={styles.question}>
+          <strong>종교</strong>를 알려주세요.
+        </div>
+        <div className={styles.radioInputWrapper}>
+          <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
+        </div>
       </div>
     );
   }),

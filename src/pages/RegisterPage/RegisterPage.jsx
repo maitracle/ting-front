@@ -6,7 +6,7 @@ import Height from 'src/modules/Register/StepComponents/Group1/Height';
 import IsSmoke from 'src/modules/Register/StepComponents/Group1/IsSmoke';
 import Religion from 'src/modules/Register/StepComponents/Group1/Religion';
 import BodyType from 'src/modules/Register/StepComponents/Group1/BodyType';
-import Appearance from 'src/modules/Register/StepComponents/Group2/Apperance';
+import Appearance from 'src/modules/Register/StepComponents/Group2/Appearance';
 import Personality from 'src/modules/Register/StepComponents/Group2/Personality';
 import Hobby from 'src/modules/Register/StepComponents/Group2/Hobby';
 import DateStyle from 'src/modules/Register/StepComponents/Group2/DateStyle';
@@ -44,7 +44,6 @@ export const RegisterPage = inject('registerStore')(
 
     return (
       <div>
-        <div>프로필폼 페이지 </div>
         <RegisterHeader />
         <StepComponent />
         <RegisterBtnSet history={history} />

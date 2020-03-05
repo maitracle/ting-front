@@ -27,13 +27,14 @@ export class RegisterStore {
     bodyType: '',
     religion: '',
     isSmoke: '',
-    apperance: '',
+    appearance: '',
     personality: '',
     hobby: '',
     dateStyle: '',
     idealType: '',
     oneSentence: '',
-    tags: '#1111 #2222 #3333',
+    tags: '',
+    chatLink: '',
   };
 
   constructor(root) {
