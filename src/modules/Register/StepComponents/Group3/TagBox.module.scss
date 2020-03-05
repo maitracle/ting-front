@@ -1,13 +1,11 @@
 .tagBoxWrapper{
   width: 100%;
-  text-align: -webkit-center;
 }
 
 .tagForm{
-  border-radius: 4px;
-  overflow: hidden;
   display: flex;
   width: 242px;
+  margin: 0 auto;
   align-items: center;
 
   .buttonWrapper {
@@ -37,7 +35,8 @@
 
 .tagListWrapper{
   display: flex;
-  justify-content: flex-start;
   flex-direction: row;
   margin-top: 30px;
+  max-width: 100%;
+  overflow: scroll;
 }

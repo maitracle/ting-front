@@ -61,9 +61,7 @@ const TagBox = ({ setTags }) => {
         <button className={styles.button} onClick={onSubmit}><span>+</span></button>
       </div>
 
-      <div>
-        <TagList tags={tagList} onRemove={onRemove} />
-      </div>
+      <TagList tags={tagList} onRemove={onRemove} />
     </div>
   );
 };
