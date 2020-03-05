@@ -36,8 +36,7 @@ export class RegisterStore {
     this.root = root;
 
     this.stepList = this.stepList.concat(this.group1, this.group2, this.group3, this.group4);
-    // this.currentStep = this.stepList[0] || '';
-    this.currentStep = 'ChatLink';
+    this.currentStep = this.stepList[0] || '';
   }
 
   @computed get currentGroup() {
