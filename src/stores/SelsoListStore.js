@@ -29,11 +29,16 @@ export default class SelsoListStore {
     this.choosedSelso = selsoItem;
   };
 
-  @action setSelectedSelsoDetail = () => {
+  @action fetchSelsoDetail = () => {
     if (this.choosedSelso?.id) {
       return fetchSelsoDetailApi(this.choosedSelso.id)
         .then((res) => {
           this.fetchedSelsoDetail = res.data;
+
+          return {
+            status: res.status,
+            message: res.statusText,
+          };
         });
     }
   };

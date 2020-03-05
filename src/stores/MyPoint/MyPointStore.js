@@ -1,4 +1,4 @@
-import { observable, computed } from 'mobx';
+import { observable, computed, action } from 'mobx';
 import requests from 'src/utils/requests';
 import { FETCH_POINT_PATH } from 'src/constants/requests';
 import {
@@ -23,7 +23,18 @@ export default class MyPointStore {
     }
   }
 
-  @computed get restPoint(){
-    return this.myPointHistory[0]?.restPoint;
+  @computed get restPoint() {
+    if (this.myPointHistory.length) {
+      return this.myPointHistory[0].restCoin;
+    }
+
+    return 0;
+  }
+
+  @action fetchMyPointHistory = () => {
+    fetchMyPointHistoryApi()
+      .then((res) => {
+        this.myPointHistory = res.data.reverse();
+      });
   }
 };

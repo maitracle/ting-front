@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 import Gnb from 'src/components/Gnb';
 import GlobalTab from 'src/components/GlobalTab';
 import MainPage from 'src/pages/MainPage';
-import LoginPage from 'src/pages/LoginPage';
 import SelsoListPage from 'src/pages/SelsoListPage';
 
 import styles from  './DefaultLayoutRouter.module.scss';
@@ -25,7 +24,7 @@ export default () => {
       <div className={styles.gnbBlankBox} />
 
       <Route path="/" exact component={MainPage} />
-      <Route path="/login" exact component={LoginPage} />
+
       <Route path="/selso" exact component={SelsoListPage} />
       <Route path="/selso/detail" exact component={SelsoDetailPage} />
 

@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { CHECK_UNIV_EMAIL_PATH, SIGN_UP_PATH } from 'src/constants/requests';
+import { CHECK_UNIV_EMAIL_PATH, CONFIRM_USER_PATH, SIGN_UP_PATH } from 'src/constants/requests';
 import { setAccessToken, setRefreshToken } from 'src/utils/handleJwtToken';
 
 
@@ -84,5 +84,20 @@ export default class SignUpStore {
           data: {},
         };
       });
+  };
+
+  @action authUniv = (userCode) => {
+    return requests
+      .post(CONFIRM_USER_PATH, { userCode, })
+      .then((res) => {
+
+        return {
+          status: res.status,
+          message: res.statusText,
+        };
+      }).catch((err) => ({
+        status: err.response.status,
+        message: err.response.statusText,
+      }));
   }
 }

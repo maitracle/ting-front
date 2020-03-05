@@ -67,7 +67,7 @@ export default class UserStore {
     this.isLoggedIn = false;
     redirectLoginPage();
   };
-
+  
   @action updateProfile = (profileData) => {
     return updateProfileApi(profileData)
       .then((res) => this.profile = {
