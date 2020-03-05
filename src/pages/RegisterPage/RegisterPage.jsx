@@ -35,7 +35,7 @@ const mapStepToComponent = {
 };
 
 export const RegisterPage = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(({ registerStore, history }) => {
     let StepComponent = mapStepToComponent[registerStore.currentStep];
 
     useEffect(() => {
@@ -46,7 +46,7 @@ export const RegisterPage = inject('registerStore')(
       <div>
         <RegisterHeader />
         <StepComponent />
-        <RegisterBtnSet />
+        <RegisterBtnSet history={history} />
       </div>
     );
   }),
