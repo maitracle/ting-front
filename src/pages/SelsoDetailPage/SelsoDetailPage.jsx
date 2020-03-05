@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 
 import styles from './SelsoDetailPage.module.scss';
 import Card from 'src/modules/SelsoDetail/Card';
+import Gnb from 'src/components/Gnb';
 
 
 export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListStore }) => {
@@ -18,9 +19,21 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
     }
   }, [selsoListStore.choosedSelso]);
 
+  const getOpenKakaoLink = () => {
+  };
+
   return (
     <div className={styles.detailWrapper}>
+      <Gnb />
+      <div className={styles.gnbBlankBox} />
+
       <Card selsoDetail={selsoListStore.fetchedSelsoDetail} />
+
+      <div className={styles.buttonBlankBox} />
+      <div className={styles.buttonWrapper}>
+        <img src={require('src/assets/images/SelsoDetail/HeartButton.png')} className={styles.heartButton} alt={'찜하기 버튼'} />
+        <button onClick={getOpenKakaoLink} className={styles.kakaoButton}>오픈 카카오로 연락하기</button>
+      </div>
     </div>
   )
 }));
