@@ -1,16 +1,14 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import TagBox from './TagBox';
 
 
 const Tags = inject('registerStore')(
   observer(({ registerStore }) => {
-    const setOneSentence = (e) => registerStore.setOneSentence(e.target.value);
+    const setTags = (tagList) => registerStore.setRegisterData('tags', tagList);
     return (
-      <div className="survey">
-        <div className="anwserWrap">
-          <p> TagsTagsTags한줄표현입력하세요</p>
-          <input type="text" value={registerStore.registerData.oneline} onChange={setOneSentence} />
-        </div>
+      <div>
+        <TagBox setTags={setTags} />
       </div>
     );
   }),

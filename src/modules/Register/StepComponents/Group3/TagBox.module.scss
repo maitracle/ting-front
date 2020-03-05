@@ -1,0 +1,51 @@
+.tagBoxWrapper{
+  width: 100%;
+  text-align: -webkit-center;
+  margin-top: 30px;
+}
+
+.tagForm{
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  width: 256px;
+  border: 1px solid #002C9E;
+  .input{
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    padding: 0.5rem;
+    min-width: 0;   //버튼이 깨지는 걸 막아줌
+    flex:1
+  }
+  .button{
+    cursor: pointer;
+      outline: none;
+      border: none;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      font-size: 1rem;
+      background-color: #0941FB;
+      color:white;
+      font-weight: bold;
+      &:hover {
+        background-color: #002C9E;
+      }
+  }
+}
+
+.tag{
+  margin-right:0.5rem;
+  font-size:16px;
+  line-height: 16px;
+  color: #002C9E;
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.tagListWrapper{ 
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  margin-top: 0.5rem;
+}
