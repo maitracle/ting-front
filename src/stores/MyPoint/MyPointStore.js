@@ -24,7 +24,11 @@ export default class MyPointStore {
   }
 
   @computed get restPoint() {
-    return this.myPointHistory[0]?.restCoin;
+    if (this.myPointHistory.length) {
+      return this.myPointHistory[0].restCoin;
+    }
+
+    return 0;
   }
 
   @action fetchMyPointHistory = () => {
