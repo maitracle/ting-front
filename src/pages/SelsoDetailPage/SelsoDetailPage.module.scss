@@ -1,3 +1,45 @@
 .detailWrapper {
+  position: relative;
+}
 
+.gnbBlankBox {
+  height: 44px;
+}
+
+.buttonBlankBox {
+  height: 65px;
+}
+
+.buttonWrapper {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+
+  width: 100%;
+  padding: 10.5px 26px;
+  border-top: solid 1px black;
+  background-color: white;
+  box-sizing: border-box;
+
+  .heartButton {
+    width: 44px;
+    height: 44px;
+  }
+
+  .kakaoButton {
+    height: 44px;
+    border: 1px solid #0935FB;
+    background: #0935FB;
+    box-sizing: border-box;
+    border-radius: 6px;
+    margin-left: 27px;
+
+    width: 100%;
+
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    color: #FFFFFF;
+  }
 }
