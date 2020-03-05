@@ -5,14 +5,14 @@ import styles from './RegisterBtnSet.module.scss';
 
 
 const RegisterBtnSet = inject('registerStore')(
-  observer(({ registerStore }) => (
+  observer(({ registerStore, history }) => (
     <>
       <div className={styles.btnWrapper}>
         <div className={styles.btnPrevWrapper}>
           <Btn onClick={registerStore.backTo} value="<" type="Gray" />
         </div>
         <div className={styles.btnNextWrapper}>
-          <Btn onClick={registerStore.nextTo} value="다음" />
+          <Btn onClick={registerStore.nextTo(history)} value="다음" />
         </div>
       </div>
 
