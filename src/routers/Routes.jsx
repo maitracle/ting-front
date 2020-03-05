@@ -12,7 +12,7 @@ export default () => (
       <Switch>
         <Route path="/sign-up" exact component={SignUpRouter} />
         <Route path="/user-confirm/:userCode" exact component={UserConfirmPage} />
-        <Route path="/register" exact component={RegisterRouter} />
+        <Route path="/register" component={RegisterRouter} />
         <Route path="/" component={DefaultLayoutRouter} />
       </Switch>
     </main>

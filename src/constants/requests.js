@@ -17,4 +17,6 @@ export const GET_PROFILE_RETRIEVE_PATH = '/api/profiles/';
 export const GET_MY_USER_PATH = '/api/users/my/';
 
 export const FETCH_POINT_PATH = '/api/coin-histories/';
+
+export const REGISTER_SELSO_PATH = '/api/profiles/';
 export const UPDATE_PROFILE_PATH = '/api/profiles/';

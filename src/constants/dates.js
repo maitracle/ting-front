@@ -1,0 +1,1 @@
+export const serviceOpeningDate = '3월 21일';

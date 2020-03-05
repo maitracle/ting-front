@@ -1,6 +1,10 @@
 /* eslint-disable import/prefer-default-export */
 import { action, computed, observable } from 'mobx';
+import requests from 'src/utils/requests';
+import { REGISTER_SELSO_PATH } from 'src/constants/requests';
 
+
+const registerSelsoApi = (profileId, payload) => requests.patch(`${REGISTER_SELSO_PATH}${profileId}/`, payload, true);
 
 export class RegisterStore {
   @observable stepList = [];
@@ -29,6 +33,7 @@ export class RegisterStore {
     dateStyle: '',
     idealType: '',
     oneSentence: '',
+    tags: '#1111 #2222 #3333',
   };
 
   constructor(root) {
@@ -55,6 +60,9 @@ export class RegisterStore {
     const stepIndex = this.stepList.indexOf(this.currentStep);
     if (stepIndex !== -1 && stepIndex + 1 !== this.stepList.length) {
       this.currentStep = this.stepList[stepIndex + 1];
+    } else {
+      // 마지막 스탭까지 완료한 후에 등록완료 페이지로 리다이랙트
+      history.pushState({}, '', '/register/complete');
     }
   };
 
@@ -67,5 +75,29 @@ export class RegisterStore {
 
   @action setRegisterData = (type, value) => {
     this.registerData[type] = value;
+  };
+
+  @action registerSelso = () => {
+    return registerSelsoApi(this.root.userStore.profile.id, this.registerData)
+      .then((res) => {
+        return {
+          status: res.status,
+          message: res.statusText,
+        };
+      }).catch((err) => {
+        if (err.response) {
+          return {
+            status: err.response.status,
+            message: err.response.statusText,
+            data: err.response.data,
+          };
+        }
+
+        return {
+          status: null,
+          message: 'unknown error',
+          data: {},
+        };
+      });
   };
 }
