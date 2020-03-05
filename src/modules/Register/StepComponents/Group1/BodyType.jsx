@@ -1,6 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
+
+import styles from './Group1.module.scss';
+
 
 const BodyType = inject('registerStore')(
   observer(({ registerStore }) => {
@@ -24,9 +27,13 @@ const BodyType = inject('registerStore')(
       [radioItemList],
     );
     return (
-      <div>
-        <p> 체형을 선택해주세요.</p>
-        <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
+      <div className={styles.componentWrapper}>
+        <div className={styles.question}>
+          <strong>체형</strong>을 알려주세요.
+        </div>
+        <div className={styles.radioInputWrapper}>
+          <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
+        </div>
       </div>
     );
   }),

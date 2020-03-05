@@ -44,7 +44,6 @@ export const RegisterPage = inject('registerStore')(
 
     return (
       <div>
-        <div>프로필폼 페이지 </div>
         <RegisterHeader />
         <StepComponent />
         <RegisterBtnSet />

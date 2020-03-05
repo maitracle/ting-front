@@ -1,6 +1,9 @@
-import React, { useState, useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
+
+import styles from './Group1.module.scss';
+
 
 const IsSmoke = inject('registerStore')(
   observer(({ registerStore }) => {
@@ -21,9 +24,13 @@ const IsSmoke = inject('registerStore')(
     );
 
     return (
-      <div>
-        <p>IsSmokeIsSmokeIsSmoke흡연여부골라주세요</p>
-        <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
+      <div className={styles.componentWrapper}>
+        <div className={styles.question}>
+          <strong>흡연여부</strong>를 알려주세요.
+        </div>
+        <div className={styles.radioInputWrapper}>
+          <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
+        </div>
       </div>
     );
   }),
