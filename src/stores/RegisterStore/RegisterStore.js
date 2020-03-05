@@ -23,7 +23,7 @@ export class RegisterStore {
     bodyType: '',
     religion: '',
     isSmoke: '',
-    apperance: '',
+    appearance: '',
     personality: '',
     hobby: '',
     dateStyle: '',
@@ -36,7 +36,8 @@ export class RegisterStore {
     this.root = root;
 
     this.stepList = this.stepList.concat(this.group1, this.group2, this.group3, this.group4);
-    this.currentStep = this.stepList[0] || '';
+    // this.currentStep = this.stepList[0] || '';
+    this.currentStep = 'ChatLink';
   }
 
   @computed get currentGroup() {
