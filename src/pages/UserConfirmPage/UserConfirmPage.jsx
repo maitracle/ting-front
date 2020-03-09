@@ -34,12 +34,12 @@ const UserConfirmPage = inject('signUpStore')(observer(({ signUpStore, history }
           캠쿠와 함께 마이프로필을 완성해봐요!
         </p>
       </div>
-      <img src={require('src/assets/images/UserConfirm/cuteCat@3x.png')} className={styles.image} alt='등록 완료' />
+      <img src={require('src/assets/images/UserConfirm/cuteCat@3x.png')} className={styles.image} alt='설명' />
       <div className={styles.skipButtonWrapper}>
-        <Link to='/selso' className={styles.skipButton} style={{ textDecoration: 'none' }}>Skip</Link>
+        <Link to='/selso' className={styles.skipButton}>Skip</Link>
       </div>
-      <div>
-        <Link to='/register' className={styles.nextButtonWrapper} style={{ textDecoration: 'none' }}>
+      <div className={styles.nextButtonWrapper}>
+        <Link to='/register'>
           <button className={styles.nextButton}>만들러 가기</button>
         </Link>
       </div>
