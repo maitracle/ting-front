@@ -24,7 +24,6 @@ const UserConfirmPage = inject('signUpStore')(observer(({ signUpStore, history }
       </div>
     )}
 
-  // Todo(10000001a): div를 img로 변경.
   return (
     <div className={styles.pageWrapper}>
       { title(signUpStore.root.userStore.profile.nickname) }
