@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { inject, observer } from 'mobx-react';
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 
 import styles from './UserConfirmPage.module.scss';
 
@@ -24,10 +24,6 @@ const UserConfirmPage = inject('signUpStore')(observer(({ signUpStore, history }
       </div>
     )}
 
-  const linkToSelso = () => history.push('/selso')
-
-  const linkToRegister = () => history.push('/register')
-  
   // Todo(10000001a): div를 img로 변경.
   return (
     <div className={styles.pageWrapper}>
@@ -39,10 +35,14 @@ const UserConfirmPage = inject('signUpStore')(observer(({ signUpStore, history }
         </p>
       </div>
       <div className={styles.image}></div>
-      <div className={styles.skipButton} onClick={linkToSelso}>
-        skip
+      <div className={styles.skipButtonWrapper}>
+        <Link to='/selso' className={styles.skipButton} style={{ textDecoration: 'none' }}>Skip</Link>
       </div>
-      <button className={styles.nextButton}onClick={linkToRegister}>만들러 가기</button>
+      <div>
+        <Link to='/register' className={styles.nextButtonWrapper} style={{ textDecoration: 'none' }}>
+          <button className={styles.nextButton}>만들러 가기</button>
+        </Link>
+      </div>
     </div>
   );
 }));

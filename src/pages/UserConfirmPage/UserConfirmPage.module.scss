@@ -22,8 +22,13 @@
     color: #3A3A3A;
   }
 
+  .skipButtonWrapper{
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 14.5px;
+  }
+
   .skipButton{
-    margin: 24px auto 15.5px auto;
     
     width: 25px;
 
@@ -31,11 +36,14 @@
     font-size: 16px;
     line-height: 12px;
     color: #757575;
+    
+  }
+  
+  .nextButtonWrapper{
+    margin: 0 13.3vw;
   }
 
   .nextButton{
-    margin: 0 13.3vw;
-
     width: 60vw;
     height: 53px;
 
