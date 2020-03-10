@@ -1,5 +1,6 @@
 const HostDictionaryByEnv = {
   development: 'http://localhost:8000',
+  production: 'http://ec2-46-51-226-242.ap-northeast-1.compute.amazonaws.com:8080',
 };
 
 
