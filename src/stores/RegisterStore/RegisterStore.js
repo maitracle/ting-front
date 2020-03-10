@@ -33,6 +33,7 @@ export class RegisterStore {
     dateStyle: '',
     idealType: '',
     oneSentence: '',
+    image: '',
     tags: '',
     chatLink: '',
   };
@@ -78,27 +79,23 @@ export class RegisterStore {
     this.registerData[type] = value;
   };
 
-  @action registerSelso = () => {
-    return registerSelsoApi(this.root.userStore.profile.id, this.registerData)
-      .then((res) => {
+  @action registerSelso = () => registerSelsoApi(this.root.userStore.profile.id, this.registerData)
+    .then((res) => ({
+      status: res.status,
+      message: res.statusText,
+    })).catch((err) => {
+      if (err.response) {
         return {
-          status: res.status,
-          message: res.statusText,
+          status: err.response.status,
+          message: err.response.statusText,
+          data: err.response.data,
         };
-      }).catch((err) => {
-        if (err.response) {
-          return {
-            status: err.response.status,
-            message: err.response.statusText,
-            data: err.response.data,
-          };
-        }
+      }
 
-        return {
-          status: null,
-          message: 'unknown error',
-          data: {},
-        };
-      });
-  };
+      return {
+        status: null,
+        message: 'unknown error',
+        data: {},
+      };
+    });
 }

@@ -4,6 +4,29 @@ import styles from './Card.module.scss';
 
 
 export default ({ selsoDetail }) => {
+  const bodyTypeConverter = {
+    SKINNY: '마른',
+    SLIM: '슬림',
+    SLIMFIT: '슬림탄탄',
+    NORMAL: '보통',
+    FIT: '근육질',
+    CHUBBY: '통통',
+  };
+
+  const religionConverter = {
+    NOTHING: '무교',
+    CHRISTIANITY: '기독교',
+    CATHOLIC: '천주교',
+    BUDDHISM: '불교',
+    ETC: '기타',
+  };
+
+  const isSmokeConverter = {
+    NO: '비흡연자',
+    YES: '흡연자',
+  };
+
+
   return (
     <div>
       <div style={{ backgroundImage: `url(${selsoDetail.image})` }} className={styles.image} />
@@ -11,7 +34,10 @@ export default ({ selsoDetail }) => {
       <section className={styles.listInfoBox}>
         <div className={styles.nicknameWrapper}>
           <div className={styles.nickname}>{selsoDetail.nickname}</div>
-          <div className={styles.age}>{selsoDetail.age}살</div>
+          <div className={styles.age}>
+            {selsoDetail.age}
+살
+          </div>
         </div>
         <div className={styles.tags}>
           {selsoDetail.tags}
@@ -33,10 +59,10 @@ export default ({ selsoDetail }) => {
         </div>
         <div className={styles.infoLine}>
           <div className={styles.label}>
-            몸메
+            몸매
           </div>
           <div>
-            {selsoDetail.bodyType}
+            {bodyTypeConverter[selsoDetail.bodyType]}
           </div>
         </div>
         <div className={styles.infoLine}>
@@ -44,15 +70,15 @@ export default ({ selsoDetail }) => {
             종교
           </div>
           <div>
-            {selsoDetail.religion}
+            {religionConverter[selsoDetail.religion]}
           </div>
         </div>
         <div className={styles.infoLine}>
           <div className={styles.label}>
-            키
+            흡연여부
           </div>
           <div>
-            {selsoDetail.height}
+            {isSmokeConverter[selsoDetail.isSmoke]}
           </div>
         </div>
       </section>
@@ -109,4 +135,4 @@ export default ({ selsoDetail }) => {
 
     </div>
   );
-}
+};
