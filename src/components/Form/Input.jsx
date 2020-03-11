@@ -15,7 +15,7 @@ const Input = ({
         )
         : null
     }
-    <input placeholder={placeholder} value={value} onChange={onChange} className={validationMessage?styles.invalidInput:styles.input} style={{ textAlign: align }} onBlur={onBlur} onFocus={onFocus}/>
+    <input placeholder={placeholder} value={value} onChange={onChange} className={`${styles.input} ${validationMessage?styles.invalidInput:''}`} style={{ textAlign: align }} onBlur={onBlur} onFocus={onFocus}/>
     <div className={styles.validation}>
       <span>{validationMessage}</span>
     </div>
