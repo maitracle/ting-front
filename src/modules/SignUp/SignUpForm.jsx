@@ -148,19 +148,15 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
   }
 
   const validate = (formData) => {
-    let isValid = false;
-    isValid += validateEmail(formData.email);
-    isValid += validatePassword(formData.password);
-    isValid += validateNickname(formData.nickname);
-    isValid += validateGender(formData.gender);
-    isValid += validateCampusLocation(formData.campusLocation);
-    isValid += validateScholarlyStatus(formData.scholarlyStatus);
+    let isValid = true;
+    isValid = validateEmail(formData.email) && isValid;
+    isValid = validatePassword(formData.password) && isValid;
+    isValid = validateNickname(formData.nickname) && isValid;
+    isValid = validateGender(formData.gender) && isValid;
+    isValid = validateCampusLocation(formData.campusLocation) && isValid;
+    isValid = validateScholarlyStatus(formData.scholarlyStatus) && isValid;
 
-    if (isValid === 6) {
-      return true;
-    } else {
-      return false;
-    }
+    return isValid;
   }
 
   const submit = () => {
