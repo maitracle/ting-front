@@ -161,7 +161,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
 
   const submit = () => {
     const isValid = validate(formData)
-    if (isValid === true) {
+    if (isValid) {
       signUpStore.signUp(formData)
       .then((res) => {
         if (res.status === 201) {
