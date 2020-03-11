@@ -11,6 +11,7 @@ const Tags = inject('registerStore')(
     return (
       <div className={styles.componentWrapper}>
         <TagBox setTags={setTags} />
+        <span className={styles.tagList}>{registerStore.registerData.tags}</span>
       </div>
     );
   }),
