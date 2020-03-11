@@ -56,6 +56,17 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
     scholarlyStatus: '',
   });
 
+  const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const nicknameRegExp = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+/;
+
+
+  const [emailValidationMessage, setEmailValidationMessage] = useState('')
+  const [passwordValidationMessage, setPasswordValidationMessage] = useState('')
+  const [nicknameValidationMessage, setNicknameValidationMessage] = useState('')
+  const [genderValidationMessage, setGenderValidationMessage] = useState('')
+  const [campusLocationValidationMessage, setCampusLocationValidationMessage] = useState('')
+  const [scholarlyStatusValidationMessage, setScholarlyStatusValidationMessage] = useState('')
+  
   const setFormDataHandler = (key) => (event) => {
     setFormData({
       ...formData,
@@ -70,13 +81,100 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
     });
   };
 
+  const validateEmail = (data) => {
+    if(data === ''){
+      setEmailValidationMessage('이메일을 입력해주세요.')
+      return false;
+    }else if(emailRegExp.test(data) === false){
+      setEmailValidationMessage('잘못된 이메일 형식입니다.')
+      return false;
+    }else{
+      setEmailValidationMessage('')
+      return true;
+    }
+  }
+
+  const validatePassword = (data) => {
+    if(data === ''){
+      setPasswordValidationMessage('비밀번호를 입력해주세요.')
+      return false;
+    }else{
+      setPasswordValidationMessage('')
+      return true;
+    }
+  }
+
+  const validateNickname = (data) => {
+    if(data === ''){
+      setNicknameValidationMessage('닉네임을 입력해주세요.')
+      return false;
+    }else if(data.length > 8){
+      setNicknameValidationMessage('8자 이하의 한글로 입력해주세요.')
+      return false;
+    }else if(nicknameRegExp.exec(data) === null){
+      setNicknameValidationMessage('8자 이하의 한글로 입력해주세요.')
+      return false;
+    }else if(nicknameRegExp.exec(data)[0] !== data){
+      setNicknameValidationMessage('8자 이하의 한글로 입력해주세요.')
+      return false;
+    }else{
+      setNicknameValidationMessage('')
+      return true;
+    }
+  }
+
+  const validateGender = (data) => {
+    if(data === ''){
+      setGenderValidationMessage('성별을 선택해주세요.')
+      return false;
+    }else{
+      setGenderValidationMessage('')
+      return true;
+    }
+  }
+
+  const validateCampusLocation = (data) => {
+    if(data === ''){
+      setCampusLocationValidationMessage('캠퍼스를 선택해주세요.')
+      return false;
+    }else{
+      setCampusLocationValidationMessage('')
+      return true;
+    }
+  }
+
+  const validateScholarlyStatus = (data) => {
+    if(data === ''){
+      setScholarlyStatusValidationMessage('재학 여부를 선택해주세요.')
+      return false;
+    }else{
+      setScholarlyStatusValidationMessage('')
+      return true;
+    }
+  }
+
+  const validate = (formData) => {
+    let isValid = true;
+    isValid = validateEmail(formData.email);
+    isValid = validatePassword(formData.password);
+    isValid = validateNickname(formData.nickname);
+    isValid = validateGender(formData.gender);
+    isValid = validateCampusLocation(formData.campusLocation);
+    isValid = validateScholarlyStatus(formData.scholarlyStatus);
+
+    return isValid;
+  }
+
   const submit = () => {
-    signUpStore.signUp(formData)
+    const isValid = validate(formData)
+    if(isValid === true){
+      signUpStore.signUp(formData)
       .then((res) => {
         if (res.status === 201) {
           signUpStore.nextTo();
         }
       })
+    }
   };
 
   return (
@@ -86,6 +184,9 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
           label={'이메일'}
           value={formData.email}
           onChange={setFormDataHandler('email')}
+          validationMessage={emailValidationMessage}
+          onFocus={()=>setEmailValidationMessage('')}
+          onBlur={e=>validateEmail(e.target.value)}
         />
       </div>
 
@@ -95,6 +196,9 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
           type={'password'}
           value={formData.password}
           onChange={setFormDataHandler('password')}
+          validationMessage={passwordValidationMessage}
+          onFocus={()=>setPasswordValidationMessage('')}
+          onBlur={e=>validatePassword(e.target.value)}
         />
       </div>
 
@@ -103,33 +207,39 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
           label={'닉네임'}
           value={formData.nickname}
           onChange={setFormDataHandler('nickname')}
+          validationMessage={nicknameValidationMessage}
+          onFocus={()=>setNicknameValidationMessage('')}
+          onBlur={e=>validateNickname(e.target.value)}
         />
       </div>
 
-      <div className={styles.inputWrapper}>
+      <div className={styles.inputWrapper} onClick={()=>setGenderValidationMessage('')}>
         <RadioSmall
           label={'성별'}
           itemList={genderItemList}
           selectedItemValue={formData.gender}
           selectItemValue={setRadioDataHandler('gender')}
+          validationMessage={genderValidationMessage}
         />
       </div>
 
-      <div className={styles.inputWrapper}>
+      <div className={styles.inputWrapper} onClick={()=>setCampusLocationValidationMessage('')}>
         <RadioSmall
           label={'소속 캠퍼스'}
           itemList={campusLocationItemList}
           selectedItemValue={formData.campusLocation}
           selectItemValue={setRadioDataHandler('campusLocation')}
+          validationMessage={campusLocationValidationMessage}
         />
       </div>
 
-      <div className={styles.inputWrapper}>
+      <div className={styles.inputWrapper} onClick={()=>setScholarlyStatusValidationMessage('')}>
         <RadioSmall
           label={'재학 여부'}
           itemList={scholarlyStatusItemList}
           selectedItemValue={formData.scholarlyStatus}
           selectItemValue={setRadioDataHandler('scholarlyStatus')}
+          validationMessage={scholarlyStatusValidationMessage}
         />
       </div>
 
@@ -137,7 +247,6 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         캠쿠의 이용약관 및 개인정보 처리방침에 동의합니다.
       </p>
 
-      {/*<button onClick={}>{'<'}</button>*/}
       <button onClick={submit}>다음</button>
     </div>
   );

@@ -20,3 +20,23 @@
   font-size: 16px;
   line-height: 16px;
 }
+
+.invalidInput {
+  border: 0;
+  border-bottom: 1px solid #ED5F4F;
+  background-color: inherit;
+  padding: 12px;
+  width: 100%;
+  box-sizing: border-box;
+
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.validation{
+  height: 22px;
+  color: #ED5F4F;
+  font-size: 10px;
+  line-height: 10px;
+  padding-top: 6px;
+}
