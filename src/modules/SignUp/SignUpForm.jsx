@@ -173,7 +173,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
 
   return (
     <div className={styles.formWrapper}>
-      <div className={styles.inputWrapper}>
+      <div>
         <Input
           label={'이메일'}
           value={formData.email}
@@ -184,7 +184,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         />
       </div>
 
-      <div className={styles.inputWrapper}>
+      <div>
         <Input
           label={'비밀번호'}
           type={'password'}
@@ -196,7 +196,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         />
       </div>
 
-      <div className={styles.inputWrapper}>
+      <div>
         <Input
           label={'닉네임'}
           value={formData.nickname}
@@ -207,7 +207,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         />
       </div>
 
-      <div className={styles.inputWrapper} onClick={() => setGenderValidationMessage('')}>
+      <div onClick={() => setGenderValidationMessage('')}>
         <RadioSmall
           label={'성별'}
           itemList={genderItemList}
@@ -217,7 +217,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         />
       </div>
 
-      <div className={styles.inputWrapper} onClick={() => setCampusLocationValidationMessage('')}>
+      <div onClick={() => setCampusLocationValidationMessage('')}>
         <RadioSmall
           label={'소속 캠퍼스'}
           itemList={campusLocationItemList}
@@ -227,7 +227,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         />
       </div>
 
-      <div className={styles.inputWrapper} onClick={() => setScholarlyStatusValidationMessage('')}>
+      <div onClick={() => setScholarlyStatusValidationMessage('')}>
         <RadioSmall
           label={'재학 여부'}
           itemList={scholarlyStatusItemList}
