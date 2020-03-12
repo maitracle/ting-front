@@ -80,7 +80,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
   const validateEmail = (data) => {
     const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   
-    if (data === '') {
+    if (data.length === 0) {
       setEmailValidationMessage('이메일을 입력해주세요.')
       return false;
     } else if (emailRegExp.test(data) === false) {
@@ -93,7 +93,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
   }
 
   const validatePassword = (data) => {
-    if (data === '') {
+    if (data.length === 0) {
       setPasswordValidationMessage('비밀번호를 입력해주세요.')
       return false;
     } else {
@@ -105,7 +105,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
   const validateNickname = (data) => {
     const nicknameRegExp = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{1,8}$/;
 
-    if (data === '') {
+    if (data.length === 0) {
       setNicknameValidationMessage('닉네임을 입력해주세요.')
       return false;
     } else if (nicknameRegExp.test(data) === false) {
@@ -118,7 +118,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
   }
 
   const validateGender = (data) => {
-    if (data === '') {
+    if (data.length === 0) {
       setGenderValidationMessage('성별을 선택해주세요.')
       return false;
     } else {
@@ -128,7 +128,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
   }
 
   const validateCampusLocation = (data) => {
-    if (data === '') {
+    if (data.length === 0) {
       setCampusLocationValidationMessage('캠퍼스를 선택해주세요.')
       return false;
     } else {
@@ -138,7 +138,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
   }
 
   const validateScholarlyStatus = (data) => {
-    if (data === '') {
+    if (data.length === 0) {
       setScholarlyStatusValidationMessage('재학 여부를 선택해주세요.')
       return false;
     } else {
