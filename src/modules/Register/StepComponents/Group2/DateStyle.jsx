@@ -9,12 +9,13 @@ import styles from './Group2.module.scss';
 
 const DateStyle = inject('registerStore')(
   observer(({ registerStore }) => {
+    const minLength = 60;
     return (
       <div className={styles.componentWrapper}>
         <Textarea 
-          placeholder={placeholder(minlength)}
+          placeholder={placeholder(minLength)}
           value={registerStore.registerData.dateStyle}
-          onChange={setDateStyle}
+          onChange={(e) => registerStore.setRegisterData('dateStyle', e.target.value)}
         />
         <TextLengthBox
           textLength={registerStore.registerData.dateStyle.length}

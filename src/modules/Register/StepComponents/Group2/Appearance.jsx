@@ -9,12 +9,11 @@ import styles from './Group2.module.scss';
 
 const Appearance = inject('registerStore')(
   observer(({ registerStore }) => {
-const setAppearance = (e) => registerStore.setRegisterData('appearance', e.target.value);
-const minlength = 120;    
-return (
+    const minLength = 120;    
+    return (
       <div className={styles.componentWrapper}>
         <Textarea
-          placeholder={placeholder(minlength)}
+          placeholder={placeholder(minLength)}
           value={registerStore.registerData.appearance}
           onChange={(e) => registerStore.setRegisterData('appearance', e.target.value)}
         />
