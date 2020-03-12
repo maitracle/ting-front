@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from  './RadioSmall.module.scss';
 
-const RadioSmall = ({ label, itemList, selectedItemValue, selectItemValue }) => (
+const RadioSmall = ({ label, itemList, selectedItemValue, selectItemValue, validationMessage }) => (
   <div>
     {
       label ?
@@ -24,6 +24,9 @@ const RadioSmall = ({ label, itemList, selectedItemValue, selectItemValue }) => 
             <span className={styles.displayName}>{ item.displayName }</span>
           </div>)
       }
+    </div>
+    <div className={styles.validation}>
+      <span>{validationMessage}</span>
     </div>
   </div>
 );
