@@ -1,5 +1,5 @@
 import React, {
-  useState, useRef, useCallback, useEffect,
+  useState, useCallback, useEffect,
 } from 'react';
 import Input from 'src/components/Form/Input';
 
@@ -18,14 +18,14 @@ const TagBox = ({ setTags }) => {
     setTags(StringTag.trim());
   }, [tagList]);
 
-  const onChange = (key) => (e) => {
+  const onChange = (tagId) => (e) => {
     setTagList(
-      tagList.map((tag) => (tag.id === key ? { ...tag, text: e.target.value } : { ...tag })),
+      tagList.map((tag) => (tag.id === tagId ? { ...tag, text: e.target.value } : { ...tag })),
     );
   };
 
 
-  const onInsert = useCallback(
+  const AddTagInput = useCallback(
     () => {
       const maxLength = 10;
       if (tagList.length < maxLength) {
@@ -38,7 +38,7 @@ const TagBox = ({ setTags }) => {
     }, [tagList],
   );
 
-  const onRemove = useCallback(
+  const RemoveTagInput = useCallback(
     () => {
       const minLength = 4;
       if (tagList.length > minLength) {
@@ -59,12 +59,12 @@ const TagBox = ({ setTags }) => {
       </div>
       <div className={styles.buttonWrapper}>
         <div className={styles.buttonForm}>
-          <button className={styles.button} onClick={onInsert}>
+          <button className={styles.button} onClick={AddTagInput}>
             <span className={styles.title}>+</span>
           </button>
         </div>
         <div className={styles.buttonForm}>
-          <button className={styles.button} onClick={onRemove}>
+          <button className={styles.button} onClick={RemoveTagInput}>
             <span className={styles.title}>-</span>
           </button>
         </div>
