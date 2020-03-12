@@ -1,8 +1,9 @@
 import React from 'react';
+import styles from './TextLengthBox.module.scss';
 
-const TextLengthBox = ({ textLength, minLength }) => (
-  <div>
-    {`${textLength}/${minLength}`}
+const TextLengthBox = ({ textLength, maxLength }) => (
+  <div className={styles.textLength}>
+    {`${textLength}/${maxLength}`}
   </div>
 );
 
