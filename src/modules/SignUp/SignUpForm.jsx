@@ -81,23 +81,23 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
     const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   
     if (data.length === 0) {
-      setEmailValidationMessage('이메일을 입력해주세요.')
+      setEmailValidationMessage('이메일을 입력해주세요.');
       return false;
     } else if (emailRegExp.test(data) === false) {
-      setEmailValidationMessage('잘못된 이메일 형식입니다.')
+      setEmailValidationMessage('잘못된 이메일 형식입니다.');
       return false;
     } else {
-      setEmailValidationMessage('')
+      setEmailValidationMessage('');
       return true;
     }
   }
 
   const validatePassword = (data) => {
     if (data.length === 0) {
-      setPasswordValidationMessage('비밀번호를 입력해주세요.')
+      setPasswordValidationMessage('비밀번호를 입력해주세요.');
       return false;
     } else {
-      setPasswordValidationMessage('')
+      setPasswordValidationMessage('');
       return true;
     }
   }
@@ -106,10 +106,10 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
     const nicknameRegExp = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{1,8}$/;
 
     if (data.length === 0) {
-      setNicknameValidationMessage('닉네임을 입력해주세요.')
+      setNicknameValidationMessage('닉네임을 입력해주세요.');
       return false;
     } else if (nicknameRegExp.test(data) === false) {
-      setNicknameValidationMessage('8자 이하의 한글로 입력해주세요.')
+      setNicknameValidationMessage('8자 이하의 한글로 입력해주세요.');
       return false;
     } else {
       setNicknameValidationMessage('')
@@ -119,27 +119,27 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
 
   const validateGender = (data) => {
     if (data.length === 0) {
-      setGenderValidationMessage('성별을 선택해주세요.')
+      setGenderValidationMessage('성별을 선택해주세요.');
       return false;
     } else {
-      setGenderValidationMessage('')
+      setGenderValidationMessage('');
       return true;
     }
   }
 
   const validateCampusLocation = (data) => {
     if (data.length === 0) {
-      setCampusLocationValidationMessage('캠퍼스를 선택해주세요.')
+      setCampusLocationValidationMessage('캠퍼스를 선택해주세요.');
       return false;
     } else {
-      setCampusLocationValidationMessage('')
+      setCampusLocationValidationMessage('');
       return true;
     }
   }
 
   const validateScholarlyStatus = (data) => {
     if (data.length === 0) {
-      setScholarlyStatusValidationMessage('재학 여부를 선택해주세요.')
+      setScholarlyStatusValidationMessage('재학 여부를 선택해주세요.');
       return false;
     } else {
       setScholarlyStatusValidationMessage('')
@@ -160,7 +160,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
   }
 
   const submit = () => {
-    const isValid = validate(formData)
+    const isValid = validate(formData);
     if (isValid) {
       signUpStore.signUp(formData)
       .then((res) => {
@@ -168,7 +168,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
           signUpStore.nextTo();
         }
       })
-    }
+    };
   };
 
   return (
@@ -179,8 +179,8 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
           value={formData.email}
           onChange={setFormDataHandler('email')}
           validationMessage={emailValidationMessage}
-          onFocus={()=>setEmailValidationMessage('')}
-          onBlur={e=>validateEmail(e.target.value)}
+          onFocus={() => setEmailValidationMessage('')}
+          onBlur={e => validateEmail(e.target.value)}
         />
       </div>
 
@@ -191,8 +191,8 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
           value={formData.password}
           onChange={setFormDataHandler('password')}
           validationMessage={passwordValidationMessage}
-          onFocus={()=>setPasswordValidationMessage('')}
-          onBlur={e=>validatePassword(e.target.value)}
+          onFocus={() => setPasswordValidationMessage('')}
+          onBlur={e => validatePassword(e.target.value)}
         />
       </div>
 
@@ -202,12 +202,12 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
           value={formData.nickname}
           onChange={setFormDataHandler('nickname')}
           validationMessage={nicknameValidationMessage}
-          onFocus={()=>setNicknameValidationMessage('')}
-          onBlur={e=>validateNickname(e.target.value)}
+          onFocus={() => setNicknameValidationMessage('')}
+          onBlur={e => validateNickname(e.target.value)}
         />
       </div>
 
-      <div className={styles.inputWrapper} onClick={()=>setGenderValidationMessage('')}>
+      <div className={styles.inputWrapper} onClick={() => setGenderValidationMessage('')}>
         <RadioSmall
           label={'성별'}
           itemList={genderItemList}
@@ -217,7 +217,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         />
       </div>
 
-      <div className={styles.inputWrapper} onClick={()=>setCampusLocationValidationMessage('')}>
+      <div className={styles.inputWrapper} onClick={() => setCampusLocationValidationMessage('')}>
         <RadioSmall
           label={'소속 캠퍼스'}
           itemList={campusLocationItemList}
@@ -227,7 +227,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         />
       </div>
 
-      <div className={styles.inputWrapper} onClick={()=>setScholarlyStatusValidationMessage('')}>
+      <div className={styles.inputWrapper} onClick={() => setScholarlyStatusValidationMessage('')}>
         <RadioSmall
           label={'재학 여부'}
           itemList={scholarlyStatusItemList}
