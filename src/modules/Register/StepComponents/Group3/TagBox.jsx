@@ -13,8 +13,8 @@ const TagBox = ({ setTags }) => {
     { id: 3, text: '' },
   ]);
 
-  const StringTag = tagList.reduce((preValue, currentValue) => `${preValue} #${currentValue.text}`, '');
   useEffect(() => {
+    const StringTag = tagList.reduce((preValue, currentValue) => `${preValue} #${currentValue.text}`, '');
     setTags(StringTag.trim());
   }, [tagList]);
 
@@ -24,25 +24,27 @@ const TagBox = ({ setTags }) => {
     );
   };
 
-  // useRef는 순전히 새로운 값을 만들기 위해만 사용되는 값을(렌더링되는 정보가 아닌 값)을 관리할 때 사용
-  const nextId = useRef(4);
 
   const onInsert = useCallback(
     () => {
-      const newTag = {
-        id: nextId.current,
-        text: '',
-      };
-      setTagList(tagList.concat(newTag));
-      nextId.current += 1;
+      const maxLength = 10;
+      if (tagList.length < maxLength) {
+        const newTag = {
+          id: tagList.length,
+          text: '',
+        };
+        setTagList(tagList.concat(newTag));
+      }
     }, [tagList],
   );
 
   const onRemove = useCallback(
     () => {
-      const removeTag = tagList.slice(0, (nextId.current - 1));
-      setTagList(removeTag);
-      nextId.current -= 1;
+      const minLength = 4;
+      if (tagList.length > minLength) {
+        const restTagList = tagList.slice(0, (tagList.length - 1));
+        setTagList(restTagList);
+      }
     }, [tagList],
   );
 
