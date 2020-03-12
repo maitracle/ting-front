@@ -8,7 +8,7 @@ import styles from './Group2.module.scss';
 const DateStyle = inject('registerStore')(
   observer(({ registerStore }) => {
     const setDateStyle = (e) => registerStore.setRegisterData('dateStyle', e.target.value);
-    const placeholder = '120자 이상, 많이 많이 쓸수록 이성분이 매력적으로 생각할거에요 :)';
+    const placeholder = '60자 이상, 많이 많이 쓸수록 이성분이 매력적으로 생각할거에요 :)';
     const textLength = registerStore.registerData.dateStyle.length;
     const maxLength = 1000;
 
