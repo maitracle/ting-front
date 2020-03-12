@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import TabBar from 'src/modules/Register/TabBar';
 
 import { StepIndicator } from 'src/components/StepIndicator/StepIndicator';
+import { getHeaderExample } from 'src/constants/Register';
 import styles from './RegisterHeader.module.scss';
 
 
@@ -49,6 +50,7 @@ export default inject('registerStore')(observer(({ registerStore }) => {
   const handleExpandExample = () => {
     setExpanded(!expanded);
   };
+  const example = getHeaderExample(registerStore.root.userStore.profile.gender, registerStore.currentStep);
   return (
     <div className={styles.registerHeader}>
       <div className={styles.contentsWrapper}>
@@ -62,10 +64,9 @@ export default inject('registerStore')(observer(({ registerStore }) => {
           <StepIndicator stepList={registerStore.groupList} currentStep={registerStore.currentGroup} />
         </div>
         <div className={`${expanded ? styles.expandWrapper : styles.exampleWrapper}`}>
-        예시)
+          예시)
           <br />
-          얼굴은 선하고 순한 강아지상입니다. 동안이고 귀엽다는 이야기를 어렸을 적부터 종종(?!) 들어왔어요. 그래서 ...
-          얼굴은 선하고 순한 강아지상입니다. 동안이고 귀엽다는 이야기를 어렸을 적부터 종종(?!) 들어왔어요. 그래서 ...
+          {example}
         </div>
         <button className={styles.expandButton} type="button" onClick={handleExpandExample}>{expanded ? '접기' : '예시 더보기'}</button>
         <div className={styles.tabBarWrapper}>
