@@ -7,16 +7,17 @@ import styles from './Group2.module.scss';
 
 const DateStyle = inject('registerStore')(
   observer(({ registerStore }) => {
-    const setDateStyle = (e) => registerStore.setRegisterData('dateStyle', e.target.value);
-    const placeholder = '60자 이상, 많이 많이 쓸수록 이성분이 매력적으로 생각할거에요 :)';
-    const textLength = registerStore.registerData.dateStyle.length;
-    const maxLength = 1000;
-
-    
     return (
       <div className={styles.componentWrapper}>
-        <Textarea placeholder={placeholder} value={registerStore.registerData.dateStyle} onChange={setDateStyle} />
-        <TextLengthBox textLength={textLength} maxLength={maxLength}/>
+        <Textarea
+          placeholder={"60자 이상, 많이 많이 쓸수록 이성분이 매력적으로 생각할거에요 :)"}
+          value={registerStore.registerData.dateStyle}
+          onChange={(e) => registerStore.setRegisterData('dateStyle', e.target.value)}
+        />
+        <TextLengthBox
+          textLength={registerStore.registerData.dateStyle.length}
+          maxLength={1000}
+        />
       </div>
     );
   }),

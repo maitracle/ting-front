@@ -3,7 +3,7 @@ import styles from './TextLengthBox.module.scss';
 
 const TextLengthBox = ({ textLength, maxLength }) => (
   <div className={styles.textLength}>
-    {`${textLength}/${maxLength}`}
+    { textLength }/{ maxLength }
   </div>
 );
 
