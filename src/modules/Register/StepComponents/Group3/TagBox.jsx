@@ -14,8 +14,8 @@ const TagBox = ({ setTags }) => {
   ]);
 
   useEffect(() => {
-    const StringTag = tagList.reduce((preValue, currentValue) => `${preValue} #${currentValue.text}`, '');
-    setTags(StringTag.trim());
+    const stringTag = tagList.reduce((preValue, currentValue) => `${preValue} #${currentValue.text}`, '');
+    setTags(stringTag.trim());
   }, [tagList]);
 
   const onChange = (tagId) => (e) => {
@@ -25,7 +25,7 @@ const TagBox = ({ setTags }) => {
   };
 
 
-  const AddTagInput = useCallback(
+  const addTagInput = useCallback(
     () => {
       const maxLength = 10;
       if (tagList.length < maxLength) {
@@ -59,7 +59,7 @@ const TagBox = ({ setTags }) => {
       </div>
       <div className={styles.buttonWrapper}>
         <div className={styles.buttonForm}>
-          <button className={styles.button} onClick={AddTagInput}>
+          <button className={styles.button} onClick={addTagInput}>
             <span className={styles.title}>+</span>
           </button>
         </div>
