@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const IsSmoke = inject('registerStore')(
-  observer(({ registerStore, history }) => {
+  observer(({ registerStore }) => {
     const setIsSmoke = (value) => registerStore.setRegisterData('isSmoke', value);
     const [radioItemList, setRadioItem] = useState([
       {
@@ -37,7 +37,7 @@ const IsSmoke = inject('registerStore')(
             <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
           </div>
         </div>
-        <RegisterBtnSet history={history} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
       </>
     );
   }),

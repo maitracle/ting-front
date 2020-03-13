@@ -1,26 +1,3 @@
 .componentWrapper {
   padding: 16px 25px;
 }
-
-.btnWrapper {
-  display: flex;
-  //position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: white;
-  padding: 35px 28px;
-  box-sizing: border-box;
-};
-
-.btnPrevWrapper {
-  flex: 1;
-}
-
-.btnNextWrapper {
-  margin-left: 21.5px;
-  flex: 3;
-}
-
-.blankBox {
-  height: 123px;
-}

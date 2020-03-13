@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Tags = inject('registerStore')(
-  observer(({ registerStore, history }) => {
+  observer(({ registerStore }) => {
     const setTags = (tagList) => registerStore.setRegisterData('tags', tagList);
     
     return (
@@ -14,7 +14,7 @@ const Tags = inject('registerStore')(
         <div className={styles.componentWrapper}>
           <TagBox setTags={setTags} />
         </div>
-        <RegisterBtnSet history={history} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
       </>
     );
   }),

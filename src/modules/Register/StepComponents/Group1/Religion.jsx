@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Religion = inject('registerStore')(
-  observer(({ registerStore, history }) => {
+  observer(({ registerStore }) => {
     const setReligion = (value) => registerStore.setRegisterData('religion', value);
     const [radioItemList, setRadioItem] = useState([
       {
@@ -45,7 +45,7 @@ const Religion = inject('registerStore')(
             <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
           </div>
         </div>
-        <RegisterBtnSet history={history} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
       </>
     );
   }),

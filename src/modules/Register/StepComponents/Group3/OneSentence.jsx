@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const OneSentence = inject('registerStore')(
-  observer(({ registerStore, history }) => {
+  observer(({ registerStore }) => {
     const placeholder = '35자 이내로 자신에 대해 표현해주세요 :)';
     
     return (
@@ -18,7 +18,7 @@ const OneSentence = inject('registerStore')(
             onChange={(e) => registerStore.setRegisterData('oneSentence', e.target.value)}
           />
         </div>
-        <RegisterBtnSet history={history} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
       </>
     );
   }),

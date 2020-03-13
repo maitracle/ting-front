@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const BodyType = inject('registerStore')(
-  observer(({ registerStore, history }) => {
+  observer(({ registerStore }) => {
     const setBodyType = (value) => registerStore.setRegisterData('bodyType', value);
     const [radioItemList, setRadioItem] = useState([
       {
@@ -49,7 +49,7 @@ const BodyType = inject('registerStore')(
             <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
           </div>
         </div>
-        <RegisterBtnSet history={history} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
       </>
     );
   }),

@@ -16,7 +16,7 @@ const ChatLink = inject('registerStore')(
             onChange={(e) => registerStore.setRegisterData('chatLink', e.target.value)}
           />
         </div>
-        <RegisterBtnSet history={history} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={() => history.push('register/complete')} />
       </>
     );
   }),

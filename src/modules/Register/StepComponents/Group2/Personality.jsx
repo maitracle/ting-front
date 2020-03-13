@@ -8,7 +8,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Personality = inject('registerStore')(
-  observer(({ registerStore, history }) => {
+  observer(({ registerStore }) => {
     const minLength = 120;
 
     return (
@@ -24,7 +24,7 @@ const Personality = inject('registerStore')(
             maxLength={1000}
           />
         </div>
-        <RegisterBtnSet history={history} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
       </>
     );
   }),

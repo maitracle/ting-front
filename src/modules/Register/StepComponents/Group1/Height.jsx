@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Height = inject('registerStore')(
-  observer(({ registerStore, history }) => {
+  observer(({ registerStore }) => {
     return (
       <>
         <div className={styles.componentWrapper}>
@@ -24,7 +24,7 @@ const Height = inject('registerStore')(
             <span className={styles.scaleLabel}>cm</span>
           </div>
         </div>
-        <RegisterBtnSet history={history} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
       </>
     );
   }),

@@ -5,7 +5,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Image = inject('registerStore')(
-  observer(({ registerStore, history }) => {
+  observer(({ registerStore }) => {
     return (
       <>
         <div className={styles.componentWrapper}>
@@ -13,7 +13,7 @@ const Image = inject('registerStore')(
             대충 이미지 올리는 폼
           </div>
         </div>
-        <RegisterBtnSet history={history} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo} />
       </>
     );
   }),
