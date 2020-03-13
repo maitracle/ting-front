@@ -8,7 +8,7 @@ import Modal from 'src/components/Modal';
 
 const ChatLink = inject('registerStore')(
   observer(({ registerStore, history }) => {
-    const [isServerError, setIsServerError] = useState(false);
+    const [isServerErrorOpen, setIsServerErrorOpen] = useState(false);
 
     const submit = () => {
       registerStore.registerSelso()
@@ -16,7 +16,7 @@ const ChatLink = inject('registerStore')(
           if (res.status === 200) {
             history.push('register/complete');
           } else if (res.status >= 500) {
-            setIsServerError(true);
+            setIsServerErrorOpen(true);
           }
         });
     }
@@ -32,8 +32,8 @@ const ChatLink = inject('registerStore')(
         </div>
         <RegisterBtnSet backTo={registerStore.backTo} nextTo={submit} />
         <Modal
-          isOpen={isServerError}
-          close={()=>setIsServerError(false)}
+          isOpen={isServerErrorOpen}
+          close={()=>setIsServerErrorOpen(false)}
         >
           <p>서버에서 오류가 발생하였습니다.</p>
           <p>잠시후에 다시 시도해주세요.</p>
