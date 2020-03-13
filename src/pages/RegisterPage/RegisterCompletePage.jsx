@@ -8,22 +8,7 @@ import Btn from 'src/components/Button/Btn';
 
 const Complete = inject('registerStore')(
   observer(({ registerStore, history }) => {
-
-    const [isUpdated, setIsUpdated] = useState(false);
-
-    useEffect(() => {
-      if (registerStore.root.userStore.profile.id) {
-        registerStore.registerSelso()
-          .then((res) => {
-            if (res.status === 200) {
-              setIsUpdated(true);
-            }
-          });
-      }
-    }, [registerStore.root.userStore.profile.id]);
-
     return (
-      isUpdated ?
         <div className={styles.pageWrapper}>
           <div className={styles.titleWrapper}>
             <div>{registerStore.root.userStore.profile.nickname}님의</div>
@@ -38,8 +23,6 @@ const Complete = inject('registerStore')(
 
           <Btn value='다음' onClick={() => history.push('/selso')} />
         </div>
-        :
-       null
     );
   }),
 );

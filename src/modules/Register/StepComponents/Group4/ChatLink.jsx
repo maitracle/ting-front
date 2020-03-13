@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group4.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
+import Modal from 'src/components/Modal';
 
 
 const ChatLink = inject('registerStore')(
   observer(({ registerStore, history }) => {
+    const [isServerError, setIsServerError] = useState(false);
+
+    const submit = () => {
+      registerStore.registerSelso()
+        .then((res) => {
+          if (res.status === 200) {
+            history.push('register/complete');
+          } else if (res.status >= 500) {
+            setIsServerError(true);
+          }
+        });
+    }
+
     return (
       <>
         <div className={styles.componentWrapper}>
@@ -16,7 +30,14 @@ const ChatLink = inject('registerStore')(
             onChange={(e) => registerStore.setRegisterData('chatLink', e.target.value)}
           />
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={() => history.push('register/complete')} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={submit} />
+        <Modal
+          isOpen={isServerError}
+          close={()=>setIsServerError(false)}
+        >
+          <p>서버에서 오류가 발생하였습니다.</p>
+          <p>잠시후에 다시 시도해주세요.</p>
+        </Modal>
       </>
     );
   }),
