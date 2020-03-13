@@ -3,12 +3,12 @@ import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group4.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
-import Modal from 'src/components/Modal';
+import ErrorModal from 'src/components/ErrorModal';
 
 
 const ChatLink = inject('registerStore')(
   observer(({ registerStore, history }) => {
-    const [isServerErrorOpen, setIsServerErrorOpen] = useState(false);
+    const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
     const submit = () => {
       registerStore.registerSelso()
@@ -16,7 +16,7 @@ const ChatLink = inject('registerStore')(
           if (res.status === 200) {
             history.push('register/complete');
           } else if (res.status >= 500) {
-            setIsServerErrorOpen(true);
+            setIsErrorModalOpen(true);
           }
         });
     }
@@ -31,13 +31,13 @@ const ChatLink = inject('registerStore')(
           />
         </div>
         <RegisterBtnSet backTo={registerStore.backTo} nextTo={submit} />
-        <Modal
-          isOpen={isServerErrorOpen}
-          close={()=>setIsServerErrorOpen(false)}
+        <ErrorModal
+          isOpen={isErrorModalOpen}
+          close={()=>setIsErrorModalOpen(false)}
         >
           <p>서버에서 오류가 발생하였습니다.</p>
           <p>잠시후에 다시 시도해주세요.</p>
-        </Modal>
+        </ErrorModal>
       </>
     );
   }),
