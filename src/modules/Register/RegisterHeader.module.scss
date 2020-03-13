@@ -12,15 +12,14 @@
     font-size: 24px;
     line-height: 34px;
   }
-
   .exampleWrapper {
-    max-height: 80px;
     overflow: hidden;
     margin-top: 17px;
     font-size: 14px;
     line-height: 20px;
     color: #9D9D9D;
   }
+
 }
 
 .groupIndicator {
@@ -33,14 +32,14 @@
   color: #ED5F4F;
   text-align: center;
 }
-
+.noExample{
+  display: none;
+}
+.foldWrapper{
+  max-height: 80px;  
+}
 .expandWrapper{
-  max-height: 500px;
-  overflow: hidden;
-  margin-top: 17px;
-  font-size: 14px;
-  line-height: 20px;
-  color: #9D9D9D;
+  max-height: none;
 }
 
 .expandButton{

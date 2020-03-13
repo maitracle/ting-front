@@ -7,7 +7,6 @@ import { StepIndicator } from 'src/components/StepIndicator/StepIndicator';
 import { getHeaderExample } from 'src/constants/Register';
 import styles from './RegisterHeader.module.scss';
 
-
 const groupNameIndicator = {
   group1: 'Step 1',
   group2: 'Step 2',
@@ -46,9 +45,9 @@ const mapGroupToTitle = {
 };
 
 export default inject('registerStore')(observer(({ registerStore }) => {
-  const [expanded, setExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
   const handleExpandExample = () => {
-    setExpanded(!expanded);
+    setIsExpanded(!isExpanded);
   };
   const example = getHeaderExample(registerStore.root.userStore.profile.gender, registerStore.currentStep);
   return (
@@ -63,12 +62,10 @@ export default inject('registerStore')(observer(({ registerStore }) => {
           { groupNameIndicator[registerStore.currentGroup] }
           <StepIndicator stepList={registerStore.groupList} currentStep={registerStore.currentGroup} />
         </div>
-        <div className={`${expanded ? styles.expandWrapper : styles.exampleWrapper}`}>
-          예시)
-          <br />
+        <div className={`${styles.exampleWrapper} ${isExpanded ? styles.expandWrapper : styles.foldWrapper}`}>
           {example}
         </div>
-        <button className={styles.expandButton} type="button" onClick={handleExpandExample}>{expanded ? '접기' : '예시 더보기'}</button>
+        <button className={`${example ? styles.expandButton : styles.noExample}`} type="button" onClick={handleExpandExample}>{isExpanded ? '접기' : '예시 더보기'}</button>
         <div className={styles.tabBarWrapper}>
           <TabBar currentStep={registerStore.currentStep} tabList={registerStore[registerStore.currentGroup]} />
         </div>
