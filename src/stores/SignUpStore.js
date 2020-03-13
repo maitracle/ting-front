@@ -35,6 +35,7 @@ export default class SignUpStore {
         setAccessToken(res.data.access);
         this.root.userStore.user = res.data.user;
         this.root.userStore.profile = res.data.profile;
+        this.root.myPointStore.myPointHistoryList = res.data.coinHistory;
 
         return {
           status: res.status,

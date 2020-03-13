@@ -32,6 +32,7 @@ export default class UserStore {
           // Todo(maitracle): response의 coin history를 store에 저장하기
           this.profile = res.data.user;
           this.profile = res.data.profile;
+          this.root.myPointStore.myPointHistoryList = res.data.coinHistory;
           this.isLoggedIn = true;
         });
     }
@@ -50,6 +51,7 @@ export default class UserStore {
         setAccessToken(res.data.access);
         this.profile = res.data.user;
         this.profile = res.data.profile;
+        this.root.myPointStore.myPointHistoryList = res.data.coinHistory;
 
         return {
           status: res.status,
