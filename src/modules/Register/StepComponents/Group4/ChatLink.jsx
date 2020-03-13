@@ -3,7 +3,7 @@ import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group4.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
-import ErrorModal from 'src/components/ErrorModal';
+import Modal from 'src/components/Modal';
 
 
 const ChatLink = inject('registerStore')(
@@ -31,13 +31,13 @@ const ChatLink = inject('registerStore')(
           />
         </div>
         <RegisterBtnSet backTo={registerStore.backTo} nextTo={submit} />
-        <ErrorModal
+        <Modal
           isOpen={isErrorModalOpen}
           close={()=>setIsErrorModalOpen(false)}
         >
           <p>서버에서 오류가 발생하였습니다.</p>
           <p>잠시후에 다시 시도해주세요.</p>
-        </ErrorModal>
+        </Modal>
       </>
     );
   }),
