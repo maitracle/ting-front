@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { serviceOpeningDate } from 'src/constants/dates';
 
@@ -6,12 +6,12 @@ import styles from './RegisterCompletePage.module.scss'
 import Btn from 'src/components/Button/Btn';
 
 
-const Complete = inject('registerStore')(
-  observer(({ registerStore, history }) => {
+const Complete = inject('userStore')(
+  observer(({ userStore, history }) => {
     return (
         <div className={styles.pageWrapper}>
           <div className={styles.titleWrapper}>
-            <div>{registerStore.root.userStore.profile.nickname}님의</div>
+            <div>{userStore.profile.nickname}님의</div>
             <div>마이프로필이 완성되었습니다!</div>
           </div>
 
