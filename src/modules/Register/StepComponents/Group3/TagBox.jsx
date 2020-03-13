@@ -38,7 +38,7 @@ const TagBox = ({ setTags }) => {
     }, [tagList],
   );
 
-  const RemoveTagInput = useCallback(
+  const removeTagInput = useCallback(
     () => {
       const minLength = 4;
       if (tagList.length > minLength) {
@@ -64,7 +64,7 @@ const TagBox = ({ setTags }) => {
           </button>
         </div>
         <div className={styles.buttonForm}>
-          <button className={styles.button} onClick={RemoveTagInput}>
+          <button className={styles.button} onClick={removeTagInput}>
             <span className={styles.title}>-</span>
           </button>
         </div>
