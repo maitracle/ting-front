@@ -19,6 +19,15 @@ export default () => {
   return (
     <div>
       <button onClick={openTestModal}>open modal</button>
+      <div>
+        asdfasdfa
+      </div>
+      <div>
+        { process.env.NODE_ENV }
+      </div>
+      <div>
+        asdfasdfa
+      </div>
       <Modal
         isOpen={isOpenTestModal}
         close={closeTestModal}
