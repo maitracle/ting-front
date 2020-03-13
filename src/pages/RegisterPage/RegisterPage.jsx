@@ -15,7 +15,6 @@ import OneSentence from 'src/modules/Register/StepComponents/Group3/OneSentence'
 import Tags from 'src/modules/Register/StepComponents/Group3/Tags';
 import Image from 'src/modules/Register/StepComponents/Group3/Image';
 import ChatLink from 'src/modules/Register/StepComponents/Group4/ChatLink';
-import RegisterBtnSet from '../../modules/Register/RegisterBtnSet';
 
 const mapStepToComponent = {
   Age,
@@ -45,8 +44,7 @@ export const RegisterPage = inject('registerStore')(
     return (
       <div>
         <RegisterHeader />
-        <StepComponent />
-        <RegisterBtnSet history={history} />
+        <StepComponent history={history}/>
       </div>
     );
   }),
