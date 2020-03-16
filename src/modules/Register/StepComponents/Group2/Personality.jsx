@@ -18,6 +18,8 @@ const Personality = inject('registerStore')(
       if (data.length < minLength) {
         setPersonalityValidationMessage(`${minLength}자 이상 입력해주세요.`);
         return false;
+      } else if (data.length > maxLength) {
+        setPersonalityValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
       }
 
       setPersonalityValidationMessage('');
@@ -26,7 +28,6 @@ const Personality = inject('registerStore')(
 
     const nextTo = () => {
       const isValid = validatePersonality(registerStore.registerData.personality);
-      console.log(isValid);
       if (isValid) {
         registerStore.nextTo();
       }

@@ -18,6 +18,8 @@ const Appearance = inject('registerStore')(
       if (data.length < minLength) {
         setAppearanceValidationMessage(`${minLength}자 이상 입력해주세요.`);
         return false;
+      } else if (data.length > maxLength) {
+        setAppearanceValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
       }
 
       setAppearanceValidationMessage('');

@@ -10,7 +10,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 const IdealType = inject('registerStore')(
   observer(({ registerStore }) => {
     const minLength = 120;
-    const maxLength = 1000
+    const maxLength = 1000;
     
     const [idealTypeValidationMessage, setIdealTypeValidationMessage] = useState('');
 
@@ -18,6 +18,8 @@ const IdealType = inject('registerStore')(
       if (data.length < minLength) {
         setIdealTypeValidationMessage(`${minLength}자 이상 입력해주세요.`);
         return false;
+      } else if (data.length > maxLength) {
+        setIdealTypeValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
       }
 
       setIdealTypeValidationMessage('');

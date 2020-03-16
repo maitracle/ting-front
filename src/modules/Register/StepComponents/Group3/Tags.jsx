@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import TagBox from './TagBox';
 import styles from './Group3.module.scss';
@@ -7,14 +7,42 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 const Tags = inject('registerStore')(
   observer(({ registerStore }) => {
-    const setTags = (tagList) => registerStore.setRegisterData('tags', tagList);
+    const setTags = (tagList) => {registerStore.setRegisterData('tags', tagList); console.log(registerStore.registerData.tags)}
     
+    const [tagsValidationMessage, setTagsValidationMessage] = useState('');
+
+    const validateTags = (data) => {
+      const countTags = data.split(/\s/).length;
+      if (countTags < 4) {
+        setTagsValidationMessage('태그를 4개 이상 입력해주세요.');
+        return false;
+      } else if (countTags > 10) {
+        setTagsValidationMessage('태그는 10개까지만 입력해주세요.');
+        return false;
+      }
+
+      setTagsValidationMessage('');
+      return true;
+    }
+
+    const nextTo = () => {
+      const isValid = validateTags(registerStore.registerData.tags);
+      if (isValid) {
+        registerStore.nextTo();
+      }
+    }
+
     return (
       <>
         <div className={styles.componentWrapper}>
-          <TagBox setTags={setTags} />
+          <TagBox
+            setTags={setTags}
+          />
+          <span className={styles.validationMessage}>
+            {tagsValidationMessage}
+          </span>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
       </>
     );
   }),

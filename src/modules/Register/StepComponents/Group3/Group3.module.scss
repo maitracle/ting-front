@@ -1,3 +1,9 @@
 .componentWrapper {
   padding: 16px 25px;
+
+  .validationMessage{
+    color: #ED5F4F;
+    text-align: left;
+    margin-top: 4px;
+  }
 }
