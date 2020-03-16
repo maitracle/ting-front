@@ -7,7 +7,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 const Tags = inject('registerStore')(
   observer(({ registerStore }) => {
-    const setTags = (tagList) => {registerStore.setRegisterData('tags', tagList); console.log(registerStore.registerData.tags)}
+    const setTags = (tagList) => registerStore.setRegisterData('tags', tagList);
     
     const [tagsValidationMessage, setTagsValidationMessage] = useState('');
 
