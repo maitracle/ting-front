@@ -9,10 +9,15 @@ const RadioInput = ({
   </div>
 );
 const RadioInputSet = ({
-  radioItemList, onClick,
+  radioItemList, onClick, validationMessage, 
 }) => (
-  <div className={styles.radioWrapper}>
-    {(radioItemList.map((radioItem) => <RadioInput key={radioItem.id} id={radioItem.id} text={radioItem.text} value={radioItem.value} checked={radioItem.checked} onClick={onClick} />))}
+  <div>
+    <div className={styles.radioWrapper}>
+      {(radioItemList.map((radioItem) => <RadioInput key={radioItem.id} id={radioItem.id} text={radioItem.text} value={radioItem.value} checked={radioItem.checked} onClick={onClick} />))}
+    </div>
+    <div className={styles.validation}>
+      <span>{validationMessage}</span>
+    </div>
   </div>
 );
 

@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 
 import styles from './Input.module.scss';
 
@@ -15,7 +15,15 @@ const Input = ({
         )
         : null
     }
-    <input placeholder={placeholder} value={value} onChange={onChange} className={`${styles.input} ${validationMessage?styles.invalidInput:''}`} style={{ textAlign: align }} onBlur={onBlur} onFocus={onFocus}/>
+    <input 
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      className={`${styles.input} ${validationMessage?styles.invalidInput:''}`} 
+      style={{ textAlign: align }}
+      onBlur={onBlur}
+      onFocus={onFocus}
+    />
     <div className={styles.validation}>
       <span>{validationMessage}</span>
     </div>

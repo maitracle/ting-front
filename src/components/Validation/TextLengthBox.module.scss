@@ -1,7 +1,21 @@
-.textLength{
-  text-align: right;
-
+.textLengthWrapper{
+  display: flex;
   font-size: 18px;
   line-height: 18px;
-  color: rgba(58, 58, 58, 0.58);
+
+  .validationMessage{
+    color: #ED5F4F;
+    text-align: left;
+  }
+
+  .textLength{
+    text-align: right;
+    color: rgba(58, 58, 58, 0.58);
+    margin-left: auto;
+    .validationError{
+      color: #ED5F4F;
+    }
+  }
 }
+
+

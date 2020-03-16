@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group1.module.scss';
@@ -7,6 +7,27 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 const Height = inject('registerStore')(
   observer(({ registerStore }) => {
+    const [heightValidationMessage, setHeightValidationMessage] = useState('');
+
+    const validateHeight = (data) => {
+      if (data === '') {
+        setHeightValidationMessage('키를 입력해주세요.');
+        return false;
+      } else if (100 < data && data < 250) {
+        setHeightValidationMessage('');
+        return true;
+      } else {
+        setHeightValidationMessage('형식에 맞게 입력해주세요.');
+        return false;
+      }
+    }
+
+    const nextTo = () => {
+      const isValid = validateHeight(registerStore.registerData.height);
+      if (isValid) {
+        registerStore.nextTo();
+      }
+    }
     return (
       <>
         <div className={styles.componentWrapper}>
@@ -19,12 +40,15 @@ const Height = inject('registerStore')(
                 value={registerStore.registerData.height}
                 onChange={(e) => registerStore.setRegisterData('height', e.target.value)}
                 align='center'
+                validationMessage={heightValidationMessage}
+                onFocus={() => setHeightValidationMessage('')}
+                onBlur={() => validateHeight(registerStore.registerData.height)}
               />
             </div>
             <span className={styles.scaleLabel}>cm</span>
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
       </>
     );
   }),

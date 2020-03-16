@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
@@ -10,6 +10,27 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 const Personality = inject('registerStore')(
   observer(({ registerStore }) => {
     const minLength = 120;
+    const maxLength = 1000;
+
+    const [personalityValidationMessage, setPersonalityValidationMessage] = useState('');
+
+    const validatePersonality = (data) => {
+      if (data.length < minLength) {
+        setPersonalityValidationMessage(`${minLength}자 이상 입력해주세요.`);
+        return false;
+      }
+
+      setPersonalityValidationMessage('');
+      return true;
+    }
+
+    const nextTo = () => {
+      const isValid = validatePersonality(registerStore.registerData.personality);
+      console.log(isValid);
+      if (isValid) {
+        registerStore.nextTo();
+      }
+    }
 
     return (
       <>
@@ -18,13 +39,18 @@ const Personality = inject('registerStore')(
             placeholder={placeholder(minLength)}
             value={registerStore.registerData.personality}
             onChange={(e) => registerStore.setRegisterData('personality', e.target.value)}
+            onFocus={() => setPersonalityValidationMessage('')}
+            onBlur={() => validatePersonality(registerStore.registerData.personality)}
+            maxLength={maxLength}
           />
           <TextLengthBox
             textLength={registerStore.registerData.personality.length}
-            maxLength={1000}
+            minLength={minLength}
+            maxLength={maxLength}
+            validationMessage={personalityValidationMessage}
           />
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
       </>
     );
   }),
