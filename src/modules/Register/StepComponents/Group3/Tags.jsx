@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
+import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 import TagBox from './TagBox';
 import styles from './Group3.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
@@ -35,14 +36,13 @@ const Tags = inject('registerStore')(
     return (
       <>
         <div className={styles.componentWrapper}>
-          <TagBox
-            setTags={setTags}
-          />
+          <TagBox setTags={setTags} />
+          <span className={styles.tagList}>{registerStore.registerData.tags}</span>
           <span className={styles.validationMessage}>
             {tagsValidationMessage}
           </span>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo} />
       </>
     );
   }),

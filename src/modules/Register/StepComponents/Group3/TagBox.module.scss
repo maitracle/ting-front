@@ -1,22 +1,33 @@
+.tagWrapper{
+  display: flex;
+  flex-direction: column;
+}
 .tagBoxWrapper{
   width: 100%;
 }
 
 .tagForm{
   display: flex;
-  width: 242px;
+  width: 210px;
   margin: 0 auto;
   align-items: center;
+}
 
-  .buttonWrapper {
-    width: 100px;
-    margin-left: 10px;
-  }
+.buttonWrapper {
+  display: flex;
+  width: 100px;
+  margin-top: 10px;
+  align-self: center;
+  justify-content: center;
 
+}
+.buttonForm{
+  display: flex;
+  align-items: center;
   .button {
     width: 30px;
     height: 30px;
-    margin-left: 10px;
+    margin-left: 5px;
     border-radius: 3px;
     background-color: #B5C6FE;
 
@@ -25,25 +36,4 @@
       font-size: 20px;
     }
   }
-}
-
-.tag{
-  margin-right: 10px;
-
-  font-size: 16px;
-  line-height: 16px;
-  color: #002C9E;
-
-  &:hover {
-    opacity: 0.5;
-  }
-}
-
-.tagListWrapper{
-  display: flex;
-  flex-direction: row;
-  margin-top: 30px;
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
 }
