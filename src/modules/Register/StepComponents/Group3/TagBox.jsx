@@ -2,7 +2,6 @@ import React, {
   useState, useCallback, useEffect,
 } from 'react';
 import Input from 'src/components/Form/Input';
-
 import styles from './TagBox.module.scss';
 
 const TagBox = ({ setTags }) => {

@@ -33,6 +33,7 @@ export class RegisterStore {
     dateStyle: '',
     idealType: '',
     oneSentence: '',
+    image: '',
     tags: '',
     chatLink: '',
   };
@@ -57,14 +58,11 @@ export class RegisterStore {
     return foundGroup;
   }
 
-  @action nextTo = (history) => (_event) => {
+  @action nextTo = () => {
     const stepIndex = this.stepList.indexOf(this.currentStep);
     if (stepIndex !== -1 && stepIndex + 1 !== this.stepList.length) {
       this.currentStep = this.stepList[stepIndex + 1];
-    } else {
-      // 마지막 스탭까지 완료한 후에 등록완료 페이지로 리다이랙트
-      history.push('register/complete');
-    }
+    } 
   };
 
   @action backTo = () => {
