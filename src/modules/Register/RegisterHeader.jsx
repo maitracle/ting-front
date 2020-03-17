@@ -1,11 +1,13 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import TabBar from 'src/modules/Register/TabBar';
 
 import { StepIndicator } from 'src/components/StepIndicator/StepIndicator';
 import { getHeaderExample } from 'src/constants/Register';
+import { IoIosArrowDown } from 'react-icons/io';
 import styles from './RegisterHeader.module.scss';
+
 
 const groupNameIndicator = {
   group1: 'Step 1',
@@ -49,6 +51,10 @@ export default inject('registerStore')(observer(({ registerStore }) => {
   const handleExpandExample = () => {
     setIsExpanded(!isExpanded);
   };
+  useEffect(() => {
+    setIsExpanded(false);
+  }, [registerStore.currentStep]);
+
   const example = getHeaderExample(registerStore.root.userStore.profile.gender, registerStore.currentStep);
   return (
     <div className={styles.registerHeader}>
@@ -65,10 +71,12 @@ export default inject('registerStore')(observer(({ registerStore }) => {
         <div className={`${styles.exampleWrapper} ${isExpanded ? styles.expandWrapper : styles.foldWrapper}`}>
           {example}
         </div>
-        <button className={`${example ? styles.expandButton : styles.noExample}`} type="button" onClick={handleExpandExample}>{isExpanded ? '접기' : '예시 더보기'}</button>
-        <div className={styles.tabBarWrapper}>
-          <TabBar currentStep={registerStore.currentStep} tabList={registerStore[registerStore.currentGroup]} />
-        </div>
+        <button className={`${example ? styles.expandButton : styles.noExample}`} type="button" onClick={handleExpandExample}>
+          <IoIosArrowDown className={isExpanded ? styles.upArrow : ''} />{isExpanded ? '접기' : '예시 더보기'}
+        </button>
+      </div>
+      <div className={styles.tabBarWrapper}>
+        <TabBar currentStep={registerStore.currentStep} tabList={registerStore[registerStore.currentGroup]} />
       </div>
     </div>
   );

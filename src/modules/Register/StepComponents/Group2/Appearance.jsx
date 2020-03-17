@@ -1,9 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
-
 import styles from './Group2.module.scss';
-
 
 const Appearance = inject('registerStore')(
   observer(({ registerStore }) => {
