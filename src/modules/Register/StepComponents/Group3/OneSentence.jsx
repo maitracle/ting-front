@@ -16,7 +16,7 @@ const OneSentence = inject('registerStore')(
 
     const validateOneSentence = (data) => {
       if (data.length === 0) {
-        setOneSentenceValidationMessage(`자신을 표현할 한 문장을 입력해주세요.`);
+        setOneSentenceValidationMessage('자신을 표현할 한 문장을 입력해주세요.');
         return false;
       } else if (data.length < minLength) {
         setOneSentenceValidationMessage(`${minLength}자 이상 입력해주세요.`);

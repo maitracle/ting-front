@@ -9,17 +9,19 @@ const Height = inject('registerStore')(
   observer(({ registerStore }) => {
     const [heightValidationMessage, setHeightValidationMessage] = useState('');
 
+    const heightRegExp = /^\d{3}$/;
+
     const validateHeight = (data) => {
       if (data === '') {
         setHeightValidationMessage('키를 입력해주세요.');
         return false;
-      } else if (100 < data && data < 250) {
-        setHeightValidationMessage('');
-        return true;
-      } else {
+      } else if (heightRegExp.test(data) === false | data < 100 | data > 250) {
         setHeightValidationMessage('형식에 맞게 입력해주세요.');
         return false;
       }
+      
+      setHeightValidationMessage('');
+      return true;
     }
 
     const nextTo = () => {

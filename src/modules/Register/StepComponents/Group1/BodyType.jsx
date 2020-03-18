@@ -42,7 +42,7 @@ const BodyType = inject('registerStore')(
     const [bodyTypeValidationMessage, setBodyTypeValidationMessage] = useState('');
 
     const validateBodyType = (data) => {
-      if (data==='') {
+      if (data === '') {
         setBodyTypeValidationMessage('체형을 선택해주세요.');
         return false;
       }
