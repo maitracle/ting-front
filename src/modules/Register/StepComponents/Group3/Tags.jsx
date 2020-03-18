@@ -3,12 +3,12 @@ import { inject, observer } from 'mobx-react';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 import TagBox from './TagBox';
 import styles from './Group3.module.scss';
-import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Tags = inject('registerStore')(
   observer(({ registerStore }) => {
     const setTags = (tagList) => registerStore.setRegisterData('tags', tagList);
+<<<<<<< HEAD
     
     const [tagsValidationMessage, setTagsValidationMessage] = useState('');
 
@@ -32,6 +32,8 @@ const Tags = inject('registerStore')(
         registerStore.nextTo();
       }
     }
+=======
+>>>>>>> master
 
     return (
       <>
