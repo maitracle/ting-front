@@ -1,6 +1,10 @@
+@import "../../styles/constants";
+
 .gnbWrapper {
   position: fixed;
-  width: 100vw;
+  max-width: $ROOTMAXWIDTH;
+  margin: $ROOTMARGIN;
+  width: 100%;
   height: 44px;
   background-color: white;
 
