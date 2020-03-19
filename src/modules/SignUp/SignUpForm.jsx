@@ -256,7 +256,9 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         캠쿠의 이용약관 및 개인정보 처리방침에 동의합니다.
       </p>
 
-      <Btn onClick={submit} value={'다음'} />
+      <div className={styles.buttonWrapper}>
+        <Btn onClick={submit} value={'다음'} />
+      </div>
     </div>
   );
 }));

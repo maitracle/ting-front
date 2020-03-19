@@ -19,8 +19,8 @@ const mapStepToComponent = {
 
 const mapStepToTitle = {
   SignUp: '회원가입',
-  CheckEmail: '우리학교 학생 인증하기',
-  MailSent: '우리학교 학생 인증하기',
+  CheckEmail: <span>우리학교<br />학생 인증하기</span>,
+  MailSent: <span>우리학교<br />학생 인증하기</span>,
 };
 
 const SignUpPage = inject('signUpStore')(observer(({ signUpStore, history }) => {

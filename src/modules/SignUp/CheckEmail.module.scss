@@ -1,3 +1,5 @@
+@import 'src/styles/_constants';
+
 .formWrapper {
   width: 100%;
   margin-top: 49px;
@@ -36,7 +38,11 @@
 }
 
 .buttonWrapper {
-  border: solid 1px black;
-  //position: fixed;
-  //width: 100%;
+  position: fixed;
+  bottom: 35px;
+
+  width: 100%;
+  max-width: $root-max-width;
+  margin-left: -25px;
+  padding: 0 25px;
 }

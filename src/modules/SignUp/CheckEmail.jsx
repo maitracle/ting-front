@@ -55,7 +55,6 @@ const CheckEmail = inject('signUpStore')(observer(({ signUpStore }) => {
       <div className={styles.buttonWrapper}>
         <Btn value={'인증하기'} onClick={checkUnivEmailHandler} />
       </div>
-
     </div>
   );
 }));
