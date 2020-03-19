@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 
 import styles from './SignUpForm.module.scss';
 import RadioSmall from 'src/components/Form/RadioSmall';
+import { useParams } from 'react-router-dom';
+import * as universities from 'src/constants/universities';
 
 
 const genderItemList = [
@@ -47,21 +49,33 @@ const scholarlyStatusItemList = [
 
 const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
 
+  const { university } = useParams();
+  const [campusList, setCampusList] = useState([]);
+
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      university: universities[university.toUpperCase()],
+    });
+    setCampusList(universities[`${university.toUpperCase()}_CAMPUSES`] || []);
+  }, [university]);
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     nickname: '',
+    university: '',
     gender: '',
     campusLocation: '',
     scholarlyStatus: '',
   });
 
-  const [emailValidationMessage, setEmailValidationMessage] = useState('')
-  const [passwordValidationMessage, setPasswordValidationMessage] = useState('')
-  const [nicknameValidationMessage, setNicknameValidationMessage] = useState('')
-  const [genderValidationMessage, setGenderValidationMessage] = useState('')
-  const [campusLocationValidationMessage, setCampusLocationValidationMessage] = useState('')
-  const [scholarlyStatusValidationMessage, setScholarlyStatusValidationMessage] = useState('')
+  const [emailValidationMessage, setEmailValidationMessage] = useState('');
+  const [passwordValidationMessage, setPasswordValidationMessage] = useState('');
+  const [nicknameValidationMessage, setNicknameValidationMessage] = useState('');
+  const [genderValidationMessage, setGenderValidationMessage] = useState('');
+  const [campusLocationValidationMessage, setCampusLocationValidationMessage] = useState('');
+  const [scholarlyStatusValidationMessage, setScholarlyStatusValidationMessage] = useState('');
   
   const setFormDataHandler = (key) => (event) => {
     setFormData({
@@ -90,7 +104,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
       setEmailValidationMessage('');
       return true;
     }
-  }
+  };
 
   const validatePassword = (data) => {
     if (data.length === 0) {
@@ -100,7 +114,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
       setPasswordValidationMessage('');
       return true;
     }
-  }
+  };
 
   const validateNickname = (data) => {
     const nicknameRegExp = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{1,8}$/;
@@ -112,10 +126,10 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
       setNicknameValidationMessage('8자 이하의 한글로 입력해주세요.');
       return false;
     } else {
-      setNicknameValidationMessage('')
+      setNicknameValidationMessage('');
       return true;
     }
-  }
+  };
 
   const validateGender = (data) => {
     if (data.length === 0) {
@@ -125,7 +139,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
       setGenderValidationMessage('');
       return true;
     }
-  }
+  };
 
   const validateCampusLocation = (data) => {
     if (data.length === 0) {
@@ -135,17 +149,17 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
       setCampusLocationValidationMessage('');
       return true;
     }
-  }
+  };
 
   const validateScholarlyStatus = (data) => {
     if (data.length === 0) {
       setScholarlyStatusValidationMessage('재학 여부를 선택해주세요.');
       return false;
     } else {
-      setScholarlyStatusValidationMessage('')
+      setScholarlyStatusValidationMessage('');
       return true;
     }
-  }
+  };
 
   const validate = (formData) => {
     let isValid = true;
@@ -157,7 +171,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
     isValid = validateScholarlyStatus(formData.scholarlyStatus) && isValid;
 
     return isValid;
-  }
+  };
 
   const submit = () => {
     const isValid = validate(formData);
@@ -168,7 +182,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
           signUpStore.nextTo();
         }
       })
-    };
+    }
   };
 
   return (
@@ -220,7 +234,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
       <div onClick={() => setCampusLocationValidationMessage('')}>
         <RadioSmall
           label={'소속 캠퍼스'}
-          itemList={campusLocationItemList}
+          itemList={campusList}
           selectedItemValue={formData.campusLocation}
           selectItemValue={setRadioDataHandler('campusLocation')}
           validationMessage={campusLocationValidationMessage}
