@@ -6,6 +6,7 @@ import styles from './SignUpForm.module.scss';
 import RadioSmall from 'src/components/Form/RadioSmall';
 import { useParams } from 'react-router-dom';
 import * as universities from 'src/constants/universities';
+import Btn from 'src/components/Button/Btn';
 
 
 const genderItemList = [
@@ -255,7 +256,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         캠쿠의 이용약관 및 개인정보 처리방침에 동의합니다.
       </p>
 
-      <button onClick={submit}>다음</button>
+      <Btn onClick={submit} value={'다음'} />
     </div>
   );
 }));
