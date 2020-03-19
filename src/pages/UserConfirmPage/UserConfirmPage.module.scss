@@ -57,7 +57,9 @@
   }
 
   .image {
-    margin-top: 32px;
+    display: block;
+    margin: 32px auto 0 auto;
     width: 100%;
+    max-width: 360px;
   }
 }
