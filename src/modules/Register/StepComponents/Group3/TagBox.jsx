@@ -1,69 +1,73 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, {
+  useState, useCallback, useEffect,
+} from 'react';
 import Input from 'src/components/Form/Input';
-
 import styles from './TagBox.module.scss';
 
-
-// React.memo 는 tag 값이 바뀔 때만 리렌더링되도록 처리한다.
-const TagItem = React.memo(({ tag, onRemove }) => <div className={styles.tag} onClick={() => onRemove(tag)}>{`#${tag}`}</div>);
-
-const TagList = React.memo(({ tags, onRemove }) => (
-  <div className={styles.tagListWrapper}>
-    {tags.map((tag) => (
-      <TagItem key={tag} tag={tag} onRemove={onRemove} />
-    ))}
-  </div>
-));
-
 const TagBox = ({ setTags }) => {
-  const [input, setInput] = useState('');
-  const [tagList, setTagList] = useState([]);
-
-  const StringTag = tagList.reduce((preValue, currentValue) => `${preValue} #${currentValue}`, '');
+  const [tagList, setTagList] = useState([
+    { id: 0, text: '' },
+    { id: 1, text: '' },
+    { id: 2, text: '' },
+    { id: 3, text: '' },
+  ]);
 
   useEffect(() => {
-    setTags(StringTag.trim());
-  }, [StringTag]);
+    const stringTag = tagList.reduce((preValue, currentValue) => `${preValue} #${currentValue.text}`, '');
+    setTags(stringTag.trim());
+  }, [tagList]);
 
-  const insertTag = useCallback(
-    (tag) => {
-      if (!tag) return; // 공백시 추가하지 않는다.
-      if (tagList.includes(tag)) return; // 이미 존재하면 추가하지 않는다.
-      setTagList([...tagList, tag]);
-    },
-    [tagList],
-  );
+  const onChange = (tagId) => (e) => {
+    setTagList(
+      tagList.map((tag) => (tag.id === tagId ? { ...tag, text: e.target.value } : { ...tag })),
+    );
+  };
 
 
-  const onRemove = useCallback(
-    (tag) => {
-      setTagList(tagList.filter((t) => t !== tag));
-    },
-    [tagList],
-  );
-
-  const onChange = useCallback((e) => {
-    setInput(e.target.value);
-  }, []);
-
-
-  const onSubmit = useCallback(
+  const addTagInput = useCallback(
     () => {
-      insertTag(input.trim());
-      setInput('');
-    },
-    [input, insertTag],
+      const maxLength = 10;
+      if (tagList.length < maxLength) {
+        const newTag = {
+          id: tagList.length,
+          text: '',
+        };
+        setTagList(tagList.concat(newTag));
+      }
+    }, [tagList],
   );
-  return (
-    <div className={styles.tagBoxWrapper}>
-      <div className={styles.tagForm}>
-        <Input placeholder="나를 나타내는 태그!" value={input} onChange={onChange} />
-        <button className={styles.button} onClick={onSubmit}>
-          <span className={styles.title}>+</span>
-        </button>
-      </div>
 
-      <TagList tags={tagList} onRemove={onRemove} />
+  const removeTagInput = useCallback(
+    () => {
+      const minLength = 4;
+      if (tagList.length > minLength) {
+        const restTagList = tagList.slice(0, (tagList.length - 1));
+        setTagList(restTagList);
+      }
+    }, [tagList],
+  );
+
+  return (
+    <div className={styles.tagWrapper}>
+      <div className={styles.tagBoxWrapper}>
+        {(tagList.map((tag) => (
+          <div className={styles.tagForm}>
+            <Input placeholder="나를 나타내는 태그!" value={tag.text} onChange={onChange(tag.id)} />
+          </div>
+        )))}
+      </div>
+      <div className={styles.buttonWrapper}>
+        <div className={styles.buttonForm}>
+          <button className={styles.button} onClick={addTagInput}>
+            <span className={styles.title}>+</span>
+          </button>
+        </div>
+        <div className={styles.buttonForm}>
+          <button className={styles.button} onClick={removeTagInput}>
+            <span className={styles.title}>-</span>
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

@@ -30,11 +30,11 @@ export default class SignUpStore {
   @action signUp = (payload) => {
     return signUpApi(payload)
       .then((res) => {
-        // Todo(maitracle): response의 coin history를 store에 저장하기
         setRefreshToken(res.data.refresh);
         setAccessToken(res.data.access);
         this.root.userStore.user = res.data.user;
         this.root.userStore.profile = res.data.profile;
+        this.root.myPointStore.myPointHistoryList = res.data.coinHistory;
 
         return {
           status: res.status,
