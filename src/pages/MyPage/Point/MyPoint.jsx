@@ -17,7 +17,7 @@ export const MyPoint = inject('myPointStore')(observer(({ myPointStore }) => {
           {myPointStore.restPoint} Pts
         </div>
       </div>
-      {myPointStore.myPointHistory.map((item) => <MyPointHistory key={item.id} item={item}/>)}
+      {myPointStore.myPointHistoryList.map((item) => <MyPointHistory key={item.id} item={item}/>)}
     </div>
   );
   
