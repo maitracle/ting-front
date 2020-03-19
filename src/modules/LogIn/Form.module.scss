@@ -1,15 +1,20 @@
+@import 'src/styles/_constants';
+
 .inputWrapper {
+  padding: 11px 25px;
   margin-bottom: 22px;
 }
 
 .buttonWrapper {
   display: block;
   position: fixed;
+  max-width: $root-max-width;
+  margin: 0 auto;
   bottom: 35px;
-  width: calc(100% - 50px);
+  width: 100%;
 }
 
 .buttonContentsWrapper {
-  width: 60vw;
+  width: 60%;
   margin: 0 auto;
 }
