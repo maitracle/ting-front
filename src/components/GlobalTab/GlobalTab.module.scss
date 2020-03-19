@@ -28,8 +28,8 @@
 .tabWrapper {
   display: flex;
   position: fixed;
-  max-width: $ROOTMAXWIDTH;
-  margin: $ROOTMARGIN;
+  max-width: $root-max-width;
+  margin: 0 auto;
   background-color: white;
   bottom: 0;
   width: 100%;

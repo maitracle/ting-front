@@ -8,8 +8,8 @@
 .buttonWrapper {
   display: block;
   position: fixed;
-  max-width: $ROOTMAXWIDTH;
-  margin: $ROOTMARGIN;
+  max-width: $root-max-width;
+  margin: 0 auto;
   bottom: 35px;
   width: 100%;
 }

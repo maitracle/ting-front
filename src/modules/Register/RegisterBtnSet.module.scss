@@ -3,8 +3,8 @@
 .btnWrapper {
   display: flex;
   position: fixed;
-  max-width: $ROOTMAXWIDTH;
-  margin: $ROOTMARGIN;
+  max-width: $root-max-width;
+  margin: 0 auto;
   bottom: 0;
   width: 100%;
   background-color: white;

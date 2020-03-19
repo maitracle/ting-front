@@ -1,6 +1,6 @@
-@import "../src/styles/constants";
+@import "styles/constants";
 
 body {
-  max-width: $ROOTMAXWIDTH;
-  margin: $ROOTMARGIN;
+  max-width: $root-max-width;
+  margin: 0 auto;
 }
