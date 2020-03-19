@@ -9,17 +9,17 @@ const Age = inject('registerStore')(
   observer(({ registerStore }) => {
     const [ageValidationMessage, setAgeValidationMessage] = useState('');
 
-    const ageRegExp = /^[1-9][0-9]$/;
-
     const validateAge = (data) => {
       if (data === '') {
+        const ageRegExp = /^[1-9][0-9]$/;
+
         setAgeValidationMessage('나이를 입력해주세요');
         return false;
       } else if (ageRegExp.test(data) === false) {
         setAgeValidationMessage('형식에 맞게 입력해주세요.');
         return false;
       } else if (data < 19) {
-        setAgeValidationMessage('일단은 19세 이상만 가입해주세요.');
+        setAgeValidationMessage('19세 이상만 이용 가능합니다.');
         return false;
       }
       

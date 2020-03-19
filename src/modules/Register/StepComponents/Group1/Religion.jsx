@@ -39,7 +39,7 @@ const Religion = inject('registerStore')(
     const [religionValidationMessage, setReligionValidationMessage] = useState('');
 
     const validateReligion = (data) => {
-      if (data==='') {
+      if (data === '') {
         setReligionValidationMessage('종교를 선택해주세요.');
         return false;
       }

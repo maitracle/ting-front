@@ -30,7 +30,7 @@ const IsSmoke = inject('registerStore')(
     const [isSmokeValidationMessage, setIsSmokeValidationMessage] = useState('');
 
     const validateIsSmoke = (data) => {
-      if (data==='') {
+      if (data === '') {
         setIsSmokeValidationMessage('흡연 여부를 선택해주세요.');
         return false;
       }
