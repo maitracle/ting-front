@@ -1,6 +1,10 @@
+@import 'src/styles/_constants';
+
 .btnWrapper {
   display: flex;
   position: fixed;
+  max-width: $root-max-width;
+  margin: 0 auto;
   bottom: 0;
   width: 100%;
   background-color: white;
