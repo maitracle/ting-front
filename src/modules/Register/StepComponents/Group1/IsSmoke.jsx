@@ -27,6 +27,25 @@ const IsSmoke = inject('registerStore')(
       [radioItemList],
     );
 
+    const [isSmokeValidationMessage, setIsSmokeValidationMessage] = useState('');
+
+    const validateIsSmoke = (data) => {
+      if (data === '') {
+        setIsSmokeValidationMessage('흡연 여부를 선택해주세요.');
+        return false;
+      }
+
+      setIsSmokeValidationMessage('');
+      return true;
+    }
+
+    const nextTo = () => {
+      const isValid = validateIsSmoke(registerStore.registerData.isSmoke);
+      if (isValid) {
+        registerStore.nextTo();
+      }
+    }
+
     return (
       <>
         <div className={styles.componentWrapper}>
@@ -34,10 +53,14 @@ const IsSmoke = inject('registerStore')(
             <strong>흡연여부</strong>를 알려주세요.
           </div>
           <div className={styles.radioInputWrapper}>
-            <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
+            <RadioInputSet
+              radioItemList={radioItemList}
+              onClick={onClick} 
+              validationMessage={isSmokeValidationMessage}
+            />
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
       </>
     );
   }),
