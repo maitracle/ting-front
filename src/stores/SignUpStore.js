@@ -9,9 +9,9 @@ const signUpApi = (payload) => requests.post(SIGN_UP_PATH, payload);
 const checkUnivEmailApi = (user_id, payload) => requests.patch(`${CHECK_UNIV_EMAIL_PATH(user_id)}`, payload, true);
 
 export default class SignUpStore {
-  @observable step = 'SignUp';
+  @observable step = 'CheckStudentIdCard';
 
-  @observable stepList = ['SignUp', 'CheckEmail', 'MailSent'];
+  @observable stepList = ['SignUp', 'CheckStudentIdCard', 'MailSent'];
 
   constructor(root) {
     this.root = root;
@@ -24,8 +24,6 @@ export default class SignUpStore {
       this.step = this.stepList[stepIndex + 1];
     }
   };
-
-  @action getFormData = () => JSON.parse(JSON.stringify(this.formData));
 
   @action signUp = (payload) => {
     return signUpApi(payload)

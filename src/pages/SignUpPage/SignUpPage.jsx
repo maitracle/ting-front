@@ -9,17 +9,20 @@ import styles from './SignUpPage.module.scss';
 import { useParams } from 'react-router-dom';
 
 import { UNIV_LIST } from 'src/constants/universities';
+import CheckStudentIdCard from 'src/modules/SignUp/CheckStudentIdCard';
 
 
 const mapStepToComponent = {
   SignUp: SignUpForm,
   CheckEmail,
+  CheckStudentIdCard,
   MailSent,
 };
 
 const mapStepToTitle = {
   SignUp: '회원가입',
   CheckEmail: <span>우리학교<br />학생 인증하기</span>,
+  CheckStudentIdCard: <span>우리학교<br />학생 인증하기</span>,
   MailSent: <span>우리학교<br />학생 인증하기</span>,
 };
 

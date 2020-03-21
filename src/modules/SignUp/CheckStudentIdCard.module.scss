@@ -1,0 +1,48 @@
+@import 'src/styles/_constants';
+
+.formWrapper {
+  width: 100%;
+  margin-top: 49px;
+}
+
+.inputWrapper {
+  margin-bottom: 27px;
+}
+
+.fullEmailWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.emailDomain {
+  display: flex;
+  flex-direction: column-reverse;
+  height: 55px;
+
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.question {
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #757575;
+}
+
+.emailMakeLink {
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #ED5F4F;
+}
+
+.buttonWrapper {
+  position: fixed;
+  bottom: 35px;
+
+  width: 100%;
+  max-width: $root-max-width;
+  margin-left: -25px;
+  padding: 0 25px;
+}
