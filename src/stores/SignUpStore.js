@@ -1,12 +1,19 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { CHECK_UNIV_EMAIL_PATH, CONFIRM_USER_PATH, SIGN_UP_PATH } from 'src/constants/requests';
+import {
+  CHECK_UNIV_EMAIL_PATH,
+  CONFIRM_USER_PATH,
+  SIGN_UP_PATH,
+  UPLOAD_STUDENT_ID_CARD_IMAGE_PATH
+} from 'src/constants/requests';
 import { setAccessToken, setRefreshToken } from 'src/utils/handleJwtToken';
 
 
 const signUpApi = (payload) => requests.post(SIGN_UP_PATH, payload);
-const checkUnivEmailApi = (user_id, payload) => requests.patch(`${CHECK_UNIV_EMAIL_PATH(user_id)}`, payload, true);
+const checkUnivEmailApi = (userId, payload) => requests.patch(`${CHECK_UNIV_EMAIL_PATH(userId)}`, payload, true);
+const authUnivApi = (userCode) => requests.post(CONFIRM_USER_PATH, { userCode, });
+const uploadStudentIdCardApi = (userId, formData) => requests.post(`${UPLOAD_STUDENT_ID_CARD_IMAGE_PATH}{userId}`, formData);
 
 export default class SignUpStore {
   @observable step = 'CheckStudentIdCard';
@@ -85,8 +92,7 @@ export default class SignUpStore {
   };
 
   @action authUniv = (userCode) => {
-    return requests
-      .post(CONFIRM_USER_PATH, { userCode, })
+    return authUnivApi(userCode)
       .then((res) => {
 
         return {
@@ -97,5 +103,14 @@ export default class SignUpStore {
         status: err.response.status,
         message: err.response.statusText,
       }));
-  }
+  };
+
+  @action uploadStudentIdCard = (idCardImage) => {
+    const formData = new FormData();
+    const splitFileName = idCardImage.name.split('.');
+    formData.append('idCardImage', idCardImage, `image.${splitFileName[splitFileName.length - 1]}`);
+
+    return uploadStudentIdCardApi(this.root.userStore.user.id, formData);
+
+  };
 }
