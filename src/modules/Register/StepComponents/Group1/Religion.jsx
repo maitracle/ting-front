@@ -35,6 +35,26 @@ const Religion = inject('registerStore')(
       },
       [radioItemList],
     );
+
+    const [religionValidationMessage, setReligionValidationMessage] = useState('');
+
+    const validateReligion = (data) => {
+      if (data === '') {
+        setReligionValidationMessage('종교를 선택해주세요.');
+        return false;
+      }
+
+      setReligionValidationMessage('');
+      return true;
+    }
+
+    const nextTo = () => {
+      const isValid = validateReligion(registerStore.registerData.religion);
+      if (isValid) {
+        registerStore.nextTo();
+      }
+    }
+
     return (
       <>
         <div className={styles.componentWrapper}>
@@ -42,10 +62,14 @@ const Religion = inject('registerStore')(
             <strong>종교</strong>를 알려주세요.
           </div>
           <div className={styles.radioInputWrapper}>
-            <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
+            <RadioInputSet
+              radioItemList={radioItemList}
+              onClick={onClick}
+              validationMessage={religionValidationMessage}
+            />
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
       </>
     );
   }),
