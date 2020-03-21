@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
-import { useParams, Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom';
 
 import styles from './UserConfirmPage.module.scss';
 
 
-
-const UserConfirmPage = inject('signUpStore')(observer(({ signUpStore, history }) => {
+const UserConfirmPage = inject('signUpStore')(observer(({ signUpStore }) => {
 
   const { userCode } = useParams();
 
@@ -14,15 +13,14 @@ const UserConfirmPage = inject('signUpStore')(observer(({ signUpStore, history }
     signUpStore.authUniv(userCode);
   }, []);
 
-  const title = ( nickname ) => {
-    return(
-      <div className={styles.titleWrapper}>
-        <p className={styles.title}>
-          홍익대학교 학생<br/>
-          { nickname }님 인증 완료
-        </p>
-      </div>
-    )}
+  const title = (nickname) => (
+    <div className={styles.titleWrapper}>
+      <p className={styles.title}>
+        홍익대학교 학생<br />
+        {nickname}님 인증 완료
+      </p>
+    </div>
+  );
 
   return (
     <div className={styles.pageWrapper}>
@@ -38,7 +36,7 @@ const UserConfirmPage = inject('signUpStore')(observer(({ signUpStore, history }
         <Link to='/selso' className={styles.skipButton}>Skip</Link>
       </div>
       <div className={styles.nextButtonWrapper}>
-        <Link to='/register'>
+        <Link to='/user/register'>
           <button className={styles.nextButton}>만들러 가기</button>
         </Link>
       </div>

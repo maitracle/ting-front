@@ -6,6 +6,9 @@ import CheckEmail from 'src/modules/SignUp/CheckEmail';
 import MailSent from 'src/modules/SignUp/MailSent';
 
 import styles from './SignUpPage.module.scss';
+import { useParams } from 'react-router-dom';
+
+import { UNIV_LIST } from 'src/constants/universities';
 
 
 const mapStepToComponent = {
@@ -16,12 +19,20 @@ const mapStepToComponent = {
 
 const mapStepToTitle = {
   SignUp: '회원가입',
-  CheckEmail: '우리학교 학생 인증하기',
-  MailSent: '우리학교 학생 인증하기',
+  CheckEmail: <span>우리학교<br />학생 인증하기</span>,
+  MailSent: <span>우리학교<br />학생 인증하기</span>,
 };
 
-const SignUpPage = inject('signUpStore')(observer(({ signUpStore }) => {
+const SignUpPage = inject('signUpStore')(observer(({ signUpStore, history }) => {
   let StepComponent = mapStepToComponent[signUpStore.step];
+
+  const { university } = useParams();
+
+  useEffect(() => {
+    if (!UNIV_LIST.includes(university.toUpperCase())) {
+      history.push('/');
+    }
+  }, [university]);
 
   useEffect(() => {
     StepComponent = mapStepToComponent[signUpStore.step];
