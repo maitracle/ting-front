@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 
 import { UNIV_LIST } from 'src/constants/universities';
 import CheckStudentIdCard from 'src/modules/SignUp/CheckStudentIdCard';
+import Loading from 'src/components/Loading';
 
 
 const mapStepToComponent = {
@@ -42,14 +43,16 @@ const SignUpPage = inject('signUpStore')(observer(({ signUpStore, history }) => 
   }, [signUpStore.step]);
 
   return (
-    <div className={styles.pageWrapper}>
-      <div className={styles.title}>
-        { mapStepToTitle[signUpStore.step] }
+    <>
+      <div className={styles.pageWrapper}>
+        <div className={styles.title}>
+          {mapStepToTitle[signUpStore.step]}
+        </div>
+        <div className={styles.componentWrapper}>
+          <StepComponent />
+        </div>
       </div>
-      <div className={styles.componentWrapper}>
-        <StepComponent />
-      </div>
-    </div>
+    </>
   );
 }));
 
