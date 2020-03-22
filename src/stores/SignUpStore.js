@@ -13,10 +13,10 @@ import { setAccessToken, setRefreshToken } from 'src/utils/handleJwtToken';
 const signUpApi = (payload) => requests.post(SIGN_UP_PATH, payload);
 const checkUnivEmailApi = (userId, payload) => requests.patch(`${CHECK_UNIV_EMAIL_PATH(userId)}`, payload, true);
 const authUnivApi = (userCode) => requests.post(CONFIRM_USER_PATH, { userCode, });
-const uploadStudentIdCardApi = (userId, formData) => requests.post(`${UPLOAD_STUDENT_ID_CARD_IMAGE_PATH}{userId}`, formData);
+const uploadStudentIdCardApi = (userId, formData) => requests.patch(`${UPLOAD_STUDENT_ID_CARD_IMAGE_PATH}${userId}/`, formData, true);
 
 export default class SignUpStore {
-  @observable step = 'CheckStudentIdCard';
+  @observable step = 'SignUp';
 
   @observable stepList = ['SignUp', 'CheckStudentIdCard', 'MailSent'];
 
@@ -108,9 +108,30 @@ export default class SignUpStore {
   @action uploadStudentIdCard = (idCardImage) => {
     const formData = new FormData();
     const splitFileName = idCardImage.name.split('.');
-    formData.append('idCardImage', idCardImage, `image.${splitFileName[splitFileName.length - 1]}`);
+    formData.append('studentIdCardImage', idCardImage, `image.${splitFileName[splitFileName.length - 1]}`);
 
-    return uploadStudentIdCardApi(this.root.userStore.user.id, formData);
+    return uploadStudentIdCardApi(this.root.userStore.user.id, formData)
+      .then((res) => {
+
+        return {
+          status: res.status,
+          message: res.statusText,
+        };
+      }).catch((err) => {
+        if (err.response) {
+          return {
+            status: err.response.status,
+            message: err.response.statusText,
+            data: err.response.data,
+          };
+        }
+
+        return {
+          status: null,
+          message: 'unknown error',
+          data: {},
+        };
+      });
 
   };
 }
