@@ -9,21 +9,24 @@ import styles from './SignUpPage.module.scss';
 import { useParams } from 'react-router-dom';
 
 import { UNIV_LIST } from 'src/constants/universities';
+import CheckStudentIdCard from 'src/modules/SignUp/CheckStudentIdCard';
 
 
 const mapStepToComponent = {
   SignUp: SignUpForm,
   CheckEmail,
+  CheckStudentIdCard,
   MailSent,
 };
 
 const mapStepToTitle = {
   SignUp: '회원가입',
   CheckEmail: <span>우리학교<br />학생 인증하기</span>,
+  CheckStudentIdCard: <span>우리학교<br />학생 인증하기</span>,
   MailSent: <span>우리학교<br />학생 인증하기</span>,
 };
 
-const SignUpPage = inject('signUpStore')(observer(({ signUpStore, history }) => {
+const SignUpPage = inject('signUpStore', 'userStore')(observer(({ signUpStore, userStore, history }) => {
   let StepComponent = mapStepToComponent[signUpStore.step];
 
   const { university } = useParams();
@@ -35,13 +38,21 @@ const SignUpPage = inject('signUpStore')(observer(({ signUpStore, history }) => 
   }, [university]);
 
   useEffect(() => {
+    if (!userStore?.user?.isConfirmedStudent) {
+      signUpStore.setStep('CheckStudentIdCard');
+    } else {
+      history.push('/user/register');
+    }
+  }, [signUpStore, userStore]);
+
+  useEffect(() => {
     StepComponent = mapStepToComponent[signUpStore.step];
   }, [signUpStore.step]);
 
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.title}>
-        { mapStepToTitle[signUpStore.step] }
+        {mapStepToTitle[signUpStore.step]}
       </div>
       <div className={styles.componentWrapper}>
         <StepComponent />
