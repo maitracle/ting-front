@@ -38,9 +38,9 @@ const SignUpPage = inject('signUpStore', 'userStore')(observer(({ signUpStore, u
   }, [university]);
 
   useEffect(() => {
-    if (!userStore?.user?.isConfirmedStudent) {
+    if (userStore?.user?.isConfirmedStudent === false) {
       signUpStore.setStep('CheckStudentIdCard');
-    } else {
+    } else if (userStore?.user?.isConfirmedStudent === true) {
       history.push('/user/register');
     }
   }, [signUpStore, userStore]);
