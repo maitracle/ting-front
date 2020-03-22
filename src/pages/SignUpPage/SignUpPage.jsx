@@ -26,7 +26,7 @@ const mapStepToTitle = {
   MailSent: <span>우리학교<br />학생 인증하기</span>,
 };
 
-const SignUpPage = inject('signUpStore')(observer(({ signUpStore, history }) => {
+const SignUpPage = inject('signUpStore', 'userStore')(observer(({ signUpStore, userStore, history }) => {
   let StepComponent = mapStepToComponent[signUpStore.step];
 
   const { university } = useParams();
@@ -36,6 +36,14 @@ const SignUpPage = inject('signUpStore')(observer(({ signUpStore, history }) => 
       history.push('/');
     }
   }, [university]);
+
+  useEffect(() => {
+    if (!userStore?.user?.isConfirmedStudent) {
+      signUpStore.setStep('CheckStudentIdCard');
+    } else {
+      history.push('/user/register');
+    }
+  }, [signUpStore, userStore]);
 
   useEffect(() => {
     StepComponent = mapStepToComponent[signUpStore.step];

@@ -32,6 +32,10 @@ export default class SignUpStore {
     }
   };
 
+  @action setStep = (step) => {
+    this.step = step;
+  };
+
   @action signUp = (payload) => {
     return signUpApi(payload)
       .then((res) => {
@@ -110,7 +114,7 @@ export default class SignUpStore {
     const splitFileName = idCardImage.name.split('.');
     formData.append('studentIdCardImage', idCardImage, `image.${splitFileName[splitFileName.length - 1]}`);
 
-    return uploadStudentIdCardApi(this.root.userStore.user.id, formData)
+    return uploadStudentIdCardApi(this.root.userStore.user.id, null)
       .then((res) => {
 
         return {
