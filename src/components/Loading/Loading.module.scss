@@ -1,6 +1,7 @@
 .background {
   position: fixed;
   top: 0;
+  left: 0;
   background-color: #212529;
   opacity: 0.5;
   width: 100vw;
@@ -44,7 +45,7 @@
   }
   div:nth-child(3) {
     left: 56px;
-    animation-delay: 0;
+    animation-delay: 0s;
   }
 }
 
