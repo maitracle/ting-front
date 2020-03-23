@@ -2,7 +2,8 @@ import RegisterStore from 'src/stores/RegisterStore';
 import SignUpStore from 'src/stores/SignUpStore';
 import UserStore from './UserStore';
 import SelsoListStore from './SelsoListStore';
-import MyPointStore from './MyPoint'
+import MyPointStore from './MyPoint';
+import FroshStore from './FroshStore';
 
 class RootStore {
   constructor() {
@@ -11,6 +12,7 @@ class RootStore {
     this.registerStore = new RegisterStore(this);
     this.signUpStore = new SignUpStore(this);
     this.myPointStore = new MyPointStore(this);
+    this.froshStore = new FroshStore(this);
   }
 }
 
