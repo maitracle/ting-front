@@ -33,9 +33,10 @@ export class RegisterStore {
     dateStyle: '',
     idealType: '',
     oneSentence: '',
-    image: '',
     tags: '',
     chatLink: '',
+    isActive: '',
+    isCompleted: '',
   };
 
   constructor(root) {

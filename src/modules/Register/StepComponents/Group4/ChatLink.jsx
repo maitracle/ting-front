@@ -11,6 +11,8 @@ const ChatLink = inject('registerStore')(
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
     const submit = () => {
+      registerStore.setRegisterData('isActive', true);
+      registerStore.setRegisterData('isCompleted', true);
       registerStore.registerSelso()
         .then((res) => {
           if (res.status === 200) {
