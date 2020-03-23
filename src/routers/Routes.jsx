@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import UserRouter from 'src/routers/UserRouter';
 import DefaultLayoutRouter from './DefaultLayoutRouter';
-import SelsoDetailPage from 'src/pages/SelsoDetailPage';
-import FroshDetailPage from 'src/pages/FroshDetailPage';
+import SelsoDetailPage from 'src/pages/Selso/SelsoDetailPage';
+import FroshDetailPage from 'src/pages/Frosh/FroshDetailPage';
 
 export default () => (
   <Router>

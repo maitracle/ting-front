@@ -32,6 +32,7 @@ const SignUpPage = inject('signUpStore', 'userStore')(observer(({ signUpStore, u
   const { university } = useParams();
 
   useEffect(() => {
+    // university params가 invalid하면 main page로 이동한다.
     if (!UNIV_LIST.includes(university.toUpperCase())) {
       history.push('/');
     }
@@ -43,7 +44,7 @@ const SignUpPage = inject('signUpStore', 'userStore')(observer(({ signUpStore, u
     } else if (userStore?.user?.isConfirmedStudent === true) {
       history.push('/user/register');
     }
-  }, [signUpStore, userStore]);
+  }, [signUpStore, userStore.user]);
 
   useEffect(() => {
     StepComponent = mapStepToComponent[signUpStore.step];

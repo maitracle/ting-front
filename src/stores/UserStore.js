@@ -29,6 +29,7 @@ export default class UserStore {
     if (getAccessToken()) {
       fetchMyProfileApi()
         .then((res) => {
+          console.log(res.data.user);
           this.user = res.data.user;
           this.profile = res.data.profile;
           this.root.myPointStore.myPointHistoryList = res.data.coinHistory;

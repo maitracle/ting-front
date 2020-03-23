@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import RegisterPage from 'src/pages/RegisterPage';
-import RegisterCompletePage from 'src/pages/RegisterPage/RegisterCompletePage';
-import LogInPage from 'src/pages/LogInPage';
-import EmailConfirmPage from 'src/pages/UserConfirmPage';
-import SignUpPage from 'src/pages/SignUpPage';
+import RegisterPage from 'src/pages/Selso/RegisterPage';
+import RegisterCompletePage from 'src/pages/Selso/RegisterCompletePage';
+import LogInPage from 'src/pages/User/LogInPage';
+import EmailConfirmPage from 'src/pages/User/UserConfirmPage';
+import SignUpPage from 'src/pages/User/SignUpPage';
 
 
 export default () => (
