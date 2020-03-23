@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 
-import SelsoItemCard from 'src/modules/SelsoList/SelsoItemCard';
-
-import styles from 'src/modules/SelsoList/SelsoList.module.scss';
 import Modal from 'src/components/Modal';
+
+import SelsoItemCard from './SelsoItemCard';
+import styles from './SelsoList.module.scss';
 
 
 const SelsoList = inject('selsoListStore')(observer(({ selsoListStore, history }) => {
@@ -65,5 +65,3 @@ const SelsoList = inject('selsoListStore')(observer(({ selsoListStore, history }
 }));
 
 export default SelsoList;
-
-
