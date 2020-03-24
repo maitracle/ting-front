@@ -11,10 +11,6 @@ const Age = inject('registerStore')(
 
     const validateAge = (data) => {
       const ageRegExp = /^[1-9][0-9]$/;
-<<<<<<< HEAD
-=======
-
->>>>>>> master
       if (data === '') {
         setAgeValidationMessage('나이를 입력해주세요');
         return false;
