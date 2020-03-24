@@ -31,10 +31,12 @@ const SelsoList = inject('selsoListStore')(observer(({ selsoListStore, history }
   return (
     <div>
       {
-        selsoListStore.selsoList.map((selsoItem) => (
+        selsoListStore.selsoList.map((selsoItem) => {
+          selsoItem.isActive && selsoItem.isCompleted ?
           <div onClick={moveToDetailPageHandler(selsoItem)} key={selsoItem.id} className={styles.link}>
             <SelsoItemCard selsoItem={selsoItem} />
-          </div>))
+          </div> : null
+        })
       }
       <Modal
         isOpen={isOpenSpendPointModal}
