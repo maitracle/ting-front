@@ -2,10 +2,11 @@ import React from 'react';
 
 import styles from './Input.module.scss';
 
+
 const Input = ({
   label, value, type, onChange, placeholder, align, validationMessage, onBlur, onFocus,
 }) => (
-  <div className={styles[`inputWrapper${type}`]}>
+  <div className={styles.inputWrapper}>
     {
       label
         ? (
@@ -15,7 +16,8 @@ const Input = ({
         )
         : null
     }
-    <input 
+    <input
+      type={type}
       placeholder={placeholder}
       value={value}
       onChange={onChange}
