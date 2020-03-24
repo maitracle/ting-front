@@ -35,8 +35,8 @@ export class RegisterStore {
     oneSentence: '',
     tags: '',
     chatLink: '',
-    isActive: '',
-    isCompleted: '',
+    isActive: false,
+    isCompleted: false,
   };
 
   constructor(root) {
