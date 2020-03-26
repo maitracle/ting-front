@@ -32,10 +32,9 @@ const SelsoList = inject('selsoListStore')(observer(({ selsoListStore, history }
     <div>
       {
         selsoListStore.selsoList.map((selsoItem) => {
-          selsoItem.isActive && selsoItem.isCompleted ?
           <div onClick={moveToDetailPageHandler(selsoItem)} key={selsoItem.id} className={styles.link}>
             <SelsoItemCard selsoItem={selsoItem} />
-          </div> : null
+          </div>
         })
       }
       <Modal
