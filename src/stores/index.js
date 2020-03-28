@@ -4,6 +4,7 @@ import UserStore from './UserStore';
 import SelsoListStore from './SelsoListStore';
 import MyPointStore from './MyPoint';
 import FroshStore from './FroshStore';
+import FroshRegisterStore from 'src/stores/FroshRegisterStore';
 
 class RootStore {
   constructor() {
@@ -13,6 +14,7 @@ class RootStore {
     this.signUpStore = new SignUpStore(this);
     this.myPointStore = new MyPointStore(this);
     this.froshStore = new FroshStore(this);
+    this.froshRegisterStore = new FroshRegisterStore(this);
   }
 }
 
