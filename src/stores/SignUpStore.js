@@ -11,6 +11,7 @@ import { setAccessToken, setRefreshToken } from 'src/utils/handleJwtToken';
 
 
 const signUpApi = (payload) => requests.post(SIGN_UP_PATH, payload);
+const createProfileApi = (payload) => requests.post(SIGN_UP_PATH, payload);
 const checkUnivEmailApi = (userId, payload) => requests.patch(`${CHECK_UNIV_EMAIL_PATH(userId)}`, payload, true);
 const authUnivApi = (userCode) => requests.post(CONFIRM_USER_PATH, { userCode, });
 const uploadStudentIdCardApi = (userId, formData) => requests.patch(`${UPLOAD_STUDENT_ID_CARD_IMAGE_PATH}${userId}/`, formData, true);
@@ -18,7 +19,7 @@ const uploadStudentIdCardApi = (userId, formData) => requests.patch(`${UPLOAD_ST
 export default class SignUpStore {
   @observable step = 'SignUp';
 
-  @observable stepList = ['SignUp', 'CheckStudentIdCard', 'MailSent'];
+  @observable stepList = ['SignUp', 'BasicInfo', 'CheckStudentIdCard', 'MailSent'];
 
   constructor(root) {
     this.root = root;
@@ -64,6 +65,14 @@ export default class SignUpStore {
           data: {},
         };
       });
+  };
+
+  @action createProfile = (profileData) => {
+    console.log(profileData);
+    // return createProfileApi(profileData)
+    //   .then((res) =>{
+    //     console.log(res);
+    //   })
   };
 
   @action checkUnivEmail = (universityEmail) => {
