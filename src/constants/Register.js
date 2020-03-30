@@ -1,5 +1,3 @@
-/* eslint-disable default-case */
-/* eslint-disable consistent-return */
 import React from 'react';
 
 export const getHeaderExample = (gender, step) => {
@@ -106,6 +104,7 @@ export const getHeaderExample = (gender, step) => {
       );
     case 'ChatLink':
       return '그룹채팅방이 아닌 1:1 오카방으로 만들어주세요';
+    default:
     }
   } else if (gender === 'FEMALE') {
     switch (step) {
@@ -207,6 +206,8 @@ export const getHeaderExample = (gender, step) => {
       );
     case 'ChatLink':
       return '그룹채팅방이 아닌 1:1 오카방으로 만들어주세요';
+
+    default:
     }
   }
 };
