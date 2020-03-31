@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
+
 import Input from 'src/components/Form/Input';
+import Btn from 'src/components/Button/Btn';
 
 import styles from './SignUpForm.module.scss';
-import Btn from 'src/components/Button/Btn';
 
 
 const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {

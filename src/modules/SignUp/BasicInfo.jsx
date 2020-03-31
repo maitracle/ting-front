@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
+
 import Input from 'src/components/Form/Input';
 import RadioSmall from 'src/components/Form/RadioSmall';
 import * as universities from 'src/constants/universities';
-import { useParams } from 'react-router-dom';
-
+import Btn from 'src/components/Button/Btn';
 
 import styles from './BasicInfo.module.scss';
-import Btn from 'src/components/Button/Btn';
+
 
 const genderItemList = [
   {
