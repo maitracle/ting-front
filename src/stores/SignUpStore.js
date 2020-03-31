@@ -43,7 +43,7 @@ export default class SignUpStore {
         setRefreshToken(res.data.refresh);
         setAccessToken(res.data.access);
         this.root.userStore.user = res.data.user;
-        this.root.userStore.profile = {};
+        this.root.userStore.profile = null;
 
         return {
           status: res.status,
@@ -72,6 +72,7 @@ export default class SignUpStore {
         return {
           status: res.status,
           message: res.statusText,
+          data: res.data,
         };
       }).catch((err) => {
         if (err.response) {

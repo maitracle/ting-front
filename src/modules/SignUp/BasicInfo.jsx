@@ -34,7 +34,7 @@ const scholarlyStatusItemList = [
 ];
 
 
-const BasicInfo = inject('signUpStore')(observer(({ signUpStore }) => {
+const BasicInfo = inject('signUpStore', 'userStore')(observer(({ signUpStore, userStore }) => {
 
   const { university } = useParams();
 
@@ -170,6 +170,7 @@ const BasicInfo = inject('signUpStore')(observer(({ signUpStore }) => {
       signUpStore.createProfile(payload)
         .then((res) => {
           if (res.status === 201) {
+            userStore.profile = res.data;
             signUpStore.nextTo();
           }
         })
