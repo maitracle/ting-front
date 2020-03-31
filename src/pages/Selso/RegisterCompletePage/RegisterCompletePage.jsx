@@ -6,7 +6,7 @@ import styles from './RegisterCompletePage.module.scss'
 import Btn from 'src/components/Button/Btn';
 
 
-const Complete = inject('userStore')(
+const RegisterCompletePage = inject('userStore')(
   observer(({ userStore, history }) => {
     return (
         <div className={styles.pageWrapper}>
@@ -27,4 +27,4 @@ const Complete = inject('userStore')(
   }),
 );
 
-export default Complete;
+export default RegisterCompletePage;

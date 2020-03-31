@@ -1,17 +1,24 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { CHECK_UNIV_EMAIL_PATH, CONFIRM_USER_PATH, SIGN_UP_PATH } from 'src/constants/requests';
+import {
+  CHECK_UNIV_EMAIL_PATH,
+  CONFIRM_USER_PATH,
+  SIGN_UP_PATH,
+  UPLOAD_STUDENT_ID_CARD_IMAGE_PATH
+} from 'src/constants/requests';
 import { setAccessToken, setRefreshToken } from 'src/utils/handleJwtToken';
 
 
 const signUpApi = (payload) => requests.post(SIGN_UP_PATH, payload);
-const checkUnivEmailApi = (user_id, payload) => requests.patch(`${CHECK_UNIV_EMAIL_PATH(user_id)}`, payload, true);
+const checkUnivEmailApi = (userId, payload) => requests.patch(`${CHECK_UNIV_EMAIL_PATH(userId)}`, payload, true);
+const authUnivApi = (userCode) => requests.post(CONFIRM_USER_PATH, { userCode, });
+const uploadStudentIdCardApi = (userId, formData) => requests.patch(`${UPLOAD_STUDENT_ID_CARD_IMAGE_PATH}${userId}/`, formData, true);
 
 export default class SignUpStore {
   @observable step = 'SignUp';
 
-  @observable stepList = ['SignUp', 'CheckEmail', 'MailSent'];
+  @observable stepList = ['SignUp', 'CheckStudentIdCard', 'MailSent'];
 
   constructor(root) {
     this.root = root;
@@ -25,7 +32,9 @@ export default class SignUpStore {
     }
   };
 
-  @action getFormData = () => JSON.parse(JSON.stringify(this.formData));
+  @action setStep = (step) => {
+    this.step = step;
+  };
 
   @action signUp = (payload) => {
     return signUpApi(payload)
@@ -87,8 +96,7 @@ export default class SignUpStore {
   };
 
   @action authUniv = (userCode) => {
-    return requests
-      .post(CONFIRM_USER_PATH, { userCode, })
+    return authUnivApi(userCode)
       .then((res) => {
 
         return {
@@ -99,5 +107,35 @@ export default class SignUpStore {
         status: err.response.status,
         message: err.response.statusText,
       }));
-  }
+  };
+
+  @action uploadStudentIdCard = (idCardImage) => {
+    const formData = new FormData();
+    const splitFileName = idCardImage.name.split('.');
+    formData.append('studentIdCardImage', idCardImage, `image.${splitFileName[splitFileName.length - 1]}`);
+
+    return uploadStudentIdCardApi(this.root.userStore.user.id, formData)
+      .then((res) => {
+
+        return {
+          status: res.status,
+          message: res.statusText,
+        };
+      }).catch((err) => {
+        if (err.response) {
+          return {
+            status: err.response.status,
+            message: err.response.statusText,
+            data: err.response.data,
+          };
+        }
+
+        return {
+          status: null,
+          message: 'unknown error',
+          data: {},
+        };
+      });
+
+  };
 }

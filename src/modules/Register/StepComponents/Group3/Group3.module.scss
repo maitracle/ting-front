@@ -1,6 +1,12 @@
 .componentWrapper {
   padding: 16px 25px;
   text-align: center;
+
+  .validationMessage{
+    color: #ED5F4F;
+    text-align: left;
+    margin-top: 4px;
+  }
 }
 
 .tagList{

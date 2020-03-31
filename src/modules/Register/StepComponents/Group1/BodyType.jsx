@@ -39,6 +39,25 @@ const BodyType = inject('registerStore')(
       [radioItemList],
     );
 
+    const [bodyTypeValidationMessage, setBodyTypeValidationMessage] = useState('');
+
+    const validateBodyType = (data) => {
+      if (data === '') {
+        setBodyTypeValidationMessage('체형을 선택해주세요.');
+        return false;
+      }
+
+      setBodyTypeValidationMessage('');
+      return true;
+    }
+
+    const nextTo = () => {
+      const isValid = validateBodyType(registerStore.registerData.bodyType);
+      if (isValid) {
+        registerStore.nextTo();
+      }
+    }
+
     return (
       <>
         <div className={styles.componentWrapper}>
@@ -46,10 +65,14 @@ const BodyType = inject('registerStore')(
             <strong>체형</strong>을 알려주세요.
           </div>
           <div className={styles.radioInputWrapper}>
-            <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
+            <RadioInputSet 
+              radioItemList={radioItemList}
+              onClick={onClick}
+              validationMessage={bodyTypeValidationMessage}
+            />
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={registerStore.nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
       </>
     );
   }),

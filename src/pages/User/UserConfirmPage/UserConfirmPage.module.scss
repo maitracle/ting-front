@@ -5,17 +5,15 @@
   padding: 11px 6.6% 35px 6.6%;
 
   .title {
+    margin-bottom: 9px;
+
     font-size: 28px;
     line-height: 38px;
-
     color: #022275;
-
-    margin: 0px 0px 9px 0px;
-    margin-bottom: 9px;
   }
 
   .description {
-    margin: 0px;
+    margin: 0;
 
     font-size: 18px;
     line-height: 30px;
@@ -59,7 +57,9 @@
   }
 
   .image {
-    margin-top: 32px;
+    display: block;
+    margin: 32px auto 0 auto;
     width: 100%;
+    max-width: 360px;
   }
 }

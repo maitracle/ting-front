@@ -4,7 +4,7 @@ import { HOST, REFRESH_TOKENS_PATH } from 'src/constants/requests';
 
 
 export const redirectLoginPage = () => {
-  window.location.pathname = '/log-in';
+  window.location.pathname = '/user/log-in';
 };
 
 export const getAccessToken = () => localStorage.getItem('access');
