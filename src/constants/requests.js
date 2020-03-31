@@ -9,6 +9,7 @@ export const HOST = HostDictionaryByEnv[process.env.NODE_ENV];
 export const LOGIN_PATH = '/api/users/tokens/';
 export const REFRESH_TOKENS_PATH = '/api/users/tokens/refresh/';
 export const SIGN_UP_PATH = '/api/users/';
+export const CREATE_PROFILE_PATH = '/api/profiles/';
 export const CHECK_UNIV_EMAIL_PATH = (userId) => `/api/users/${userId}/check-univ/`;
 export const CONFIRM_USER_PATH = '/api/users/confirm-user/';
 export const UPLOAD_STUDENT_ID_CARD_IMAGE_PATH = '/api/users/';

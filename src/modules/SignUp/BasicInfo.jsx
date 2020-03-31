@@ -68,7 +68,6 @@ const BasicInfo = inject('signUpStore')(observer(({ signUpStore }) => {
       university: universities[university.toUpperCase()],
     });
     setCampusList(universities[`${university.toUpperCase()}_CAMPUSES`] || []);
-    console.log(universities[`${university.toUpperCase()}_CAMPUSES`] || []);
   }, [university]);
 
   const [nicknameValidationMessage, setNicknameValidationMessage] = useState('');
@@ -153,13 +152,26 @@ const BasicInfo = inject('signUpStore')(observer(({ signUpStore }) => {
 
   const submit = () => {
     const isValid = validate(formData);
+
     if (isValid) {
-      signUpStore.createProfile(formData)
-        // .then((res) => {
-        //   if (res.status === 201) {
-        //     signUpStore.nextTo();
-        //   }
-        // })
+      const { nickname, gender, university, campusLocation, scholarlyStatus, age } = formData;
+      const bornYear = new Date().getFullYear() - age + 1;
+
+      const payload = {
+        nickname,
+        gender,
+        university,
+        campusLocation,
+        scholarlyStatus,
+        bornYear,
+      };
+
+      signUpStore.createProfile(payload)
+        .then((res) => {
+          if (res.status === 201) {
+            signUpStore.nextTo();
+          }
+        })
     }
   };
 
