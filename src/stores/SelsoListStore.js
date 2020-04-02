@@ -44,28 +44,24 @@ export default class SelsoListStore {
     }
   };
 
-  @action fetchOpenKakaoLink = (selsoId) => {
-    return fetchOpenKakaoLinkApi(selsoId)
-      .then((res) => {
+  @action fetchOpenKakaoLink = (selsoId) => fetchOpenKakaoLinkApi(selsoId)
+    .then((res) => ({
+      status: res.status,
+      message: res.statusText,
+      chatLink: res.data.chatLink,
+    })).catch((err) => {
+      if (err.response) {
         return {
-          status: res.status,
-          message: res.statusText,
-          chatLink: res.data.chatLink,
+          status: err.response.status,
+          message: err.response.statusText,
+          data: err.response.data,
         };
-      }).catch((err) => {
-        if (err.response) {
-          return {
-            status: err.response.status,
-            message: err.response.statusText,
-            data: err.response.data,
-          };
-        }
+      }
 
-        return {
-          status: null,
-          message: 'unknown error',
-          data: {},
-        };
-      });
-  }
+      return {
+        status: null,
+        message: 'unknown error',
+        data: {},
+      };
+    })
 }
