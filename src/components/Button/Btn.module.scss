@@ -7,6 +7,10 @@
   border-radius: 6px;
   border: 2px solid #0941FB;
   background-color: inherit;
+
+  &:focus {
+    outline: 0;
+  }
 }
 
 .btnGray {

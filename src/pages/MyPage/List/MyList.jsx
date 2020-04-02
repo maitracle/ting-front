@@ -11,7 +11,7 @@ export const MyList = inject('userStore')(observer(({ userStore }) => {
 
   return (
     <div>
-      <ProfileCard imageSrc={userStore.profile.image} nickname={userStore.profile.nickname} />
+      <ProfileCard imageSrc={userStore.profile?.image} nickname={userStore.profile?.nickname} />
 
       <div className={styles.linkWrapper}>
         <Link to="/my/profile">
