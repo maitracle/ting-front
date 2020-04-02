@@ -11,9 +11,10 @@ const ChatLink = inject('registerStore')(
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
     const submit = () => {
+      registerStore.setRegisterData('profile', registerStore.root.userStore.profile.id)
       registerStore.registerSelso()
         .then((res) => {
-          if (res.status === 200) {
+          if (res.status === 201) {
             history.push('register/complete');
           } else if (res.status >= 500) {
             setIsErrorModalOpen(true);

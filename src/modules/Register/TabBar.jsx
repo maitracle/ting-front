@@ -3,7 +3,7 @@ import styles from './TabBar.module.scss';
 
 
 const mapStepToStep = {
-  Age: '나이',
+  Nickname: '닉네임',
   Height: '키',
   BodyType: '체형',
   Religion: '종교',

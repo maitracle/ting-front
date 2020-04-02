@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import RegisterHeader from 'src/modules/Register/RegisterHeader';
-import Age from 'src/modules/Register/StepComponents/Group1/Age';
+import Nickname from 'src/modules/Register/StepComponents/Group1/Nickname'
 import Height from 'src/modules/Register/StepComponents/Group1/Height';
 import IsSmoke from 'src/modules/Register/StepComponents/Group1/IsSmoke';
 import Religion from 'src/modules/Register/StepComponents/Group1/Religion';
@@ -17,7 +17,7 @@ import Image from 'src/modules/Register/StepComponents/Group3/Image';
 import ChatLink from 'src/modules/Register/StepComponents/Group4/ChatLink';
 
 const mapStepToComponent = {
-  Age,
+  Nickname,
   Height,
   BodyType,
   Religion,
