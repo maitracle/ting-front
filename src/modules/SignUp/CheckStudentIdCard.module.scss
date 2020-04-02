@@ -1,0 +1,49 @@
+@import 'src/styles/_constants';
+
+.formWrapper {
+  width: 100%;
+  margin-top: 49px;
+}
+
+.inputWrapper {
+  margin-bottom: 27px;
+
+  .imageInput {
+    display: none;
+  }
+}
+
+.imageLabel {
+  background-color: white;
+  width: 90%;
+  height: 500px;
+  margin: 0 auto;
+
+  .labelDescription {
+    padding-top: 250px;
+    text-align: center;
+  }
+
+  .imagePreview {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.errorMessage {
+  height: 22px;
+  color: #ED5F4F;
+  font-size: 10px;
+  line-height: 10px;
+  padding-top: 6px;
+}
+
+.buttonWrapper {
+  position: fixed;
+  bottom: 35px;
+
+  width: 100%;
+  max-width: $root-max-width;
+  margin-left: -25px;
+  padding: 0 25px;
+}

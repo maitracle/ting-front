@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
-
 import styles from './Group1.module.scss';
+import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Religion = inject('registerStore')(
@@ -35,16 +35,42 @@ const Religion = inject('registerStore')(
       },
       [radioItemList],
     );
+
+    const [religionValidationMessage, setReligionValidationMessage] = useState('');
+
+    const validateReligion = (data) => {
+      if (data === '') {
+        setReligionValidationMessage('종교를 선택해주세요.');
+        return false;
+      }
+
+      setReligionValidationMessage('');
+      return true;
+    }
+
+    const nextTo = () => {
+      const isValid = validateReligion(registerStore.registerData.religion);
+      if (isValid) {
+        registerStore.nextTo();
+      }
+    }
+
     return (
-      <div className={styles.componentWrapper}>
-        <div className={styles.question}>
-          <strong>종교</strong>
-를 알려주세요.
+      <>
+        <div className={styles.componentWrapper}>
+          <div className={styles.question}>
+            <strong>종교</strong>를 알려주세요.
+          </div>
+          <div className={styles.radioInputWrapper}>
+            <RadioInputSet
+              radioItemList={radioItemList}
+              onClick={onClick}
+              validationMessage={religionValidationMessage}
+            />
+          </div>
         </div>
-        <div className={styles.radioInputWrapper}>
-          <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
-        </div>
-      </div>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+      </>
     );
   }),
 );

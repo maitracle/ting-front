@@ -1,5 +1,6 @@
 const HostDictionaryByEnv = {
   development: 'http://localhost:8000',
+  production: 'http://ec2-46-51-226-242.ap-northeast-1.compute.amazonaws.com',
 };
 
 
@@ -8,8 +9,9 @@ export const HOST = HostDictionaryByEnv[process.env.NODE_ENV];
 export const LOGIN_PATH = '/api/users/tokens/';
 export const REFRESH_TOKENS_PATH = '/api/users/tokens/refresh/';
 export const SIGN_UP_PATH = '/api/users/';
-export const CHECK_UNIV_EMAIL_PATH = (user_id) => `/api/users/${user_id}/check-univ/`;
+export const CHECK_UNIV_EMAIL_PATH = (userId) => `/api/users/${userId}/check-univ/`;
 export const CONFIRM_USER_PATH = '/api/users/confirm-user/';
+export const UPLOAD_STUDENT_ID_CARD_IMAGE_PATH = '/api/users/';
 
 
 export const GET_PROFILE_LISTS_PATH = '/api/profiles/';

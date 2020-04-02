@@ -1,18 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
-
+import TextLengthBox from 'src/components/Validation/TextLengthBox';
+import { placeholder } from 'src/constants/Register/Group2'
 import styles from './Group2.module.scss';
+import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const DateStyle = inject('registerStore')(
   observer(({ registerStore }) => {
-    const setDateStyle = (e) => registerStore.setRegisterData('dateStyle', e.target.value);
-    const placeholder = '120자 이상, 많이 많이 쓸수록 이성분이 매력적으로 생각할거에요 :)';
+    const minLength = 60;
+    const maxLength = 1000;
+
+    const [dateStyleValidationMessage, setDateStyleValidationMessage] = useState('');
+
+    const validateDateStyle = (data) => {
+      if (data.length < minLength) {
+        setDateStyleValidationMessage(`${minLength}자 이상 입력해주세요.`);
+        return false;
+      }  else if (data.length > maxLength) {
+        setDateStyleValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
+      }
+
+      setDateStyleValidationMessage('');
+      return true;
+    }
+
+    const nextTo = () => {
+      const isValid = validateDateStyle(registerStore.registerData.dateStyle);
+      if (isValid) {
+        registerStore.nextTo();
+      }
+    }
+    
     return (
-      <div className={styles.componentWrapper}>
-        <Textarea placeholder={placeholder} value={registerStore.registerData.dateStyle} onChange={setDateStyle} />
-      </div>
+      <>
+        <div className={styles.componentWrapper}>
+          <Textarea 
+            placeholder={placeholder(minLength)}
+            value={registerStore.registerData.dateStyle}
+            onChange={(e) => registerStore.setRegisterData('dateStyle', e.target.value)}
+            onFocus={() => setDateStyleValidationMessage('')}
+            onBlur={() => validateDateStyle(registerStore.registerData.dateStyle)}
+            maxLength={maxLength}
+          />
+          <TextLengthBox
+            textLength={registerStore.registerData.dateStyle.length}
+            minLength={minLength}
+            maxLength={maxLength}
+            validationMessage={dateStyleValidationMessage}
+          />
+        </div>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+      </>
     );
   }),
 );

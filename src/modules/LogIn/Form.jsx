@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
-import { useStores } from 'src/utils/useStores';
 import Input from 'src/components/Form/Input';
 
 import styles from './Form.module.scss';
 import Btn from 'src/components/Button/Btn';
+import { inject, observer } from 'mobx-react';
 
-
-export default ({ history }) => {
-  const { userStore } = useStores();
-
+const Form = inject('userStore')(observer(({ userStore, history }) => {
   const [form, setForm] = useState({
     email: '',
     password: '',
@@ -35,8 +32,9 @@ export default ({ history }) => {
       .then((res) => {
         if (res.status === 200) {
           history.push('/selso');
+        } else {
+          setMessage(res.message);
         }
-        setMessage(res.message);
       });
   };
 
@@ -64,4 +62,6 @@ export default ({ history }) => {
       </div>
     </div>
   );
-};
+}));
+
+export default Form;

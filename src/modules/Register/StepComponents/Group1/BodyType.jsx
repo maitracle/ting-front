@@ -1,8 +1,8 @@
 import React, { useCallback, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
-
 import styles from './Group1.module.scss';
+import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const BodyType = inject('registerStore')(
@@ -38,16 +38,42 @@ const BodyType = inject('registerStore')(
       },
       [radioItemList],
     );
+
+    const [bodyTypeValidationMessage, setBodyTypeValidationMessage] = useState('');
+
+    const validateBodyType = (data) => {
+      if (data === '') {
+        setBodyTypeValidationMessage('체형을 선택해주세요.');
+        return false;
+      }
+
+      setBodyTypeValidationMessage('');
+      return true;
+    }
+
+    const nextTo = () => {
+      const isValid = validateBodyType(registerStore.registerData.bodyType);
+      if (isValid) {
+        registerStore.nextTo();
+      }
+    }
+
     return (
-      <div className={styles.componentWrapper}>
-        <div className={styles.question}>
-          <strong>체형</strong>
-을 알려주세요.
+      <>
+        <div className={styles.componentWrapper}>
+          <div className={styles.question}>
+            <strong>체형</strong>을 알려주세요.
+          </div>
+          <div className={styles.radioInputWrapper}>
+            <RadioInputSet 
+              radioItemList={radioItemList}
+              onClick={onClick}
+              validationMessage={bodyTypeValidationMessage}
+            />
+          </div>
         </div>
-        <div className={styles.radioInputWrapper}>
-          <RadioInputSet radioItemList={radioItemList} onClick={onClick} />
-        </div>
-      </div>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+      </>
     );
   }),
 );

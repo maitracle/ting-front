@@ -1,18 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
-
+import TextLengthBox from 'src/components/Validation/TextLengthBox';
+import { placeholder } from 'src/constants/Register/Group2'
 import styles from './Group2.module.scss';
+import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const IdealType = inject('registerStore')(
   observer(({ registerStore }) => {
-    const setIdealType = (e) => registerStore.setRegisterData('idealType', e.target.value);
-    const placeholder = '120자 이상, 많이 많이 쓸수록 이성분이 매력적으로 생각할거에요 :)';
+    const minLength = 120;
+    const maxLength = 1000;
+    
+    const [idealTypeValidationMessage, setIdealTypeValidationMessage] = useState('');
+
+    const validateIdealType = (data) => {
+      if (data.length < minLength) {
+        setIdealTypeValidationMessage(`${minLength}자 이상 입력해주세요.`);
+        return false;
+      } else if (data.length > maxLength) {
+        setIdealTypeValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
+      }
+
+      setIdealTypeValidationMessage('');
+      return true;
+    }
+
+    const nextTo = () => {
+      const isValid = validateIdealType(registerStore.registerData.idealType);
+      if (isValid) {
+        registerStore.nextTo();
+      }
+    }
+
     return (
-      <div className={styles.componentWrapper}>
-        <Textarea placeholder={placeholder} value={registerStore.registerData.idealType} onChange={setIdealType} />
-      </div>
+      <>
+        <div className={styles.componentWrapper}>
+          <Textarea
+            placeholder={placeholder(minLength)}
+            value={registerStore.registerData.idealType}
+            onChange={(e) => registerStore.setRegisterData('idealType', e.target.value)}
+            onFocus={() => setIdealTypeValidationMessage('')}
+            onBlur={() => validateIdealType(registerStore.registerData.idealType)}
+            maxLength={maxLength}
+          />
+          <TextLengthBox
+            textLength={registerStore.registerData.idealType.length}
+            minLength={minLength}
+            maxLength={maxLength}
+            validationMessage={idealTypeValidationMessage}
+          />
+        </div>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+      </>
     );
   }),
 );

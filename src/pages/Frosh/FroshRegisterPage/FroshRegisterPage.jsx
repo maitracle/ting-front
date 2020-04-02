@@ -15,7 +15,6 @@ import OneSentence from 'src/modules/Register/StepComponents/Group3/OneSentence'
 import Tags from 'src/modules/Register/StepComponents/Group3/Tags';
 import Image from 'src/modules/Register/StepComponents/Group3/Image';
 import ChatLink from 'src/modules/Register/StepComponents/Group4/ChatLink';
-import RegisterBtnSet from '../../modules/Register/RegisterBtnSet';
 
 const mapStepToComponent = {
   Age,
@@ -34,20 +33,21 @@ const mapStepToComponent = {
   ChatLink,
 };
 
-export const RegisterPage = inject('registerStore')(
-  observer(({ registerStore, history }) => {
-    let StepComponent = mapStepToComponent[registerStore.currentStep];
+const FroshRegisterPage = inject('froshRegisterStore')(
+  observer(({ froshRegisterStore, history }) => {
+    let StepComponent = mapStepToComponent[froshRegisterStore.currentStep];
 
     useEffect(() => {
-      StepComponent = mapStepToComponent[registerStore.currentStep];
-    }, [registerStore.currentStep]);
+      StepComponent = mapStepToComponent[froshRegisterStore.currentStep];
+    }, [froshRegisterStore.currentStep]);
 
     return (
       <div>
         <RegisterHeader />
-        <StepComponent />
-        <RegisterBtnSet history={history} />
+        <StepComponent history={history}/>
       </div>
     );
   }),
 );
+
+export default FroshRegisterPage;
