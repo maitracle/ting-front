@@ -42,7 +42,7 @@ const Nickname = inject('registerStore')(
               <Input
                 placeholder="8자 이내의 한글로 입력해주세요."
                 value={registerStore.registerData.nickname}
-                onChange={(e) => {registerStore.setRegisterData('nickname', e.target.value); console.log(registerStore.registerData.nickname)}}
+                onChange={(e) => registerStore.setRegisterData('nickname', e.target.value)}
                 validationMessage={nicknameValidationMessage}
                 onFocus={() => setNicknameValidationMessage('')}
                 onBlur={() => validateNickname(registerStore.registerData.nickname)}
