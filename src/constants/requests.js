@@ -22,4 +22,4 @@ export const GET_OPEN_KAKAO_PATH = (profileId) => `/api/self-date-profiles/${pro
 export const FETCH_POINT_PATH = '/api/coin-histories/';
 
 export const REGISTER_SELSO_PATH = '/api/self-date-profiles/';
-export const UPDATE_PROFILE_PATH = '/api/self-date-profiles/';
+export const UPDATE_PROFILE_PATH = '/api/profiles/';
