@@ -1,7 +1,7 @@
 import { action, observable } from 'mobx';
 
 import requests from 'src/utils/requests';
-import { GET_MY_USER_PATH, LOGIN_PATH, UPDATE_PROFILE_PATH, } from 'src/constants/requests';
+import { GET_MY_USER_PATH, LOGIN_PATH, UPDATE_PROFILE_PATH } from 'src/constants/requests';
 import {
   getAccessToken,
   redirectLoginPage,
@@ -21,6 +21,7 @@ export default class UserStore {
   @observable isLoggedIn = false;
 
   @observable user = {};
+
   @observable profile = {};
 
   constructor(root) {
@@ -50,7 +51,6 @@ export default class UserStore {
         this.user = res.data.user;
         this.profile = res.data.profile;
         this.root.myPointStore.myPointHistoryList = res.data.coinHistory;
-
         return {
           status: res.status,
           message: res.statusText,
@@ -67,12 +67,10 @@ export default class UserStore {
     this.isLoggedIn = false;
     redirectLoginPage();
   };
-  
-  @action updateProfile = (profileData) => {
-    return updateProfileApi(profileData)
-      .then((res) => this.profile = {
-        ...this.profile,
-        ...res.data,
-      });
-  };
+
+  @action updateProfile = (profileData) => updateProfileApi(profileData)
+    .then((res) => this.profile = {
+      ...this.profile,
+      ...res.data,
+    });
 }

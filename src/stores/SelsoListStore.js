@@ -3,7 +3,7 @@ import requests from 'src/utils/requests';
 import { GET_OPEN_KAKAO_PATH, GET_PROFILE_LISTS_PATH, GET_PROFILE_RETRIEVE_PATH } from 'src/constants/requests';
 
 
-const fetchSelsoListApi = () => requests.get(GET_PROFILE_LISTS_PATH, true);
+const fetchSelsoListApi = (gender, university) => requests.get(`${GET_PROFILE_LISTS_PATH}?profile__gender=${gender}&profile__university=${university}`, true);
 const fetchSelsoDetailApi = (id) => requests.get(`${GET_PROFILE_RETRIEVE_PATH}${id}/`, true);
 const fetchOpenKakaoLinkApi = (selsoId) => requests.get(`${GET_OPEN_KAKAO_PATH(selsoId)}`, true);
 
@@ -18,13 +18,11 @@ export default class SelsoListStore {
     this.root = root;
   }
 
-  @action setSelsoList = () => {
-    fetchSelsoListApi()
-      .then((res) => {
-        this.selsoList = res.data;
-      })
-      .catch((err) => err);
-  };
+  @action setSelsoList = (gender, university) => fetchSelsoListApi(gender, university)
+    .then((res) => {
+      this.selsoList = res.data;
+    })
+    .catch((err) => err)
 
   @action setChoosedSelso = (selsoItem) => {
     this.choosedSelso = selsoItem;
