@@ -65,6 +65,7 @@ export default class UserStore {
     removeAccessToken();
     removeRefreshToken();
     this.isLoggedIn = false;
+    this.profile = null;
     redirectLoginPage();
   };
 
