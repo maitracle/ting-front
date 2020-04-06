@@ -4,7 +4,7 @@ import requests from 'src/utils/requests';
 import { REGISTER_SELSO_PATH } from 'src/constants/requests';
 
 
-const registerSelsoApi = (profileId, payload) => requests.patch(`${REGISTER_SELSO_PATH}${profileId}/`, payload, true);
+const registerSelsoApi = (payload) => requests.post(`${REGISTER_SELSO_PATH}`, payload, true);
 
 export class RegisterStore {
   @observable stepList = [];
@@ -13,7 +13,7 @@ export class RegisterStore {
 
   @observable groupList = ['group1', 'group2', 'group3', 'group4'];
 
-  @observable group1 = ['Age', 'Height', 'BodyType', 'Religion', 'IsSmoke'];
+  @observable group1 = ['Nickname', 'Height', 'BodyType', 'Religion', 'IsSmoke'];
 
   @observable group2 = ['Appearance', 'Personality', 'Hobby', 'DateStyle', 'IdealType'];
 
@@ -22,7 +22,8 @@ export class RegisterStore {
   @observable group4 = ['ChatLink'];
 
   @observable registerData = {
-    age: '',
+    profile: '',
+    nickname: '',
     height: '',
     bodyType: '',
     religion: '',
@@ -33,7 +34,6 @@ export class RegisterStore {
     dateStyle: '',
     idealType: '',
     oneSentence: '',
-    image: '',
     tags: '',
     chatLink: '',
   };
@@ -76,7 +76,7 @@ export class RegisterStore {
     this.registerData[type] = value;
   };
 
-  @action registerSelso = () => registerSelsoApi(this.root.userStore.profile.id, this.registerData)
+  @action registerSelso = () => registerSelsoApi(this.registerData)
     .then((res) => ({
       status: res.status,
       message: res.statusText,

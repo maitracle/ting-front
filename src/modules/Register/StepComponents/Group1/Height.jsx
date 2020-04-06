@@ -31,6 +31,7 @@ const Height = inject('registerStore')(
         registerStore.nextTo();
       }
     }
+    
     return (
       <>
         <div className={styles.componentWrapper}>

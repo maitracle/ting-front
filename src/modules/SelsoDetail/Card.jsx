@@ -7,9 +7,9 @@ export default ({ selsoDetail }) => {
   const bodyTypeConverter = {
     SKINNY: '마른',
     SLIM: '슬림',
-    SLIMFIT: '슬림탄탄',
+    SLIM_TONED: '슬림탄탄',
     NORMAL: '보통',
-    FIT: '근육질',
+    BUFF: '근육질',
     CHUBBY: '통통',
   };
 
