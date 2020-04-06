@@ -35,7 +35,7 @@ export default ({ selsoDetail }) => {
         <div className={styles.nicknameWrapper}>
           <div className={styles.nickname}>{selsoDetail.nickname}</div>
           <div className={styles.age}>
-            {selsoDetail.age}
+            {selsoDetail.profile?.bornYear}
 살
           </div>
         </div>
