@@ -40,27 +40,22 @@ const SignUpPage = inject('signUpStore', 'userStore')(observer(({ signUpStore, u
     }
   }, [university]);
 
-  // useEffect(() => {
-  //   if (!userStore.profile) {
-  //     signUpStore.setStep('BasicInfo');
-  //   } else if(userStore?.user?.isConfirmedStudent === false) {
-  //     signUpStore.setStep('CheckStudentIdCard');
-  //   } else if (userStore?.user?.isConfirmedStudent === true) {
-  //     history.push('/user/register');
-  //   }
-  // }, [signUpStore, userStore.user]);
+  useEffect(() => {
+    if (!userStore?.user?.id){
+      signUpStore.setStep('SignUp')
+    } else if (!userStore?.profile?.id) {
+      signUpStore.setStep('BasicInfo');
+    } else {
+      signUpStore.setStep('CheckStudentIdCard')
+    }
+  }, [signUpStore.step]);
 
   useEffect(() => {
-    console.log('page effect 발동')
     StepComponent = mapStepToComponent[signUpStore.step];
   }, [signUpStore.step]);
 
   return (
     <div className={styles.pageWrapper}>
-      {console.log('page 시작')}
-      {console.log(userStore.user)}
-      {console.log(userStore.user.isConfirmedStudent)}
-      {console.log('page 끝')}
       <div className={styles.title}>
         {mapStepToTitle[signUpStore.step]}
       </div>
