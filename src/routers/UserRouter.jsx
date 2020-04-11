@@ -9,25 +9,13 @@ import EmailConfirmPage from 'src/pages/User/UserConfirmPage';
 import SignUpPage from 'src/pages/User/SignUpPage';
 
 
-export default inject('userStore', 'signUpStore')(observer(({ userStore, signUpStore }) => {
+export default inject('userStore')(observer(({ userStore }) => {
   const [getSignUpPageOrRedirectRegister, setGetSignUpPageOrRedirectRegister] = useState(SignUpPage);
-  
   useEffect(()=>{
     if (userStore.user.isConfirmedStudent === true){
       setGetSignUpPageOrRedirectRegister(() => () => <Redirect to="/user/register"/>)
     }
-
-    if (!userStore?.user?.id){
-      console.log('1')
-      signUpStore.setStep('SignUp')
-    } else if (!userStore?.profile?.id) {
-      console.log('2')
-      signUpStore.setStep('BasicInfo');
-    } else {
-      console.log('3')
-      signUpStore.setStep('CheckStudentIdCard')
-    }
-  }, [userStore.user, userStore.profile])
+  }, [userStore.user])
 
   return (
     <Switch>

@@ -41,12 +41,21 @@ const SignUpPage = inject('signUpStore', 'userStore')(observer(({ signUpStore, u
   }, [university]);
 
   useEffect(() => {
+    if (!userStore?.user?.id){
+      signUpStore.setStep('SignUp')
+    } else if (!userStore?.profile?.id) {
+      signUpStore.setStep('BasicInfo');
+    } else {
+      signUpStore.setStep('CheckStudentIdCard')
+    }
+  }, [userStore.user, userStore.profile]);
+
+  useEffect(() => {
     StepComponent = mapStepToComponent[signUpStore.step];
   }, [signUpStore.step]);
 
   return (
     <div className={styles.pageWrapper}>
-    {console.log(userStore.user.id)}
       <div className={styles.title}>
         {mapStepToTitle[signUpStore.step]}
       </div>
