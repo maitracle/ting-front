@@ -10,17 +10,17 @@ import SignUpPage from 'src/pages/User/SignUpPage';
 
 
 export default inject('userStore')(observer(({ userStore }) => {
-  const [getSignUpPageOrRedirectRegister, setGetSignUpPageOrRedirectRegister] = useState(SignUpPage);
+  const [signUpPageOrRedirectRegister, setSignUpPageOrRedirectRegister] = useState(SignUpPage);
   useEffect(()=>{
     if (userStore.user.isConfirmedStudent === true){
-      setGetSignUpPageOrRedirectRegister(() => () => <Redirect to="/user/register"/>)
+      setSignUpPageOrRedirectRegister(() => () => <Redirect to="/user/register"/>)
     }
   }, [userStore.user])
 
   return (
     <Switch>
       <Route path="/user/log-in" exact component={LogInPage} />
-      <Route path="/user/sign-up/:university" exact component={getSignUpPageOrRedirectRegister} />
+      <Route path="/user/sign-up/:university" exact component={signUpPageOrRedirectRegister} />
       <Route path="/user/email-confirm/:userCode" exact component={EmailConfirmPage} />
       <Route path="/user/register" exact component={RegisterPage} />
       <Route path="/user/register/complete" exact component={RegisterCompletePage} />
