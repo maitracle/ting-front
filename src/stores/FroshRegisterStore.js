@@ -1,19 +1,18 @@
-/* eslint-disable import/prefer-default-export */
 import { action, computed, observable } from 'mobx';
 import requests from 'src/utils/requests';
 import { REGISTER_SELSO_PATH } from 'src/constants/requests';
 
 
-const registerSelsoApi = (payload) => requests.post(`${REGISTER_SELSO_PATH}`, payload, true);
+const registerFroshProfileApi = (payload) => requests.post(`${REGISTER_SELSO_PATH}`, payload, true);
 
-export class RegisterStore {
+export default class FroshRegisterStore {
   @observable stepList = [];
 
   @observable currentStep = '';
 
   @observable groupList = ['group1', 'group2', 'group3', 'group4'];
 
-  @observable group1 = ['Nickname', 'Height', 'BodyType', 'Religion', 'IsSmoke'];
+  @observable group1 = ['Age', 'Height', 'BodyType', 'Religion', 'IsSmoke'];
 
   @observable group2 = ['Appearance', 'Personality', 'Hobby', 'DateStyle', 'IdealType'];
 
@@ -21,24 +20,7 @@ export class RegisterStore {
 
   @observable group4 = ['ChatLink'];
 
-  @observable registerData = {
-    profile: '',
-    nickname: '',
-    height: '',
-    bodyType: '',
-    religion: '',
-    isSmoke: '',
-    appearance: '',
-    personality: '',
-    hobby: '',
-    dateStyle: '',
-    idealType: '',
-    oneSentence: '',
-    tags: '',
-    chatLink: '',
-    isActive: false,
-    isCompleted: false,
-  };
+  @observable registerData = {};
 
   constructor(root) {
     this.root = root;
@@ -64,7 +46,7 @@ export class RegisterStore {
     const stepIndex = this.stepList.indexOf(this.currentStep);
     if (stepIndex !== -1 && stepIndex + 1 !== this.stepList.length) {
       this.currentStep = this.stepList[stepIndex + 1];
-    } 
+    }
   };
 
   @action backTo = () => {
@@ -78,7 +60,7 @@ export class RegisterStore {
     this.registerData[type] = value;
   };
 
-  @action registerSelso = () => registerSelsoApi(this.registerData)
+  @action registerFroshProfile = () => registerFroshProfileApi(this.registerData)
     .then((res) => ({
       status: res.status,
       message: res.statusText,

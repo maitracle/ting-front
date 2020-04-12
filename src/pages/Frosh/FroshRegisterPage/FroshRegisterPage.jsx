@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import RegisterHeader from 'src/modules/Register/RegisterHeader';
-import Nickname from 'src/modules/Register/StepComponents/Group1/Nickname'
+import Age from 'src/modules/Register/StepComponents/Group1/Age';
 import Height from 'src/modules/Register/StepComponents/Group1/Height';
 import IsSmoke from 'src/modules/Register/StepComponents/Group1/IsSmoke';
 import Religion from 'src/modules/Register/StepComponents/Group1/Religion';
@@ -17,7 +17,7 @@ import Image from 'src/modules/Register/StepComponents/Group3/Image';
 import ChatLink from 'src/modules/Register/StepComponents/Group4/ChatLink';
 
 const mapStepToComponent = {
-  Nickname,
+  Age,
   Height,
   BodyType,
   Religion,
@@ -33,13 +33,13 @@ const mapStepToComponent = {
   ChatLink,
 };
 
-export const RegisterPage = inject('registerStore')(
-  observer(({ registerStore, history }) => {
-    let StepComponent = mapStepToComponent[registerStore.currentStep];
+const FroshRegisterPage = inject('froshRegisterStore')(
+  observer(({ froshRegisterStore, history }) => {
+    let StepComponent = mapStepToComponent[froshRegisterStore.currentStep];
 
     useEffect(() => {
-      StepComponent = mapStepToComponent[registerStore.currentStep];
-    }, [registerStore.currentStep]);
+      StepComponent = mapStepToComponent[froshRegisterStore.currentStep];
+    }, [froshRegisterStore.currentStep]);
 
     return (
       <div>
@@ -49,3 +49,5 @@ export const RegisterPage = inject('registerStore')(
     );
   }),
 );
+
+export default FroshRegisterPage;

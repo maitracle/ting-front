@@ -6,7 +6,6 @@ import { placeholder } from 'src/constants/Register/Group2'
 import styles from './Group2.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
-
 const Appearance = inject('registerStore')(
   observer(({ registerStore }) => {
     const minLength = 120;

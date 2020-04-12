@@ -6,16 +6,17 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 import Modal from 'src/components/Modal';
 
 
-const ChatLink = inject('registerStore')(
+const ChatLink = inject('registerStore', 'userStore')(
   observer(({ registerStore, history }) => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
     const submit = () => {
-      registerStore.setRegisterData('isActive', true);
-      registerStore.setRegisterData('isCompleted', true);
+
+      registerStore.setRegisterData('profile', userStore.profile.id)
+
       registerStore.registerSelso()
         .then((res) => {
-          if (res.status === 200) {
+          if (res.status === 201) {
             history.push('register/complete');
           } else if (res.status >= 500) {
             setIsErrorModalOpen(true);
