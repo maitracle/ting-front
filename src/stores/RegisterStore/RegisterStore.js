@@ -77,23 +77,38 @@ export class RegisterStore {
     this.registerData[type] = value;
   };
 
-  @action registerSelso = () => registerSelsoApi(this.registerData)
-    .then((res) => ({
-      status: res.status,
-      message: res.statusText,
-    })).catch((err) => {
-      if (err.response) {
-        return {
-          status: err.response.status,
-          message: err.response.statusText,
-          data: err.response.data,
-        };
-      }
 
-      return {
-        status: null,
-        message: 'unknown error',
-        data: {},
-      };
-    });
+  @action registerSelso = () => {
+    const formData = new FormData();
+    const splitFileName = this.registerData.image.name.split('.');
+    formData.append('image', this.registerData.image, `image.${splitFileName[splitFileName.length - 1]}`);
+    formData.append('profile', this.root.userStore.profile.id);
+
+    const fieldNameList = ['profile', 'nickname', 'height', 'bodyType', 'religion', 'isSmoke', 'appearance',
+      'personality', 'hobby', 'dateStyle', 'idealType', 'oneSentence', 'tags', 'chatLink',];
+
+    for (let key of fieldNameList) {
+      formData.append(key, this.registerData[key]);
+    }
+
+    return registerSelsoApi(formData)
+      .then((res) => ({
+        status: res.status,
+        message: res.statusText,
+      })).catch((err) => {
+        if (err.response) {
+          return {
+            status: err.response.status,
+            message: err.response.statusText,
+            data: err.response.data,
+          };
+        }
+
+        return {
+          status: null,
+          message: 'unknown error',
+          data: {},
+        };
+      });
+  };
 }

@@ -26,4 +26,5 @@ const RegisterBtnSet = inject('registerStore')(
     </>
   )),
 );
+
 export default RegisterBtnSet;
