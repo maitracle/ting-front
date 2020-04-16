@@ -41,7 +41,7 @@ const SignUpPage = inject('signUpStore', 'userStore')(observer(({ signUpStore, u
   }, [university]);
 
   useEffect(() => {
-    if (!userStore?.user?.id){
+    if (!userStore.isLoggedIn){
       signUpStore.setStep('SignUp')
     } else if (!userStore?.profile?.id) {
       signUpStore.setStep('BasicInfo');
