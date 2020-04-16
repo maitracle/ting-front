@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import Gnb from 'src/components/Gnb';
 import GlobalTab from 'src/components/GlobalTab';
 import MainPage from 'src/pages/MainPage';
 import SelsoListPage from 'src/pages/Selso/SelsoListPage';
@@ -12,17 +11,10 @@ import MyQuestion from 'src/pages/MyPage/Question';
 import MyReview from 'src/pages/MyPage/Review';
 import FroshListPage from 'src/pages/Frosh/FroshListPage';
 
-import styles from  './DefaultLayoutRouter.module.scss';
-
 
 export default () => {
   return (
-    <div className={styles.layoutWrapper}>
-      <header>
-        <Gnb />
-      </header>
-      <div className={styles.gnbBlankBox} />
-
+    <div>
       <Route path="/" exact component={MainPage} />
 
       <Route path="/selso" exact component={SelsoListPage} />
@@ -34,8 +26,6 @@ export default () => {
       <Route path="/my/point" exact component={MyPoint} />
       <Route path="/my/question" exact component={MyQuestion} />
       <Route path="/my/review" exact component={MyReview} />
-
-      <div className={styles.blankBox} />
 
       <GlobalTab />
     </div>

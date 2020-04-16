@@ -5,9 +5,14 @@ import UserRouter from 'src/routers/UserRouter';
 import DefaultLayoutRouter from './DefaultLayoutRouter';
 import SelsoDetailPage from 'src/pages/Selso/SelsoDetailPage';
 import FroshDetailPage from 'src/pages/Frosh/FroshDetailPage';
+import Gnb from 'src/components/Gnb';
+
 
 export default () => (
   <Router>
+    <header>
+      <Gnb />
+    </header>
     <main>
       <Switch>
         <Route path="/user" component={UserRouter} />
