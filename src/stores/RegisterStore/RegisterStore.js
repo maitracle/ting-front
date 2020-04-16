@@ -35,6 +35,7 @@ export class RegisterStore {
     idealType: '',
     oneSentence: '',
     tags: '',
+    image: null,
     chatLink: '',
   };
 

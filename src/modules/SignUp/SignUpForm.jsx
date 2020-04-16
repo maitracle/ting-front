@@ -99,7 +99,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
       </p>
 
       <div className={styles.buttonWrapper}>
-        <Btn onClick={submit} value={'다음'} />
+        <Btn onClick={submit}>다음</Btn>
       </div>
     </div>
   );
