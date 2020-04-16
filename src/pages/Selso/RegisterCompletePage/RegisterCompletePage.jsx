@@ -21,7 +21,9 @@ const RegisterCompletePage = inject('userStore')(
 
           <img src={require('src/assets/images/Register/cheerPerson@3x.png')} className={styles.image} alt='등록 완료' />
 
-          <Btn value='다음' onClick={() => history.push('/selso')} />
+          <div className={styles.buttonWrapper}>
+            <Btn value='다음' onClick={() => history.push('/selso')} />
+          </div>
         </div>
     );
   }),

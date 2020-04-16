@@ -7,11 +7,11 @@ import Modal from 'src/components/Modal';
 
 
 const ChatLink = inject('registerStore', 'userStore')(
-  observer(({ registerStore, history }) => {
+  observer(({ registerStore, userStore, history }) => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
     const submit = () => {
-      registerStore.setRegisterData('profile', userStore.profile.id)
+      registerStore.setRegisterData('profile', userStore.profile.id);
       registerStore.registerSelso()
         .then((res) => {
           if (res.status === 201) {
@@ -20,7 +20,7 @@ const ChatLink = inject('registerStore', 'userStore')(
             setIsErrorModalOpen(true);
           }
         });
-    }
+    };
 
     return (
       <>

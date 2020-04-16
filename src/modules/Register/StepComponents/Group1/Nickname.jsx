@@ -29,7 +29,7 @@ const Nickname = inject('registerStore')(
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
 
     return (
       <>
@@ -40,7 +40,6 @@ const Nickname = inject('registerStore')(
           <div className={styles.inputLine}>
             <div className={styles.inputWrapper}>
               <Input
-                placeholder="8자 이내의 한글로 입력해주세요."
                 value={registerStore.registerData.nickname}
                 onChange={(e) => registerStore.setRegisterData('nickname', e.target.value)}
                 validationMessage={nicknameValidationMessage}
