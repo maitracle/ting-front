@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import { ProfileCard } from 'src/modules/MyPage/ProfileCard/ProfileCard';
@@ -11,7 +11,6 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     selsoListStore.getMySelsoProfile();
   }, []);
 
-  const setForm = (key) => (event) => setMySelsoProfileData({ ...mySelsoProfileData, [key]: event.target.value });
 
   return (
     userStore.isLoggedIn ?
