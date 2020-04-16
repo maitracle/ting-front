@@ -9,14 +9,14 @@ import EmailConfirmPage from 'src/pages/User/UserConfirmPage';
 import SignUpPage from 'src/pages/User/SignUpPage';
 
 
-export default inject('userStore', 'signUpStore')(observer(({ userStore, signUpStore }) => {
+export default inject('userStore')(observer(({ userStore }) => {
   const [signUpPageOrRedirectRegister, setSignUpPageOrRedirectRegister] = useState(() => () => null);
   useEffect(()=>{
     if (userStore.user.isConfirmedStudent === true){
-      setSignUpPageOrRedirectRegister(() => () => <Redirect to="/user/register"/>)
+      setSignUpPageOrRedirectRegister(() => () => <Redirect to="/"/>);
     } else {
-      setSignUpPageOrRedirectRegister(SignUpPage)
-    }
+      setSignUpPageOrRedirectRegister(SignUpPage);
+    };
   }, [userStore.user])
 
   return (
