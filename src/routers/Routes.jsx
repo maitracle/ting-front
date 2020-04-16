@@ -6,6 +6,7 @@ import DefaultLayoutRouter from './DefaultLayoutRouter';
 import SelsoDetailPage from 'src/pages/Selso/SelsoDetailPage';
 import FroshDetailPage from 'src/pages/Frosh/FroshDetailPage';
 import Gnb from 'src/components/Gnb';
+import GlobalTab from 'src/components/GlobalTab';
 
 
 export default () => (
@@ -23,5 +24,8 @@ export default () => (
         <Route path="/" component={DefaultLayoutRouter} />
       </Switch>
     </main>
+    <footer>
+      <GlobalTab />
+    </footer>
   </Router>
 );

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 
-import GlobalTab from 'src/components/GlobalTab';
 import MainPage from 'src/pages/MainPage';
 import SelsoListPage from 'src/pages/Selso/SelsoListPage';
 import MyList from 'src/pages/MyPage/List';
@@ -14,7 +13,7 @@ import FroshListPage from 'src/pages/Frosh/FroshListPage';
 
 export default () => {
   return (
-    <div>
+    <>
       <Route path="/" exact component={MainPage} />
 
       <Route path="/selso" exact component={SelsoListPage} />
@@ -26,8 +25,6 @@ export default () => {
       <Route path="/my/point" exact component={MyPoint} />
       <Route path="/my/question" exact component={MyQuestion} />
       <Route path="/my/review" exact component={MyReview} />
-
-      <GlobalTab />
-    </div>
+    </>
   );
 };
