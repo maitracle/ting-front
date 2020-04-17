@@ -4,10 +4,11 @@ import { inject, observer } from 'mobx-react';
 import { ProfileCard } from 'src/modules/MyPage/ProfileCard/ProfileCard';
 
 import styles from './MyProfile.module.scss';
+import Btn from 'src/components/Button/Btn';
 
 export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userStore, selsoListStore }) => {
 
-  const [mySelfDateProfileData, setMySelfDateProfileData] = useState('')
+  const [mySelfDateProfileData, setMySelfDateProfileData] = useState({})
 
   useEffect(() => {
     selsoListStore.getMySelsoProfile();
@@ -104,7 +105,11 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
               />
           </div>
         </section>
-        <button style={{border: 'solid 1px black'}} onClick={selsoListStore.updateMySelsoProfile(mySelfDateProfileData)}>update</button>
+        <Btn 
+          value={"수정하기"}
+          onClick={selsoListStore.updateMySelsoProfile(mySelfDateProfileData, () => alert('수정이 완료되었습니다!'))}
+          type={"UpdateMySelso"}  
+        />
       </div>
       :
       null

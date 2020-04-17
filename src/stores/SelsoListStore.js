@@ -31,7 +31,7 @@ export default class SelsoListStore {
     this.mySelsoProfile[type] = value
   }
 
-  @action updateMySelsoProfile = (modifiedMySelsoProfile) => () => {
+  @action updateMySelsoProfile = (modifiedMySelsoProfile, alert) => () => {
     const { id, appearance, personality, hobby, dateStyle, idealType, oneSentence, tags, chatLink } = modifiedMySelsoProfile;
     const payload = {
       id,
@@ -43,15 +43,17 @@ export default class SelsoListStore {
       oneSentence,
       tags,
       chatLink
-    };                            
-
-    updateMySelsoProfileApi(payload)
+    };    
+    
+    return updateMySelsoProfileApi(payload)
       .then((res) => {
         this.mySelsoProfile = {
           ...this.mySelsoProfile,
           ...res.data
         };
-        alert('수정이 완료되었습니다!');
+        if (res.status === 200) {
+          alert();
+        }
       })
       .catch((err) => err)
   }
