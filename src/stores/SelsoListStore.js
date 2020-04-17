@@ -31,8 +31,8 @@ export default class SelsoListStore {
     this.mySelsoProfile[type] = value
   }
 
-  @action updateMySelsoProfile = () => {
-    const { id, appearance, personality, hobby, dateStyle, idealType, oneSentence, tags, chatLink } = this.mySelsoProfile;
+  @action updateMySelsoProfile = (modifiedMySelsoProfile) => () => {
+    const { id, appearance, personality, hobby, dateStyle, idealType, oneSentence, tags, chatLink } = modifiedMySelsoProfile;
     const payload = {
       id,
       appearance,
