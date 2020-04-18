@@ -31,7 +31,7 @@ export default class SelsoListStore {
     this.mySelsoProfile[type] = value
   }
 
-  @action updateMySelsoProfile = (modifiedMySelsoProfile) => new Promise(async (resolve, reject) => {
+  @action updateMySelsoProfile = (modifiedMySelsoProfile) => {
     const { id, appearance, personality, hobby, dateStyle, idealType, oneSentence, tags, chatLink } = modifiedMySelsoProfile;
     const payload = {
       id,
@@ -44,20 +44,33 @@ export default class SelsoListStore {
       tags,
       chatLink,
     }; 
-    let responseStatus = null;
     
-    await updateMySelsoProfileApi(payload)
+    return updateMySelsoProfileApi(payload)
       .then((res) => {
         this.mySelsoProfile = {
           ...this.mySelsoProfile,
           ...res.data
         };
-        responseStatus = res.status;
-      })
-      .catch((err) => err)
+        return {
+          status: res.status,
+          message: res.statusText,
+        }
+      }).catch((err) => {
+        if (err.response) {
+          return {
+            status: err.response.status,
+            message: err.response.statusText,
+            data: err.response.data,
+          };
+        }
 
-    resolve(responseStatus);
-  })
+        return {
+          status: null,
+          message: 'unknown error',
+          data: {},
+        };
+      });
+  }
 
   @action setSelsoList = (gender, university) => fetchSelsoListApi(gender, university)
     .then((res) => {

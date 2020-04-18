@@ -22,9 +22,11 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
 
   const update = () => {
     selsoListStore.updateMySelsoProfile(mySelfDateProfileData)
-      .then(code => {
-        if (code === 200) {
+      .then((res) => {
+        if (res.status === 200) {
           alert('수정이 완료되었습니다!');
+        } else {
+          alert('수정이 실패하였습니다!');
         }
       })
   }
