@@ -20,6 +20,15 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
 
   const setForm = (key) => (event) => setMySelfDateProfileData({ ...mySelfDateProfileData, [key]: event.target.value });
 
+  const update = () => {
+    selsoListStore.updateMySelsoProfile(mySelfDateProfileData)
+      .then(code => {
+        if (code === 200) {
+          alert('수정이 완료되었습니다!');
+        }
+      })
+  }
+  
   return (
     userStore.isLoggedIn ?
       <div>
@@ -107,7 +116,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
         </section>
         <Btn 
           value={"수정하기"}
-          onClick={selsoListStore.updateMySelsoProfile(mySelfDateProfileData, () => alert('수정이 완료되었습니다!'))}
+          onClick={update}
           type={"UpdateMySelso"}  
         />
       </div>
