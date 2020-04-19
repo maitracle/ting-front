@@ -12,32 +12,30 @@ import MyQuestion from 'src/pages/MyPage/Question';
 import MyReview from 'src/pages/MyPage/Review';
 import FroshListPage from 'src/pages/Frosh/FroshListPage';
 
-import styles from  './DefaultLayoutRouter.module.scss';
+import styles from './DefaultLayoutRouter.module.scss';
 
 
-export default () => {
-  return (
-    <div className={styles.layoutWrapper}>
-      <header>
-        <Gnb />
-      </header>
-      <div className={styles.gnbBlankBox} />
+export default () => (
+  <div className={styles.layoutWrapper}>
+    <header>
+      <Gnb />
+    </header>
+    <div className={styles.gnbBlankBox} />
 
-      <Route path="/" exact component={MainPage} />
+    <Route path="/" exact component={MainPage} />
 
-      <Route path="/selso" exact component={SelsoListPage} />
+    <Route path="/selso" exact component={SelsoListPage} />
 
-      <Route path="/frosh" exact component={FroshListPage} />
+    <Route path="/frosh" exact component={FroshListPage} />
 
-      <Route path="/my" exact component={MyList} />
-      <Route path="/my/profile" exact component={MyProfile} />
-      <Route path="/my/point" exact component={MyPoint} />
-      <Route path="/my/question" exact component={MyQuestion} />
-      <Route path="/my/review" exact component={MyReview} />
+    <Route path="/my" exact component={MyList} />
+    <Route path="/my/profile" exact component={MyProfile} />
+    <Route path="/my/point" exact component={MyPoint} />
+    <Route path="/my/question" exact component={MyQuestion} />
+    <Route path="/my/review" exact component={MyReview} />
 
-      <div className={styles.blankBox} />
+    <div className={styles.blankBox} />
 
-      <GlobalTab />
-    </div>
-  );
-};
+    <GlobalTab />
+  </div>
+);
