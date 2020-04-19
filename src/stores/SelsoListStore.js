@@ -76,7 +76,7 @@ export default class SelsoListStore {
     .then((res) => {
       this.selsoList = res.data;
     })
-    .catch((err) => err)
+    .catch((err) => err);
 
   @action setChoosedSelso = (selsoItem) => {
     this.choosedSelso = selsoItem;
