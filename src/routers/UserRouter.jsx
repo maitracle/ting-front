@@ -13,7 +13,7 @@ export default inject('userStore')(observer(({ userStore }) => {
   const [signUpPageOrRedirectRegister, setSignUpPageOrRedirectRegister] = useState(() => () => null);
   useEffect(()=>{
     if (userStore.user.isConfirmedStudent === true){
-      setSignUpPageOrRedirectRegister(() => () => <Redirect to="/"/>);
+      setSignUpPageOrRedirectRegister(() => () => <Redirect to="/" />);
     } else {
       setSignUpPageOrRedirectRegister(SignUpPage);
     };
