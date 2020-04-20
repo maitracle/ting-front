@@ -230,7 +230,7 @@ const BasicInfo = inject('signUpStore', 'userStore')(observer(({ signUpStore, us
           validationMessage={scholarlyStatusValidationMessage}
         />
       </div>
-      <Btn onClick={submit} value={'기본정보 제출'} />
+      <Btn onClick={submit}>기본정보 제출</Btn>
     </div>
   )
 }));

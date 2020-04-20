@@ -1,6 +1,8 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import Btn from 'src/components/Button/Btn';
+import { IoIosArrowBack } from 'react-icons/io';
+
 import styles from './RegisterBtnSet.module.scss';
 
 
@@ -9,10 +11,14 @@ const RegisterBtnSet = inject('registerStore')(
     <>
       <div className={styles.btnWrapper}>
         <div className={styles.btnPrevWrapper}>
-          <Btn onClick={backTo} value="<" type="Gray" />
+          <Btn onClick={backTo} type="Gray">
+            <div>
+              <IoIosArrowBack className={styles.contents} />
+            </div>
+          </Btn>
         </div>
         <div className={styles.btnNextWrapper}>
-          <Btn onClick={nextTo} value="다음" />
+          <Btn onClick={nextTo}>다음</Btn>
         </div>
       </div>
 
@@ -20,4 +26,5 @@ const RegisterBtnSet = inject('registerStore')(
     </>
   )),
 );
+
 export default RegisterBtnSet;
