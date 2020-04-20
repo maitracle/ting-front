@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import styles from './SideBar.module.scss';
 
-export const SideBar = ({ isOpen, close, SideBarList }) => (
+export const SideBar = ({ isOpen, close, children }) => (
   <>
     {
       isOpen
@@ -12,7 +12,7 @@ export const SideBar = ({ isOpen, close, SideBarList }) => (
             <div className={styles.modalWrapper}>
               <div className={styles.modalContentsWrapper} />
               <div className={styles.buttonWrapper}>
-                { SideBarList }
+                { children }
               </div>
             </div>
           </>

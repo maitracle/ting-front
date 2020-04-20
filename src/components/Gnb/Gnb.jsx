@@ -24,29 +24,28 @@ export const Gnb = inject('myPointStore')(observer(({ myPointStore }) => {
           <SideBar
             isOpen={isOpenSideBarModal}
             close={() => setisOpenSideBarModal(false)}
-            SideBarList={[
-              <Link to="/selso">
-                <div className={styles.link} onClick={() => setisOpenSideBarModal(false)}>
-                    List보기
-                </div>
-              </Link>,
-              <Link to="/my">
-                <div className={styles.link} onClick={() => setisOpenSideBarModal(false)}>
-                    Mypage
-                </div>
-              </Link>,
-              <Link to="/">
-                <div className={styles.link} onClick={() => setisOpenSideBarModal(false)}>
-                  공지사항
-                </div>
-              </Link>,
-              <Link to="/my/question">
-                <div className={styles.link} onClick={() => setisOpenSideBarModal(false)}>
-                  문의사항
-                </div>
-              </Link>,
-            ]}
-          />
+          >
+            <Link to="/selso">
+              <div className={styles.link} onClick={() => setisOpenSideBarModal(false)}>
+                List보기
+              </div>
+            </Link>
+            <Link to="/my">
+              <div className={styles.link} onClick={() => setisOpenSideBarModal(false)}>
+                Mypage
+              </div>
+            </Link>
+            <Link to="/">
+              <div className={styles.link} onClick={() => setisOpenSideBarModal(false)}>
+                공지사항
+              </div>
+            </Link>
+            <Link to="/my/question">
+              <div className={styles.link} onClick={() => setisOpenSideBarModal(false)}>
+                문의사항
+              </div>
+            </Link>
+          </SideBar>
         </div>
       </div>
     </div>
