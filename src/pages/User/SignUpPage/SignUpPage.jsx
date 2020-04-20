@@ -41,14 +41,14 @@ const SignUpPage = inject('signUpStore', 'userStore')(observer(({ signUpStore, u
   }, [university]);
 
   useEffect(() => {
-    if (!userStore.profile) {
+    if (!userStore.isLoggedIn){
+      signUpStore.setStep('SignUp')
+    } else if (!userStore?.profile?.id) {
       signUpStore.setStep('BasicInfo');
-    } else if(userStore?.user?.isConfirmedStudent === false) {
-      signUpStore.setStep('CheckStudentIdCard');
-    } else if (userStore?.user?.isConfirmedStudent === true) {
-      history.push('/user/register');
+    } else {
+      signUpStore.setStep('CheckStudentIdCard')
     }
-  }, [signUpStore, userStore.user]);
+  }, [userStore.user, userStore.profile]);
 
   useEffect(() => {
     StepComponent = mapStepToComponent[signUpStore.step];
