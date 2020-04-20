@@ -120,7 +120,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
           <Btn 
             value={"수정하기"}
             onClick={update}
-            type={"UpdateMySelso"}  
+            type={"Filled"}  
           />
         </div>
       </div>
