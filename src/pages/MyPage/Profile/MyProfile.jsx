@@ -118,10 +118,9 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
         </section>
         <div className={styles.buttonWrapper}>
           <Btn 
-            value={"수정하기"}
             onClick={update}
             type={"Filled"}  
-          />
+          >수정하기</Btn>
         </div>
       </div>
       :
