@@ -13,7 +13,7 @@
   background-color: white;
 
   .gnbContents {
-    margin: 0 25px;
+    margin: 0 20px;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -38,8 +38,20 @@
     color: #616161;
 
     .count {
-      margin-left: 43px;
+      margin-left: 15px;
       color: #ED5F4F;
     }
+  }
+}
+
+.sideBarWrapper {
+  margin-left:15px;
+  float: right;
+
+  .link {
+    margin: 10px;
+    color: #616161;
+    font-size: 16px;
+    text-align: center;
   }
 }

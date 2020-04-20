@@ -25,11 +25,11 @@ export default class SelsoListStore {
     .then((res) => {
       this.mySelsoProfile = res.data;
     })
-    .catch((err) => err)
+    .catch((err) => err);
 
   @action setMySelsoProfile = (type, value) => {
     this.mySelsoProfile[type] = value
-  }
+  };
 
   @action updateMySelsoProfile = (modifiedMySelsoProfile) => {
     const { id, appearance, personality, hobby, dateStyle, idealType, oneSentence, tags, chatLink } = modifiedMySelsoProfile;
@@ -70,7 +70,7 @@ export default class SelsoListStore {
           data: {},
         };
       });
-  }
+  };
 
   @action setSelsoList = (gender, university) => fetchSelsoListApi(gender, university)
     .then((res) => {

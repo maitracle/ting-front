@@ -8,7 +8,7 @@ import Btn from 'src/components/Button/Btn';
 
 export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userStore, selsoListStore }) => {
 
-  const [mySelfDateProfileData, setMySelfDateProfileData] = useState({})
+  const [mySelfDateProfileData, setMySelfDateProfileData] = useState({});
 
   useEffect(() => {
     selsoListStore.getMySelsoProfile();
@@ -16,7 +16,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
 
   useEffect(() => {
     setMySelfDateProfileData(selsoListStore.mySelsoProfile)
-  }, [selsoListStore.mySelsoProfile])
+  }, [selsoListStore.mySelsoProfile]);
 
   const setForm = (key) => (event) => setMySelfDateProfileData({ ...mySelfDateProfileData, [key]: event.target.value });
 
@@ -29,7 +29,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
           alert('수정이 실패하였습니다!');
         }
       })
-  }
+  };
   
   return (
     userStore.isLoggedIn ?

@@ -16,8 +16,8 @@ export default inject('userStore')(observer(({ userStore }) => {
       setSignUpPageOrRedirectRegister(() => () => <Redirect to="/" />);
     } else {
       setSignUpPageOrRedirectRegister(SignUpPage);
-    };
-  }, [userStore.user])
+    }
+  }, [userStore.user]);
 
   return (
     <Switch>
