@@ -51,6 +51,7 @@ export default class UserStore {
         this.user = res.data.user;
         this.profile = res.data.profile;
         this.root.myPointStore.myPointHistoryList = res.data.coinHistory;
+        this.isLoggedIn = true;
         return {
           status: res.status,
           message: res.statusText,
