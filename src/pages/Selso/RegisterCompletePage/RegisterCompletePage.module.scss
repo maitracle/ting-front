@@ -1,6 +1,8 @@
+@import "src/styles/_constants";
+
 .pageWrapper {
   background-color: #E3EFFF;
-  min-height: 100vh;
+  min-height: calc(100vh - #{$gnb-height});
 
   padding: 55px 25px 35px 25px;
 
