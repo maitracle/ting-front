@@ -24,7 +24,6 @@ export default inject('userStore', 'selsoListStore')(observer(({ userStore, sels
   useEffect(() => {
     if (userStore.isLoggedIn === true) {
       selsoListStore.getMySelsoProfile();
-      
     }
   }, [userStore.isLoggedIn])
 
