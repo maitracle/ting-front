@@ -22,7 +22,7 @@ const RegisterCompletePage = inject('userStore')(
           <img src={require('src/assets/images/Register/cheerPerson@3x.png')} className={styles.image} alt='등록 완료' />
 
           <div className={styles.buttonWrapper}>
-            <Btn onClick={() => history.push('/selso')}>다음</Btn>
+            <Btn onClick={() => history.push('/')}>메인 페이지로</Btn>
           </div>
         </div>
     );
