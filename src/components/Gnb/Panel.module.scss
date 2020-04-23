@@ -1,4 +1,4 @@
-.modalOverlay{
+.panelOverlay{
   position: fixed;
   top: 0;
   left: 0;
@@ -7,7 +7,7 @@
   background-color: rgba(0, 0, 0, 0.16);
 }
 
-.modalWrapper {
+.panelWrapper {
   position: fixed;
   top: 50%;
   left: 65%;
@@ -19,16 +19,6 @@
   background-color: white;
 }
 
-.modalContentsWrapper {
+.panelContentsWrapper {
   padding: 25px;
-}
-
-.buttonWrapper {
-  max-height: 350px;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
-  border-top: solid 1px #CECECE;
-  border-bottom: solid 1px #CECECE;
-  display: flex;
-  flex-direction: column;
 }

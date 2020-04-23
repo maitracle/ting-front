@@ -44,12 +44,26 @@
   }
 }
 
-.sideBarWrapper {
+.panelWrapper {
   margin-left:15px;
   float: right;
 
+  .separator {
+    margin-top: 30px;
+  }
+
+  .serviceTitle {
+    text-align: left;
+    font-size: 14px;
+    color: #868e96;
+  }
+
   .link {
-    margin: 10px;
+    text-decoration: none;
+  }
+
+  .linkTitle {
+    margin: 15px;
     color: #616161;
     font-size: 16px;
     text-align: center;
