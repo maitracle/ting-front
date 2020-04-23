@@ -5,6 +5,7 @@ import Input from 'src/components/Form/Input';
 import Btn from 'src/components/Button/Btn';
 
 import styles from './SignUpForm.module.scss';
+import { Modal } from 'src/components/Modal/Modal';
 
 
 const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
@@ -15,6 +16,7 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
 
   const [emailValidationMessage, setEmailValidationMessage] = useState('');
   const [passwordValidationMessage, setPasswordValidationMessage] = useState('');
+  const [isOpenSignUpFailModal, setIsOpenSignUpFailModal] = useState(false);
 
 
   const setFormDataHandler = (key) => (event) => {
@@ -62,8 +64,15 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
     if (isValid) {
       signUpStore.signUp(formData)
       .then((res) => {
-        if (res.status === 201) {
-          signUpStore.nextTo();
+        if (res.status === 400) {
+          if (res.data.email) {
+            setEmailValidationMessage('이미 회원가입이 완료된 이메일입니다.');
+          }
+          if (res.data.password) {
+            setPasswordValidationMessage('잘못된 비밀번호입니다.');
+          }
+        } else if(res.status !== 201) {
+          setIsOpenSignUpFailModal(true);
         }
       })
     }
@@ -97,6 +106,11 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
       <div className={styles.buttonWrapper}>
         <Btn onClick={submit}>다음</Btn>
       </div>
+
+      <Modal isOpen={isOpenSignUpFailModal}>
+        문제가 발생하였습니다. <br />
+        잠시 후 다시 시도해주세요.
+      </Modal>
     </div>
   );
 }));

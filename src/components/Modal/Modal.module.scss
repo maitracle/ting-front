@@ -35,9 +35,15 @@
 
 .defaultButton {
   flex: 1;
+  background-color: white;
+  border: solid 1px white;
 
   font-size: 18px;
   line-height: 18px;
   text-align: center;
   color: #CECECE;
+
+  &:focus {
+    outline: 0;
+  }
 }
