@@ -44,7 +44,8 @@ export default class SignUpStore {
         setAccessToken(res.data.access);
         this.root.userStore.user = res.data.user;
         this.root.userStore.profile = null;
-
+        this.root.userStore.isLoggedIn = true;
+        
         return {
           status: res.status,
           message: res.statusText,
