@@ -2,7 +2,7 @@ import { Redirect } from 'react-router-dom';
 import React from 'react';
 
 
-const getNeedLogInComponent = (component, isLoggedIn) => {
+const getNeedLogInPage = (component, isLoggedIn) => {
   if (isLoggedIn === null) {
     return null;
   } else if (isLoggedIn === true) {
@@ -12,4 +12,4 @@ const getNeedLogInComponent = (component, isLoggedIn) => {
   }
 };
 
-export default getNeedLogInComponent;
+export default getNeedLogInPage;
