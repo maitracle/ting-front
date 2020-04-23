@@ -94,10 +94,6 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         />
       </div>
 
-      <p className={styles.agreementLink}>
-        캠쿠의 이용약관 및 개인정보 처리방침에 동의합니다.
-      </p>
-
       <div className={styles.buttonWrapper}>
         <Btn onClick={submit}>다음</Btn>
       </div>

@@ -46,7 +46,7 @@ const SignUpPage = inject('signUpStore', 'userStore')(observer(({ signUpStore, u
     } else if (!userStore?.profile?.id) {
       signUpStore.setStep('BasicInfo');
     } else {
-      signUpStore.setStep('CheckStudentIdCard')
+      signUpStore.setStep('CheckStudentIdCard');
     }
   }, [userStore.user, userStore.profile]);
 
