@@ -11,7 +11,7 @@ const RegisterCompletePage = inject('userStore')(
     return (
         <div className={styles.pageWrapper}>
           <div className={styles.titleWrapper}>
-            <div>{userStore.profile.nickname}님의</div>
+            <div>{userStore.profile?.nickname}님의</div>
             <div>마이프로필이 완성되었습니다!</div>
           </div>
 
