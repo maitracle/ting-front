@@ -70,6 +70,10 @@ export default class SignUpStore {
   @action createProfile = (profileData) => {
     return createProfileApi(profileData)
       .then((res) => {
+        if (res.status === 201) {
+          this.root.userStore.profile = res.data;
+        }
+
         return {
           status: res.status,
           message: res.statusText,
