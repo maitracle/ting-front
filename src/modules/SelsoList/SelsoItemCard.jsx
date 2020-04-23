@@ -4,9 +4,6 @@ import styles from './SelsoItemCard.module.scss';
 
 
 export default function SelsoItemCard({ selsoItem }) {
-  const today = new Date();
-  const age = today.getFullYear() - selsoItem.profile.bornYear + 1;
-
   return (
     <div className={styles.card}>
       <div className={styles.leftBox}>
@@ -15,7 +12,7 @@ export default function SelsoItemCard({ selsoItem }) {
             {selsoItem.nickname}
           </div>
           <div className={styles.age}>
-            {`${age}살`}
+            {`${selsoItem.profile.age}살`}
             <img src={require('src/assets/images/SelsoList/New@3x.png')} className={styles.new} alt="new" />
           </div>
         </div>

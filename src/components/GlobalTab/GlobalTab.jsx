@@ -22,25 +22,28 @@ const TabItem = withRouter(({ name, linkTo, imageSrc, selectedImageSrc }) => {
 
 export const GlobalTab = () => {
   return (
-    <div className={styles.tabWrapper}>
-      <TabItem
-        name={'List'}
-        linkTo={'/selso'}
-        imageSrc={require('src/assets/images/GlobalTab/home.png')}
-        selectedImageSrc={require('src/assets/images/GlobalTab/home-selected.png')}
-      />
-      <TabItem
-        name={'ZZim'}
-        linkTo={'/zzim'}
-        imageSrc={require('src/assets/images/GlobalTab/heart.png')}
-        selectedImageSrc={require('src/assets/images/GlobalTab/heart-selected.png')}
-      />
-      <TabItem
-        name={'MyPage'}
-        linkTo={'/my'}
-        imageSrc={require('src/assets/images/GlobalTab/person.png')}
-        selectedImageSrc={require('src/assets/images/GlobalTab/person-selected.png')}
-      />
-    </div>
+    <>
+      <div className={styles.tabWrapper}>
+        <TabItem
+          name={'List'}
+          linkTo={'/selso'}
+          imageSrc={require('src/assets/images/GlobalTab/home.png')}
+          selectedImageSrc={require('src/assets/images/GlobalTab/home-selected.png')}
+        />
+        <TabItem
+          name={'ZZim'}
+          linkTo={'/zzim'}
+          imageSrc={require('src/assets/images/GlobalTab/heart.png')}
+          selectedImageSrc={require('src/assets/images/GlobalTab/heart-selected.png')}
+        />
+        <TabItem
+          name={'MyPage'}
+          linkTo={'/my'}
+          imageSrc={require('src/assets/images/GlobalTab/person.png')}
+          selectedImageSrc={require('src/assets/images/GlobalTab/person-selected.png')}
+        />
+      </div>
+      <div className={styles.blankBox} />
+    </>
   );
 };
