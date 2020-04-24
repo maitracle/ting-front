@@ -5,6 +5,7 @@ import { ProfileCard } from 'src/modules/MyPage/ProfileCard/ProfileCard';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
 import Input from 'src/components/Form/Input';
+import Modal from 'src/components/Modal';
 import { selsoFieldsMaxLengthLimit, selsoFieldsMinLengthLimit } from 'src/constants/textLength';
 import { getLengthValidationMessage, getChatLinkValidationMessage, getTagsValidationMessage } from 'src/utils/validations';
 
@@ -12,6 +13,8 @@ import styles from './MyProfile.module.scss';
 import Btn from 'src/components/Button/Btn';
 
 export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userStore, selsoListStore }) => {
+
+  const [updateMessage, setUpdateMessage] = useState('');
 
   const [mySelfDateProfileData, setMySelfDateProfileData] = useState({
     chatLink: '',
@@ -141,9 +144,9 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
         selsoListStore.updateMySelsoProfile(mySelfDateProfileData)
           .then((res) => {
             if (res.status === 200) {
-              alert('수정이 완료되었습니다!');
+              setUpdateMessage('수정이 완료되었습니다!');
             } else {
-              alert('수정이 실패하였습니다!');
+              setUpdateMessage('잠시 후 다시 시도해주세요.')
             }
           });
       };
@@ -283,6 +286,12 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
             type={"Filled"}  
           >수정하기</Btn>
         </div>
+        <Modal
+          isOpen={updateMessage}
+          close={()=>setUpdateMessage('')}
+        >
+          {updateMessage}
+        </Modal>
       </div>
       :
       null
