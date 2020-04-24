@@ -11,7 +11,7 @@ import { getLengthValidationMessage, getChatLinkValidationMessage, getTagsValida
 import styles from './MyProfile.module.scss';
 import Btn from 'src/components/Button/Btn';
 
-export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ selsoListStore }) => {
+export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userStore, selsoListStore }) => {
 
   const [mySelfDateProfileData, setMySelfDateProfileData] = useState({
     chatLink: '',
