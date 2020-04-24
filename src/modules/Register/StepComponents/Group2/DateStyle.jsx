@@ -5,25 +5,22 @@ import TextLengthBox from 'src/components/Validation/TextLengthBox';
 import { placeholder } from 'src/constants/Register/Group2'
 import styles from './Group2.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
+import { getLengthValidationMessage } from 'src/utils/validations';
+import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/constants/textLength';
 
 
 const DateStyle = inject('registerStore')(
   observer(({ registerStore }) => {
-    const minLength = 60;
-    const maxLength = 1000;
-
     const [dateStyleValidationMessage, setDateStyleValidationMessage] = useState('');
 
     const validateDateStyle = (data) => {
-      if (data.length < minLength) {
-        setDateStyleValidationMessage(`${minLength}자 이상 입력해주세요.`);
+      setDateStyleValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.DateStyle, selsoFieldsMaxLengthLimit.DateStyle, data));
+      
+      if (dateStyleValidationMessage === '') {
+        return true;
+      } else {
         return false;
-      }  else if (data.length > maxLength) {
-        setDateStyleValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
       }
-
-      setDateStyleValidationMessage('');
-      return true;
     }
 
     const nextTo = () => {
@@ -37,17 +34,17 @@ const DateStyle = inject('registerStore')(
       <>
         <div className={styles.componentWrapper}>
           <Textarea 
-            placeholder={placeholder(minLength)}
+            placeholder={placeholder(selsoFieldsMinLengthLimit.DateStyle)}
             value={registerStore.registerData.dateStyle}
             onChange={(e) => registerStore.setRegisterData('dateStyle', e.target.value)}
             onFocus={() => setDateStyleValidationMessage('')}
             onBlur={() => validateDateStyle(registerStore.registerData.dateStyle)}
-            maxLength={maxLength}
+            maxLength={selsoFieldsMaxLengthLimit.DateStyle}
           />
           <TextLengthBox
             textLength={registerStore.registerData.dateStyle.length}
-            minLength={minLength}
-            maxLength={maxLength}
+            minLength={selsoFieldsMinLengthLimit.DateStyle}
+            maxLength={selsoFieldsMaxLengthLimit.DateStyle}
             validationMessage={dateStyleValidationMessage}
           />
         </div>

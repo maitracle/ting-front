@@ -5,25 +5,22 @@ import TextLengthBox from 'src/components/Validation/TextLengthBox';
 import { placeholder } from 'src/constants/Register/Group2'
 import styles from './Group2.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
+import { getLengthValidationMessage } from 'src/utils/validations';
+import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/constants/textLength';
 
 
 const Hobby = inject('registerStore')(
   observer(({ registerStore }) => {
-    const minLength = 120;
-    const maxLength = 1000;
-
     const [hobbyValidationMessage, setHobbyValidationMessage] = useState('');
     
     const validateHobby = (data) => {
-      if (data.length < minLength) {
-        setHobbyValidationMessage(`${minLength}자 이상 입력해주세요.`);
+      setHobbyValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Hobby, selsoFieldsMaxLengthLimit.Hobby, data));
+      
+      if (hobbyValidationMessage === '') {
+        return true;
+      } else {
         return false;
-      } else if (data.length > maxLength) {
-        setHobbyValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
       }
-
-      setHobbyValidationMessage('');
-      return true;
     }
 
     const nextTo = () => {
@@ -37,17 +34,17 @@ const Hobby = inject('registerStore')(
       <>
         <div className={styles.componentWrapper}>
           <Textarea
-            placeholder={placeholder(minLength)}
+            placeholder={placeholder(selsoFieldsMinLengthLimit.Hobby)}
             value={registerStore.registerData.hobby}
             onChange={(e) => registerStore.setRegisterData('hobby', e.target.value)}
             onFocus={() => setHobbyValidationMessage('')}
             onBlur={() => validateHobby(registerStore.registerData.hobby)}
-            maxLength={maxLength}
+            maxLength={selsoFieldsMaxLengthLimit.Hobby}
           />
           <TextLengthBox
             textLength={registerStore.registerData.hobby.length}
-            minLength={minLength}
-            maxLength={maxLength}
+            minLength={selsoFieldsMinLengthLimit.Hobby}
+            maxLength={selsoFieldsMaxLengthLimit.Hobby}
             validationMessage={hobbyValidationMessage}
           />
         </div>

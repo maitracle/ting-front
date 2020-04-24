@@ -5,25 +5,22 @@ import TextLengthBox from 'src/components/Validation/TextLengthBox';
 import { placeholder } from 'src/constants/Register/Group2'
 import styles from './Group2.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
+import { getLengthValidationMessage } from 'src/utils/validations';
+import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/constants/textLength';
 
 
 const Personality = inject('registerStore')(
   observer(({ registerStore }) => {
-    const minLength = 120;
-    const maxLength = 1000;
-
     const [personalityValidationMessage, setPersonalityValidationMessage] = useState('');
 
     const validatePersonality = (data) => {
-      if (data.length < minLength) {
-        setPersonalityValidationMessage(`${minLength}자 이상 입력해주세요.`);
+      setPersonalityValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Personality, selsoFieldsMaxLengthLimit.Personality, data));
+      
+      if (personalityValidationMessage === '') {
+        return true;
+      } else {
         return false;
-      } else if (data.length > maxLength) {
-        setPersonalityValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
       }
-
-      setPersonalityValidationMessage('');
-      return true;
     }
 
     const nextTo = () => {
@@ -37,17 +34,17 @@ const Personality = inject('registerStore')(
       <>
         <div className={styles.componentWrapper}>
           <Textarea
-            placeholder={placeholder(minLength)}
+            placeholder={placeholder(selsoFieldsMinLengthLimit.Personality)}
             value={registerStore.registerData.personality}
             onChange={(e) => registerStore.setRegisterData('personality', e.target.value)}
             onFocus={() => setPersonalityValidationMessage('')}
             onBlur={() => validatePersonality(registerStore.registerData.personality)}
-            maxLength={maxLength}
+            maxLength={selsoFieldsMaxLengthLimit.Personality}
           />
           <TextLengthBox
             textLength={registerStore.registerData.personality.length}
-            minLength={minLength}
-            maxLength={maxLength}
+            minLength={selsoFieldsMinLengthLimit.Personality}
+            maxLength={selsoFieldsMaxLengthLimit.Personality}
             validationMessage={personalityValidationMessage}
           />
         </div>

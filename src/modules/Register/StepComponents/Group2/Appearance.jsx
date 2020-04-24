@@ -5,24 +5,22 @@ import TextLengthBox from 'src/components/Validation/TextLengthBox';
 import { placeholder } from 'src/constants/Register/Group2'
 import styles from './Group2.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
+      import { getLengthValidationMessage } from 'src/utils/validations';
+import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/constants/textLength';
+
 
 const Appearance = inject('registerStore')(
   observer(({ registerStore }) => {
-    const minLength = 120;
-    const maxLength = 1000;
-     
     const [appearanceValidationMessage, setAppearanceValidationMessage] = useState('');
 
     const validateAppearance = (data) => {
-      if (data.length < minLength) {
-        setAppearanceValidationMessage(`${minLength}자 이상 입력해주세요.`);
+      setAppearanceValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Appearance, selsoFieldsMaxLengthLimit.Appearance, data));
+      
+      if (appearanceValidationMessage === '') {
+        return true;
+      } else {
         return false;
-      } else if (data.length > maxLength) {
-        setAppearanceValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
-      }
-
-      setAppearanceValidationMessage('');
-      return true;
+      };
     }
 
     const nextTo = () => {
@@ -36,17 +34,17 @@ const Appearance = inject('registerStore')(
       <>
         <div className={styles.componentWrapper}>
           <Textarea
-            placeholder={placeholder(minLength)}
+            placeholder={placeholder(selsoFieldsMinLengthLimit.Appearance)}
             value={registerStore.registerData.appearance}
             onChange={(e) => registerStore.setRegisterData('appearance', e.target.value)}
             onFocus={() => setAppearanceValidationMessage('')}
             onBlur={() => validateAppearance(registerStore.registerData.appearance)}
-            maxLength={maxLength}
+            maxLength={selsoFieldsMaxLengthLimit.Appearance}
           />
           <TextLengthBox 
             textLength={registerStore.registerData.appearance.length}
-            minLength={minLength}
-            maxLength={maxLength}
+            minLength={selsoFieldsMinLengthLimit.Appearance}
+            maxLength={selsoFieldsMaxLengthLimit.Appearance}
             validationMessage={appearanceValidationMessage}
           />
         </div>

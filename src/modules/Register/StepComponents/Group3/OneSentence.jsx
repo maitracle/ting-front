@@ -4,29 +4,27 @@ import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
 import styles from './Group3.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
+import { getLengthValidationMessage } from 'src/utils/validations';
+import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/constants/textLength';
 
 
 const OneSentence = inject('registerStore')(
   observer(({ registerStore }) => {
     const placeholder = '35자 이내로 자신에 대해 표현해주세요 :)';
-    const minLength = 1;
-    const maxLength = 35;
-
     const [oneSentenceValidationMessage, setOneSentenceValidationMessage] = useState('');
 
     const validateOneSentence = (data) => {
+      setOneSentenceValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.OneSentence, selsoFieldsMaxLengthLimit.OneSentence, data));
+      
       if (data.length === 0) {
         setOneSentenceValidationMessage('자신을 표현할 한 문장을 입력해주세요.');
-        return false;
-      } else if (data.length < minLength) {
-        setOneSentenceValidationMessage(`${minLength}자 이상 입력해주세요.`);
-        return false;
-      } else if (data.length > maxLength) {
-        setOneSentenceValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
       }
 
-      setOneSentenceValidationMessage('');
-      return true;
+      if (oneSentenceValidationMessage === '') {
+        return true;
+      } else {
+        return false;
+      }
     }
 
     const nextTo = () => {
@@ -45,12 +43,12 @@ const OneSentence = inject('registerStore')(
             onChange={(e) => registerStore.setRegisterData('oneSentence', e.target.value)}
             onFocus={() => setOneSentenceValidationMessage('')}
             onBlur={() => validateOneSentence(registerStore.registerData.oneSentence)}
-            maxLength={maxLength}
+            maxLength={selsoFieldsMaxLengthLimit.OneSentence}
           />
           <TextLengthBox
             textLength={registerStore.registerData.oneSentence.length}
-            minLength={minLength}
-            maxLength={maxLength}
+            minLength={selsoFieldsMinLengthLimit.OneSentence}
+            maxLength={selsoFieldsMaxLengthLimit.OneSentence}
             validationMessage={oneSentenceValidationMessage}
           />
         </div>
