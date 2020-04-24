@@ -16,5 +16,5 @@ export const selsoFieldsMaxLengthLimit = {
   OneSentence: 35,
 };
 
-export const tagsMaxLengthLimit = 4;
-export const tagsMinLengthLimit = 10;
+export const tagsMinLengthLimit = 4;
+export const tagsMaxLengthLimit = 10;

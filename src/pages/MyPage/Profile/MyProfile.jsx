@@ -43,7 +43,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   
   const validateChatLink = (data) => {
     setChatLinkValidationMessage(getChatLinkValidationMessage(data));
-
+    
     if (chatLinkValidationMessage === '') {
       return true;
     } else {
@@ -62,7 +62,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   }
 
   const validateOneSentence = (data) => {
-    setOneSentenceValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.OneSentence, selsoFieldsMinLengthLimit.OneSentence, data));
+    setOneSentenceValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.OneSentence, selsoFieldsMaxLengthLimit.OneSentence, data));
     
     if (data.length === 0) {
       setOneSentenceValidationMessage('자신을 표현할 한 문장을 입력해주세요.');
@@ -76,7 +76,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   }
 
   const validateAppearance = (data) => {
-    setAppearanceValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Appearance, selsoFieldsMinLengthLimit.Appearance, data));
+    setAppearanceValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Appearance, selsoFieldsMaxLengthLimit.Appearance, data));
     
     if (appearanceValidationMessage === '') {
       return true;
@@ -86,7 +86,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   }
 
   const validatePersonality = (data) => {
-    setPersonalityValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Personality, selsoFieldsMinLengthLimit.Personality, data));
+    setPersonalityValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Personality, selsoFieldsMaxLengthLimit.Personality, data));
     
     if (personalityValidationMessage === '') {
       return true;
@@ -96,7 +96,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   }
 
   const validateHobby = (data) => {
-    setHobbyValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Hobby, selsoFieldsMinLengthLimit.Hobby, data));
+    setHobbyValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Hobby, selsoFieldsMaxLengthLimit.Hobby, data));
     
     if (hobbyValidationMessage === '') {
       return true;
@@ -106,7 +106,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   }
 
   const validateDateStyle = (data) => {
-    setDateStyleValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.DateStyle, selsoFieldsMinLengthLimit.DateStyle, data));
+    setDateStyleValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.DateStyle, selsoFieldsMaxLengthLimit.DateStyle, data));
     
     if (dateStyleValidationMessage === '') {
       return true;
@@ -116,7 +116,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   }
 
   const validateIdealType = (data) => {
-    setIdealTypeValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.IdealType, selsoFieldsMinLengthLimit.IdealType, data));
+    setIdealTypeValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.IdealType, selsoFieldsMaxLengthLimit.IdealType, data));
     
     if (idealTypeValidationMessage === '') {
       return true;
