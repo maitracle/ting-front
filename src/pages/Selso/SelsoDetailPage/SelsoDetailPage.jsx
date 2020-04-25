@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
-import styles from './SelsoDetailPage.module.scss';
 import Card from 'src/modules/SelsoDetail/Card';
 import Gnb from 'src/components/Gnb';
+import styles from './SelsoDetailPage.module.scss';
 
 
 export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListStore }) => {
@@ -15,7 +15,7 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
           if (res?.status === 200) {
             selsoListStore.root.myPointStore.fetchMyPointHistory();
           }
-        })
+        });
     }
   }, [selsoListStore.choosedSelso]);
 
@@ -25,7 +25,7 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
         if (res.status === 200) {
           window.open(res.chatLink);
         }
-      })
+      });
   };
 
   return (
@@ -37,9 +37,8 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
 
       <div className={styles.buttonBlankBox} />
       <div className={styles.buttonWrapper}>
-        <img src={require('src/assets/images/SelsoDetail/HeartButton.png')} className={styles.heartButton} alt={'찜하기 버튼'} />
         <button onClick={getOpenKakaoLink} className={styles.kakaoButton}>오픈 카카오로 연락하기</button>
       </div>
     </div>
-  )
+  );
 }));

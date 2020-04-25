@@ -1,6 +1,7 @@
 .registerHeader {
   width: 100%;
   background-color: #E3EFFF;
+  position: relative;
 
   .contentsWrapper {
     padding: 11px 25px;
@@ -23,7 +24,7 @@
 }
 
 .groupIndicator {
-  position: fixed;
+  position: absolute;
   top: 8px;
   right: 25px;
 

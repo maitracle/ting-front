@@ -56,6 +56,7 @@ export default inject('registerStore')(observer(({ registerStore }) => {
   }, [registerStore.currentStep]);
 
   const example = getHeaderExample(registerStore.root.userStore.profile.gender, registerStore.currentStep);
+
   return (
     <div className={styles.registerHeader}>
       <div className={styles.contentsWrapper}>
@@ -71,7 +72,7 @@ export default inject('registerStore')(observer(({ registerStore }) => {
         <div className={`${styles.exampleWrapper} ${isExpanded ? styles.expandWrapper : styles.foldWrapper}`}>
           {example}
         </div>
-        <button className={`${example ? styles.expandButton : styles.noExample}`} type="button" onClick={handleExpandExample}>
+        <button className={`${example ? styles.expandButton : styles.noExample}`} onClick={handleExpandExample}>
           <IoIosArrowDown className={isExpanded ? styles.upArrow : ''} />{isExpanded ? '접기' : '예시 더보기'}
         </button>
       </div>

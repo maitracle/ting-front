@@ -1,5 +1,7 @@
+@import "src/styles/_constants";
+
 .pageWrapper {
-  min-height: 100vh;
+  min-height: calc(100vh - #{$gnb-height});
   background: #E3EFFF;
 
   .title {

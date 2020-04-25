@@ -18,7 +18,7 @@ const SelsoList = inject('selsoListStore', 'userStore')(observer(({ selsoListSto
         selsoListStore.setSelsoList('MALE', userStore.profile.university);
       }
     }
-  }, [userStore.profile.gender, userStore.profile.university]);
+  }, [userStore.profile?.gender, userStore.profile?.university]);
 
   const moveToDetailPageHandler = (selsoItem) => (_e) => {
     selsoListStore.setChoosedSelso(selsoItem);
