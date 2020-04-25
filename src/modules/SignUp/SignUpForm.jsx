@@ -107,7 +107,10 @@ const SignUpForm = inject('signUpStore')(observer(({ signUpStore }) => {
         <Btn onClick={submit}>다음</Btn>
       </div>
 
-      <Modal isOpen={isOpenSignUpFailModal}>
+      <Modal
+        isOpen={isOpenSignUpFailModal}
+        close={() => setIsOpenSignUpFailModal(false)}
+      >
         문제가 발생하였습니다. <br />
         잠시 후 다시 시도해주세요.
       </Modal>

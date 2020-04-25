@@ -30,4 +30,12 @@ export const YONSEI_CAMPUSES = [
   },
 ];
 
-export const UNIV_LIST = [HONGIK, KYUNGHEE, YONSEI];
+export const YEUNGNAM = 'YEUNGNAM';
+export const YEUNGNAM_CAMPUSES = [
+  {
+    value: 'GYEONGSAN',
+    displayName: '경산캠퍼스',
+  },
+];
+
+export const UNIV_LIST = [HONGIK, KYUNGHEE, YONSEI, YEUNGNAM];
