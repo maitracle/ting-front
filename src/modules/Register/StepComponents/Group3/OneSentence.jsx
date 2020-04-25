@@ -5,7 +5,7 @@ import TextLengthBox from 'src/components/Validation/TextLengthBox';
 import styles from './Group3.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 import { getLengthValidationMessage } from 'src/utils/validations';
-import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/constants/textLength';
+import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/constants/fieldsLengthLimits';
 
 
 const OneSentence = inject('registerStore')(

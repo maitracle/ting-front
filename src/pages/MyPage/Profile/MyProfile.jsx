@@ -6,7 +6,7 @@ import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
 import Input from 'src/components/Form/Input';
 import Modal from 'src/components/Modal';
-import { selsoFieldsMaxLengthLimit, selsoFieldsMinLengthLimit } from 'src/constants/textLength';
+import { selsoFieldsMaxLengthLimit, selsoFieldsMinLengthLimit } from 'src/constants/fieldsLengthLimits';
 import { getLengthValidationMessage, getChatLinkValidationMessage, getTagsValidationMessage } from 'src/utils/validations';
 
 import styles from './MyProfile.module.scss';

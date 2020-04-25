@@ -1,4 +1,4 @@
-import { tagsMinCountLimit, tagsMaxCountLimit } from "src/constants/textLength";
+import { tagsMinCountLimit, tagsMaxCountLimit } from "src/constants/fieldsLengthLimits";
 
 export const getLengthValidationMessage = ( minLength, maxLength, data ) => {
   if (data.length < minLength) {
