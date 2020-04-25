@@ -1,4 +1,4 @@
-import { tagsMinCountLimit, tagsMaxCountLimit } from "src/constants/fieldsLengthLimits";
+import { selsoFieldsMaxLengthLimit, tagsMinCountLimit, tagsMaxCountLimit } from "src/constants/fieldsLengthLimits";
 
 export const getLengthValidationMessage = ( minLength, maxLength, data ) => {
   if (data.length < minLength) {
@@ -30,6 +30,10 @@ export const getTagsValidationMessage = (data) => {
   const tagRegExp = /#\S/;
   const isEveryTagsValid = data.split(/\s/).every(tag => tagRegExp.test(tag));
   
+
+  if (data.length > selsoFieldsMaxLengthLimit.Tags) {
+    return `${selsoFieldsMaxLengthLimit.Tags}자 이하로 입력해주세요.`;
+  }
   if (isEveryTagsValid === false) {
     return '형식에 맞게 입력해주세요.';
   }

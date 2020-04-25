@@ -14,6 +14,7 @@ export const selsoFieldsMaxLengthLimit = {
   IdealType: 1000,
   DateStyle: 1000,
   OneSentence: 35,
+  Tags: 500,
 };
 
 export const tagsMinCountLimit = 4;
