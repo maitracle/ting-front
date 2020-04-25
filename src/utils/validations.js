@@ -30,7 +30,6 @@ export const getTagsValidationMessage = (data) => {
   const tagRegExp = /#\S/;
   const isEveryTagsValid = data.split(/\s/).every(tag => tagRegExp.test(tag));
   
-
   if (data.length > selsoFieldsMaxLengthLimit.Tags) {
     return `${selsoFieldsMaxLengthLimit.Tags}자 이하로 입력해주세요.`;
   }
