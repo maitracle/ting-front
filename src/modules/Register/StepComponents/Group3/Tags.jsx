@@ -22,7 +22,8 @@ const Tags = inject('registerStore')(
 
     const nextTo = () => {
       const isValid = validateTags(registerStore.registerData.tags);
-      if (isValid) {
+      console.log(isValid)
+      if (isValid === false) {
         registerStore.nextTo();
       }
     }

@@ -28,10 +28,15 @@ export const getChatLinkValidationMessage = (data) => {
 
 export const getTagsValidationMessage = (data) => {
   const tagRegExp = /#\S/;
-
+  const isEveryTagsValid = data.split(/\s/).every(tag => tagRegExp.test(tag));
+  
+  if (isEveryTagsValid === false) {
+    return '형식에 맞게 입력해주세요.';
+  }
+  
   const validTags = data.split(/\s/).filter(tag => tagRegExp.test(tag));
   const countTags = validTags.length;
-
+  
   if (countTags < tagsMinCountLimit) {
     return '태그를 4개 이상 입력해주세요.';
   } else if (countTags > tagsMaxCountLimit) {
