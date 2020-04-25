@@ -47,21 +47,13 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   const validateChatLink = (data) => {
     setChatLinkValidationMessage(getChatLinkValidationMessage(data));
     
-    if (chatLinkValidationMessage === '') {
-      return true;
-    } else {
-      return false;
-    }
+    return chatLinkValidationMessage === '';
   }
 
   const validateTags = (data) => {
     setTagsValidationMessage(getTagsValidationMessage(data));
 
-    if (tagsValidationMessage === '') {
-      return true;
-    } else {
-      return false;
-    }
+    return tagsValidationMessage === '';
   }
 
   const validateOneSentence = (data) => {
@@ -71,61 +63,37 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
       setOneSentenceValidationMessage('자신을 표현할 한 문장을 입력해주세요.');
     }
 
-    if (oneSentenceValidationMessage === '') {
-      return true;
-    } else {
-      return false;
-    }
+    return oneSentenceValidationMessage === '';
   }
 
   const validateAppearance = (data) => {
     setAppearanceValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Appearance, selsoFieldsMaxLengthLimit.Appearance, data));
     
-    if (appearanceValidationMessage === '') {
-      return true;
-    } else {
-      return false;
-    }
+    return appearanceValidationMessage === '';
   }
 
   const validatePersonality = (data) => {
     setPersonalityValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Personality, selsoFieldsMaxLengthLimit.Personality, data));
     
-    if (personalityValidationMessage === '') {
-      return true;
-    } else {
-      return false;
-    }
+    return personalityValidationMessage === '';
   }
 
   const validateHobby = (data) => {
     setHobbyValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Hobby, selsoFieldsMaxLengthLimit.Hobby, data));
     
-    if (hobbyValidationMessage === '') {
-      return true;
-    } else {
-      return false;
-    }
+    return hobbyValidationMessage === '';
   }
 
   const validateDateStyle = (data) => {
     setDateStyleValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.DateStyle, selsoFieldsMaxLengthLimit.DateStyle, data));
     
-    if (dateStyleValidationMessage === '') {
-      return true;
-    } else {
-      return false;
-    }
+    return dateStyleValidationMessage === '';
   }
 
   const validateIdealType = (data) => {
     setIdealTypeValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.IdealType, selsoFieldsMaxLengthLimit.IdealType, data));
     
-    if (idealTypeValidationMessage === '') {
-      return true;
-    } else {
-      return false;
-    }
+    return idealTypeValidationMessage === '';
   }
 
   const getIsValid = () => {

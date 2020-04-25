@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
-import { placeholder } from 'src/constants/Register/Group2'
+import { getPlaceholderMessageByLengthLimit } from 'src/constants/Register/Group2'
 import styles from './Group2.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 import { getLengthValidationMessage } from 'src/utils/validations';
@@ -34,7 +34,7 @@ const IdealType = inject('registerStore')(
       <>
         <div className={styles.componentWrapper}>
           <Textarea
-            placeholder={placeholder(selsoFieldsMinLengthLimit.IdealType)}
+            placeholder={getPlaceholderMessageByLengthLimit(selsoFieldsMinLengthLimit.IdealType)}
             value={registerStore.registerData.idealType}
             onChange={(e) => registerStore.setRegisterData('idealType', e.target.value)}
             onFocus={() => setIdealTypeValidationMessage('')}

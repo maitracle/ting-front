@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
-import { placeholder } from 'src/constants/Register/Group2'
+import { getPlaceholderMessageByLengthLimit } from 'src/constants/Register/Group2'
 import styles from './Group2.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 import { getLengthValidationMessage } from 'src/utils/validations';
@@ -34,7 +34,7 @@ const Personality = inject('registerStore')(
       <>
         <div className={styles.componentWrapper}>
           <Textarea
-            placeholder={placeholder(selsoFieldsMinLengthLimit.Personality)}
+            placeholder={getPlaceholderMessageByLengthLimit(selsoFieldsMinLengthLimit.Personality)}
             value={registerStore.registerData.personality}
             onChange={(e) => registerStore.setRegisterData('personality', e.target.value)}
             onFocus={() => setPersonalityValidationMessage('')}
