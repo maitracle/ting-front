@@ -14,13 +14,13 @@ const Hobby = inject('registerStore')(
     const [hobbyValidationMessage, setHobbyValidationMessage] = useState('');
     
     const validateHobby = (data) => {
-      setHobbyValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Hobby, selsoFieldsMaxLengthLimit.Hobby, data));
+      setHobbyValidationMessage(
+        getLengthValidationMessage(
+          selsoFieldsMinLengthLimit.Hobby, selsoFieldsMaxLengthLimit.Hobby, data
+        )
+      );
       
-      if (hobbyValidationMessage === '') {
-        return true;
-      } else {
-        return false;
-      }
+      return hobbyValidationMessage === '';
     }
 
     const nextTo = () => {

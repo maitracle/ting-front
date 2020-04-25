@@ -1,4 +1,4 @@
-import { tagsMinLengthLimit, tagsMaxLengthLimit } from "src/constants/textLength";
+import { tagsMinCountLimit, tagsMaxCountLimit } from "src/constants/textLength";
 
 export const getLengthValidationMessage = ( minLength, maxLength, data ) => {
   if (data.length < minLength) {
@@ -32,9 +32,9 @@ export const getTagsValidationMessage = (data) => {
   const validTags = data.split(/\s/).filter(tag => tagRegExp.test(tag));
   const countTags = validTags.length;
 
-  if (countTags < tagsMinLengthLimit) {
+  if (countTags < tagsMinCountLimit) {
     return '태그를 4개 이상 입력해주세요.';
-  } else if (countTags > tagsMaxLengthLimit) {
+  } else if (countTags > tagsMaxCountLimit) {
     return '태그는 10개까지만 입력해주세요.';
   } else {
     return '';

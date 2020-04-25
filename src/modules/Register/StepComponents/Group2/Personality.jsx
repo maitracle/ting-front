@@ -14,13 +14,13 @@ const Personality = inject('registerStore')(
     const [personalityValidationMessage, setPersonalityValidationMessage] = useState('');
 
     const validatePersonality = (data) => {
-      setPersonalityValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Personality, selsoFieldsMaxLengthLimit.Personality, data));
+      setPersonalityValidationMessage(
+        getLengthValidationMessage(
+          selsoFieldsMinLengthLimit.Personality, selsoFieldsMaxLengthLimit.Personality, data
+        )
+      );
       
-      if (personalityValidationMessage === '') {
-        return true;
-      } else {
-        return false;
-      }
+      return personalityValidationMessage === '';
     }
 
     const nextTo = () => {

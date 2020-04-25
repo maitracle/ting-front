@@ -127,29 +127,34 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
       return false;
     }
   }
-  
+
+  const getIsValid = () => {
+    let isValid = true;
+    isValid = validateChatLink(mySelfDateProfileData.chatLink) && isValid;
+    isValid = validateTags(mySelfDateProfileData.tags) && isValid;
+    isValid = validateOneSentence(mySelfDateProfileData.oneSentence) && isValid;
+    isValid = validateAppearance(mySelfDateProfileData.appearance) && isValid;
+    isValid = validatePersonality(mySelfDateProfileData.personality) && isValid;
+    isValid = validateHobby(mySelfDateProfileData.hobby) && isValid;
+    isValid = validateDateStyle(mySelfDateProfileData.dateStyle) && isValid;
+    isValid = validateIdealType(mySelfDateProfileData.idealType) && isValid;
+
+    return isValid;
+  }
+
   const setForm = (key) => (event) => setMySelfDateProfileData({ ...mySelfDateProfileData, [key]: event.target.value });
 
   const update = () => {
-    const isValid = validateChatLink(mySelfDateProfileData.chatLink) 
-      && validateTags(mySelfDateProfileData.tags)
-      && validateOneSentence(mySelfDateProfileData.oneSentence)
-      && validateAppearance(mySelfDateProfileData.appearance)
-      && validatePersonality(mySelfDateProfileData.personality)
-      && validateHobby(mySelfDateProfileData.hobby)
-      && validateDateStyle(mySelfDateProfileData.dateStyle)
-      && validateIdealType(mySelfDateProfileData.idealType);
-    
-      if (isValid) {
-        selsoListStore.updateMySelsoProfile(mySelfDateProfileData)
-          .then((res) => {
-            if (res.status === 200) {
-              setUpdateMessage('수정이 완료되었습니다!');
-            } else {
-              setUpdateMessage('잠시 후 다시 시도해주세요.')
-            }
-          });
-      };
+    if (getIsValid()) {
+      selsoListStore.updateMySelsoProfile(mySelfDateProfileData)
+        .then((res) => {
+          if (res.status === 200) {
+            setUpdateMessage('수정이 완료되었습니다!');
+          } else {
+            setUpdateMessage('잠시 후 다시 시도해주세요.')
+          }
+        });
+    };
   };
   
   return (

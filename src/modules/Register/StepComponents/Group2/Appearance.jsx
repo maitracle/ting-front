@@ -14,13 +14,13 @@ const Appearance = inject('registerStore')(
     const [appearanceValidationMessage, setAppearanceValidationMessage] = useState('');
 
     const validateAppearance = (data) => {
-      setAppearanceValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Appearance, selsoFieldsMaxLengthLimit.Appearance, data));
+      setAppearanceValidationMessage(
+        getLengthValidationMessage(
+          selsoFieldsMinLengthLimit.Appearance, selsoFieldsMaxLengthLimit.Appearance, data
+        )
+      );
       
-      if (appearanceValidationMessage === '') {
-        return true;
-      } else {
-        return false;
-      };
+      return appearanceValidationMessage === '';
     }
 
     const nextTo = () => {

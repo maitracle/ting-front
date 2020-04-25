@@ -13,13 +13,11 @@ const ChatLink = inject('registerStore', 'userStore')(
     const [chatLinkValidationMessage, setChatLinkValidationMessage] = useState('');
 
     const validateChatLink = (data) => {
-      setChatLinkValidationMessage(getChatLinkValidationMessage(data));
+      setChatLinkValidationMessage(
+        getChatLinkValidationMessage(data)
+      );
 
-      if (chatLinkValidationMessage === '') {
-        return true;
-      } else {
-        return false;
-      }
+      return chatLinkValidationMessage === '';
     }
 
     const submit = () => {

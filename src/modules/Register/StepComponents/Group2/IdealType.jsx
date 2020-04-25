@@ -14,13 +14,13 @@ const IdealType = inject('registerStore')(
     const [idealTypeValidationMessage, setIdealTypeValidationMessage] = useState('');
 
     const validateIdealType = (data) => {
-      setIdealTypeValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.IdealType, selsoFieldsMaxLengthLimit.IdealType, data));
+      setIdealTypeValidationMessage(
+        getLengthValidationMessage(
+          selsoFieldsMinLengthLimit.IdealType, selsoFieldsMaxLengthLimit.IdealType, data
+        )
+      );
       
-      if (idealTypeValidationMessage === '') {
-        return true;
-      } else {
-        return false;
-      }
+      return idealTypeValidationMessage === '';
     }
 
     const nextTo = () => {

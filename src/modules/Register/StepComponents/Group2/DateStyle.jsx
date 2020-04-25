@@ -14,13 +14,13 @@ const DateStyle = inject('registerStore')(
     const [dateStyleValidationMessage, setDateStyleValidationMessage] = useState('');
 
     const validateDateStyle = (data) => {
-      setDateStyleValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.DateStyle, selsoFieldsMaxLengthLimit.DateStyle, data));
+      setDateStyleValidationMessage(
+        getLengthValidationMessage(
+          selsoFieldsMinLengthLimit.DateStyle, selsoFieldsMaxLengthLimit.DateStyle, data
+        )
+      );
       
-      if (dateStyleValidationMessage === '') {
-        return true;
-      } else {
-        return false;
-      }
+      return dateStyleValidationMessage === '';
     }
 
     const nextTo = () => {
