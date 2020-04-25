@@ -11,6 +11,7 @@
   width: 100%;
   height: $gnb-height;
   background-color: white;
+  z-index: 100;
 
   .gnbContents {
     margin: 0 20px;

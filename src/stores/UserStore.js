@@ -18,7 +18,7 @@ const updateProfileApi = (profile) => requests.patch(`${UPDATE_PROFILE_PATH}${pr
 
 
 export default class UserStore {
-  @observable isLoggedIn = false;
+  @observable isLoggedIn = null;
 
   @observable user = {};
 
@@ -34,7 +34,12 @@ export default class UserStore {
           this.profile = res.data.profile;
           this.root.myPointStore.myPointHistoryList = res.data.coinHistory;
           this.isLoggedIn = true;
+        })
+        .catch(() => {
+          this.isLoggedIn = false;
         });
+    } else {
+      this.isLoggedIn = false;
     }
   }
 
@@ -56,10 +61,14 @@ export default class UserStore {
           status: res.status,
           message: res.statusText,
         };
-      }).catch((err) => ({
-        status: err.response.status,
-        message: err.response.statusText,
-      }));
+      }).catch((err) => {
+        this.isLoggedIn = false;
+
+        return {
+          status: err.response.status,
+          message: err.response.statusText,
+        };
+      });
   };
 
   @action logOut = () => {
