@@ -6,7 +6,7 @@ import { SelsoListSkeleton } from 'src/modules/SelsoList/SelsoListSkeleton';
 
 
 export const SelsoListPage = ({ history }) => {
-  const selsoListOpenDate = new Date(2020, 4, 7);
+  const selsoListOpenDate = new Date(2020, 0, 7);
 
   const isAccessibleSelsoList = () => {
     let today = new Date();
