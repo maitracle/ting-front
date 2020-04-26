@@ -10,22 +10,19 @@ const BodyType = inject('registerStore')(
     const setBodyType = (value) => registerStore.setRegisterData('bodyType', value);
     const [radioItemList, setRadioItem] = useState([
       {
-        id: 1, text: '마른', value: 'SKINNY', checked: false,
+        id: 1, text: '슬림', value: 'SLIM', checked: false,
       },
       {
-        id: 2, text: '슬림', value: 'SLIM', checked: false,
+        id: 2, text: '슬림탄탄', value: 'SLIM_TONED', checked: false,
       },
       {
-        id: 3, text: '슬림탄탄', value: 'SLIM_TONED', checked: false,
+        id: 3, text: '보통', value: 'NORMAL', checked: false,
       },
       {
-        id: 4, text: '보통', value: 'NORMAL', checked: false,
+        id: 4, text: '근육질', value: 'BUFF', checked: false,
       },
       {
-        id: 5, text: '근육질', value: 'BUFF', checked: false,
-      },
-      {
-        id: 6, text: '통통', value: 'CHUBBY', checked: false,
+        id: 5, text: '통통', value: 'CHUBBY', checked: false,
       },
     ]);
 
