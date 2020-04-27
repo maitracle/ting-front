@@ -16,7 +16,7 @@ export const MyList = inject('userStore')(observer(({ userStore }) => {
       <div className={styles.linkWrapper}>
         <Link to="/my/profile">
           <div className={styles.linkItem}>
-            <span className={styles.linkText}>마이 프로필 수정하기</span>
+            <span className={styles.linkText}>셀소 프로필 수정하기</span>
           </div>
         </Link>
         <Link to="/my/point">
