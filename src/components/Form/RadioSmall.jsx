@@ -25,9 +25,13 @@ const RadioSmall = ({ label, itemList, selectedItemValue, selectItemValue, valid
           </div>)
       }
     </div>
-    <div className={styles.validation}>
-      <span>{validationMessage}</span>
-    </div>
+    {
+      validationMessage && 
+      <div className={styles.validation}>
+        <span>{validationMessage}</span>
+      </div>
+    }
+    
   </div>
 );
 

@@ -14,17 +14,17 @@ const OneSentence = inject('registerStore')(
     const [oneSentenceValidationMessage, setOneSentenceValidationMessage] = useState('');
 
     const validateOneSentence = (data) => {
-      setOneSentenceValidationMessage(
-        getLengthValidationMessage(
-          selsoFieldsMinLengthLimit.OneSentence, selsoFieldsMaxLengthLimit.OneSentence, data
-        )
-      );
-      
       if (data.length === 0) {
         setOneSentenceValidationMessage('자신을 표현할 한 문장을 입력해주세요.');
+        return false;
       }
 
-      return oneSentenceValidationMessage === '';
+      const validationMessage = getLengthValidationMessage(
+        selsoFieldsMinLengthLimit.OneSentence, selsoFieldsMaxLengthLimit.OneSentence, data
+      );
+      setOneSentenceValidationMessage(validationMessage);
+      
+      return validationMessage === '';
     }
 
     const nextTo = () => {

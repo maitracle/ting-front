@@ -11,11 +11,10 @@ import { getLengthValidationMessage, getChatLinkValidationMessage, getTagsValida
 
 import styles from './MyProfile.module.scss';
 import Btn from 'src/components/Button/Btn';
+import RadioSmall from 'src/components/Form/RadioSmall'
 
 export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userStore, selsoListStore }) => {
-
   const [updateMessage, setUpdateMessage] = useState('');
-
   const [mySelfDateProfileData, setMySelfDateProfileData] = useState({
     chatLink: '',
     tags: '',
@@ -26,6 +25,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     dateStyle: '',
     idealType: '',
     oneSentence: '',
+    isActive: '',
   });
   const [chatLinkValidationMessage, setChatLinkValidationMessage] = useState('');
   const [tagsValidationMessage, setTagsValidationMessage] = useState('');
@@ -96,7 +96,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     return idealTypeValidationMessage === '';
   }
 
-  const getIsValid = () => {
+  const getMySelfDateProfileDataIsValid = () => {
     let isValid = true;
     isValid = validateChatLink(mySelfDateProfileData.chatLink) && isValid;
     isValid = validateTags(mySelfDateProfileData.tags) && isValid;
@@ -110,10 +110,30 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     return isValid;
   }
 
-  const setForm = (key) => (event) => setMySelfDateProfileData({ ...mySelfDateProfileData, [key]: event.target.value });
+  const isActiveItemList = [
+    {
+      displayName: '활성화',
+      value: true,
+    },
+    {
+      displayName: '비활성화',
+      value: false,
+    },
+  ];
+
+  const setForm = (key) => (event) => {
+    setMySelfDateProfileData({ ...mySelfDateProfileData, [key]: event.target.value });
+  };
+
+  const setRadioForm = (key) => (value) => (_event) => {
+    setMySelfDateProfileData({
+      ...mySelfDateProfileData,
+      [key]: value,
+    });
+  };
 
   const update = () => {
-    if (getIsValid()) {
+    if (getMySelfDateProfileDataIsValid()) {
       selsoListStore.updateMySelsoProfile(mySelfDateProfileData)
         .then((res) => {
           if (res.status === 200) {
@@ -131,6 +151,16 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
         <ProfileCard imageSrc={selsoListStore.mySelsoProfile.image} nickname={selsoListStore.mySelsoProfile.nickname} />
 
         <section className={styles.sectionWrapper}>
+          <div className={styles.inputWrapper}>
+            <RadioSmall
+              label={'활성화 여부'}
+              itemList={isActiveItemList}
+              selectedItemValue={mySelfDateProfileData.isActive}
+              selectItemValue={setRadioForm('isActive')}
+              //validationMessage={genderValidationMessage}
+            />
+          </div>
+          
           <div className={styles.inputWrapper}>
             <div className={styles.label}>오픈카카오 링크</div>
             <Input

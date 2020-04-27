@@ -32,7 +32,7 @@ export default class SelsoListStore {
   };
 
   @action updateMySelsoProfile = (modifiedMySelsoProfile) => {
-    const { id, appearance, personality, hobby, dateStyle, idealType, oneSentence, tags, chatLink } = modifiedMySelsoProfile;
+    const { id, appearance, personality, hobby, dateStyle, idealType, oneSentence, tags, chatLink, isActive } = modifiedMySelsoProfile;
     const payload = {
       id,
       appearance,
@@ -43,6 +43,7 @@ export default class SelsoListStore {
       oneSentence,
       tags,
       chatLink,
+      isActive,
     }; 
     
     return updateMySelsoProfileApi(payload)

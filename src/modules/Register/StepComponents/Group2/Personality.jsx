@@ -14,21 +14,20 @@ const Personality = inject('registerStore')(
     const [personalityValidationMessage, setPersonalityValidationMessage] = useState('');
 
     const validatePersonality = (data) => {
-      setPersonalityValidationMessage(
-        getLengthValidationMessage(
-          selsoFieldsMinLengthLimit.Personality, selsoFieldsMaxLengthLimit.Personality, data
-        )
+      const validationMessage = getLengthValidationMessage(
+        selsoFieldsMinLengthLimit.Personality, selsoFieldsMaxLengthLimit.Personality, data
       );
+      setPersonalityValidationMessage(validationMessage);
       
-      return personalityValidationMessage === '';
-    }
+      return validationMessage === '';
+    };
 
     const nextTo = () => {
       const isValid = validatePersonality(registerStore.registerData.personality);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
 
     return (
       <>
