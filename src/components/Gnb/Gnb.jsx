@@ -66,6 +66,11 @@ export const Gnb = inject('myPointStore', 'userStore')(observer(({ myPointStore,
                         로그인
                       </div>
                     </Link>
+                    <Link to="/user/sign-up/YEUNGNAM" className={styles.link}>
+                      <div className={styles.linkTitle} onClick={() => setIsOpenPanel(false)}>
+                        회원가입
+                      </div>
+                    </Link>
                   </>
               }
             </Panel>
