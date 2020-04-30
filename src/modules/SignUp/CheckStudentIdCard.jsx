@@ -38,7 +38,7 @@ const CheckStudentIdCard = inject('signUpStore')(observer(({ signUpStore, histor
 
       return false;
     } else if (idCardImage.size > maxSize) {
-      setErrorMessage('이미지 용량 제한을 초과했습니다.');
+      setErrorMessage('이미지 용량 제한을 초과했습니다. 5mb 이하의 이미지를 올려주세요.');
 
       return false;
     }
