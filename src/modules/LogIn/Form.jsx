@@ -32,8 +32,10 @@ const Form = inject('userStore')(observer(({ userStore, history }) => {
       .then((res) => {
         if (res.status === 200) {
           history.push('/selso');
+        } else if(res.status) {
+          setMessage('올바른 아이디와 비밀번호를 입력해주세요.');
         } else {
-          setMessage(res.message);
+          setMessage('문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
         }
       });
   };
@@ -54,6 +56,9 @@ const Form = inject('userStore')(observer(({ userStore, history }) => {
           type="password"
           onChange={setPassword}
         />
+        <div className={styles.responseMessage}>
+          { message }
+        </div>
       </div>
       <div className={styles.buttonWrapper}>
         <div className={styles.buttonContentsWrapper}>
