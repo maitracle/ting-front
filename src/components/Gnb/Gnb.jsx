@@ -54,11 +54,23 @@ export const Gnb = inject('myPointStore', 'userStore')(observer(({ myPointStore,
 
               {
                 userStore.isLoggedIn ?
-                  <Link to="/my" className={styles.link}>
-                    <div className={styles.linkTitle} onClick={() => setIsOpenPanel(false)}>
-                      마이페이지
-                    </div>
-                  </Link>
+                  <>
+                    {
+                      userStore?.user?.isConfirmedStudent ?
+                        null
+                        :
+                        <Link to="/user/sign-up/YEUNGNAM" className={styles.link}>
+                          <div className={styles.linkTitle} onClick={() => setIsOpenPanel(false)}>
+                            회원가입 마무리하기
+                          </div>
+                        </Link>
+                    }
+                    <Link to="/my" className={styles.link}>
+                      <div className={styles.linkTitle} onClick={() => setIsOpenPanel(false)}>
+                        마이페이지
+                      </div>
+                    </Link>
+                  </>
                   :
                   <>
                     <Link to="/user/log-in" className={styles.link}>
