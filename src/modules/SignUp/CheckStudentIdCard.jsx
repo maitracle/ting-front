@@ -30,24 +30,38 @@ const CheckStudentIdCard = inject('signUpStore')(observer(({ signUpStore, histor
     }
   }, [idCardImage]);
 
+  const validateImage = () => {
+    const maxSize = 5000000;
 
-  const submit = () => {
     if (!idCardImage) {
-      setErrorMessage('파일을 업로드해주세요.');
-      return;
+      setErrorMessage('이미지를 업로드해주세요.');
+
+      return false;
+    } else if (idCardImage.size > maxSize) {
+      setErrorMessage('이미지 용량 제한을 초과했습니다. 5mb 이하의 이미지를 올려주세요.');
+
+      return false;
     }
 
-    setIsLoading(true);
+    return true;
+  };
 
-    signUpStore.uploadStudentIdCard(idCardImage)
-      .then((res) => {
-        if (res.status === 200) {
-          history.push('/user/register');
-        } else {
-          setErrorMessage(res.message);
-        }
-      })
-      .finally(() => setIsLoading(false));
+  const submit = () => {
+    const isValid = validateImage();
+
+    if (isValid) {
+      setIsLoading(true);
+
+      signUpStore.uploadStudentIdCard(idCardImage)
+        .then((res) => {
+          if (res.status === 200) {
+            history.push('/user/register');
+          } else {
+            setErrorMessage(res.message);
+          }
+        })
+        .finally(() => setIsLoading(false));
+    }
   };
 
   return (
