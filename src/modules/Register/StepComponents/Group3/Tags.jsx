@@ -13,12 +13,11 @@ const Tags = inject('registerStore')(
     const [tagsValidationMessage, setTagsValidationMessage] = useState('');
 
     const validateTags = (data) => {
-      setTagsValidationMessage(
-        getTagsValidationMessage(data)
-      );
+      const validationMessage = getTagsValidationMessage(data);
+      setTagsValidationMessage(validationMessage);
 
-      return tagsValidationMessage === '';
-    }
+      return validationMessage === '';
+    };
 
     const nextTo = () => {
       const isValid = validateTags(registerStore.registerData.tags);
@@ -26,7 +25,7 @@ const Tags = inject('registerStore')(
       if (isValid === true) {
         registerStore.nextTo();
       }
-    }
+    };
 
     return (
       <>

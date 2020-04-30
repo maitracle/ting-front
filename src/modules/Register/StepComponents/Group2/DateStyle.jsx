@@ -14,21 +14,20 @@ const DateStyle = inject('registerStore')(
     const [dateStyleValidationMessage, setDateStyleValidationMessage] = useState('');
 
     const validateDateStyle = (data) => {
-      setDateStyleValidationMessage(
-        getLengthValidationMessage(
-          selsoFieldsMinLengthLimit.DateStyle, selsoFieldsMaxLengthLimit.DateStyle, data
-        )
+      const validationMessage = getLengthValidationMessage(
+        selsoFieldsMinLengthLimit.DateStyle, selsoFieldsMaxLengthLimit.DateStyle, data
       );
+      setDateStyleValidationMessage(validationMessage);
       
-      return dateStyleValidationMessage === '';
-    }
+      return validationMessage === '';
+    };
 
     const nextTo = () => {
       const isValid = validateDateStyle(registerStore.registerData.dateStyle);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
     
     return (
       <>

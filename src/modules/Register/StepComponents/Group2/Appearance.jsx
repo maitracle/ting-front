@@ -14,21 +14,20 @@ const Appearance = inject('registerStore')(
     const [appearanceValidationMessage, setAppearanceValidationMessage] = useState('');
 
     const validateAppearance = (data) => {
-      setAppearanceValidationMessage(
-        getLengthValidationMessage(
-          selsoFieldsMinLengthLimit.Appearance, selsoFieldsMaxLengthLimit.Appearance, data
-        )
+      const validationMessage = getLengthValidationMessage(
+        selsoFieldsMinLengthLimit.Appearance, selsoFieldsMaxLengthLimit.Appearance, data
       );
+      setAppearanceValidationMessage(validationMessage);
       
-      return appearanceValidationMessage === '';
-    }
+      return validationMessage === '';
+    };
 
     const nextTo = () => {
       const isValid = validateAppearance(registerStore.registerData.appearance);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
 
     return (
       <>
