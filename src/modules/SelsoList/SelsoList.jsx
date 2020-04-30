@@ -25,6 +25,7 @@ const SelsoList = inject('selsoListStore', 'userStore')(observer(({ selsoListSto
 
     if (selsoItem.isViewed) {
       history.push('selso/detail');
+      window.scrollTo(0, 0);
     } else {
       setIsOpenSpendPointModal(true);
     }
@@ -32,6 +33,7 @@ const SelsoList = inject('selsoListStore', 'userStore')(observer(({ selsoListSto
 
   const spendPointAndMoveToDetailPage = () => {
     history.push('selso/detail');
+    window.scrollTo(0, 0);
   };
 
   return (
