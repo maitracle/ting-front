@@ -16,7 +16,7 @@ export const Gnb = inject('myPointStore', 'userStore')(observer(({ myPointStore,
       <div className={styles.gnbWrapper}>
         <div className={styles.gnbContents}>
           <Link to="/">
-            <img src={require('src/assets/images/Logo/Camcou.png')} className={styles.logoImage} alt="캠쿠" />
+            <img src={require('src/assets/images/Logo/YTing.png')} className={styles.logoImage} alt="영남팅" />
           </Link>
           <div className={styles.pointWrapper}>
             <div className={styles.point}>
@@ -31,7 +31,7 @@ export const Gnb = inject('myPointStore', 'userStore')(observer(({ myPointStore,
               close={() => setIsOpenPanel(false)}
             >
               <Link to="/">
-                <img src={require('src/assets/images/Logo/Camcou.png')} className={styles.logoImage} alt="캠쿠" />
+                <img src={require('src/assets/images/Logo/YTing.png')} className={styles.logoImage} alt="영남팅" />
               </Link>
 
               <hr className={styles.separator} />
