@@ -24,6 +24,7 @@ export default class SelsoListStore {
   @action getMySelsoProfile = () => fetchMySelsoProfileApi()
     .then((res) => {
       this.mySelsoProfile = res.data;
+      return res;
     })
     .catch((err) => err);
 
