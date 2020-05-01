@@ -11,6 +11,11 @@ import styles from './Gnb.module.scss';
 export const Gnb = inject('myPointStore', 'userStore')(observer(({ myPointStore, userStore }) => {
   const [isOpenPanel, setIsOpenPanel] = useState(false);
 
+  const logOut = () => {
+    setIsOpenPanel(false);
+    userStore.logOut();
+  };
+
   return (
     <>
       <div className={styles.gnbWrapper}>
@@ -70,6 +75,9 @@ export const Gnb = inject('myPointStore', 'userStore')(observer(({ myPointStore,
                         마이페이지
                       </div>
                     </Link>
+                    <div className={styles.linkTitle} onClick={logOut}>
+                      로그아웃
+                    </div>
                   </>
                   :
                   <>
