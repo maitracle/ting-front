@@ -13,7 +13,7 @@ const Age = inject('registerStore')(
       const ageRegExp = /^[1-9][0-9]$/;
 
       if (data === '') {
-        setAgeValidationMessage('나이를 입력해주세요');
+        setAgeValidationMessage('나이를 입력해주세요.');
         return false;
       } else if (ageRegExp.test(data) === false) {
         setAgeValidationMessage('형식에 맞게 입력해주세요.');

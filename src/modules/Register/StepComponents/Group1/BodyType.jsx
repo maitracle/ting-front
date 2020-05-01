@@ -46,14 +46,14 @@ const BodyType = inject('registerStore')(
 
       setBodyTypeValidationMessage('');
       return true;
-    }
+    };
 
     const nextTo = () => {
       const isValid = validateBodyType(registerStore.registerData.bodyType);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
 
     return (
       <>
