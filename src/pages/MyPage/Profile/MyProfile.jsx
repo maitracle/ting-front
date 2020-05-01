@@ -35,6 +35,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   const [updateMessage, setUpdateMessage] = useState('');
 
   const [mySelfDateProfileData, setMySelfDateProfileData] = useState({
+    id: -1,
     chatLink: '',
     tags: '',
     oneSentence: '',
@@ -44,7 +45,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     dateStyle: '',
     idealType: '',
     oneSentence: '',
-    isActive: -1,
+    isActive: '',
   });
   const [chatLinkValidationMessage, setChatLinkValidationMessage] = useState('');
   const [tagsValidationMessage, setTagsValidationMessage] = useState('');
