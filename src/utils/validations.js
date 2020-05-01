@@ -36,14 +36,6 @@ export const getChatLinkValidationMessage = (data) => {
   else if (chatLinkRegExp.test(data) === true) {
     return '';
   }
-<<<<<<< HEAD
-}
-
-export const getTagsValidationMessage = (data) => {
-  const tagRegExp = /#\S/;
-  const isEveryTagsValid = data.split(/\s/).every(tag => tagRegExp.test(tag));
-  
-=======
 };
 
 export const getTagsValidationMessage = (data) => {
@@ -52,7 +44,6 @@ export const getTagsValidationMessage = (data) => {
   const isEveryTagsValid = tagList.every(tag => tagRegExp.test(tag));
   const validTags = tagList.filter(tag => tagRegExp.test(tag));
 
->>>>>>> master
   if (data.length > selsoFieldsMaxLengthLimit.Tags) {
     return `${selsoFieldsMaxLengthLimit.Tags}자 이하로 입력해주세요.`;
   }
@@ -60,24 +51,11 @@ export const getTagsValidationMessage = (data) => {
     return '형식에 맞게 입력해주세요.';
   }
   
-<<<<<<< HEAD
-  const validTags = data.split(/\s/).filter(tag => tagRegExp.test(tag));
-  const countTags = validTags.length;
-  
-  if (countTags < tagsMinCountLimit) {
-    return '태그를 4개 이상 입력해주세요.';
-  } else if (countTags > tagsMaxCountLimit) {
-=======
   if (validTags.length < tagsMinCountLimit) {
     return '태그를 4개 이상 입력해주세요.';
   } else if (validTags.length > tagsMaxCountLimit) {
->>>>>>> master
     return '태그는 10개까지만 입력해주세요.';
   } else {
     return '';
   }
-<<<<<<< HEAD
-}
-=======
 };
->>>>>>> master
