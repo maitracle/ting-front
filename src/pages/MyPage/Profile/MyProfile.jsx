@@ -19,6 +19,17 @@ import Btn from 'src/components/Button/Btn';
 import RadioSmall from 'src/components/Form/RadioSmall';
 
 
+const isActiveItemList = [
+  {
+    displayName: '셀소 자기소개 공개하기',
+    value: true,
+  },
+  {
+    displayName: '셀소 자기소개 비공개하기',
+    value: false,
+  },
+];
+
 export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userStore, selsoListStore }) => {
 
   const [updateMessage, setUpdateMessage] = useState('');
@@ -49,6 +60,16 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   useEffect(() => {
     setMySelfDateProfileData(selsoListStore.mySelsoProfile)
   }, [selsoListStore.mySelsoProfile]);
+
+  const setForm = (key) => (event) =>
+    setMySelfDateProfileData({ ...mySelfDateProfileData, [key]: event.target.value });
+
+  const setRadioForm = (key) => (value) => (_event) => {
+    setMySelfDateProfileData({
+      ...mySelfDateProfileData,
+      [key]: value,
+    });
+  };
 
   const validateChatLink = (data) => {
     const validationMessage = getChatLinkValidationMessage(data);
@@ -130,27 +151,6 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     return isValid;
   };
 
-  const isActiveItemList = [
-    {
-      displayName: '활성화',
-      value: true,
-    },
-    {
-      displayName: '비활성화',
-      value: false,
-    },
-  ];
-
-  const setRadioForm = (key) => (value) => (_event) => {
-    setMySelfDateProfileData({
-      ...mySelfDateProfileData,
-      [key]: value,
-    });
-  };
-
-  const setForm = (key) => (event) =>
-    setMySelfDateProfileData({ ...mySelfDateProfileData, [key]: event.target.value });
-
   const update = () => {
     if (getIsValidMySelfDateProfileData()) {
       selsoListStore.updateMySelsoProfile(mySelfDateProfileData)
@@ -172,18 +172,17 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
         <section className={styles.sectionWrapper}>
           <div className={styles.inputWrapper}>
             <RadioSmall
-              label={'활성화 여부'}
+              label={'셀소 자기소개 공개'}
               itemList={isActiveItemList}
               selectedItemValue={mySelfDateProfileData.isActive}
               selectItemValue={setRadioForm('isActive')}
-              //validationMessage={genderValidationMessage}
             />
           </div>
 
           <div className={styles.inputWrapper}>
             <div className={styles.label}>오픈카카오 링크</div>
             <Input
-              value={mySelfDateProfileData.chatLink || ''}
+              value={mySelfDateProfileData.chatLink}
               onChange={setForm('chatLink')}
               validationMessage={chatLinkValidationMessage}
               onFocus={() => setChatLinkValidationMessage('')}
@@ -194,7 +193,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
           <div className={styles.inputWrapper}>
             <div className={styles.label}>태그</div>
             <Input
-              value={mySelfDateProfileData.tags || ''}
+              value={mySelfDateProfileData.tags}
               onChange={setForm('tags')}
               validationMessage={tagsValidationMessage}
               onFocus={() => setTagsValidationMessage('')}
@@ -205,7 +204,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
           <div className={styles.inputWrapper}>
             <div className={styles.label}>한줄 자기소개</div>
             <Input
-              value={mySelfDateProfileData.oneSentence || ''}
+              value={mySelfDateProfileData.oneSentence}
               onChange={setForm('oneSentence')}
               validationMessage={oneSentenceValidationMessage}
               onFocus={() => setOneSentenceValidationMessage('')}
@@ -220,14 +219,14 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
           <div className={styles.textBoxWrapper}>
             <div className={styles.label}>외모 / 스타일</div>
             <Textarea
-              value={mySelfDateProfileData.appearance || ''}
+              value={mySelfDateProfileData.appearance}
               onChange={setForm('appearance')}
               onFocus={() => setAppearanceValidationMessage('')}
               onBlur={() => validateAppearance(mySelfDateProfileData.appearance)}
               maxLength={selsoFieldsMaxLengthLimit.Appearance}
             />
             <TextLengthBox
-              textLength={mySelfDateProfileData.appearance?.length || 0}
+              textLength={mySelfDateProfileData.appearance.length}
               minLength={selsoFieldsMinLengthLimit.Appearance}
               maxLength={selsoFieldsMaxLengthLimit.Appearance}
               validationMessage={appearanceValidationMessage}
@@ -237,14 +236,14 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
           <div className={styles.textBoxWrapper}>
             <div className={styles.label}>성격</div>
             <Textarea
-              value={mySelfDateProfileData.personality || ''}
+              value={mySelfDateProfileData.personality}
               onChange={setForm('personality')}
               onFocus={() => setPersonalityValidationMessage('')}
               onBlur={() => validatePersonality(mySelfDateProfileData.personality)}
               maxLength={selsoFieldsMaxLengthLimit.Personality}
             />
             <TextLengthBox
-              textLength={mySelfDateProfileData.personality?.length || 0}
+              textLength={mySelfDateProfileData.personality.length}
               minLength={selsoFieldsMinLengthLimit.Personality}
               maxLength={selsoFieldsMaxLengthLimit.Personality}
               validationMessage={personalityValidationMessage}
@@ -254,14 +253,14 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
           <div className={styles.textBoxWrapper}>
             <div className={styles.label}>취미 / 여가</div>
             <Textarea
-              value={mySelfDateProfileData.hobby || ''}
+              value={mySelfDateProfileData.hobby}
               onChange={setForm('hobby')}
               onFocus={() => setHobbyValidationMessage('')}
               onBlur={() => validateHobby(mySelfDateProfileData.hobby)}
               maxLength={selsoFieldsMaxLengthLimit.Hobby}
             />
             <TextLengthBox
-              textLength={mySelfDateProfileData.hobby?.length || 0}
+              textLength={mySelfDateProfileData.hobby.length}
               minLength={selsoFieldsMinLengthLimit.Hobby}
               maxLength={selsoFieldsMaxLengthLimit.Hobby}
               validationMessage={hobbyValidationMessage}
@@ -271,14 +270,14 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
           <div className={styles.textBoxWrapper}>
             <div className={styles.label}>연애관</div>
             <Textarea
-              value={mySelfDateProfileData.dateStyle || ''}
+              value={mySelfDateProfileData.dateStyle}
               onChange={setForm('dateStyle')}
               onFocus={() => setDateStyleValidationMessage('')}
               onBlur={() => validateDateStyle(mySelfDateProfileData.dateStyle)}
               maxLength={selsoFieldsMaxLengthLimit.DateStyle}
             />
             <TextLengthBox
-              textLength={mySelfDateProfileData.dateStyle?.length || 0}
+              textLength={mySelfDateProfileData.dateStyle.length}
               minLength={selsoFieldsMinLengthLimit.DateStyle}
               maxLength={selsoFieldsMaxLengthLimit.DateStyle}
               validationMessage={dateStyleValidationMessage}
@@ -288,14 +287,14 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
           <div className={styles.textBoxWrapper}>
             <div className={styles.label}>이상형</div>
             <Textarea
-              value={mySelfDateProfileData.idealType || ''}
+              value={mySelfDateProfileData.idealType}
               onChange={setForm('idealType')}
               onFocus={() => setIdealTypeValidationMessage('')}
               onBlur={() => validateIdealType(mySelfDateProfileData.idealType)}
               maxLength={selsoFieldsMaxLengthLimit.IdealType}
             />
             <TextLengthBox
-              textLength={mySelfDateProfileData.idealType?.length || 0}
+              textLength={mySelfDateProfileData.idealType.length}
               minLength={selsoFieldsMinLengthLimit.IdealType}
               maxLength={selsoFieldsMaxLengthLimit.IdealType}
               validationMessage={idealTypeValidationMessage}
