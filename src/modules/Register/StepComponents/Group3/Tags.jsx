@@ -31,7 +31,11 @@ const Tags = inject('registerStore')(
       <>
         <div className={styles.componentWrapper}>
           <TagBox setTags={setTags} onFocus={() => setTagsValidationMessage('')} />
-          <span className={styles.tagList}>다음과 같이 나타날 예정이에요~<br/>{registerStore.registerData.tags}</span><br/>
+          <span className={styles.previewTags}>
+            다음과 같이 나타날 예정이에요~<br/>
+            {registerStore.registerData.tags}
+          </span>
+          <br/>
           <span className={styles.validationMessage}>
             {tagsValidationMessage}
           </span>

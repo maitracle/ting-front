@@ -26,12 +26,12 @@ const RadioSmall = ({ label, itemList, selectedItemValue, selectItemValue, valid
       }
     </div>
     {
-      validationMessage && 
-      <div className={styles.validation}>
-        <span>{validationMessage}</span>
-      </div>
+      typeof validationMessage === "string" ? (
+        <div className={styles.validation}>
+          <span>{validationMessage}</span>
+        </div>
+      ) : null
     }
-    
   </div>
 );
 
