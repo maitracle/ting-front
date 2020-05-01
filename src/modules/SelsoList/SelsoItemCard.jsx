@@ -22,7 +22,7 @@ export default function SelsoItemCard({ selsoItem }) {
         </div>
       </div>
       <div className={styles.rightBox}>
-        <img src={selsoItem.image || require('src/assets/images/defaultProfileImage.jpg')} className={styles.image} alt="프로필 이미지" />
+        <img src={selsoItem.image || require('src/assets/images/defaultProfileImage.png')} className={styles.image} alt="프로필 이미지" />
       </div>
     </div>
   );
