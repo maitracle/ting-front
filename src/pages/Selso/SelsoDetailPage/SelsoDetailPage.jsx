@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import Card from 'src/modules/SelsoDetail/Card';
-import Gnb from 'src/components/Gnb';
 import styles from './SelsoDetailPage.module.scss';
 
 
@@ -30,11 +29,7 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
 
   return (
     <div className={styles.detailWrapper}>
-      <Gnb />
-      <div className={styles.gnbBlankBox} />
-
       <Card selsoDetail={selsoListStore.fetchedSelsoDetail} />
-
       <div className={styles.buttonBlankBox} />
       <div className={styles.buttonWrapper}>
         <button onClick={getOpenKakaoLink} className={styles.kakaoButton}>오픈 카카오로 연락하기</button>

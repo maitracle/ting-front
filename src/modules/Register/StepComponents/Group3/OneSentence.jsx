@@ -4,7 +4,7 @@ import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
 import styles from './Group3.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
-import { getLengthValidationMessage } from 'src/utils/validations';
+import { getOneSentenceValidationMessage } from 'src/utils/validations';
 import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/constants/fieldsLengthLimits';
 
 
@@ -14,25 +14,18 @@ const OneSentence = inject('registerStore')(
     const [oneSentenceValidationMessage, setOneSentenceValidationMessage] = useState('');
 
     const validateOneSentence = (data) => {
-      if (data.length === 0) {
-        setOneSentenceValidationMessage('자신을 표현할 한 문장을 입력해주세요.');
-        return false;
-      }
-
-      const validationMessage = getLengthValidationMessage(
-        selsoFieldsMinLengthLimit.OneSentence, selsoFieldsMaxLengthLimit.OneSentence, data
-      );
+      const validationMessage = getOneSentenceValidationMessage(data);
       setOneSentenceValidationMessage(validationMessage);
-      
+
       return validationMessage === '';
-    }
+    };
 
     const nextTo = () => {
       const isValid = validateOneSentence(registerStore.registerData.oneSentence);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
 
     return (
       <>

@@ -18,8 +18,8 @@ const Appearance = inject('registerStore')(
         selsoFieldsMinLengthLimit.Appearance, selsoFieldsMaxLengthLimit.Appearance, data
       );
       setAppearanceValidationMessage(validationMessage);
-      
-      return appearanceValidationMessage === '';
+
+      return validationMessage === '';
     };
 
     const nextTo = () => {

@@ -7,14 +7,22 @@ import TextLengthBox from 'src/components/Validation/TextLengthBox';
 import Input from 'src/components/Form/Input';
 import Modal from 'src/components/Modal';
 import { selsoFieldsMaxLengthLimit, selsoFieldsMinLengthLimit } from 'src/constants/fieldsLengthLimits';
-import { getLengthValidationMessage, getChatLinkValidationMessage, getTagsValidationMessage } from 'src/utils/validations';
+import {
+  getChatLinkValidationMessage,
+  getLengthValidationMessage,
+  getOneSentenceValidationMessage,
+  getTagsValidationMessage
+} from 'src/utils/validations';
 
 import styles from './MyProfile.module.scss';
 import Btn from 'src/components/Button/Btn';
-import RadioSmall from 'src/components/Form/RadioSmall'
+import RadioSmall from 'src/components/Form/RadioSmall';
+
 
 export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userStore, selsoListStore }) => {
+
   const [updateMessage, setUpdateMessage] = useState('');
+
   const [mySelfDateProfileData, setMySelfDateProfileData] = useState({
     chatLink: '',
     tags: '',
@@ -24,8 +32,6 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     hobby: '',
     dateStyle: '',
     idealType: '',
-    oneSentence: '',
-    isActive: '',
   });
   const [chatLinkValidationMessage, setChatLinkValidationMessage] = useState('');
   const [tagsValidationMessage, setTagsValidationMessage] = useState('');
@@ -43,60 +49,74 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   useEffect(() => {
     setMySelfDateProfileData(selsoListStore.mySelsoProfile)
   }, [selsoListStore.mySelsoProfile]);
-  
+
   const validateChatLink = (data) => {
-    setChatLinkValidationMessage(getChatLinkValidationMessage(data));
-    
-    return chatLinkValidationMessage === '';
-  }
+    const validationMessage = getChatLinkValidationMessage(data);
+    setChatLinkValidationMessage(validationMessage);
+
+    return validationMessage === '';
+  };
 
   const validateTags = (data) => {
-    setTagsValidationMessage(getTagsValidationMessage(data));
+    const validationMessage = getTagsValidationMessage(data);
+    setTagsValidationMessage(validationMessage);
 
-    return tagsValidationMessage === '';
-  }
+    return validationMessage === '';
+  };
 
   const validateOneSentence = (data) => {
-    setOneSentenceValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.OneSentence, selsoFieldsMaxLengthLimit.OneSentence, data));
-    
-    if (data.length === 0) {
-      setOneSentenceValidationMessage('자신을 표현할 한 문장을 입력해주세요.');
-    }
+    const validationMessage = getOneSentenceValidationMessage(data);
+    setOneSentenceValidationMessage(validationMessage);
 
     return oneSentenceValidationMessage === '';
-  }
+  };
 
   const validateAppearance = (data) => {
-    setAppearanceValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Appearance, selsoFieldsMaxLengthLimit.Appearance, data));
-    
-    return appearanceValidationMessage === '';
-  }
+    const validationMessage = getLengthValidationMessage(
+      selsoFieldsMinLengthLimit.Appearance, selsoFieldsMaxLengthLimit.Appearance, data
+    );
+    setAppearanceValidationMessage(validationMessage);
+
+    return validationMessage === '';
+  };
 
   const validatePersonality = (data) => {
-    setPersonalityValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Personality, selsoFieldsMaxLengthLimit.Personality, data));
-    
-    return personalityValidationMessage === '';
-  }
+    const validationMessage = getLengthValidationMessage(
+      selsoFieldsMinLengthLimit.Personality, selsoFieldsMaxLengthLimit.Personality, data
+    );
+    setPersonalityValidationMessage(validationMessage);
+
+    return validationMessage === '';
+  };
 
   const validateHobby = (data) => {
-    setHobbyValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.Hobby, selsoFieldsMaxLengthLimit.Hobby, data));
-    
-    return hobbyValidationMessage === '';
-  }
+    const validationMessage = getLengthValidationMessage(
+      selsoFieldsMinLengthLimit.Hobby, selsoFieldsMaxLengthLimit.Hobby, data
+    );
+    setHobbyValidationMessage(validationMessage);
+
+    return validationMessage === '';
+  };
 
   const validateDateStyle = (data) => {
-    setDateStyleValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.DateStyle, selsoFieldsMaxLengthLimit.DateStyle, data));
-    
-    return dateStyleValidationMessage === '';
-  }
+    const validationMessage = getLengthValidationMessage(
+      selsoFieldsMinLengthLimit.DateStyle, selsoFieldsMaxLengthLimit.DateStyle, data
+    );
+    setDateStyleValidationMessage(validationMessage);
+
+    return validationMessage === '';
+  };
 
   const validateIdealType = (data) => {
-    setIdealTypeValidationMessage(getLengthValidationMessage(selsoFieldsMinLengthLimit.IdealType, selsoFieldsMaxLengthLimit.IdealType, data));
-    
-    return idealTypeValidationMessage === '';
-  }
+    const validationMessage = getLengthValidationMessage(
+      selsoFieldsMinLengthLimit.IdealType, selsoFieldsMaxLengthLimit.IdealType, data
+    );
+    setIdealTypeValidationMessage(validationMessage);
 
-  const getMySelfDateProfileDataIsValid = () => {
+    return validationMessage === '';
+  };
+
+  const getIsValidMySelfDateProfileData = () => {
     let isValid = true;
     isValid = validateChatLink(mySelfDateProfileData.chatLink) && isValid;
     isValid = validateTags(mySelfDateProfileData.tags) && isValid;
@@ -108,7 +128,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     isValid = validateIdealType(mySelfDateProfileData.idealType) && isValid;
 
     return isValid;
-  }
+  };
 
   const isActiveItemList = [
     {
@@ -121,10 +141,6 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     },
   ];
 
-  const setForm = (key) => (event) => {
-    setMySelfDateProfileData({ ...mySelfDateProfileData, [key]: event.target.value });
-  };
-
   const setRadioForm = (key) => (value) => (_event) => {
     setMySelfDateProfileData({
       ...mySelfDateProfileData,
@@ -132,17 +148,20 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     });
   };
 
+  const setForm = (key) => (event) =>
+    setMySelfDateProfileData({ ...mySelfDateProfileData, [key]: event.target.value });
+
   const update = () => {
-    if (getMySelfDateProfileDataIsValid()) {
+    if (getIsValidMySelfDateProfileData()) {
       selsoListStore.updateMySelsoProfile(mySelfDateProfileData)
         .then((res) => {
           if (res.status === 200) {
             setUpdateMessage('수정이 완료되었습니다!');
           } else {
-            setUpdateMessage('잠시 후 다시 시도해주세요.')
+            setUpdateMessage('잠시 후 다시 시도해주세요.');
           }
         });
-    };
+    }
   };
   
   return (
@@ -160,7 +179,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
               //validationMessage={genderValidationMessage}
             />
           </div>
-          
+
           <div className={styles.inputWrapper}>
             <div className={styles.label}>오픈카카오 링크</div>
             <Input
@@ -207,7 +226,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
               onBlur={() => validateAppearance(mySelfDateProfileData.appearance)}
               maxLength={selsoFieldsMaxLengthLimit.Appearance}
             />
-            <TextLengthBox 
+            <TextLengthBox
               textLength={mySelfDateProfileData.appearance?.length || 0}
               minLength={selsoFieldsMinLengthLimit.Appearance}
               maxLength={selsoFieldsMaxLengthLimit.Appearance}
@@ -241,7 +260,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
               onBlur={() => validateHobby(mySelfDateProfileData.hobby)}
               maxLength={selsoFieldsMaxLengthLimit.Hobby}
             />
-            <TextLengthBox 
+            <TextLengthBox
               textLength={mySelfDateProfileData.hobby?.length || 0}
               minLength={selsoFieldsMinLengthLimit.Hobby}
               maxLength={selsoFieldsMaxLengthLimit.Hobby}
@@ -258,7 +277,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
               onBlur={() => validateDateStyle(mySelfDateProfileData.dateStyle)}
               maxLength={selsoFieldsMaxLengthLimit.DateStyle}
             />
-            <TextLengthBox 
+            <TextLengthBox
               textLength={mySelfDateProfileData.dateStyle?.length || 0}
               minLength={selsoFieldsMinLengthLimit.DateStyle}
               maxLength={selsoFieldsMaxLengthLimit.DateStyle}
@@ -275,7 +294,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
               onBlur={() => validateIdealType(mySelfDateProfileData.idealType)}
               maxLength={selsoFieldsMaxLengthLimit.IdealType}
             />
-            <TextLengthBox 
+            <TextLengthBox
               textLength={mySelfDateProfileData.idealType?.length || 0}
               minLength={selsoFieldsMinLengthLimit.IdealType}
               maxLength={selsoFieldsMaxLengthLimit.IdealType}

@@ -1,47 +1,9 @@
-import React, { useState } from 'react';
-import Modal from 'src/components/Modal';
-
+import React from 'react';
 
 export default () => {
-  const [isOpenTestModal, setIsOpenTestModal] = useState(false);
-
-  const openTestModal = () => {
-    setIsOpenTestModal(true);
-  };
-  
-  const closeTestModal = () => {
-    setIsOpenTestModal(false);
-  };
-
-  const alertMethod = () => {
-    alert('눌렀다!!!');
-  };
-
   return (
     <div>
-      <button onClick={openTestModal}>open modal</button>
-      <div>
-        asdfasdfa
-      </div>
-      <div>
-        { process.env.NODE_ENV }
-      </div>
-      <div>
-        asdfasdfa
-      </div>
-      <Modal
-        isOpen={isOpenTestModal}
-        close={closeTestModal}
-        buttonList={[
-          <button onClick={alertMethod} key="testButton">
-            alert button
-          </button>,
-        ]}
-      >
-        <div>children1</div>
-        <div>children2</div>
-        <div>children3</div>
-      </Modal>
+      랜딩페이지가 들어갈 예정입니다.
     </div>
   );
 };
