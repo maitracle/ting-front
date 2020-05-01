@@ -19,7 +19,7 @@ const Appearance = inject('registerStore')(
       );
       setAppearanceValidationMessage(validationMessage);
       
-      return appearanceValidationMessage === '';
+      return validationMessage === '';
     };
 
     const nextTo = () => {

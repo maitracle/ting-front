@@ -33,13 +33,22 @@ const mapStepToComponent = {
   ChatLink,
 };
 
-export const RegisterPage = inject('registerStore')(
-  observer(({ registerStore, history }) => {
+export const RegisterPage = inject('registerStore', 'selsoListStore')(
+  observer(({ registerStore, selsoListStore, history }) => {
     let StepComponent = mapStepToComponent[registerStore.currentStep];
 
     useEffect(() => {
       StepComponent = mapStepToComponent[registerStore.currentStep];
     }, [registerStore.currentStep]);
+
+    useEffect(() => {
+      selsoListStore.getMySelsoProfile()
+        .then((res) => {
+          if (res?.status === 200 && res?.statusText === 'OK') {
+            history.push('/user/register/complete');
+          }
+        })
+    });
 
     return (
       <div>

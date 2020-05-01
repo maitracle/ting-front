@@ -9,7 +9,16 @@ const fetchOpenKakaoLinkApi = (selsoId) => requests.get(`${GET_OPEN_KAKAO_PATH(s
 const updateMySelsoProfileApi = (profileData) => requests.patch(`${UPDATE_PROFILE_PATH}${profileData.id}/`, profileData, true);
 
 export default class SelsoListStore {
-  @observable mySelsoProfile = {};
+  @observable mySelsoProfile = {
+    chatLink: '',
+    tags: '',
+    oneSentence: '',
+    appearance: '',
+    personality: '',
+    hobby: '',
+    dateStyle: '',
+    idealType: '',
+  };
 
   @observable selsoList = [];
 
@@ -24,6 +33,7 @@ export default class SelsoListStore {
   @action getMySelsoProfile = () => fetchMySelsoProfileApi()
     .then((res) => {
       this.mySelsoProfile = res.data;
+      return res;
     })
     .catch((err) => err);
 

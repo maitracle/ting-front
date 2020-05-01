@@ -65,8 +65,8 @@ export default class UserStore {
         this.isLoggedIn = false;
 
         return {
-          status: err.response.status,
-          message: err.response.statusText,
+          status: err?.response?.status,
+          message: err?.response?.statusText,
         };
       });
   };

@@ -5,7 +5,6 @@ import styles from './Card.module.scss';
 
 export default ({ selsoDetail }) => {
   const bodyTypeConverter = {
-    SKINNY: '마른',
     SLIM: '슬림',
     SLIM_TONED: '슬림탄탄',
     NORMAL: '보통',
