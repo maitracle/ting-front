@@ -10,6 +10,7 @@ const updateMySelsoProfileApi = (profileData) => requests.patch(`${UPDATE_PROFIL
 
 export default class SelsoListStore {
   @observable mySelsoProfile = {
+    id: -1,
     chatLink: '',
     tags: '',
     oneSentence: '',
