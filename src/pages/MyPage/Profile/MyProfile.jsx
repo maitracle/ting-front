@@ -27,7 +27,6 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     hobby: '',
     dateStyle: '',
     idealType: '',
-    oneSentence: '',
   });
   const [chatLinkValidationMessage, setChatLinkValidationMessage] = useState('');
   const [tagsValidationMessage, setTagsValidationMessage] = useState('');
@@ -112,7 +111,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     return validationMessage === '';
   };
 
-  const getMySelfDateProfileDataIsValid = () => {
+  const getIsValidMySelfDateProfileData = () => {
     let isValid = true;
     isValid = validateChatLink(mySelfDateProfileData.chatLink) && isValid;
     isValid = validateTags(mySelfDateProfileData.tags) && isValid;
@@ -129,7 +128,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   const setForm = (key) => (event) => setMySelfDateProfileData({ ...mySelfDateProfileData, [key]: event.target.value });
 
   const update = () => {
-    if (getMySelfDateProfileDataIsValid()) {
+    if (getIsValidMySelfDateProfileData()) {
       selsoListStore.updateMySelsoProfile(mySelfDateProfileData)
         .then((res) => {
           if (res.status === 200) {
@@ -138,7 +137,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
             setUpdateMessage('잠시 후 다시 시도해주세요.')
           }
         });
-    };
+    }
   };
   
   return (
