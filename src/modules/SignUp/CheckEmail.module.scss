@@ -36,3 +36,13 @@
   text-align: center;
   color: #ED5F4F;
 }
+
+.buttonWrapper {
+  position: fixed;
+  bottom: 35px;
+
+  width: 100%;
+  max-width: $root-max-width;
+  margin-left: -25px;
+  padding: 0 25px;
+}

@@ -80,7 +80,9 @@ const CheckStudentIdCard = inject('signUpStore')(observer(({ signUpStore, histor
           </label>
           <div className={styles.errorMessage}>{errorMessage}</div>
         </div>
-        <Btn onClick={submit}>인증하기</Btn>
+        <div className={styles.buttonWrapper}>
+          <Btn onClick={submit}>인증하기</Btn>
+        </div>
       </div>
       <Loading isLoading={isLoading} phrase={'이미지를 업로드중입니다.'} />
     </>
