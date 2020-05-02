@@ -1,9 +1,11 @@
 import React from 'react';
 
+import styles from './MainPage.module.scss';
+
 export default () => {
   return (
-    <div>
-      랜딩페이지가 들어갈 예정입니다.
+    <div className={styles.pageWrapper}>
+      <img src={require('src/assets/images/Main/LandingImage.png')} className={styles.landingImage} alt="사용 방법" />
     </div>
   );
 };
