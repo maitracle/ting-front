@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
-import { placeholder } from 'src/constants/Register/Group2'
+import { getPlaceholderMessageByLengthLimit } from 'src/constants/Register/Group2'
 import styles from './Group2.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
+import { getLengthValidationMessage } from 'src/utils/validations';
+import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/constants/fieldsLengthLimits';
 
 
 const IdealType = inject('registerStore')(
   observer(({ registerStore, headerHeight }) => {
-    const minLength = 120;
-    const maxLength = 1000;
-    
     const [idealTypeValidationMessage, setIdealTypeValidationMessage] = useState('');
     const [screenHeight, setScreenHeight] = useState();
     
@@ -20,15 +19,12 @@ const IdealType = inject('registerStore')(
     }, []);
 
     const validateIdealType = (data) => {
-      if (data.length < minLength) {
-        setIdealTypeValidationMessage(`${minLength}자 이상 입력해주세요.`);
-        return false;
-      } else if (data.length > maxLength) {
-        setIdealTypeValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
-      }
-
-      setIdealTypeValidationMessage('');
-      return true;
+      const validationMessage = getLengthValidationMessage(
+        selsoFieldsMinLengthLimit.IdealType, selsoFieldsMaxLengthLimit.IdealType, data
+      );
+      setIdealTypeValidationMessage(validationMessage);
+      
+      return validationMessage === '';
     };
 
     const nextTo = () => {
@@ -46,17 +42,17 @@ const IdealType = inject('registerStore')(
       <>
         <div className={styles.componentWrapper} style={componentStyle}>
           <Textarea
-            placeholder={placeholder(minLength)}
+            placeholder={getPlaceholderMessageByLengthLimit(selsoFieldsMinLengthLimit.IdealType)}
             value={registerStore.registerData.idealType}
             onChange={(e) => registerStore.setRegisterData('idealType', e.target.value)}
             onFocus={() => setIdealTypeValidationMessage('')}
             onBlur={() => validateIdealType(registerStore.registerData.idealType)}
-            maxLength={maxLength}
+            maxLength={selsoFieldsMaxLengthLimit.IdealType}
           />
           <TextLengthBox
             textLength={registerStore.registerData.idealType.length}
-            minLength={minLength}
-            maxLength={maxLength}
+            minLength={selsoFieldsMinLengthLimit.IdealType}
+            maxLength={selsoFieldsMaxLengthLimit.IdealType}
             validationMessage={idealTypeValidationMessage}
           />
         </div>

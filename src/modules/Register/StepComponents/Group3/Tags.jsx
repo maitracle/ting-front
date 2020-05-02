@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 import TagBox from './TagBox';
 import styles from './Group3.module.scss';
+import { getTagsValidationMessage } from 'src/utils/validations';
 
 
 const Tags = inject('registerStore')(
@@ -17,22 +18,16 @@ const Tags = inject('registerStore')(
     }, []);
 
     const validateTags = (data) => {
-      const countTags = data.split(/\s/).length;
-      if (countTags < 4) {
-        setTagsValidationMessage('태그를 4개 이상 입력해주세요.');
-        return false;
-      } else if (countTags > 10) {
-        setTagsValidationMessage('태그는 10개까지만 입력해주세요.');
-        return false;
-      }
+      const validationMessage = getTagsValidationMessage(data);
+      setTagsValidationMessage(validationMessage);
 
-      setTagsValidationMessage('');
-      return true;
+      return validationMessage === '';
     };
 
     const nextTo = () => {
       const isValid = validateTags(registerStore.registerData.tags);
-      if (isValid) {
+
+      if (isValid === true) {
         registerStore.nextTo();
       }
     };

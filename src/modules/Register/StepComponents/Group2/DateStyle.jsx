@@ -2,16 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
-import { placeholder } from 'src/constants/Register/Group2'
+import { getPlaceholderMessageByLengthLimit } from 'src/constants/Register/Group2'
 import styles from './Group2.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
+import { getLengthValidationMessage } from 'src/utils/validations';
+import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/constants/fieldsLengthLimits';
 
 
 const DateStyle = inject('registerStore')(
   observer(({ registerStore, headerHeight }) => {
-    const minLength = 60;
-    const maxLength = 1000;
-
     const [dateStyleValidationMessage, setDateStyleValidationMessage] = useState('');
     const [screenHeight, setScreenHeight] = useState();
     
@@ -20,15 +19,12 @@ const DateStyle = inject('registerStore')(
     }, []);
 
     const validateDateStyle = (data) => {
-      if (data.length < minLength) {
-        setDateStyleValidationMessage(`${minLength}자 이상 입력해주세요.`);
-        return false;
-      }  else if (data.length > maxLength) {
-        setDateStyleValidationMessage(`${maxLength}자 이하로 입력해주세요.`);
-      }
-
-      setDateStyleValidationMessage('');
-      return true;
+      const validationMessage = getLengthValidationMessage(
+        selsoFieldsMinLengthLimit.DateStyle, selsoFieldsMaxLengthLimit.DateStyle, data
+      );
+      setDateStyleValidationMessage(validationMessage);
+      
+      return validationMessage === '';
     };
 
     const nextTo = () => {
@@ -46,17 +42,17 @@ const DateStyle = inject('registerStore')(
       <>
         <div className={styles.componentWrapper} style={componentStyle}>
           <Textarea 
-            placeholder={placeholder(minLength)}
+            placeholder={getPlaceholderMessageByLengthLimit(selsoFieldsMinLengthLimit.DateStyle)}
             value={registerStore.registerData.dateStyle}
             onChange={(e) => registerStore.setRegisterData('dateStyle', e.target.value)}
             onFocus={() => setDateStyleValidationMessage('')}
             onBlur={() => validateDateStyle(registerStore.registerData.dateStyle)}
-            maxLength={maxLength}
+            maxLength={selsoFieldsMaxLengthLimit.DateStyle}
           />
           <TextLengthBox
             textLength={registerStore.registerData.dateStyle.length}
-            minLength={minLength}
-            maxLength={maxLength}
+            minLength={selsoFieldsMinLengthLimit.DateStyle}
+            maxLength={selsoFieldsMaxLengthLimit.DateStyle}
             validationMessage={dateStyleValidationMessage}
           />
         </div>

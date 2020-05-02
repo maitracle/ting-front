@@ -11,12 +11,17 @@ import styles from './Gnb.module.scss';
 export const Gnb = inject('myPointStore', 'userStore')(observer(({ myPointStore, userStore }) => {
   const [isOpenPanel, setIsOpenPanel] = useState(false);
 
+  const logOut = () => {
+    setIsOpenPanel(false);
+    userStore.logOut();
+  };
+
   return (
     <>
       <div className={styles.gnbWrapper}>
         <div className={styles.gnbContents}>
           <Link to="/">
-            <img src={require('src/assets/images/Logo/Camcou.png')} className={styles.logoImage} alt="캠쿠" />
+            <img src={require('src/assets/images/Logo/YTing.png')} className={styles.logoImage} alt="영남팅" />
           </Link>
           <div className={styles.pointWrapper}>
             <div className={styles.point}>
@@ -31,7 +36,7 @@ export const Gnb = inject('myPointStore', 'userStore')(observer(({ myPointStore,
               close={() => setIsOpenPanel(false)}
             >
               <Link to="/">
-                <img src={require('src/assets/images/Logo/Camcou.png')} className={styles.logoImage} alt="캠쿠" />
+                <img src={require('src/assets/images/Logo/YTing.png')} className={styles.logoImage} alt="영남팅" />
               </Link>
 
               <hr className={styles.separator} />
@@ -54,11 +59,26 @@ export const Gnb = inject('myPointStore', 'userStore')(observer(({ myPointStore,
 
               {
                 userStore.isLoggedIn ?
-                  <Link to="/my" className={styles.link}>
-                    <div className={styles.linkTitle} onClick={() => setIsOpenPanel(false)}>
-                      마이페이지
+                  <>
+                    {
+                      userStore?.user?.isConfirmedStudent ?
+                        null
+                        :
+                        <Link to="/user/sign-up/YEUNGNAM" className={styles.link}>
+                          <div className={styles.linkTitle} onClick={() => setIsOpenPanel(false)}>
+                            회원가입 마무리하기
+                          </div>
+                        </Link>
+                    }
+                    <Link to="/my" className={styles.link}>
+                      <div className={styles.linkTitle} onClick={() => setIsOpenPanel(false)}>
+                        마이페이지
+                      </div>
+                    </Link>
+                    <div className={styles.linkTitle} onClick={logOut}>
+                      로그아웃
                     </div>
-                  </Link>
+                  </>
                   :
                   <>
                     <Link to="/user/log-in" className={styles.link}>

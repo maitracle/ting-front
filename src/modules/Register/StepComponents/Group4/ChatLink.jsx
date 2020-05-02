@@ -4,27 +4,40 @@ import Input from 'src/components/Form/Input';
 import styles from './Group4.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 import Modal from 'src/components/Modal';
+import { getChatLinkValidationMessage } from 'src/utils/validations';
 
 
 const ChatLink = inject('registerStore', 'userStore')(
   observer(({ registerStore, userStore, history, headerHeight }) => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+    const [chatLinkValidationMessage, setChatLinkValidationMessage] = useState('');
     const [screenHeight, setScreenHeight] = useState();
     
     useEffect(() => {
       setScreenHeight(window.innerHeight);
     }, []);
+    
+    const validateChatLink = (data) => {
+      const validationMessage = getChatLinkValidationMessage(data);
+      setChatLinkValidationMessage(validationMessage);
+
+      return validationMessage === '';
+    };
 
     const submit = () => {
-      registerStore.setRegisterData('profile', userStore.profile.id);
-      registerStore.registerSelso()
-        .then((res) => {
-          if (res.status === 201) {
-            history.push('register/complete');
-          } else if (res.status >= 500) {
-            setIsErrorModalOpen(true);
-          }
-        });
+      const isValid = validateChatLink(registerStore.registerData.chatLink);
+
+      if (isValid) {
+        registerStore.setRegisterData('profile', userStore.profile.id);
+        registerStore.registerSelso()
+          .then((res) => {
+            if (res.status === 201) {
+              history.push('register/complete');
+            } else if (res.status >= 500) {
+              setIsErrorModalOpen(true);
+            }
+          });
+      }
     };
 
     const componentStyle = {
@@ -38,6 +51,9 @@ const ChatLink = inject('registerStore', 'userStore')(
             placeholder="이성분이 연락 가능한 오픈 카카오톡 링크"
             value={registerStore.registerData.chatLink}
             onChange={(e) => registerStore.setRegisterData('chatLink', e.target.value)}
+            validationMessage={chatLinkValidationMessage}
+            onFocus={() => setChatLinkValidationMessage('')}
+            onBlur={() => validateChatLink(registerStore.registerData.chatLink)}
           />
         </div>
         <RegisterBtnSet backTo={registerStore.backTo} nextTo={submit} />

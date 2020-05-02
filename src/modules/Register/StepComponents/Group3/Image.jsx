@@ -40,7 +40,7 @@ const Image = inject('registerStore')(
 
         return false;
       } else if (registerStore.registerData.image.size > maxSize) {
-        setValidationMessage('이미지 용량 제한을 초과했습니다.');
+        setValidationMessage('이미지 용량 제한을 초과했습니다. 5mb 이하의 이미지를 올려주세요.');
 
         return false;
       }
