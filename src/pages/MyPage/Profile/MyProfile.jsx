@@ -179,6 +179,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
               itemList={isActiveItemList}
               selectedItemValue={mySelfDateProfileData.isActive}
               selectItemValue={setRadioForm('isActive')}
+              isNeedValidationMessagePlace={false}
             />
           </div>
 

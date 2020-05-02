@@ -2,7 +2,7 @@ import React from 'react';
 
 import styles from  './RadioSmall.module.scss';
 
-const RadioSmall = ({ label, itemList, selectedItemValue, selectItemValue, validationMessage }) => (
+const RadioSmall = ({ label, itemList, selectedItemValue, selectItemValue, validationMessage, isNeedValidationMessagePlace = true }) => (
   <div>
     {
       label ?
@@ -26,11 +26,11 @@ const RadioSmall = ({ label, itemList, selectedItemValue, selectItemValue, valid
       }
     </div>
     {
-      typeof validationMessage === "string" ? (
+      isNeedValidationMessagePlace ? 
         <div className={styles.validation}>
           <span>{validationMessage}</span>
-        </div>
-      ) : null
+        </div> 
+      : null
     }
   </div>
 );
