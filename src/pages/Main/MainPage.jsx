@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import styles from './MainPage.module.scss';
 import { yeungnamSelsoListOpenDate } from 'src/constants/dates';
+import { Link } from 'react-router-dom';
 
 
 export default () => {
@@ -58,7 +59,11 @@ export default () => {
             }
           </div>
         </div>
-        <button className={styles.ctaButton}><span className={styles.buttonText}>간편하게 회원가입 하기</span></button>
+        <Link to="/user/sign-up/YEUNGNAM" className={styles.link}>
+          <div className={styles.ctaButton}>
+            <span className={styles.buttonText}>간편하게 회원가입 하기</span>
+          </div>
+        </Link>
       </div>
       <img src={require('src/assets/images/Main/LandingImage.png')} className={styles.landingImage} alt="사용 방법" />
     </div>
