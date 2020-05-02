@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { inject, observer } from 'mobx-react';
 
-import MainPage from 'src/pages/MainPage';
+import MainPage from 'src/pages/Main';
 import SelsoListPage from 'src/pages/Selso/SelsoListPage';
 import MyList from 'src/pages/MyPage/List';
 import MyProfile from 'src/pages/MyPage/Profile';
