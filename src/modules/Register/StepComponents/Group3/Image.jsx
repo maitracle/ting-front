@@ -7,10 +7,15 @@ import styles from './Group3.module.scss'
 
 
 const Image = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(({ registerStore, headerHeight }) => {
     const [imageSrc, setImageSrc] = useState(null);
 
     const [validationMessage, setValidationMessage] = useState('');
+    const [screenHeight, setScreenHeight] = useState();
+    
+    useEffect(() => {
+      setScreenHeight(window.innerHeight);
+    }, []);
 
     const uploadProfileImage = (e) => {
       setValidationMessage('');
@@ -51,9 +56,13 @@ const Image = inject('registerStore')(
       }
     };
 
+    const componentStyle = {
+      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+    };
+
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={componentStyle}>
           <input className={styles.imageInput} id="profile-image" type="file" onChange={uploadProfileImage} accept=".jpg,.png" />
           <label htmlFor="profile-image">
             <div className={styles.imageLabel}>

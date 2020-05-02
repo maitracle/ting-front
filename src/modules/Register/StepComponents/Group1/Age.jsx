@@ -6,9 +6,14 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Age = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(({ registerStore, headerHeight }) => {
     const [ageValidationMessage, setAgeValidationMessage] = useState('');
-
+    const [screenHeight, setScreenHeight] = useState();
+    
+    useEffect(() => {
+      setScreenHeight(window.innerHeight);
+    }, []);
+    
     const validateAge = (data) => {
       const ageRegExp = /^[1-9][0-9]$/;
 
@@ -33,10 +38,14 @@ const Age = inject('registerStore')(
         registerStore.nextTo();
       }
     };
+    
+    const componentStyle = {
+      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+    };
 
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={componentStyle}>
           <div className={styles.question}>
             <strong>나이</strong>를 알려주세요.
           </div>

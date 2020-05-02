@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
@@ -8,12 +8,17 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Hobby = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(({ registerStore, headerHeight }) => {
     const minLength = 120;
     const maxLength = 1000;
 
     const [hobbyValidationMessage, setHobbyValidationMessage] = useState('');
+    const [screenHeight, setScreenHeight] = useState();
     
+    useEffect(() => {
+      setScreenHeight(window.innerHeight);
+    }, []);
+
     const validateHobby = (data) => {
       if (data.length < minLength) {
         setHobbyValidationMessage(`${minLength}자 이상 입력해주세요.`);
@@ -24,18 +29,22 @@ const Hobby = inject('registerStore')(
 
       setHobbyValidationMessage('');
       return true;
-    }
+    };
 
     const nextTo = () => {
       const isValid = validateHobby(registerStore.registerData.hobby);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
+
+    const componentStyle = {
+      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+    };
 
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={componentStyle}>
           <Textarea
             placeholder={placeholder(minLength)}
             value={registerStore.registerData.hobby}

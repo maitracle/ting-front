@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { inject, observer } from 'mobx-react';
 import RegisterHeader from 'src/modules/Register/RegisterHeader';
 import Nickname from 'src/modules/Register/StepComponents/Group1/Nickname'
@@ -37,14 +37,16 @@ export const RegisterPage = inject('registerStore')(
   observer(({ registerStore, history }) => {
     let StepComponent = mapStepToComponent[registerStore.currentStep];
 
+    const registerHeaderElement = useRef();
+    
     useEffect(() => {
       StepComponent = mapStepToComponent[registerStore.currentStep];
     }, [registerStore.currentStep]);
 
     return (
       <div>
-        <RegisterHeader />
-        <StepComponent history={history}/>
+        <RegisterHeader ref={registerHeaderElement}/>
+        <StepComponent history={history} headerHeight={registerHeaderElement.current?.offsetHeight}/>
       </div>
     );
   }),

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
 import styles from './Group1.module.scss';
@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Religion = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(({ registerStore, headerHeight }) => {
     const setReligion = (value) => registerStore.setRegisterData('religion', value);
     const [radioItemList, setRadioItem] = useState([
       {
@@ -25,6 +25,11 @@ const Religion = inject('registerStore')(
         id: 5, text: '기타', value: 'ETC', checked: false,
       },
     ]);
+    const [screenHeight, setScreenHeight] = useState();
+    
+    useEffect(() => {
+      setScreenHeight(window.innerHeight);
+    }, []);
 
     const onClick = useCallback(
       (id, value) => {
@@ -46,18 +51,22 @@ const Religion = inject('registerStore')(
 
       setReligionValidationMessage('');
       return true;
-    }
+    };
 
     const nextTo = () => {
       const isValid = validateReligion(registerStore.registerData.religion);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
+
+    const componentStyle = {
+      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+    };
 
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={componentStyle}>
           <div className={styles.question}>
             <strong>종교</strong>를 알려주세요.
           </div>

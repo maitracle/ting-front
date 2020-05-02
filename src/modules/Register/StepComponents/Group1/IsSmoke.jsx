@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
 import styles from './Group1.module.scss';
@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const IsSmoke = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(({ registerStore, headerHeight }) => {
     const setIsSmoke = (value) => registerStore.setRegisterData('isSmoke', value);
     const [radioItemList, setRadioItem] = useState([
       {
@@ -16,6 +16,11 @@ const IsSmoke = inject('registerStore')(
         id: 2, text: '흡연자', value: 'YES', checked: false,
       },
     ]);
+    const [screenHeight, setScreenHeight] = useState();
+    
+    useEffect(() => {
+      setScreenHeight(window.innerHeight);
+    }, []);
 
     const onClick = useCallback(
       (id, value) => {
@@ -37,18 +42,22 @@ const IsSmoke = inject('registerStore')(
 
       setIsSmokeValidationMessage('');
       return true;
-    }
+    };
 
     const nextTo = () => {
       const isValid = validateIsSmoke(registerStore.registerData.isSmoke);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
+
+    const componentStyle = {
+      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+    };
 
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={componentStyle}>
           <div className={styles.question}>
             <strong>흡연여부</strong>를 알려주세요.
           </div>

@@ -2,10 +2,9 @@
 
 .btnWrapper {
   display: flex;
-  position: fixed;
+  position: absolute;
   max-width: $root-max-width;
   margin: 0 auto;
-  bottom: 0;
   width: 100%;
   background-color: white;
   padding: 35px 28px;

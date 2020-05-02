@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
@@ -7,11 +7,16 @@ import styles from './Group2.module.scss';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 const Appearance = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(({ registerStore, headerHeight }) => {
     const minLength = 120;
     const maxLength = 1000;
      
     const [appearanceValidationMessage, setAppearanceValidationMessage] = useState('');
+    const [screenHeight, setScreenHeight] = useState();
+    
+    useEffect(() => {
+      setScreenHeight(window.innerHeight);
+    }, []);
 
     const validateAppearance = (data) => {
       if (data.length < minLength) {
@@ -32,9 +37,13 @@ const Appearance = inject('registerStore')(
       }
     }
 
+    const componentStyle = {
+      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+    };
+
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={componentStyle}>
           <Textarea
             placeholder={placeholder(minLength)}
             value={registerStore.registerData.appearance}

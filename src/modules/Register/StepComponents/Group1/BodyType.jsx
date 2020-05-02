@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
 import styles from './Group1.module.scss';
@@ -6,8 +6,14 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const BodyType = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(({ registerStore, headerHeight }) => {
     const setBodyType = (value) => registerStore.setRegisterData('bodyType', value);
+    const [screenHeight, setScreenHeight] = useState();
+    
+    useEffect(() => {
+      setScreenHeight(window.innerHeight);
+    }, []);
+    
     const [radioItemList, setRadioItem] = useState([
       {
         id: 1, text: '슬림', value: 'SLIM', checked: false,
@@ -46,18 +52,22 @@ const BodyType = inject('registerStore')(
 
       setBodyTypeValidationMessage('');
       return true;
-    }
+    };
 
     const nextTo = () => {
       const isValid = validateBodyType(registerStore.registerData.bodyType);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
+
+    const componentStyle = {
+      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+    };
 
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={componentStyle} >
           <div className={styles.question}>
             <strong>체형</strong>을 알려주세요.
           </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
@@ -7,12 +7,17 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const OneSentence = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(({ registerStore, headerHeight }) => {
     const placeholder = '35자 이내로 자신에 대해 표현해주세요 :)';
     const minLength = 1;
     const maxLength = 35;
 
     const [oneSentenceValidationMessage, setOneSentenceValidationMessage] = useState('');
+    const [screenHeight, setScreenHeight] = useState();
+    
+    useEffect(() => {
+      setScreenHeight(window.innerHeight);
+    }, []);
 
     const validateOneSentence = (data) => {
       if (data.length === 0) {
@@ -34,11 +39,15 @@ const OneSentence = inject('registerStore')(
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };   
 
+    const componentStyle = {
+      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+    };
+    
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={componentStyle}>
           <Textarea
             placeholder={placeholder}
             value={registerStore.registerData.oneSentence}
