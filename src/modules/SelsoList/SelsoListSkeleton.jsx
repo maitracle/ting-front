@@ -10,6 +10,7 @@ const skeletonBoySelsoItem = {
   },
   tags: '#우리 #만나면 #뭐하고 #놀까? #멋진 #사람을 #만나고 #싶어!',
   oneSentence: '우리 만날날을 기다리고 있어요. 기대해주세요!',
+  image: require('src/assets/images/ManDefault.jpg'),
 };
 
 const skeletonGirlSelsoItem = {
@@ -19,6 +20,7 @@ const skeletonGirlSelsoItem = {
   },
   tags: '#우리 #만나면 #뭐하고 #놀까? #멋진 #사람을 #만나고 #싶어!',
   oneSentence: '우리 만날날을 기다리고 있어요. 기대해주세요!',
+  image: require('src/assets/images/WomanDefault.jpg'),
 };
 
 export const SelsoListSkeleton = ({ openDate, history }) => {
