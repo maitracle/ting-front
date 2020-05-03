@@ -44,8 +44,7 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
     hobby: '',
     dateStyle: '',
     idealType: '',
-    oneSentence: '',
-    isActive: '',
+    isActive: true,
   });
   const [chatLinkValidationMessage, setChatLinkValidationMessage] = useState('');
   const [tagsValidationMessage, setTagsValidationMessage] = useState('');

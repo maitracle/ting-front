@@ -19,6 +19,7 @@ export default class SelsoListStore {
     hobby: '',
     dateStyle: '',
     idealType: '',
+    isActive: true,
   };
 
   @observable selsoList = [];
