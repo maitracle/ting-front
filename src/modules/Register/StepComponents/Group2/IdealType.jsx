@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
@@ -10,13 +10,9 @@ import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/consta
 
 
 const IdealType = inject('registerStore')(
-  observer(({ registerStore, headerHeight }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const [idealTypeValidationMessage, setIdealTypeValidationMessage] = useState('');
-    const [screenHeight, setScreenHeight] = useState();
     
-    useEffect(() => {
-      setScreenHeight(window.innerHeight);
-    }, []);
 
     const validateIdealType = (data) => {
       const validationMessage = getLengthValidationMessage(
@@ -35,7 +31,7 @@ const IdealType = inject('registerStore')(
     };
 
     const setMinHeight = {
-      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+      minHeight: `${componentMinHeight}px`,
     };
 
     return (
@@ -56,10 +52,10 @@ const IdealType = inject('registerStore')(
             validationMessage={idealTypeValidationMessage}
           />
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default IdealType;

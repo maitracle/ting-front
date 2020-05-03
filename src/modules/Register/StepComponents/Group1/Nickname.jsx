@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group1.module.scss';
@@ -6,14 +6,9 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Nickname = inject('registerStore')(
-  observer(({ registerStore, headerHeight }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const [nicknameValidationMessage, setNicknameValidationMessage] = useState('');
-    const [screenHeight, setScreenHeight] = useState();
     
-    useEffect(() => {
-      setScreenHeight(window.innerHeight);
-    }, []);
-
     const validateNickname = (data) => {
       const nicknameRegExp = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{1,8}$/;
       if (data.length === 0) {
@@ -36,7 +31,7 @@ const Nickname = inject('registerStore')(
     };
 
     const setMinHeight = {
-      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+      minHeight: `${componentMinHeight}px`,
     };
 
     return (
@@ -57,10 +52,10 @@ const Nickname = inject('registerStore')(
             </div>
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default Nickname;

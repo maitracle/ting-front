@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group4.module.scss';
@@ -8,14 +8,9 @@ import { getChatLinkValidationMessage } from 'src/utils/validations';
 
 
 const ChatLink = inject('registerStore', 'userStore')(
-  observer(({ registerStore, userStore, history, headerHeight }) => {
+  observer(forwardRef(({ registerStore, userStore, history, componentMinHeight }, ref) => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
     const [chatLinkValidationMessage, setChatLinkValidationMessage] = useState('');
-    const [screenHeight, setScreenHeight] = useState();
-    
-    useEffect(() => {
-      setScreenHeight(window.innerHeight);
-    }, []);
     
     const validateChatLink = (data) => {
       const validationMessage = getChatLinkValidationMessage(data);
@@ -41,7 +36,7 @@ const ChatLink = inject('registerStore', 'userStore')(
     };
 
     const setMinHeight = {
-      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+      minHeight: `${componentMinHeight}px`,
     };
 
     return (
@@ -56,7 +51,7 @@ const ChatLink = inject('registerStore', 'userStore')(
             onBlur={() => validateChatLink(registerStore.registerData.chatLink)}
           />
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={submit} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={submit} ref={ref}/>
         <Modal
           isOpen={isErrorModalOpen}
           close={()=>setIsErrorModalOpen(false)}
@@ -66,7 +61,7 @@ const ChatLink = inject('registerStore', 'userStore')(
         </Modal>
       </>
     );
-  }),
+  })),
 );
 
 export default ChatLink;

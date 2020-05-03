@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
 import styles from './Group1.module.scss';
@@ -6,13 +6,9 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const BodyType = inject('registerStore')(
-  observer(({ registerStore, headerHeight }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const setBodyType = (value) => registerStore.setRegisterData('bodyType', value);
-    const [screenHeight, setScreenHeight] = useState();
     
-    useEffect(() => {
-      setScreenHeight(window.innerHeight);
-    }, []);
     
     const [radioItemList, setRadioItem] = useState([
       {
@@ -62,7 +58,7 @@ const BodyType = inject('registerStore')(
     };
 
     const setMinHeight = {
-      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+      minHeight: `${componentMinHeight}px`,
     };
 
     return (
@@ -79,10 +75,10 @@ const BodyType = inject('registerStore')(
             />
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default BodyType;

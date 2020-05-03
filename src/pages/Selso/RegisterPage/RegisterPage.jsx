@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import RegisterHeader from 'src/modules/Register/RegisterHeader';
 import Nickname from 'src/modules/Register/StepComponents/Group1/Nickname'
@@ -38,7 +38,13 @@ export const RegisterPage = inject('registerStore', 'selsoListStore')(
     let StepComponent = mapStepToComponent[registerStore.currentStep];
 
     const registerHeaderElement = useRef();
+    const registerBtnSetElement = useRef();
+    const [screenHeight, setScreenHeight] = useState(0);
     
+    useEffect(() => {
+      setScreenHeight(window.innerHeight);
+    }, []);
+
     useEffect(() => {
       StepComponent = mapStepToComponent[registerStore.currentStep];
     }, [registerStore.currentStep]);
@@ -55,7 +61,14 @@ export const RegisterPage = inject('registerStore', 'selsoListStore')(
     return (
       <div>
         <RegisterHeader ref={registerHeaderElement}/>
-        <StepComponent history={history} headerHeight={registerHeaderElement.current?.offsetHeight}/>
+        <StepComponent 
+          history={history}
+          componentMinHeight={registerHeaderElement.current?.offsetHeight}
+          ref={registerBtnSetElement} 
+          componentMinHeight={
+            screenHeight - registerBtnSetElement.current?.offsetHeight - registerHeaderElement.current?.offsetHeight - 44
+          }
+        />
       </div>
     );
   }),

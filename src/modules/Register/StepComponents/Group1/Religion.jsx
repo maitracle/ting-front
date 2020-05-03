@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
 import styles from './Group1.module.scss';
@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Religion = inject('registerStore')(
-  observer(({ registerStore, headerHeight }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const setReligion = (value) => registerStore.setRegisterData('religion', value);
     const [radioItemList, setRadioItem] = useState([
       {
@@ -25,11 +25,7 @@ const Religion = inject('registerStore')(
         id: 5, text: '기타', value: 'ETC', checked: false,
       },
     ]);
-    const [screenHeight, setScreenHeight] = useState();
     
-    useEffect(() => {
-      setScreenHeight(window.innerHeight);
-    }, []);
 
     const onClick = useCallback(
       (id, value) => {
@@ -61,7 +57,7 @@ const Religion = inject('registerStore')(
     };
 
     const setMinHeight = {
-      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+      minHeight: `${componentMinHeight}px`,
     };
 
     return (
@@ -78,10 +74,10 @@ const Religion = inject('registerStore')(
             />
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default Religion;

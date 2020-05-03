@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
@@ -9,14 +9,10 @@ import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/consta
 
 
 const OneSentence = inject('registerStore')(
-  observer(({ registerStore, headerHeight }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const placeholder = '35자 이내로 자신에 대해 표현해주세요 :)';
     const [oneSentenceValidationMessage, setOneSentenceValidationMessage] = useState('');
-    const [screenHeight, setScreenHeight] = useState();
     
-    useEffect(() => {
-      setScreenHeight(window.innerHeight);
-    }, []);
 
     const validateOneSentence = (data) => {
       const validationMessage = getOneSentenceValidationMessage(data);
@@ -33,7 +29,7 @@ const OneSentence = inject('registerStore')(
     };
 
     const setMinHeight = {
-      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+      minHeight: `${componentMinHeight}px`,
     };
     
     return (
@@ -54,10 +50,10 @@ const OneSentence = inject('registerStore')(
             validationMessage={oneSentenceValidationMessage}
           />
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default OneSentence;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 import TagBox from './TagBox';
@@ -7,15 +7,11 @@ import { getTagsValidationMessage } from 'src/utils/validations';
 
 
 const Tags = inject('registerStore')(
-  observer(({ registerStore, headerHeight }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const setTags = (tagList) => registerStore.setRegisterData('tags', tagList);
     
     const [tagsValidationMessage, setTagsValidationMessage] = useState('');
-    const [screenHeight, setScreenHeight] = useState();
     
-    useEffect(() => {
-      setScreenHeight(window.innerHeight);
-    }, []);
 
     const validateTags = (data) => {
       const validationMessage = getTagsValidationMessage(data);
@@ -33,7 +29,7 @@ const Tags = inject('registerStore')(
     };
 
     const setMinHeight = {
-      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+      minHeight: `${componentMinHeight}px`,
     };
 
     return (
@@ -49,10 +45,10 @@ const Tags = inject('registerStore')(
             {tagsValidationMessage}
           </span>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default Tags;

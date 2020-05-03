@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
 import styles from './Group1.module.scss';
@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const IsSmoke = inject('registerStore')(
-  observer(({ registerStore, headerHeight }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const setIsSmoke = (value) => registerStore.setRegisterData('isSmoke', value);
     const [radioItemList, setRadioItem] = useState([
       {
@@ -16,11 +16,7 @@ const IsSmoke = inject('registerStore')(
         id: 2, text: '흡연자', value: 'YES', checked: false,
       },
     ]);
-    const [screenHeight, setScreenHeight] = useState();
     
-    useEffect(() => {
-      setScreenHeight(window.innerHeight);
-    }, []);
 
     const onClick = useCallback(
       (id, value) => {
@@ -52,7 +48,7 @@ const IsSmoke = inject('registerStore')(
     };
 
     const setMinHeight = {
-      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+      minHeight: `${componentMinHeight}px`,
     };
 
     return (
@@ -69,10 +65,10 @@ const IsSmoke = inject('registerStore')(
             />
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default IsSmoke;

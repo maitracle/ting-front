@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group1.module.scss';
@@ -6,13 +6,9 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Height = inject('registerStore')(
-  observer(({ registerStore, headerHeight }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const [heightValidationMessage, setHeightValidationMessage] = useState('');
-    const [screenHeight, setScreenHeight] = useState();
     
-    useEffect(() => {
-      setScreenHeight(window.innerHeight);
-    }, []);
 
     const validateHeight = (data) => {
       const heightRegExp = /^\d{3}$/;
@@ -38,7 +34,7 @@ const Height = inject('registerStore')(
     };
 
     const setMinHeight = {
-      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+      minHeight: `${componentMinHeight}px`,
     };
     
     return (
@@ -61,10 +57,10 @@ const Height = inject('registerStore')(
             <span className={styles.scaleLabel}>cm</span>
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default Height;

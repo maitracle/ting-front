@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group1.module.scss';
@@ -6,13 +6,8 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Age = inject('registerStore')(
-  observer(({ registerStore, headerHeight }) => {
-    const [ageValidationMessage, setAgeValidationMessage] = useState('');
-    const [screenHeight, setScreenHeight] = useState();
-    
-    useEffect(() => {
-      setScreenHeight(window.innerHeight);
-    }, []);
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
+    const [ageValidationMessage, setAgeValidationMessage] = useState('');  
     
     const validateAge = (data) => {
       const ageRegExp = /^[1-9][0-9]$/;
@@ -40,7 +35,7 @@ const Age = inject('registerStore')(
     };
     
     const setMinHeight = {
-      minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
+      minHeight: `${componentMinHeight}px`,
     };
 
     return (
@@ -63,10 +58,10 @@ const Age = inject('registerStore')(
             <span className={styles.scaleLabel}>세</span>
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default Age;

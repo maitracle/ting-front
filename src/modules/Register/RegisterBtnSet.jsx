@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Btn from 'src/components/Button/Btn';
 import { IoIosArrowBack } from 'react-icons/io';
@@ -7,10 +7,10 @@ import styles from './RegisterBtnSet.module.scss';
 
 
 const RegisterBtnSet = inject('registerStore')(
-  observer(({ backTo, nextTo }) => {
+  observer(forwardRef(({ backTo, nextTo }, ref) => {
 
     return (
-      <div className={styles.btnWrapper}>
+      <div className={styles.btnWrapper} ref={ref}>
         <div className={styles.btnPrevWrapper}>
           <Btn onClick={backTo} type="Gray">
             <div>
@@ -23,7 +23,7 @@ const RegisterBtnSet = inject('registerStore')(
         </div>
       </div>
     );
-  }),
+  })),
 );
 
 export default RegisterBtnSet;
