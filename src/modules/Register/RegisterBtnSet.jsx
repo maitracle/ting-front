@@ -10,20 +10,18 @@ const RegisterBtnSet = inject('registerStore')(
   observer(({ backTo, nextTo }) => {
 
     return (
-      <>
-        <div className={styles.btnWrapper}>
-          <div className={styles.btnPrevWrapper}>
-            <Btn onClick={backTo} type="Gray">
-              <div>
-                <IoIosArrowBack className={styles.contents} />
-              </div>
-            </Btn>
-          </div>
-          <div className={styles.btnNextWrapper}>
-            <Btn onClick={nextTo}>다음</Btn>
-          </div>
+      <div className={styles.btnWrapper}>
+        <div className={styles.btnPrevWrapper}>
+          <Btn onClick={backTo} type="Gray">
+            <div>
+              <IoIosArrowBack className={styles.contents} />
+            </div>
+          </Btn>
         </div>
-      </>
+        <div className={styles.btnNextWrapper}>
+          <Btn onClick={nextTo}>다음</Btn>
+        </div>
+      </div>
     );
   }),
 );

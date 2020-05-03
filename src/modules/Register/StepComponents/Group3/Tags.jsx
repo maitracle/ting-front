@@ -32,13 +32,13 @@ const Tags = inject('registerStore')(
       }
     };
 
-    const componentStyle = {
+    const setMinHeight = {
       minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
     };
 
     return (
       <>
-        <div className={styles.componentWrapper} style={componentStyle}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <TagBox setTags={setTags} />
           <span className={styles.tagList}>{registerStore.registerData.tags}</span>
           <span className={styles.validationMessage}>

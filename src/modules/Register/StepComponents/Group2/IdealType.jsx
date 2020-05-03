@@ -34,13 +34,13 @@ const IdealType = inject('registerStore')(
       }
     };
 
-    const componentStyle = {
+    const setMinHeight = {
       minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
     };
 
     return (
       <>
-        <div className={styles.componentWrapper} style={componentStyle}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <Textarea
             placeholder={getPlaceholderMessageByLengthLimit(selsoFieldsMinLengthLimit.IdealType)}
             value={registerStore.registerData.idealType}

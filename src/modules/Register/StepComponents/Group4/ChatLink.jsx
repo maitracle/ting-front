@@ -40,13 +40,13 @@ const ChatLink = inject('registerStore', 'userStore')(
       }
     };
 
-    const componentStyle = {
+    const setMinHeight = {
       minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
     };
 
     return (
       <>
-        <div className={styles.componentWrapper} style={componentStyle}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <Input
             placeholder="이성분이 연락 가능한 오픈 카카오톡 링크"
             value={registerStore.registerData.chatLink}

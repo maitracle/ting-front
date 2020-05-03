@@ -16,7 +16,6 @@ const Nickname = inject('registerStore')(
 
     const validateNickname = (data) => {
       const nicknameRegExp = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{1,8}$/;
-      
       if (data.length === 0) {
         setNicknameValidationMessage('닉네임을 입력해주세요.');
         return false;
@@ -36,13 +35,13 @@ const Nickname = inject('registerStore')(
       }
     };
 
-    const componentStyle = {
+    const setMinHeight = {
       minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
     };
 
     return (
       <>
-        <div className={styles.componentWrapper} style={componentStyle}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <div className={styles.question}>
             <strong>닉네임</strong>을 입력해주세요.
           </div>

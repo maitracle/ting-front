@@ -56,13 +56,13 @@ const Image = inject('registerStore')(
       }
     };
 
-    const componentStyle = {
+    const setMinHeight = {
       minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
     };
 
     return (
       <>
-        <div className={styles.componentWrapper} style={componentStyle}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <input className={styles.imageInput} id="profile-image" type="file" onChange={uploadProfileImage} accept=".jpg,.png" />
           <label htmlFor="profile-image">
             <div className={styles.imageLabel}>

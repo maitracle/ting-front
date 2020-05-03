@@ -60,13 +60,13 @@ const Religion = inject('registerStore')(
       }
     };
 
-    const componentStyle = {
+    const setMinHeight = {
       minHeight: `calc(${screenHeight}px - 44px - ${headerHeight}px - 125px)`,
     };
 
     return (
       <>
-        <div className={styles.componentWrapper} style={componentStyle}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <div className={styles.question}>
             <strong>종교</strong>를 알려주세요.
           </div>
