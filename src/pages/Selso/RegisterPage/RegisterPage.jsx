@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { inject, observer } from 'mobx-react';
+
 import RegisterHeader from 'src/modules/Register/RegisterHeader';
-import Nickname from 'src/modules/Register/StepComponents/Group1/Nickname'
+import Nickname from 'src/modules/Register/StepComponents/Group1/Nickname';
 import Height from 'src/modules/Register/StepComponents/Group1/Height';
 import IsSmoke from 'src/modules/Register/StepComponents/Group1/IsSmoke';
 import Religion from 'src/modules/Register/StepComponents/Group1/Religion';
@@ -15,6 +16,7 @@ import OneSentence from 'src/modules/Register/StepComponents/Group3/OneSentence'
 import Tags from 'src/modules/Register/StepComponents/Group3/Tags';
 import Image from 'src/modules/Register/StepComponents/Group3/Image';
 import ChatLink from 'src/modules/Register/StepComponents/Group4/ChatLink';
+
 
 const mapStepToComponent = {
   Nickname,
@@ -33,8 +35,8 @@ const mapStepToComponent = {
   ChatLink,
 };
 
-export const RegisterPage = inject('registerStore', 'selsoListStore')(
-  observer(({ registerStore, selsoListStore, history }) => {
+export const RegisterPage = inject('registerStore', 'selsoListStore', 'userStore')(
+  observer(({ registerStore, selsoListStore, userStore, history }) => {
     let StepComponent = mapStepToComponent[registerStore.currentStep];
 
     useEffect(() => {
@@ -42,13 +44,19 @@ export const RegisterPage = inject('registerStore', 'selsoListStore')(
     }, [registerStore.currentStep]);
 
     useEffect(() => {
-      selsoListStore.getMySelsoProfile()
-        .then((res) => {
-          if (res?.status === 200 && res?.statusText === 'OK') {
-            history.push('/user/register/complete');
-          }
-        })
-    });
+      if (userStore.profile === null) {
+        // 기본정보를 입력하지 않은 사용자는 sign-up페이지로 이동시킨다.
+        history.push('/user/sign-up/YEUNGNAM');
+      } else {
+        selsoListStore.getMySelsoProfile()
+          .then((res) => {
+            if (res?.status === 200 && res?.statusText === 'OK') {
+              // self date profile등록을 마친 사용자는 완료 페이지로 이동시킨다.
+              history.push('/user/register/complete');
+            }
+          });
+      }
+    }, []);
 
     return (
       <div>

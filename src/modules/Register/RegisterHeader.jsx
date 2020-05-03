@@ -55,13 +55,13 @@ export default inject('registerStore')(observer(({ registerStore }) => {
     setIsExpanded(false);
   }, [registerStore.currentStep]);
 
-  const example = getHeaderExample(registerStore.root.userStore.profile.gender, registerStore.currentStep);
+  const example = getHeaderExample(registerStore.root.userStore.profile?.gender, registerStore.currentStep);
 
   return (
     <div className={styles.registerHeader}>
       <div className={styles.contentsWrapper}>
         <div>
-          { mapGroupToTitle[registerStore.currentGroup]?.first(registerStore.root.userStore.profile.nickname) }
+          { mapGroupToTitle[registerStore.currentGroup]?.first(registerStore.root.userStore.profile?.nickname) }
           { mapGroupToTitle[registerStore.currentGroup]?.second(registerStore.currentStep) }
         </div>
 
