@@ -8,7 +8,7 @@ import Modal from 'src/components/Modal';
 
 export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListStore }) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
-  const [KakaoLinkErrorMessage, setKakaoLinkErrorMessage] = useState('');
+  const [kakaoLinkErrorMessage, setKakaoLinkErrorMessage] = useState('');
   
   useEffect(() => {
     if (selsoListStore.choosedSelso) {
@@ -50,7 +50,7 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
           isOpen={isErrorModalOpen}
           close={()=>setIsErrorModalOpen(false)}
         >
-          <p>{KakaoLinkErrorMessage}</p>
+          <p>{kakaoLinkErrorMessage}</p>
         </Modal>
     </div>
   );
