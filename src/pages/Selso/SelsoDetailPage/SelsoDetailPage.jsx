@@ -8,7 +8,7 @@ import Modal from 'src/components/Modal';
 
 export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListStore }) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
-  const [getOpenKakaoLinkErrorMessage, setGetOpenKakaoLinkErrorMessage] = useState('');
+  const [KakaoLinkErrorMessage, setKakaoLinkErrorMessage] = useState('');
   
   useEffect(() => {
     if (selsoListStore.choosedSelso) {
@@ -30,9 +30,9 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
         }
         else {
           if (res.status === 404) {
-            setGetOpenKakaoLinkErrorMessage('채팅방이 삭제되었습니다.');
+            setKakaoLinkErrorMessage('채팅방이 삭제되었습니다.');
           } else {
-            setGetOpenKakaoLinkErrorMessage('잠시 후 다시 시도해주세요.');
+            setKakaoLinkErrorMessage('잠시 후 다시 시도해주세요.');
           }
           setIsErrorModalOpen(true);
         }    
@@ -50,7 +50,7 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
           isOpen={isErrorModalOpen}
           close={()=>setIsErrorModalOpen(false)}
         >
-          <p>{getOpenKakaoLinkErrorMessage}</p>
+          <p>{KakaoLinkErrorMessage}</p>
         </Modal>
     </div>
   );
