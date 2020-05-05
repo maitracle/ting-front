@@ -33,6 +33,8 @@ const mapStepToComponent = {
   ChatLink,
 };
 
+const gnbOffsetHeight = 44;
+
 export const RegisterPage = inject('registerStore', 'selsoListStore')(
   observer(({ registerStore, selsoListStore, history }) => {
     let StepComponent = mapStepToComponent[registerStore.currentStep];
@@ -66,7 +68,7 @@ export const RegisterPage = inject('registerStore', 'selsoListStore')(
           componentMinHeight={registerHeaderElement.current?.offsetHeight}
           ref={registerBtnSetElement} 
           componentMinHeight={
-            screenHeight - registerBtnSetElement.current?.offsetHeight - registerHeaderElement.current?.offsetHeight - 44
+            screenHeight - registerBtnSetElement.current?.offsetHeight - registerHeaderElement.current?.offsetHeight - gnbOffsetHeight
           }
         />
       </div>
