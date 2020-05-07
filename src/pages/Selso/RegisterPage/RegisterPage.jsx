@@ -58,7 +58,7 @@ export const RegisterPage = inject('registerStore', 'selsoListStore')(
             history.push('/user/register/complete');
           }
         })
-    });
+    }, []);
 
     return (
       <div>
