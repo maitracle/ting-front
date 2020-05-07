@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import TabBar from 'src/modules/Register/TabBar';
 
@@ -46,7 +46,7 @@ const mapGroupToTitle = {
   },
 };
 
-export default inject('registerStore')(observer(({ registerStore }) => {
+export default inject('registerStore')(observer(forwardRef(({ registerStore }, ref) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const handleExpandExample = () => {
     setIsExpanded(!isExpanded);
@@ -58,7 +58,7 @@ export default inject('registerStore')(observer(({ registerStore }) => {
   const example = getHeaderExample(registerStore.root.userStore.profile.gender, registerStore.currentStep);
 
   return (
-    <div className={styles.registerHeader}>
+    <div className={styles.registerHeader} ref={ref}>
       <div className={styles.contentsWrapper}>
         <div>
           { mapGroupToTitle[registerStore.currentGroup]?.first(registerStore.root.userStore.profile.nickname) }
@@ -81,4 +81,4 @@ export default inject('registerStore')(observer(({ registerStore }) => {
       </div>
     </div>
   );
-}));
+})));

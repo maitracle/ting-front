@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
@@ -7,10 +7,11 @@ import styles from './Group3.module.scss'
 
 
 const Image = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const [imageSrc, setImageSrc] = useState(null);
 
     const [validationMessage, setValidationMessage] = useState('');
+    
 
     const uploadProfileImage = (e) => {
       setValidationMessage('');
@@ -51,9 +52,13 @@ const Image = inject('registerStore')(
       }
     };
 
+    const setMinHeight = {
+      minHeight: `${componentMinHeight}px`,
+    };
+
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <input className={styles.imageInput} id="profile-image" type="file" onChange={uploadProfileImage} accept=".jpg,.png" />
           <label htmlFor="profile-image">
             <div className={styles.imageLabel}>
@@ -66,10 +71,10 @@ const Image = inject('registerStore')(
           </label>
           <div className={styles.validationMessage}>{validationMessage}</div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  })
+  }))
 );
 
 export default Image;

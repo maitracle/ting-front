@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
 import styles from './Group1.module.scss';
@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Religion = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const setReligion = (value) => registerStore.setRegisterData('religion', value);
     const [radioItemList, setRadioItem] = useState([
       {
@@ -25,6 +25,7 @@ const Religion = inject('registerStore')(
         id: 5, text: '기타', value: 'ETC', checked: false,
       },
     ]);
+    
 
     const onClick = useCallback(
       (id, value) => {
@@ -46,18 +47,22 @@ const Religion = inject('registerStore')(
 
       setReligionValidationMessage('');
       return true;
-    }
+    };
 
     const nextTo = () => {
       const isValid = validateReligion(registerStore.registerData.religion);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
+
+    const setMinHeight = {
+      minHeight: `${componentMinHeight}px`,
+    };
 
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <div className={styles.question}>
             <strong>종교</strong>를 알려주세요.
           </div>
@@ -69,10 +74,10 @@ const Religion = inject('registerStore')(
             />
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default Religion;

@@ -60,10 +60,8 @@ const Form = inject('userStore')(observer(({ userStore, history }) => {
           { message }
         </div>
       </div>
-      <div className={styles.buttonWrapper}>
-        <div className={styles.buttonContentsWrapper}>
-          <Btn onClick={logIn}>로그인</Btn>
-        </div>
+      <div className={styles.buttonContentsWrapper}>
+        <Btn onClick={logIn}>로그인</Btn>
       </div>
     </div>
   );

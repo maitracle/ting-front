@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import RadioInputSet from 'src/components/Input/RadioInputSet';
 import styles from './Group1.module.scss';
@@ -6,7 +6,7 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const IsSmoke = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const setIsSmoke = (value) => registerStore.setRegisterData('isSmoke', value);
     const [radioItemList, setRadioItem] = useState([
       {
@@ -16,6 +16,7 @@ const IsSmoke = inject('registerStore')(
         id: 2, text: '흡연자', value: 'YES', checked: false,
       },
     ]);
+    
 
     const onClick = useCallback(
       (id, value) => {
@@ -37,18 +38,22 @@ const IsSmoke = inject('registerStore')(
 
       setIsSmokeValidationMessage('');
       return true;
-    }
+    };
 
     const nextTo = () => {
       const isValid = validateIsSmoke(registerStore.registerData.isSmoke);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
+
+    const setMinHeight = {
+      minHeight: `${componentMinHeight}px`,
+    };
 
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <div className={styles.question}>
             <strong>흡연여부</strong>를 알려주세요.
           </div>
@@ -60,10 +65,10 @@ const IsSmoke = inject('registerStore')(
             />
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default IsSmoke;

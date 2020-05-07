@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { inject, observer } from 'mobx-react';
 import RegisterHeader from 'src/modules/Register/RegisterHeader';
 import Nickname from 'src/modules/Register/StepComponents/Group1/Nickname'
@@ -33,9 +33,19 @@ const mapStepToComponent = {
   ChatLink,
 };
 
+const gnbOffsetHeight = 44;
+
 export const RegisterPage = inject('registerStore', 'selsoListStore')(
   observer(({ registerStore, selsoListStore, history }) => {
     let StepComponent = mapStepToComponent[registerStore.currentStep];
+
+    const registerHeaderElement = useRef();
+    const registerBtnSetElement = useRef();
+    const [screenHeight, setScreenHeight] = useState(0);
+    
+    useEffect(() => {
+      setScreenHeight(window.innerHeight);
+    }, []);
 
     useEffect(() => {
       StepComponent = mapStepToComponent[registerStore.currentStep];
@@ -52,8 +62,15 @@ export const RegisterPage = inject('registerStore', 'selsoListStore')(
 
     return (
       <div>
-        <RegisterHeader />
-        <StepComponent history={history}/>
+        <RegisterHeader ref={registerHeaderElement}/>
+        <StepComponent 
+          history={history}
+          componentMinHeight={registerHeaderElement.current?.offsetHeight}
+          ref={registerBtnSetElement} 
+          componentMinHeight={
+            screenHeight - registerBtnSetElement.current?.offsetHeight - registerHeaderElement.current?.offsetHeight - gnbOffsetHeight
+          }
+        />
       </div>
     );
   }),
