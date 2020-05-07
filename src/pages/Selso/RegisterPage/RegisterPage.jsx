@@ -58,14 +58,13 @@ export const RegisterPage = inject('registerStore', 'selsoListStore')(
             history.push('/user/register/complete');
           }
         })
-    });
+    }, []);
 
     return (
       <div>
         <RegisterHeader ref={registerHeaderElement}/>
         <StepComponent 
           history={history}
-          componentMinHeight={registerHeaderElement.current?.offsetHeight}
           ref={registerBtnSetElement} 
           componentMinHeight={
             screenHeight - registerBtnSetElement.current?.offsetHeight - registerHeaderElement.current?.offsetHeight - gnbOffsetHeight
