@@ -65,7 +65,6 @@ export const RegisterPage = inject('registerStore', 'selsoListStore')(
         <RegisterHeader ref={registerHeaderElement}/>
         <StepComponent 
           history={history}
-          componentMinHeight={registerHeaderElement.current?.offsetHeight}
           ref={registerBtnSetElement} 
           componentMinHeight={
             screenHeight - registerBtnSetElement.current?.offsetHeight - registerHeaderElement.current?.offsetHeight - gnbOffsetHeight
