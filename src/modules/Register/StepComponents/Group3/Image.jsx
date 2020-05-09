@@ -68,6 +68,7 @@ const Image = inject('registerStore')(
                 <div className={styles.labelDescription}>
                   자신을 표현할 이미지를<br/>업로드해주세요.
                   <br/>
+                  <br/>
                   (얼굴이 포함된 이미지는 자제해주세요.)
                 </div>
               }
