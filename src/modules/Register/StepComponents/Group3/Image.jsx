@@ -65,7 +65,11 @@ const Image = inject('registerStore')(
               { imageSrc ?
                 <img className={styles.imagePreview} src={imageSrc} alt="프로필 이미지 미리보기" />
                 :
-                <div className={styles.labelDescription}>이미지를 업로드해주세요.</div>
+                <div className={styles.labelDescription}>
+                  자신을 표현할 이미지를<br/>업로드해주세요.
+                  <br/>
+                  (얼굴이 포함된 이미지는 자제해주세요.)
+                </div>
               }
             </div>
           </label>
