@@ -11,25 +11,34 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
   observer(({ selsoListStore, userStore, myPointStore, history }) => {
     const [isOpenSpendPointModal, setIsOpenSpendPointModal] = useState(false);
     const [isOpenPointLackModal, setIsOpenPointLackModal] = useState(false);
-    
+    const [isOpenHaveNotSelsoProfileModal, setIsOpenHaveNotSelsoProfileModal] = useState(false);
+    const [isOpenNotActiveSelsoProfileModal, setIsOpenNotActiveSelsoProfileModal] = useState(false);
+
     useEffect(() => {
       if (userStore.profile?.gender && userStore.profile?.university) {
         if (userStore.profile.gender === 'MALE') {
-          selsoListStore.setSelsoList('FEMALE', userStore.profile.university);
+          selsoListStore.setSelsoList('FEMALE', userStore.profile.university)
         } else {
-          selsoListStore.setSelsoList('MALE', userStore.profile.university);
+          selsoListStore.setSelsoList('MALE', userStore.profile.university)
         }
       }
     }, [userStore.profile?.gender, userStore.profile?.university]);
 
     const moveToDetailPageHandler = (selsoItem) => (_e) => {
-      selsoListStore.setChoosedSelso(selsoItem);
-
-      if (selsoItem.isViewed) {
-        history.push('selso/detail');
-      } else {
-        setIsOpenSpendPointModal(true);
-      }
+      selsoListStore.getMySelsoProfile()
+        .then((res) => {
+          if (res.status === 404) {
+            setIsOpenHaveNotSelsoProfileModal(true);
+          } else if (res.data.isActive === false) {
+            setIsOpenNotActiveSelsoProfileModal(true);
+          } else {
+            if (selsoItem.isViewed) {
+              history.push('selso/detail');
+            } else {
+              setIsOpenSpendPointModal(true);
+            }
+          }
+        });
     };
 
     const spendPointAndMoveToDetailPage = () => {
@@ -55,6 +64,50 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
           close={() => setIsOpenPointLackModal(false)}
         >
           <p>포인트가 부족합니다.</p>
+        </Modal>
+        <Modal
+          isOpen={isOpenHaveNotSelsoProfileModal}
+          close={() => setIsOpenHaveNotSelsoProfileModal(false)}
+          buttonList={[
+            <button
+              key="actionButton"
+              className={`${styles.modalButton} ${styles.actionButton}`}
+              onClick={() => history.push('/user/register')}
+            >
+              등록하기
+            </button>,
+            <button
+              key="cancelButton"
+              className={`${styles.modalButton} ${styles.cancelButton}`}
+              onClick={() => setIsOpenHaveNotSelsoProfileModal(false)}
+            >
+              취소
+            </button>,
+          ]}
+        >
+          <p>셀소 프로필 등록 후 이용해주세요.</p>
+        </Modal>
+        <Modal
+          isOpen={isOpenNotActiveSelsoProfileModal}
+          close={() => setIsOpenNotActiveSelsoProfileModal(false)}
+          buttonList={[
+            <button
+              key="actionButton"
+              className={`${styles.modalButton} ${styles.actionButton}`}
+              onClick={() => history.push('my/profile')}
+            >
+              활성화하기
+            </button>,
+            <button
+              key="cancelButton"
+              className={`${styles.modalButton} ${styles.cancelButton}`}
+              onClick={() => setIsOpenNotActiveSelsoProfileModal(false)}
+            >
+              취소
+            </button>,
+          ]}
+        >
+          <p>셀소 프로필을 활성화한 후 이용해주세요.</p>
         </Modal>
         <Modal
           isOpen={isOpenSpendPointModal}
