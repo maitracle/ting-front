@@ -1,0 +1,62 @@
+.pageWrapper {
+}
+
+.ctaSection {
+  border: solid 1px #63e6be;
+  background-color: #63e6be;
+
+  text-align: center;
+
+  .pageTitle {
+    margin-top: 40px;
+    margin-bottom: 30px;
+    color: #fff;
+  }
+
+  .countdownWrapper {
+    width: 90%;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .countdownDescription {
+    color: #087f5b;
+    font-size: 18px;
+  }
+
+  .countdown {
+    height: 60px;
+    margin: 10px auto;
+    padding: 18px 0;
+    border-radius: 5px;
+    background-color: #12b886;
+
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+  }
+
+  .link {
+    text-decoration: none;
+  }
+
+  .ctaButton {
+    width: 90%;
+    height: 55px;
+    margin: 30px auto;
+    padding-top: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+
+    .buttonText {
+      font-size: 20px;
+      font-weight: bold;
+      color: #38d9a9;
+    }
+  }
+}
+
+.landingImage {
+  width: 100%;
+  margin: 0;
+}

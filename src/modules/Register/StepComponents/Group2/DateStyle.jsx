@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
@@ -10,8 +10,9 @@ import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/consta
 
 
 const DateStyle = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const [dateStyleValidationMessage, setDateStyleValidationMessage] = useState('');
+    
 
     const validateDateStyle = (data) => {
       const validationMessage = getLengthValidationMessage(
@@ -28,10 +29,14 @@ const DateStyle = inject('registerStore')(
         registerStore.nextTo();
       }
     };
+
+    const setMinHeight = {
+      minHeight: `${componentMinHeight}px`,
+    };
     
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <Textarea 
             placeholder={getPlaceholderMessageByLengthLimit(selsoFieldsMinLengthLimit.DateStyle)}
             value={registerStore.registerData.dateStyle}
@@ -47,10 +52,10 @@ const DateStyle = inject('registerStore')(
             validationMessage={dateStyleValidationMessage}
           />
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default DateStyle;

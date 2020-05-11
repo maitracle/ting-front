@@ -4,7 +4,7 @@ import React, {
 import Input from 'src/components/Form/Input';
 import styles from './TagBox.module.scss';
 
-const TagBox = ({ setTags }) => {
+const TagBox = ({ setTags, onFocus }) => {
   const [tagList, setTagList] = useState([
     { id: 0, text: '' },
     { id: 1, text: '' },
@@ -52,7 +52,12 @@ const TagBox = ({ setTags }) => {
       <div className={styles.tagBoxWrapper}>
         {(tagList.map((tag) => (
           <div className={styles.tagForm}>
-            <Input placeholder="나를 나타내는 태그!" value={tag.text} onChange={onChange(tag.id)} />
+            <Input
+              placeholder="나를 나타내는 태그!"
+              value={tag.text}
+              onChange={onChange(tag.id)}
+              onFocus={onFocus}
+            />
           </div>
         )))}
       </div>

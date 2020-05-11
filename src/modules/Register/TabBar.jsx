@@ -13,10 +13,10 @@ const mapStepToStep = {
   Hobby: '취미/여가',
   DateStyle: '연애관',
   IdealType: '이상형',
-  OneSentence: '한줄을',
-  Tags: '간단한 테그',
+  OneSentence: '한줄 소개',
+  Tags: '간단한 태그',
   Image: '사진',
-  ChatLink: '',
+  ChatLink: '채팅 링크',
 };
 
 const TabBar = ({ currentStep, tabList }) => {
