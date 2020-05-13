@@ -74,7 +74,13 @@ const CheckStudentIdCard = inject('signUpStore')(observer(({ signUpStore, histor
               { imageSrc ?
                 <img className={styles.imagePreview} src={imageSrc} alt="학생증 이미지 미리보기" />
                 :
-                <div className={styles.labelDescription}>이미지를 업로드해주세요.</div>
+                <div className={styles.labelDescription}>
+                  학번이 포함된
+                  <br/>학생증 사진을 업로드해주세요.
+                  <br/>
+                  <br/>
+                  얼굴은 가리고 올려주셔도 괜찮아요.
+                </div>
               }
             </div>
           </label>
