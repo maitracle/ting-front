@@ -52,10 +52,7 @@ const CheckEmail = inject('signUpStore')(observer(({ signUpStore }) => {
       <div className={styles.emailMakeLink}>
         1분 만에 학교 이메일 만들러가기
       </div>
-      <div className={styles.buttonWrapper}>
-        <Btn onClick={checkUnivEmailHandler}>인증하기</Btn>
-      </div>
-      
+      <Btn onClick={checkUnivEmailHandler}>인증하기</Btn>
     </div>
   );
 }));
