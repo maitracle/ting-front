@@ -32,6 +32,8 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
           } else if (res.data.isActive === false) {
             setIsOpenNotActiveSelsoProfileModal(true);
           } else {
+            selsoListStore.setChoosedSelso(selsoItem);
+
             if (selsoItem.isViewed) {
               history.push('selso/detail');
             } else {
@@ -96,7 +98,7 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
               className={`${styles.modalButton} ${styles.actionButton}`}
               onClick={() => history.push('my/profile')}
             >
-              활성화하기
+              공개하기
             </button>,
             <button
               key="cancelButton"
@@ -107,7 +109,7 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
             </button>,
           ]}
         >
-          <p>셀소 프로필을 활성화한 후 이용해주세요.</p>
+          <p>셀소 프로필을 공개 후 이용해주세요.</p>
         </Modal>
         <Modal
           isOpen={isOpenSpendPointModal}
