@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group1.module.scss';
@@ -6,8 +6,9 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Height = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const [heightValidationMessage, setHeightValidationMessage] = useState('');
+    
 
     const validateHeight = (data) => {
       const heightRegExp = /^\d{3}$/;
@@ -23,18 +24,22 @@ const Height = inject('registerStore')(
       
       setHeightValidationMessage('');
       return true;
-    }
+    };
 
     const nextTo = () => {
       const isValid = validateHeight(registerStore.registerData.height);
       if (isValid) {
         registerStore.nextTo();
       }
-    }
+    };
+
+    const setMinHeight = {
+      minHeight: `${componentMinHeight}px`,
+    };
     
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <div className={styles.question}>
             <strong>키</strong>를 알려주세요.
           </div>
@@ -52,10 +57,10 @@ const Height = inject('registerStore')(
             <span className={styles.scaleLabel}>cm</span>
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default Height;

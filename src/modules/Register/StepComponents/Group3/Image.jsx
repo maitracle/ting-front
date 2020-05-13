@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
@@ -7,10 +7,11 @@ import styles from './Group3.module.scss'
 
 
 const Image = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const [imageSrc, setImageSrc] = useState(null);
 
     const [validationMessage, setValidationMessage] = useState('');
+    
 
     const uploadProfileImage = (e) => {
       setValidationMessage('');
@@ -51,25 +52,34 @@ const Image = inject('registerStore')(
       }
     };
 
+    const setMinHeight = {
+      minHeight: `${componentMinHeight}px`,
+    };
+
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <input className={styles.imageInput} id="profile-image" type="file" onChange={uploadProfileImage} accept=".jpg,.png" />
           <label htmlFor="profile-image">
             <div className={styles.imageLabel}>
               { imageSrc ?
                 <img className={styles.imagePreview} src={imageSrc} alt="프로필 이미지 미리보기" />
                 :
-                <div className={styles.labelDescription}>이미지를 업로드해주세요.</div>
+                <div className={styles.labelDescription}>
+                  자신을 표현할 이미지를<br/>업로드해주세요.
+                  <br/>
+                  <br/>
+                  (얼굴이 포함된 이미지는 자제해주세요.)
+                </div>
               }
             </div>
           </label>
           <div className={styles.validationMessage}>{validationMessage}</div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  })
+  }))
 );
 
 export default Image;

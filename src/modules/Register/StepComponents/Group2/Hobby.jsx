@@ -1,4 +1,4 @@
-import React , { useState } from 'react';
+import React , { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Textarea from 'src/components/Input/Textarea';
 import TextLengthBox from 'src/components/Validation/TextLengthBox';
@@ -10,9 +10,10 @@ import { selsoFieldsMinLengthLimit, selsoFieldsMaxLengthLimit } from 'src/consta
 
 
 const Hobby = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const [hobbyValidationMessage, setHobbyValidationMessage] = useState('');
     
+
     const validateHobby = (data) => {
       const validationMessage = getLengthValidationMessage(
         selsoFieldsMinLengthLimit.Hobby, selsoFieldsMaxLengthLimit.Hobby, data
@@ -29,9 +30,13 @@ const Hobby = inject('registerStore')(
       }
     };
 
+    const setMinHeight = {
+      minHeight: `${componentMinHeight}px`,
+    };
+
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <Textarea
             placeholder={getPlaceholderMessageByLengthLimit(selsoFieldsMinLengthLimit.Hobby)}
             value={registerStore.registerData.hobby}
@@ -47,10 +52,10 @@ const Hobby = inject('registerStore')(
             validationMessage={hobbyValidationMessage}
           />
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default Hobby;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group1.module.scss';
@@ -6,9 +6,9 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Age = inject('registerStore')(
-  observer(({ registerStore }) => {
-    const [ageValidationMessage, setAgeValidationMessage] = useState('');
-
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
+    const [ageValidationMessage, setAgeValidationMessage] = useState('');  
+    
     const validateAge = (data) => {
       const ageRegExp = /^[1-9][0-9]$/;
 
@@ -33,10 +33,14 @@ const Age = inject('registerStore')(
         registerStore.nextTo();
       }
     };
+    
+    const setMinHeight = {
+      minHeight: `${componentMinHeight}px`,
+    };
 
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <div className={styles.question}>
             <strong>나이</strong>를 알려주세요.
           </div>
@@ -54,10 +58,10 @@ const Age = inject('registerStore')(
             <span className={styles.scaleLabel}>세</span>
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo}/>
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default Age;

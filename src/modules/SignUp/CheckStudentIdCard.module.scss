@@ -20,7 +20,7 @@
   margin: 0 auto;
 
   .labelDescription {
-    padding-top: 250px;
+    padding-top: 200px;
     text-align: center;
   }
 
@@ -36,14 +36,4 @@
   font-size: 10px;
   line-height: 10px;
   padding-top: 6px;
-}
-
-.buttonWrapper {
-  position: fixed;
-  bottom: 35px;
-
-  width: 100%;
-  max-width: $root-max-width;
-  margin-left: -25px;
-  padding: 0 25px;
 }

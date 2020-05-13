@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group1.module.scss';
@@ -6,12 +6,11 @@ import RegisterBtnSet from 'src/modules/Register/RegisterBtnSet';
 
 
 const Nickname = inject('registerStore')(
-  observer(({ registerStore }) => {
+  observer(forwardRef(({ registerStore, componentMinHeight }, ref) => {
     const [nicknameValidationMessage, setNicknameValidationMessage] = useState('');
     
     const validateNickname = (data) => {
       const nicknameRegExp = /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]{1,8}$/;
-  
       if (data.length === 0) {
         setNicknameValidationMessage('닉네임을 입력해주세요.');
         return false;
@@ -31,9 +30,13 @@ const Nickname = inject('registerStore')(
       }
     };
 
+    const setMinHeight = {
+      minHeight: `${componentMinHeight}px`,
+    };
+
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <div className={styles.question}>
             <strong>닉네임</strong>을 입력해주세요.
           </div>
@@ -49,10 +52,10 @@ const Nickname = inject('registerStore')(
             </div>
           </div>
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={nextTo} ref={ref}/>
       </>
     );
-  }),
+  })),
 );
 
 export default Nickname;

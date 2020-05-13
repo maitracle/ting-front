@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef } from 'react';
 import { inject, observer } from 'mobx-react';
 import Input from 'src/components/Form/Input';
 import styles from './Group4.module.scss';
@@ -8,10 +8,10 @@ import { getChatLinkValidationMessage } from 'src/utils/validations';
 
 
 const ChatLink = inject('registerStore', 'userStore')(
-  observer(({ registerStore, userStore, history }) => {
+  observer(forwardRef(({ registerStore, userStore, history, componentMinHeight }, ref) => {
     const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
     const [chatLinkValidationMessage, setChatLinkValidationMessage] = useState('');
-
+    
     const validateChatLink = (data) => {
       const validationMessage = getChatLinkValidationMessage(data);
       setChatLinkValidationMessage(validationMessage);
@@ -35,9 +35,13 @@ const ChatLink = inject('registerStore', 'userStore')(
       }
     };
 
+    const setMinHeight = {
+      minHeight: `${componentMinHeight}px`,
+    };
+
     return (
       <>
-        <div className={styles.componentWrapper}>
+        <div className={styles.componentWrapper} style={setMinHeight}>
           <Input
             placeholder="이성분이 연락 가능한 오픈 카카오톡 링크"
             value={registerStore.registerData.chatLink}
@@ -47,7 +51,7 @@ const ChatLink = inject('registerStore', 'userStore')(
             onBlur={() => validateChatLink(registerStore.registerData.chatLink)}
           />
         </div>
-        <RegisterBtnSet backTo={registerStore.backTo} nextTo={submit} />
+        <RegisterBtnSet backTo={registerStore.backTo} nextTo={submit} ref={ref}/>
         <Modal
           isOpen={isErrorModalOpen}
           close={()=>setIsErrorModalOpen(false)}
@@ -57,7 +61,7 @@ const ChatLink = inject('registerStore', 'userStore')(
         </Modal>
       </>
     );
-  }),
+  })),
 );
 
 export default ChatLink;
