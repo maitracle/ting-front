@@ -10,7 +10,7 @@ import { selsoCost } from 'src/constants/costs';
 const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
   observer(({ selsoListStore, userStore, myPointStore, history }) => {
     const [isOpenSpendPointModal, setIsOpenSpendPointModal] = useState(false);
-    const [isOpenPointLackModal, setIsOpenPointLackModal] = useState(true);
+    const [isOpenPointLackModal, setIsOpenPointLackModal] = useState(false);
     
     useEffect(() => {
       if (userStore.profile?.gender && userStore.profile?.university) {
