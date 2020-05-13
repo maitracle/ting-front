@@ -9,7 +9,7 @@ import Modal from 'src/components/Modal';
 export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListStore }) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [kakaoLinkErrorMessage, setKakaoLinkErrorMessage] = useState('');
-  
+
   useEffect(() => {
     if (selsoListStore.choosedSelso) {
       // choosed selso 값이 없을 경우 fetchSelsoDetail function이 undefined를 반환하여 callback을 사용할 수 없다.
@@ -22,11 +22,11 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
     }
   }, [selsoListStore.choosedSelso]);
 
-  const getOpenKakaoLink = () => {
-    selsoListStore.fetchOpenKakaoLink(selsoListStore.fetchedSelsoDetail.id)
+  const getOpenKakaoLink = async () => {
+    const chatLink = await selsoListStore.fetchOpenKakaoLink(selsoListStore.fetchedSelsoDetail.id)
       .then((res) => {
         if (res.status === 200) {
-          window.open(res.chatLink);
+          return res.chatLink;
         }
         else {
           if (res.status === 404) {
@@ -35,8 +35,15 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
             setKakaoLinkErrorMessage('잠시 후 다시 시도해주세요.');
           }
           setIsErrorModalOpen(true);
+          return '';
         }    
       });
+
+    if (chatLink !== '') {
+      alert(chatLink);
+
+      window.open(chatLink);
+    }
   };
 
   return (
@@ -47,11 +54,11 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
         <button onClick={getOpenKakaoLink} className={styles.kakaoButton}>오픈 카카오로 연락하기</button>
       </div>
       <Modal
-          isOpen={isErrorModalOpen}
-          close={()=>setIsErrorModalOpen(false)}
-        >
-          <p>{kakaoLinkErrorMessage}</p>
-        </Modal>
+        isOpen={isErrorModalOpen}
+        close={() => setIsErrorModalOpen(false)}
+      >
+        <p>{kakaoLinkErrorMessage}</p>
+      </Modal>
     </div>
   );
 }));

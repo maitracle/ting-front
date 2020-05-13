@@ -49,17 +49,18 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
               <SelsoItemCard selsoItem={selsoItem} />
             </div>
           ))
-        }
-        <Modal
-          isOpen={isOpenPointLackModal}
-          close={() => setIsOpenPointLackModal(false)}
-        >
-          <p>포인트가 부족합니다.</p>
-        </Modal>
-        <Modal
-          isOpen={isOpenSpendPointModal}
-          close={() => setIsOpenSpendPointModal(false)}
-          buttonList={[
+            }
+            <Modal
+            isOpen={isOpenPointLackModal}
+            close={() => setIsOpenPointLackModal(false)}
+            >
+              <p>포인트가 부족합니다.<br /> 학교 인증이 완료되면 30포인트가 지급됩니다.</p>
+              <p>학생증 이미지를 업로드하지 않으신 분은 회원가입 마무리를 해주세요.<br /> 이미지를 확인하고 포인트를 지급하는 데 시간이 걸릴 수 있습니다.</p>
+            </Modal>
+            <Modal
+            isOpen={isOpenSpendPointModal}
+            close={() => setIsOpenSpendPointModal(false)}
+            buttonList={[
             <button
               key="actionButton"
               className={`${styles.modalButton} ${styles.actionButton}`}

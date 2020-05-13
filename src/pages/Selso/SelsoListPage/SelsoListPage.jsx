@@ -3,15 +3,15 @@ import SelsoList from 'src/modules/SelsoList';
 
 import styles from './SelsoListPage.module.scss';
 import { SelsoListSkeleton } from 'src/modules/SelsoList/SelsoListSkeleton';
+import { yeungnamSelsoListOpenDate } from 'src/constants/dates';
 
 
 export const SelsoListPage = ({ history }) => {
-  const selsoListOpenDate = new Date(2020, 0, 7);
 
   const isAccessibleSelsoList = () => {
     let today = new Date();
 
-    return today > selsoListOpenDate;
+    return today > yeungnamSelsoListOpenDate;
   };
 
   return (
@@ -24,7 +24,7 @@ export const SelsoListPage = ({ history }) => {
           isAccessibleSelsoList() ?
             <SelsoList history={history} />
             :
-            <SelsoListSkeleton openDate={selsoListOpenDate} history={history} />
+            <SelsoListSkeleton openDate={yeungnamSelsoListOpenDate} history={history} />
         }
       </div>
     </div>

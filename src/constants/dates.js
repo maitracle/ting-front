@@ -1,3 +1,3 @@
-export const serviceOpeningDate = '3월 21일';
+export const serviceOpeningDate = '5월 19일';
 
-export const yeungnamSelsoListOpenDate = new Date(2020, 4, 11);
+export const yeungnamSelsoListOpenDate = new Date(2020, 4, 19);
