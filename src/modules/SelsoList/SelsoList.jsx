@@ -17,9 +17,9 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
     useEffect(() => {
       if (userStore.profile?.gender && userStore.profile?.university) {
         if (userStore.profile.gender === 'MALE') {
-          selsoListStore.setSelsoList('FEMALE', userStore.profile.university)
+          selsoListStore.setSelsoList('FEMALE', userStore.profile.university);
         } else {
-          selsoListStore.setSelsoList('MALE', userStore.profile.university)
+          selsoListStore.setSelsoList('MALE', userStore.profile.university);
         }
       }
     }, [userStore.profile?.gender, userStore.profile?.university]);
