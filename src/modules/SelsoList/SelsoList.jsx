@@ -5,7 +5,6 @@ import Modal from 'src/components/Modal';
 
 import SelsoItemCard from './SelsoItemCard';
 import styles from './SelsoList.module.scss';
-import { selsoCost } from 'src/constants/costs';
 
 const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
   observer(({ selsoListStore, userStore, myPointStore, history }) => {
