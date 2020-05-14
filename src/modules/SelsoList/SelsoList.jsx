@@ -32,7 +32,7 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
             setUserStatus('NoSelsoProfile');
           } else if (res.data.isActive === false) {
             setUserStatus('NotActive');
-          } else {
+          } else if (res.status === 200) {
             setUserStatus('AvailableToUse');
           }
         });
