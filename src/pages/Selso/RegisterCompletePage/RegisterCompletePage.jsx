@@ -16,7 +16,7 @@ const RegisterCompletePage = inject('userStore')(
           </div>
 
           <div className={styles.description}>
-            { serviceOpeningDate }에 카카오톡 링크로 찾아갈게요!
+            { serviceOpeningDate }에 셀소 목록 오픈됩니다!
           </div>
 
           <img src={require('src/assets/images/Register/cheerPerson@3x.png')} className={styles.image} alt='등록 완료' />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import Card from 'src/modules/SelsoDetail/Card';
@@ -9,12 +9,12 @@ import Modal from 'src/components/Modal';
 export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListStore }) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [kakaoLinkErrorMessage, setKakaoLinkErrorMessage] = useState('');
-  
-  const getOpenKakaoLink = () => {
-    selsoListStore.fetchOpenKakaoLink(selsoListStore.fetchedSelsoDetail.id)
+
+  const getOpenKakaoLink = async () => {
+    const chatLink = await selsoListStore.fetchOpenKakaoLink(selsoListStore.fetchedSelsoDetail.id)
       .then((res) => {
         if (res.status === 200) {
-          window.open(res.chatLink);
+          return res.chatLink;
         }
         else {
           if (res.status === 404) {
@@ -23,8 +23,15 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
             setKakaoLinkErrorMessage('잠시 후 다시 시도해주세요.');
           }
           setIsErrorModalOpen(true);
+          return '';
         }    
       });
+
+    if (chatLink !== '') {
+      alert(chatLink);
+
+      window.open(chatLink);
+    }
   };
 
   return (
@@ -36,7 +43,7 @@ export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListSto
       </div>
       <Modal
         isOpen={isErrorModalOpen}
-        close={()=>setIsErrorModalOpen(false)}
+        close={() => setIsErrorModalOpen(false)}
       >
         <p>{kakaoLinkErrorMessage}</p>
       </Modal>
