@@ -118,7 +118,21 @@ export default class SelsoListStore {
             status: res.status,
             message: res.statusText,
           };
-        });
+        }).catch((err) => {
+          if (err.response) {
+            return {
+              status: err.response.status,
+              message: err.response.statusText,
+              data: err.response.data,
+            };
+          }
+
+          return {
+            status: null,
+            message: 'unknown error',
+            data: {},
+          };
+        })
     }
   };
 

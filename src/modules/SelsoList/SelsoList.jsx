@@ -14,7 +14,7 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
     const [isOpenHaveNotSelsoProfileModal, setIsOpenHaveNotSelsoProfileModal] = useState(false);
     const [isOpenNotActiveSelsoProfileModal, setIsOpenNotActiveSelsoProfileModal] = useState(false);
 
-    // const [userStatus, setUserStatus] = useState('');
+    const [userStatus, setUserStatus] = useState('');
 
     useEffect(() => {
       if (userStore.profile?.gender && userStore.profile?.university) {
@@ -26,38 +26,39 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
       }
     }, [userStore.profile?.gender, userStore.profile?.university]);
 
-    // useEffect(() => {
-    //   selsoListStore.getMySelsoProfile()
-    //     .then((res) => {
-    //       if (res.status === 404) {
-    //         setUserStatus
-    //       }
-    //     })
-    // }, []);
-
-    const moveToDetailPageHandler = (selsoItem) => (_e) => {
+    useEffect(() => {
       selsoListStore.getMySelsoProfile()
         .then((res) => {
           if (res.status === 404) {
-            setIsOpenHaveNotSelsoProfileModal(true);
+            setUserStatus('NoSelsoProfile');
           } else if (res.data.isActive === false) {
-            setIsOpenNotActiveSelsoProfileModal(true);
+            setUserStatus('NotActive');
           } else {
-            selsoListStore.setChoosedSelso(selsoItem);
-
-            if (selsoItem.isViewed) {
-              selsoListStore.fetchSelsoDetail()
-                .then((res) => {
-                  if (res.status === 200) {
-                    selsoListStore.root.myPointStore.fetchMyPointHistory();
-                    history.push('selso/detail');
-                  }
-                });
-            } else {
-              setIsOpenSpendPointModal(true);
-            }
+            setUserStatus('AvailableToUse');
           }
         });
+    }, []);
+
+    const moveToDetailPageHandler = (selsoItem) => (_e) => {
+      if (userStatus === 'NoSelsoProfile') {
+        setIsOpenHaveNotSelsoProfileModal(true);
+      } else if (userStatus === 'NotActive') {
+        setIsOpenNotActiveSelsoProfileModal(true);
+      } else if (userStatus === 'AvailableToUse') {
+        selsoListStore.setChoosedSelso(selsoItem);
+
+        if (selsoItem.isViewed) {
+          selsoListStore.fetchSelsoDetail()
+            .then((res) => {
+              if (res.status === 200) {
+                history.push('selso/detail');
+              }
+            });
+        } else {
+          setIsOpenSpendPointModal(true);
+        }
+      }
+
     };
 
     const spendPointAndMoveToDetailPage = () => {
@@ -67,7 +68,6 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
             selsoListStore.root.myPointStore.fetchMyPointHistory();
             history.push('selso/detail');
           } else if (res.status === 403) {
-            console.dir(res);
             setIsOpenSpendPointModal(false);
             setIsOpenPointLackModal(true);
           }
