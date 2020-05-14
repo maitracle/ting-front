@@ -14,6 +14,8 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
     const [isOpenHaveNotSelsoProfileModal, setIsOpenHaveNotSelsoProfileModal] = useState(false);
     const [isOpenNotActiveSelsoProfileModal, setIsOpenNotActiveSelsoProfileModal] = useState(false);
 
+    // const [userStatus, setUserStatus] = useState('');
+
     useEffect(() => {
       if (userStore.profile?.gender && userStore.profile?.university) {
         if (userStore.profile.gender === 'MALE') {
@@ -23,6 +25,15 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
         }
       }
     }, [userStore.profile?.gender, userStore.profile?.university]);
+
+    // useEffect(() => {
+    //   selsoListStore.getMySelsoProfile()
+    //     .then((res) => {
+    //       if (res.status === 404) {
+    //         setUserStatus
+    //       }
+    //     })
+    // }, []);
 
     const moveToDetailPageHandler = (selsoItem) => (_e) => {
       selsoListStore.getMySelsoProfile()
@@ -35,7 +46,13 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
             selsoListStore.setChoosedSelso(selsoItem);
 
             if (selsoItem.isViewed) {
-              history.push('selso/detail');
+              selsoListStore.fetchSelsoDetail()
+                .then((res) => {
+                  if (res.status === 200) {
+                    selsoListStore.root.myPointStore.fetchMyPointHistory();
+                    history.push('selso/detail');
+                  }
+                });
             } else {
               setIsOpenSpendPointModal(true);
             }
@@ -44,12 +61,17 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
     };
 
     const spendPointAndMoveToDetailPage = () => {
-      if (myPointStore.restPoint >= selsoCost.ViewProfileDetail) {
-        history.push('selso/detail');
-      } else {
-        setIsOpenSpendPointModal(false);
-        setIsOpenPointLackModal(true);
-      }
+      selsoListStore.fetchSelsoDetail()
+        .then((res) => {
+          if (res.status === 200) {
+            selsoListStore.root.myPointStore.fetchMyPointHistory();
+            history.push('selso/detail');
+          } else if (res.status === 403) {
+            console.dir(res);
+            setIsOpenSpendPointModal(false);
+            setIsOpenPointLackModal(true);
+          }
+        });
     };
 
     return (
