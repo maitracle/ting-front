@@ -7,13 +7,11 @@ import SelsoItemCard from './SelsoItemCard';
 import styles from './SelsoList.module.scss';
 
 const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
-  observer(({ selsoListStore, userStore, myPointStore, history }) => {
+  observer(({ selsoListStore, userStore, history }) => {
     const [isOpenSpendPointModal, setIsOpenSpendPointModal] = useState(false);
     const [isOpenPointLackModal, setIsOpenPointLackModal] = useState(false);
     const [isOpenHaveNotSelsoProfileModal, setIsOpenHaveNotSelsoProfileModal] = useState(false);
     const [isOpenNotActiveSelsoProfileModal, setIsOpenNotActiveSelsoProfileModal] = useState(false);
-
-    const [userStatus, setUserStatus] = useState('');
 
     useEffect(() => {
       if (userStore.profile?.gender && userStore.profile?.university) {
@@ -25,39 +23,28 @@ const SelsoList = inject('selsoListStore', 'userStore', 'myPointStore')(
       }
     }, [userStore.profile?.gender, userStore.profile?.university]);
 
-    useEffect(() => {
+    const moveToDetailPageHandler = (selsoItem) => (_e) => {
       selsoListStore.getMySelsoProfile()
         .then((res) => {
           if (res.status === 404) {
-            setUserStatus('NoSelsoProfile');
-          } else if (res.data.isActive === false) {
-            setUserStatus('NotActive');
+            setIsOpenHaveNotSelsoProfileModal(true);
           } else if (res.status === 200) {
-            setUserStatus('AvailableToUse');
+            selsoListStore.setChoosedSelso(selsoItem);
+
+            if (selsoItem.isViewed) {
+              selsoListStore.fetchSelsoDetail()
+                .then((res) => {
+                  if (res.status === 200) {
+                    history.push('selso/detail');
+                  } else if (res.status === 403) {
+                    setIsOpenNotActiveSelsoProfileModal(true);
+                  }
+                });
+            } else {
+              setIsOpenSpendPointModal(true);
+            }
           }
-        });
-    }, []);
-
-    const moveToDetailPageHandler = (selsoItem) => (_e) => {
-      if (userStatus === 'NoSelsoProfile') {
-        setIsOpenHaveNotSelsoProfileModal(true);
-      } else if (userStatus === 'NotActive') {
-        setIsOpenNotActiveSelsoProfileModal(true);
-      } else if (userStatus === 'AvailableToUse') {
-        selsoListStore.setChoosedSelso(selsoItem);
-
-        if (selsoItem.isViewed) {
-          selsoListStore.fetchSelsoDetail()
-            .then((res) => {
-              if (res.status === 200) {
-                history.push('selso/detail');
-              }
-            });
-        } else {
-          setIsOpenSpendPointModal(true);
-        }
-      }
-
+        }); 
     };
 
     const spendPointAndMoveToDetailPage = () => {
