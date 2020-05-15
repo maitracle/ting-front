@@ -36,8 +36,21 @@ export default class SelsoListStore {
     .then((res) => {
       this.mySelsoProfile = res.data;
       return res;
-    })
-    .catch((err) => err);
+    }).catch((err) => {
+      if (err.response) {
+        return {
+          status: err.response.status,
+          message: err.response.statusText,
+          data: err.response.data,
+        };
+      }
+
+      return {
+        status: null,
+        message: 'unknown error',
+        data: {},
+      };
+    });
 
   @action setMySelsoProfile = (type, value) => {
     this.mySelsoProfile[type] = value
@@ -105,7 +118,21 @@ export default class SelsoListStore {
             status: res.status,
             message: res.statusText,
           };
-        });
+        }).catch((err) => {
+          if (err.response) {
+            return {
+              status: err.response.status,
+              message: err.response.statusText,
+              data: err.response.data,
+            };
+          }
+
+          return {
+            status: null,
+            message: 'unknown error',
+            data: {},
+          };
+        })
     }
   };
 

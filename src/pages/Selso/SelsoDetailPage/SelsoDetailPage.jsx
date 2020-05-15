@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { inject, observer } from 'mobx-react';
 
 import Card from 'src/modules/SelsoDetail/Card';
@@ -9,18 +9,6 @@ import Modal from 'src/components/Modal';
 export const SelsoDetailPage = inject('selsoListStore')(observer(({ selsoListStore }) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [kakaoLinkErrorMessage, setKakaoLinkErrorMessage] = useState('');
-
-  useEffect(() => {
-    if (selsoListStore.choosedSelso) {
-      // choosed selso 값이 없을 경우 fetchSelsoDetail function이 undefined를 반환하여 callback을 사용할 수 없다.
-      selsoListStore.fetchSelsoDetail()
-        .then((res) => {
-          if (res?.status === 200) {
-            selsoListStore.root.myPointStore.fetchMyPointHistory();
-          }
-        });
-    }
-  }, [selsoListStore.choosedSelso]);
 
   const getOpenKakaoLink = async () => {
     const chatLink = await selsoListStore.fetchOpenKakaoLink(selsoListStore.fetchedSelsoDetail.id)
