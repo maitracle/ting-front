@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { inject, observer } from 'mobx-react';
+import { Redirect } from 'react-router-dom';
 
 import { ProfileCard } from 'src/modules/MyPage/ProfileCard/ProfileCard';
 import Textarea from 'src/components/Input/Textarea';
@@ -30,7 +31,7 @@ const isActiveItemList = [
   },
 ];
 
-export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userStore, selsoListStore }) => {
+export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userStore, selsoListStore, history }) => {
 
   const [updateMessage, setUpdateMessage] = useState('');
 
@@ -56,7 +57,12 @@ export const MyProfile = inject('userStore', 'selsoListStore')(observer(({ userS
   const [idealTypeValidationMessage, setIdealTypeValidationMessage] = useState('');
 
   useEffect(() => {
-    selsoListStore.getMySelsoProfile();
+    selsoListStore.getMySelsoProfile()
+      .then((res) => {
+        if (res.status === 404) {
+          history.push('/user/register');
+        }
+      })
   }, []);
 
   useEffect(() => {
